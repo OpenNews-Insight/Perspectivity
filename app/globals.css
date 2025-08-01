@@ -14,7 +14,7 @@ body {
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 50%, #0f766e 100%);
 }
 
 .glass-effect {
@@ -23,7 +23,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -56,10 +56,20 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f97316;
+  background: #14b8a6;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ea580c;
+  background: #0d9488;
+}
+
+/* Hide scrollbar for screenshot thumbnails */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

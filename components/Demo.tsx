@@ -1,12 +1,37 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Play, ExternalLink } from 'lucide-react'
+import Image from 'next/image'
+import { Play, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function Demo() {
   const [isVisible, setIsVisible] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [currentScreenshot, setCurrentScreenshot] = useState(0)
   const ref = useRef<HTMLDivElement>(null)
+
+  // Demo screenshots
+  const screenshots = [
+    { src: '/assets/images/screen1.jpeg', alt: 'Drishtikon news aggregation dashboard' },
+    { src: '/assets/images/screen2.jpeg', alt: 'Multi-axis bias analysis interface' },
+    { src: '/assets/images/screen3.jpeg', alt: 'Regional news mapping view' },
+    { src: '/assets/images/screen4.jpeg', alt: 'Interactive news chat feature' },
+    { src: '/assets/images/screen5.jpeg', alt: 'Trend analytics visualization' },
+    { src: '/assets/images/screen6.jpeg', alt: 'Local language summary feeds' },
+    { src: '/assets/images/screen7.jpeg', alt: 'District-level news distribution' },
+    { src: '/assets/images/screen8.jpeg', alt: 'Civic signal detection dashboard' },
+    { src: '/assets/images/screen9.jpeg', alt: 'News source bias visualization' },
+    { src: '/assets/images/screen10.jpeg', alt: 'Real-time sentiment tracking' },
+    { src: '/assets/images/screen11.jpeg', alt: 'Comprehensive news overview' }
+  ]
+
+  const nextScreenshot = () => {
+    setCurrentScreenshot((prev) => (prev + 1) % screenshots.length)
+  }
+
+  const prevScreenshot = () => {
+    setCurrentScreenshot((prev) => (prev - 1 + screenshots.length) % screenshots.length)
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -156,6 +181,76 @@ export default function Demo() {
                   <ExternalLink size={16} />
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Screenshot Gallery */}
+        <div className={`mt-20 transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold mb-4">Product Screenshots</h3>
+            <p className="text-gray-300 text-lg">Explore the key features of Drishtikon in action</p>
+          </div>
+
+          <div className="relative max-w-4xl mx-auto">
+            {/* Main Screenshot Display */}
+            <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-4 mb-8">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-gray-800">
+                <Image
+                  src={screenshots[currentScreenshot].src}
+                  alt={screenshots[currentScreenshot].alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                />
+                
+                {/* Navigation Arrows */}
+                <button
+                  onClick={prevScreenshot}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button
+                  onClick={nextScreenshot}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110"
+                >
+                  <ChevronRight size={24} />
+                </button>
+                
+                {/* Screenshot Counter */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
+                  {currentScreenshot + 1} / {screenshots.length}
+                </div>
+              </div>
+              
+              {/* Screenshot Description */}
+              <div className="mt-4 text-center">
+                <p className="text-gray-300">{screenshots[currentScreenshot].alt}</p>
+              </div>
+            </div>
+
+            {/* Thumbnail Strip */}
+            <div className="flex space-x-2 overflow-x-auto pb-4 scrollbar-hide">
+              {screenshots.map((screenshot, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentScreenshot(index)}
+                  className={`relative flex-shrink-0 w-20 h-12 rounded-lg overflow-hidden transition-all duration-300 ${
+                    index === currentScreenshot 
+                      ? 'ring-2 ring-primary-500 scale-110' 
+                      : 'opacity-60 hover:opacity-80'
+                  }`}
+                >
+                  <Image
+                    src={screenshot.src}
+                    alt={screenshot.alt}
+                    fill
+                    className="object-cover"
+                    sizes="80px"
+                  />
+                </button>
+              ))}
             </div>
           </div>
         </div>

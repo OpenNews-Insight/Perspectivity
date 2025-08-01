@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perspectivity - Real‑time AI news bias agent for emerging markets</title>
+    <meta name="description" content="Empowering citizens with multi-perspective news in their own language. Built for low-resource countries, Perspectivity is an open-source news insight framework that scrapes, aggregates, and analyzes regional news in real time.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://perspectivity.co/">
+    <meta property="og:title" content="Perspectivity - Real‑time AI news bias agent for emerging markets">
+    <meta property="og:description" content="Empowering citizens with multi-perspective news in their own language. Built for low-resource countries, Perspectivity is an open-source news insight framework that scrapes, aggregates, and analyzes regional news in real time.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://perspectivity.co/">
+    <meta property="twitter:title" content="Perspectivity - Real‑time AI news bias agent for emerging markets">
+    <meta property="twitter:description" content="Empowering citizens with multi-perspective news in their own language. Built for low-resource countries, Perspectivity is an open-source news insight framework that scrapes, aggregates, and analyzes regional news in real time.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'coral': '#ff6154',
+                        'coral-light': '#ff8577',
+                        'coral-dark': '#e55449',
+                        'warm-orange': '#ff7a4d',
+                        'warm-orange-light': '#ff9470',
+                        'warm-orange-dark': '#e6652a',
+                        'sage': {
+                            50: '#f8faf8',
+                            100: '#f0f4f0',
+                            200: '#e1e8e1',
+                            300: '#c8d5c8',
+                            400: '#9bb09b',
+                            500: '#6d8b6d',
+                            600: '#5a735a',
+                            700: '#485c48',
+                            800: '#3a4a3a',
+                            900: '#2d3a2d',
+                        },
+                        'neutral': {
+                            50: '#fefefe',
+                            100: '#fcfcfc',
+                            200: '#f7f7f7',
+                            300: '#f0f0f0',
+                            400: '#d4d4d4',
+                            500: '#a3a3a3',
+                            600: '#737373',
+                            700: '#525252',
+                            800: '#404040',
+                            900: '#262626',
+                        },
+                        'warm-gray': {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            400: '#a8a29e',
+                            500: '#78716c',
+                            600: '#57534e',
+                            700: '#44403c',
+                            800: '#292524',
+                            900: '#1c1917',
+                        }
+                    },
+                    fontFamily: {
+                        'dm-sans': ['DM Sans', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #ff6154 0%, #ff7a4d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-gradient-subtle {
+            background: linear-gradient(135deg, #525252 0%, #737373 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bg-gradient-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+            position: relative;
+        }
+
+        .bg-gradient-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 97, 84, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 122, 77, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(248, 250, 248, 0.5) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .bg-gradient-subtle {
+            background: linear-gradient(135deg, #fefefe 0%, #fafaf9 100%);
+        }
+
+        .bg-gradient-warm {
+            background: linear-gradient(135deg, #ff6154 0%, #ff7a4d 100%);
+        }
+
+        .shadow-elegant {
+            box-shadow: 0 20px 40px rgba(255, 97, 84, 0.08), 0 8px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .shadow-soft {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .underline-animation {
+            position: relative;
+        }
+
+        .underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ff6154;
+            transition: width 0.3s ease;
+        }
+
+        .underline-animation:hover::after {
+            width: 100%;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(255, 97, 84, 0.12), 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 97, 84, 0.1) 0%, rgba(255, 122, 77, 0.05) 100%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            animation-delay: 4s;
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-dm-sans text-neutral-800 bg-neutral-50">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 border-b border-neutral-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="#" class="font-playfair text-2xl font-bold text-gradient">
+                    Perspectivity
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#problem" class="text-neutral-700 hover:text-coral underline-animation font-medium">Problem</a>
+                    <a href="#solution" class="text-neutral-700 hover:text-coral underline-animation font-medium">Solution</a>
+                    <a href="#demo" class="text-neutral-700 hover:text-coral underline-animation font-medium">Demo</a>
+                    <a href="#team" class="text-neutral-700 hover:text-coral underline-animation font-medium">Team</a>
+                    <a href="#contact" class="bg-gradient-warm text-white px-6 py-3 rounded-lg font-semibold hover:shadow-elegant transition-all duration-300 shadow-soft">
+                        Contact
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <button class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-hero text-white pt-24 pb-16 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-fade-in-up text-neutral-900">
+                    Real‑time AI news bias agent for 
+                    <span class="text-gradient font-bold">emerging markets</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl font-light mb-4 opacity-90 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    "Every Story. Every Side. In Your Language."
+                </p>
+                
+                <p class="text-lg md:text-xl leading-relaxed mb-12 opacity-90 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
+                    In a world overwhelmed by biased narratives and language barriers, Perspectivity empowers citizens with multi-perspective news in their own language. Built for low-resource countries, we provide an open-source news insight framework that scrapes, aggregates, and analyzes regional news in real time.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.6s;">
+                    <a href="#demo" class="bg-gradient-warm text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-elegant transition-all duration-300 shadow-soft">
+                        Watch Demo
+                    </a>
+                    <a href="https://drishtikon.life" class="border-2 border-coral/20 text-neutral-700 bg-white/80 backdrop-blur-sm px-8 py-4 rounded-lg font-semibold text-lg hover:border-coral hover:text-coral transition-all duration-300 shadow-soft">
+                        Try Drishtikon Live
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Floating elements for visual interest -->
+            <div class="floating-element top-20 left-10 w-16 h-16 hidden lg:block"></div>
+            <div class="floating-element bottom-20 right-20 w-12 h-12 hidden lg:block" style="animation-delay: 2s;"></div>
+            <div class="floating-element top-40 right-40 w-8 h-8 hidden lg:block" style="animation-delay: 4s;"></div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="py-24 bg-gradient-subtle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in-up">
+                    <h2 class="font-playfair text-3xl md:text-4xl font-bold text-neutral-900 mb-6">
+                        The Information Crisis in 
+                        <span class="text-gradient">Emerging Markets</span>
+                    </h2>
+                    <p class="text-lg text-neutral-600 mb-6 leading-relaxed">
+                        In Bangladesh and similar low-resource democracies, news is often fragmented and biased, especially at the district level and across local languages. This information gap affects citizens, global diaspora communities, NGOs, and companies interested in trends in emerging markets.
+                    </p>
+                    <p class="text-lg text-neutral-600 leading-relaxed">
+                        During crises like elections, protests, or natural disasters, people see hundreds of headlines and posts but don't know what to trust. Traditional media lacks transparency about bias and narrative framing.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6 fade-in-up">
+                    <div class="bg-white p-8 rounded-2xl text-center card-hover shadow-soft border border-neutral-200/50">
+                        <div class="text-3xl font-bold text-gradient mb-2">200M+</div>
+                        <div class="text-sm text-neutral-600 font-medium">People affected by news bias in Bangladesh alone</div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl text-center card-hover shadow-soft border border-neutral-200/50">
+                        <div class="text-3xl font-bold text-gradient mb-2">80%</div>
+                        <div class="text-sm text-neutral-600 font-medium">Of regional news lacks bias transparency</div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl text-center card-hover shadow-soft border border-neutral-200/50">
+                        <div class="text-3xl font-bold text-gradient mb-2">15+</div>
+                        <div class="text-sm text-neutral-600 font-medium">Languages underserved by current solutions</div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl text-center card-hover shadow-soft border border-neutral-200/50">
+                        <div class="text-3xl font-bold text-gradient mb-2">64</div>
+                        <div class="text-sm text-neutral-600 font-medium">Districts in Bangladesh need local news insights</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+                    A mash of <span class="text-gradient">Ground News + Perplexity + Palantir</span>
+                </h2>
+                <p class="text-lg text-neutral-600 max-w-3xl mx-auto">
+                    Six powerful AI agents working together to provide unprecedented news transparency
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft card-hover fade-in-up border border-neutral-200/50">
+                    <div class="w-14 h-14 bg-gradient-to-br from-coral/10 to-warm-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">🤖</span>
+                    </div>
+                    <h3 class="font-semibold text-xl text-neutral-800 mb-4">News Aggregation AI Agent</h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        Automatically gathers related stories from TV, newspapers, portals, and social media. You don't search for news — it finds you.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft card-hover fade-in-up border border-neutral-200/50" style="animation-delay: 0.1s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-coral/10 to-warm-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">⚖️</span>
+                    </div>
+                    <h3 class="font-semibold text-xl text-neutral-800 mb-4">Multi-Axis Bias Analysis</h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        Detects bias across political, cultural, and religious axes—not just left vs right. Shows whether stories lean pro-government, opposition, secular, or religious.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft card-hover fade-in-up border border-neutral-200/50" style="animation-delay: 0.2s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-coral/10 to-warm-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">📝</span>
+                    </div>
+                    <h3 class="font-semibold text-xl text-neutral-800 mb-4">AI News Summarizer</h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        Condenses long articles into clear, factual summaries in both English and local languages. Get key facts in under 60 seconds without bias or fluff.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft card-hover fade-in-up border border-neutral-200/50" style="animation-delay: 0.3s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-coral/10 to-warm-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">💬</span>
+                    </div>
+                    <h3 class="font-semibold text-xl text-neutral-800 mb-4">Interactive News Chat</h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        Perplexity-style conversational interface. Ask "What's happening with protests in Dhaka?" and get real-time answers grounded in verified news.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft card-hover fade-in-up border border-neutral-200/50" style="animation-delay: 0.4s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-coral/10 to-warm-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">📊</span>
+                    </div>
+                    <h3 class="font-semibold text-xl text-neutral-800 mb-4">Regional Trend Analytics</h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        Palantir-style mapping of stories across districts, tracking bias, media attention, and sentiment over time. See how issues evolve geographically.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft card-hover fade-in-up border border-neutral-200/50" style="animation-delay: 0.5s;">
+                    <div class="w-14 h-14 bg-gradient-to-br from-coral/10 to-warm-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="text-2xl">🌍</span>
+                    </div>
+                    <h3 class="font-semibold text-xl text-neutral-800 mb-4">Local Language Support</h3>
+                    <p class="text-neutral-600 leading-relaxed">
+                        Built on BongLLaMA, the first open-source Bangla LLM fine-tuned for civic NLP. Works on low-end phones with offline capabilities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="py-24 bg-neutral-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in-up">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-6">
+                    See Perspectivity in Action
+                </h2>
+                <p class="text-xl text-neutral-300 mb-12 max-w-3xl mx-auto">
+                    Watch how Drishtikon, our Bangladesh pilot, surfaces multi-perspective news insights in real-time
+                </p>
+                
+                <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="relative pb-[56.25%] h-0">
+                        <iframe 
+                            src="https://www.loom.com/embed/3f5e1e09fdda48aa8c10157ada5bee70" 
+                            class="absolute top-0 left-0 w-full h-full"
+                            frameborder="0" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-24 bg-gradient-subtle">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold text-neutral-900 mb-4">
+                    Meet the Team
+                </h2>
+                <p class="text-lg text-neutral-600">
+                    AI researchers and engineers building the future of news transparency
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div class="text-center fade-in-up bg-white p-8 rounded-2xl shadow-soft border border-neutral-200/50 card-hover">
+                    <div class="w-32 h-32 bg-gradient-to-br from-coral to-warm-orange rounded-3xl mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold shadow-elegant">
+                        AZ
+                    </div>
+                    <h3 class="font-semibold text-xl text-neutral-800 mb-2">Abdullah Khan Zehady</h3>
+                    <div class="text-gradient font-semibold mb-4">Founder & CEO</div>
+                    <p class="text-neutral-600 leading-relaxed">
+                        ML infrastructure builder and BongLLaMA engineer. Built the first open-source Bangla LLM fine-tuned for civic NLP, available on Hugging Face with ArXiv publication.
+                    </p>
+                </div>
+                
+                <div class="text-center fade-in-up bg-white p-8 rounded-2xl shadow-soft border border-neutral-200/50 card-hover" style="animation-delay: 0.2s;">
+                    <div class="w-32 h-32 bg-gradient-to-br from-warm-orange to-coral rounded-3xl mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold shadow-elegant">
+                        RD
+                    </div>
+                    <h3 class="font-semibold text-xl text-neutral-800 mb-2">Roy Dipta</h3>
+                    <div class="text-gradient font-semibold mb-4">Co-Founder & CTO</div>
+                    <p class="text-neutral-600 leading-relaxed">
+                        LLM researcher focusing on bias detection and event processing pipelines. Specializes in multi-axis bias analysis for low-resource language contexts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-24 bg-gradient-warm text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in-up">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-6">
+                    Ready to Restore Trust in News?
+                </h2>
+                <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                    Join us in building democratic resilience through transparent, multi-perspective journalism.
+                </p>
+                <a href="mailto:hello@perspectivity.co" class="inline-block bg-white text-coral px-8 py-4 rounded-lg font-semibold text-lg hover:bg-neutral-50 transition-all duration-300 shadow-elegant hover:shadow-xl">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="font-playfair text-2xl font-bold text-gradient mb-4">Perspectivity</div>
+                    <p class="text-neutral-400 leading-relaxed">
+                        Real‑time AI news bias agent for emerging markets. Empowering democratic resilience through transparent journalism.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Product</h3>
+                    <ul class="space-y-2 text-neutral-400">
+                        <li><a href="https://drishtikon.life" class="hover:text-white transition-colors underline-animation">Drishtikon (Bangladesh)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">API Documentation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">Research Papers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">Open Source</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Company</h3>
+                    <ul class="space-y-2 text-neutral-400">
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">Press</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors underline-animation">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-lg mb-4">Resources</h3>
+                    <ul class="space-y-2 text-neutral-400">
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">BongLLaMA on Hugging Face</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">ArXiv Papers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">GitHub</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors underline-animation">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-neutral-800 pt-8 text-center text-neutral-400">
+                <p>&copy; 2025 Perspectivity. All rights reserved. Building democratic resilience through AI.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in-up class
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle (basic implementation)
+        const mobileMenuButton = document.querySelector('button');
+        if (mobileMenuButton) {
+            mobileMenuButton.addEventListener('click', function() {
+                // Add mobile menu functionality here if needed
+                console.log('Mobile menu clicked');
+            });
+        }
+    </script>
+</body>
+</html>
