@@ -29,25 +29,25 @@ export default function Problem() {
       icon: <Users className="w-8 h-8" />,
       number: "200M+",
       label: "People affected by news bias in Bangladesh alone",
-      color: "text-red-500"
+      color: "text-primary-600"
     },
     {
       icon: <TrendingDown className="w-8 h-8" />,
       number: "80%",
       label: "Of regional news lacks bias transparency",
-      color: "text-orange-500"
+      color: "text-primary-500"
     },
     {
       icon: <Globe className="w-8 h-8" />,
       number: "15+",
       label: "Languages underserved by current solutions",
-      color: "text-blue-500"
+      color: "text-primary-700"
     },
     {
       icon: <AlertTriangle className="w-8 h-8" />,
       number: "64",
       label: "Districts in Bangladesh need local news insights",
-      color: "text-purple-500"
+      color: "text-primary-800"
     }
   ]
 

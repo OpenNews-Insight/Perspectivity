@@ -9,28 +9,28 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50: '#f0fdf9',
-          100: '#ccfbef',
-          200: '#99f6e0',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
+          50: '#eff9ff',
+          100: '#dff2ff',
+          200: '#b8e6ff',
+          300: '#78d5ff',
+          400: '#3cc1ff',
+          500: '#3898ec',
+          600: '#0f7bc7',
+          700: '#0f62a1',
+          800: '#135385',
+          900: '#16456e',
         },
-        secondary: {
-          50: '#fefce8',
-          100: '#fef9c3',
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-          500: '#eab308',
-          600: '#ca8a04',
-          700: '#a16207',
-          800: '#854d0e',
-          900: '#713f12',
+        coral: {
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fdcaca',
+          300: '#fba5a5',
+          400: '#f87171',
+          500: '#ea384c',
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d',
         },
         accent: {
           50: '#f8fafc',
@@ -65,6 +65,10 @@ module.exports = {
         'fade-in': 'fadeIn 1s ease-out forwards',
         'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
         'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-soft': 'pulseSoft 2s ease-in-out infinite',
+        'gradient-shift': 'gradientShift 8s ease-in-out infinite',
+        'gentle-bounce': 'gentleBounce 2s ease-in-out infinite',
       },
       keyframes: {
         fadeInUp: {
@@ -103,6 +107,40 @@ module.exports = {
           '100%': {
             opacity: '1',
             transform: 'translateX(0)',
+          },
+        },
+        float: {
+          '0%, 100%': {
+            transform: 'translateY(0px)',
+          },
+          '50%': {
+            transform: 'translateY(-10px)',
+          },
+        },
+        pulseSoft: {
+          '0%, 100%': {
+            opacity: '1',
+            transform: 'scale(1)',
+          },
+          '50%': {
+            opacity: '0.8',
+            transform: 'scale(1.02)',
+          },
+        },
+        gradientShift: {
+          '0%, 100%': {
+            backgroundPosition: '0% 50%',
+          },
+          '50%': {
+            backgroundPosition: '100% 50%',
+          },
+        },
+        gentleBounce: {
+          '0%, 100%': {
+            transform: 'translateY(0)',
+          },
+          '50%': {
+            transform: 'translateY(-5px)',
           },
         },
       },
