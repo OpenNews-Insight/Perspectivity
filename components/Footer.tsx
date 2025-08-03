@@ -47,7 +47,7 @@ const Footer: FC = () => {
   );
 
   return (
-    <footer className="bg-surface-secondary py-12 px-4 sm:px-10 md:px-20">
+    <footer className="bg-surface-secondary py-12 px-5 sm:px-10 md:px-20">
       <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-4 sm:mb-12">
         <div>
           <p className="text-paragraph-md-medium text-secondary-700">

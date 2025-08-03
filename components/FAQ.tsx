@@ -32,21 +32,21 @@ const FAQ: FC = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
-    <section className="w-full py-[120px] flex flex-col items-center">
-      <h2 className="text-paragraph-md-medium text-primary-500 mb-12">
+    <section className="w-full py-10 sm:py-20 lg:py-[120px] flex flex-col items-center px-5">
+      <h2 className="text-paragraph-md-medium text-primary-500 mb-8 sm:mb-12 text-center">
         Frequently Asked Questions
       </h2>
-      <div className="w-full max-w-3xl space-y-4">
+      <div className="w-full max-w-3xl space-y-3 sm:space-y-4">
         {FAQ_ITEMS.map((item, idx) => (
           <div
             key={item.question}
             className={cn(
-              "p-8 bg-primary-50 border border-primary-100 rounded-2xl flex gap-6",
+              "p-4 md:p-8 bg-primary-50 border border-primary-100 rounded-2xl flex gap-3 md:gap-6 cursor-pointer",
               openIndex !== idx && "bg-base-white"
             )}
             onClick={() => setOpenIndex(idx)}
           >
-            <div>
+            <div className="flex-shrink-0 flex items-start pt-1">
               {openIndex === idx ? (
                 <div className="relative w-6 h-6">
                   <Image
