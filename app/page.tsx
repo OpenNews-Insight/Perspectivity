@@ -6,6 +6,7 @@ import Demo from "@/components/Demo";
 import Team from "@/components/Team";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Demo />
       <Team />
       <FinalCTA />
+      <FAQ />
       <Footer />
     </main>
   );
