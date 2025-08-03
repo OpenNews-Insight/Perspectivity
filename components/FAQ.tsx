@@ -1,35 +1,38 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC, useMemo, useState } from "react";
 import { cn } from "@/utils";
 import Image from "next/image";
 
-const FAQ_ITEMS = [
-  {
-    question: "Is this really free?",
-    answer:
-      "Absolutely! Enjoy a hassle-free experience with zero fees, no commission, and absolutely no hidden charges.",
-  },
-  {
-    question: "FAQ 2",
-    answer: "Answer for FAQ 2 goes here.",
-  },
-  {
-    question: "FAQ 3",
-    answer: "Answer for FAQ 3 goes here.",
-  },
-  {
-    question: "FAQ 4",
-    answer: "Answer for FAQ 4 goes here.",
-  },
-  {
-    question: "FAQ 5",
-    answer: "Answer for FAQ 5 goes here.",
-  },
-];
-
 const FAQ: FC = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
+
+  const FAQ_ITEMS = useMemo(
+    () => [
+      {
+        question: "Is this really free?",
+        answer:
+          "Absolutely! Enjoy a hassle-free experience with zero fees, no commission, and absolutely no hidden charges.",
+      },
+      {
+        question: "FAQ 2",
+        answer: "Answer for FAQ 2 goes here.",
+      },
+      {
+        question: "FAQ 3",
+        answer: "Answer for FAQ 3 goes here.",
+      },
+      {
+        question: "FAQ 4",
+        answer: "Answer for FAQ 4 goes here.",
+      },
+      {
+        question: "FAQ 5",
+        answer: "Answer for FAQ 5 goes here.",
+      },
+    ],
+    []
+  );
 
   return (
     <section className="w-full py-10 sm:py-20 lg:py-[120px] flex flex-col items-center px-5">
