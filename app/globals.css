@@ -6,7 +6,13 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 96px; /* Match mobile hero top padding */
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 128px; /* Match desktop hero top padding */
+  }
 }
 
 body {

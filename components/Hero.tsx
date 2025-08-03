@@ -29,7 +29,7 @@ export default function Hero() {
   }, [slogans.length])
 
   return (
-    <section className="relative min-h-screen flex items-center gradient-bg overflow-hidden">
+    <section className="relative min-h-screen flex items-center gradient-bg overflow-hidden pt-24 pb-20 lg:pt-32 lg:pb-20">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-float"></div>
