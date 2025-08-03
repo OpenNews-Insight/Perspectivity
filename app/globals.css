@@ -130,3 +130,9 @@ body {
     radial-gradient(circle at 1px 1px, rgba(56, 152, 236, 0.05) 1px, transparent 0);
   background-size: 20px 20px;
 }
+.bg-man-1 {
+  background-image: url('/assets/images/man-1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
