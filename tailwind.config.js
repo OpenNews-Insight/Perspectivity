@@ -303,6 +303,9 @@ module.exports = {
           },
         ],
       },
+      boxShadow: {
+        "primary-50": "0px 2px 24px 2px var(--primary-50)",
+      },
 
       animation: {
         "fade-in-up": "fadeInUp 0.8s ease-out forwards",
