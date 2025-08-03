@@ -15,13 +15,14 @@ const FinalCTA: FC = () => {
     []
   );
   return (
-    <section className="w-full bg-base-white ps-20 border-b pt-[120px]">
-      <div className="flex flex-col md:flex-row gap-8 md:items-center md:justify-between">
+    <section className="w-full bg-base-white md:border-b px-5 sm:pt-16 lg:pt-[120px] lg:ps-20">
+      <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-8 md:items-center md:justify-between max-w-7xl mx-auto">
         <div className="flex-1 md:max-w-[47%]">
-          <h2 className="text-heading-1-medium text-secondary-800 mb-8">
-            Ready to Restore trust in News With insights
+          <h2 className="text-center sm:text-left text-heading-4-medium sm:text-heading-1-medium text-secondary-800 mb-8">
+            Ready to Restore trust in News{" "}
+            <span className="block md:inline">With insights</span>
           </h2>
-          <ul className="mb-8 space-y-5 ">
+          <ul className="mb-8 space-y-2 sm:space-y-5">
             {features.map((feature) => (
               <li
                 className="flex items-center gap-3 text-paragraph-lg-regular text-secondary-700"
@@ -36,7 +37,7 @@ const FinalCTA: FC = () => {
           </ul>
           <Link
             href="mailto:support@perspectivity.co"
-            className="bg-primary-500 border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105  flex items-center text-paragraph-md-medium text-base-white px-4 py-[10px] w-max"
+            className="bg-primary-500 border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-base-white px-4 py-[10px] w-max"
           >
             <span>Get in Touch</span>
           </Link>
