@@ -30,7 +30,7 @@ export default function Problem() {
       className="px-5 sm:px-6 md:px-10 lg:px-20 py-12 sm:py-[80px] md:py-[120px] mx-auto"
     >
       <h2 className="text-paragraph-md-medium text-primary-500 mb-6 sm:mb-8 text-center">
-        Frequently Asked Questions
+        CRITICAL INFORMATION CRISIS
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-10">
         <div

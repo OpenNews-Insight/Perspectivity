@@ -28,7 +28,7 @@ export default function Features() {
     <section
       id="features"
       ref={ref}
-      className="w-full px-5 sm:px-10 md:px-20 pb-[120px] mx-auto"
+      className="w-full px-5 sm:px-10 md:px-20 pb-10  sm:pb-[120px] mx-auto"
     >
       <div
         className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${

@@ -83,6 +83,7 @@ module.exports = {
       fontFamily: {
         instrument: ["Instrument Sans", "Inter", "system-ui", "sans-serif"],
         geist: ["Geist", "Inter", "system-ui", "sans-serif"],
+        bradley: ['"Bradley Hand"', "cursive", "sans-serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       fontSize: {
