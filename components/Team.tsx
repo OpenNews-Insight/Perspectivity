@@ -46,24 +46,24 @@ export default function Team() {
       },
       gradient: "from-blue-500 to-purple-600",
     },
-    {
-      name: "Roy Dipta",
-      role: "Co-Founder & CTO",
-      description:
-        "LLM researcher focusing on bias detection and event processing pipelines. Specializes in multi-axis bias analysis for low-resource language contexts.",
-      image: "/api/placeholder/400/400",
-      achievements: [
-        "Multi-axis bias detection framework",
-        "Event processing pipeline architecture",
-        "Low-resource language NLP specialist",
-      ],
-      links: {
-        github: "#",
-        linkedin: "#",
-        website: "#",
-      },
-      gradient: "from-purple-500 to-pink-600",
-    },
+    // {
+    //   name: "Roy Dipta",
+    //   role: "Co-Founder & CTO",
+    //   description:
+    //     "LLM researcher focusing on bias detection and event processing pipelines. Specializes in multi-axis bias analysis for low-resource language contexts.",
+    //   image: "/api/placeholder/400/400",
+    //   achievements: [
+    //     "Multi-axis bias detection framework",
+    //     "Event processing pipeline architecture",
+    //     "Low-resource language NLP specialist",
+    //   ],
+    //   links: {
+    //     github: "#",
+    //     linkedin: "#",
+    //     website: "#",
+    //   },
+    //   gradient: "from-purple-500 to-pink-600",
+    // },
   ];
 
   const journeyItems = [
@@ -124,7 +124,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mt-14 md:mt-20 mb-20 md:mb-32">
+        <div className="grid grid-cols-1 max-w-2xl mx-auto mt-14 md:mt-20 mb-20 md:mb-32">
           {team.map((member, index) => (
             <div
               key={index}
@@ -135,7 +135,7 @@ export default function Team() {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="relative rounded-2xl shadow hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden bg-man-1 h-full flex flex-col">
-                <div className="h-48 sm:h-56 md:h-64 w-full relative bg-cover bg-center">
+                <div className="h-48 sm:h-56 md:h-[400px] w-full relative bg-cover bg-center">
                   <div
                     className={cn(
                       "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-15 transition-opacity duration-500",
