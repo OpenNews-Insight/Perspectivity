@@ -1,25 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { cn } from "@/utils";
+import { ArrowRight } from "lucide-react";
 
-export default function Problem() {
+const InformationCrisisSection: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new window.IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
@@ -35,15 +32,16 @@ export default function Problem() {
       <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-10">
         <div
           className={cn(
-            "flex flex-col justify-between  bg-surface-secondary p-4 sm:p-6 md:p-10 lg:p-20 rounded-3xl aspect-square mx-auto transition-all duration-1000",
+            "flex flex-col justify-between bg-surface-secondary p-4 sm:p-6 md:p-10 lg:p-20 rounded-3xl aspect-square mx-auto transition-all duration-1000",
             isVisible
               ? "opacity-100 translate-x-0"
               : "opacity-0 -translate-x-10"
           )}
         >
           <div>
-            <h2 className="text-heading-3-semibold text-secondary-800 mb-4 sm:mb-6">
+            <h2 className="text-heading-3-semibold text-secondary-800 mb-4 sm:mb-6 flex items-center gap-2">
               The Information Crisis in Emerging Markets
+              <ArrowRight className="w-5 h-5 text-primary-500" />
             </h2>
             <p className="text-paragraph-sm-regular sm:text-paragraph-md-regular mb-4 sm:mb-6">
               In countries like Bangladesh, local news is often biased,
@@ -66,7 +64,7 @@ export default function Problem() {
         </div>
         <div
           className={cn(
-            "flex flex-col gap-6 md:gap-8 p-4 sm:p-6 md:p-10 lg:p-20 mx-auto  w-full justify-center aspect-square transition-all duration-1000 delay-200",
+            "flex flex-col gap-6 md:gap-8 p-4 sm:p-6 md:p-10 lg:p-20 mx-auto w-full justify-center aspect-square transition-all duration-1000 delay-200",
             isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
           )}
         >
@@ -94,8 +92,8 @@ export default function Problem() {
               </span>
             </div>
           </div>
-          <div className="w-full flex items-center gap-4 justify-between bg-primary-500 px-5 py-2 rounded-[9999px] text-primary-50 ">
-            <div className=" text-heading-3-medium md:text-heading-1-medium">
+          <div className="w-full flex items-center gap-4 justify-between bg-primary-500 px-5 py-2 rounded-[9999px] text-primary-50">
+            <div className="text-heading-3-medium md:text-heading-1-medium">
               200 M
             </div>
             <div>
@@ -121,4 +119,5 @@ export default function Problem() {
       </div>
     </section>
   );
-}
+};
+export default InformationCrisisSection;

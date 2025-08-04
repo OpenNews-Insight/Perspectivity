@@ -6,7 +6,7 @@ import { ArrowRight, Play } from "lucide-react";
 import { cn } from "@/utils";
 import Image from "next/image";
 
-const Hero: FC = () => {
+const HeroSection: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -180,4 +180,4 @@ const Hero: FC = () => {
   );
 };
 
-export default Hero;
+export default HeroSection;

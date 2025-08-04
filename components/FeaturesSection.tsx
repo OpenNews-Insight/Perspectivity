@@ -1,34 +1,36 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-export default function Features() {
+const FeaturesSection: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.1 }
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
+  // Staggered delays for animating each card
+  const getCardAnimation = (index: number) =>
+    isVisible
+      ? `opacity-100 translate-y-0 transition-all duration-1000 delay-${
+          index * 150
+        }`
+      : "opacity-0 translate-y-8";
 
   return (
     <section
       id="features"
       ref={ref}
-      className="w-full px-5 sm:px-10 md:px-20 pb-10  sm:pb-[120px] mx-auto"
+      className="w-full px-5 sm:px-10 md:px-20 pb-10 sm:pb-[120px] mx-auto"
     >
       <div
         className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
@@ -44,12 +46,17 @@ export default function Features() {
           </h2>
           <p className="text-paragraph-lg-regular text-secondary-700 w-full text-center">
             Six powerful AI agents working together to give you complete
-            transparency into how news is framed, who’s behind it, and what it
+            transparency into how news is framed, who's behind it, and what it
             really means for your community.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-          <div className="col-span-1 sm:col-span-4 bg-primary-950 border border-primary-900 rounded-2xl p-6 relative flex flex-col justify-between md:row-span-2 min-h-[280px] shadow-lg">
+          {/* 1 - News Aggregation */}
+          <div
+            className={`col-span-1 sm:col-span-4 bg-primary-950 border border-primary-900 rounded-2xl p-6 relative flex flex-col justify-between md:row-span-2 min-h-[280px] shadow-lg ${getCardAnimation(
+              0
+            )}`}
+          >
             <div className="relative w-[56px] h-[56px] bg-primary-900 rounded-full flex justify-center items-center">
               <Image
                 src="/assets/icons/sparkel-icon.svg"
@@ -60,7 +67,7 @@ export default function Features() {
                 priority
               />
             </div>
-            <div className="relative h-auto sm:h-[350px] rounded-full flex justify-center items-center ">
+            <div className="relative h-auto sm:h-[350px] rounded-full flex justify-center items-center">
               <Image
                 src="/assets/icons/design-image.svg"
                 alt="Design"
@@ -80,8 +87,12 @@ export default function Features() {
               </p>
             </div>
           </div>
-
-          <div className="relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-3 ">
+          {/* 2 - Summarizer */}
+          <div
+            className={`relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-3 ${getCardAnimation(
+              1
+            )}`}
+          >
             <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
               <Image
                 src="/assets/icons/summeriser.svg"
@@ -92,8 +103,6 @@ export default function Features() {
                 priority
               />
             </div>
-
-            {/* Middle right image */}
             <div className="absolute top-1/2 -right-4 -translate-y-1/2 z-0">
               <Image
                 src="/assets/images/image-8.png"
@@ -104,7 +113,6 @@ export default function Features() {
                 priority
               />
             </div>
-
             <div className="relative z-10">
               <h3 className="text-secondary-800 text-heading-5-semibold mb-2">
                 Summarizer
@@ -114,7 +122,12 @@ export default function Features() {
               </p>
             </div>
           </div>
-          <div className="relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-5">
+          {/* 3 - Interactive Chat */}
+          <div
+            className={`relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-5 ${getCardAnimation(
+              2
+            )}`}
+          >
             <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
               <Image
                 src="/assets/icons/chat.svg"
@@ -125,9 +138,7 @@ export default function Features() {
                 priority
               />
             </div>
-
-            {/* Middle right image */}
-            <div className="absolute top-0 right-0  z-0">
+            <div className="absolute top-0 right-0 z-0">
               <Image
                 src="/assets/images/image-9.png"
                 alt="Summarizer Visual"
@@ -137,19 +148,22 @@ export default function Features() {
                 priority
               />
             </div>
-
             <div className="relative z-10">
               <h3 className="text-secondary-800 text-heading-5-semibold mb-2">
                 Interactive Chat
               </h3>
               <p className="text-secondary-700 text-paragraph-md-regular">
                 Perplexity-style conversational interface. Ask "What's happening
-                with protests in Dhaka?" and get real-time answers.{" "}
+                with protests in Dhaka?" and get real-time answers.
               </p>
             </div>
           </div>
-
-          <div className="relative rounded-lg p-6 bg-primary-50 flex flex-col justify-between col-span-1 sm:col-span-5">
+          {/* 4 - Multi-Axis Bias Analysis */}
+          <div
+            className={`relative rounded-lg p-6 bg-primary-50 flex flex-col justify-between col-span-1 sm:col-span-5 ${getCardAnimation(
+              3
+            )}`}
+          >
             <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
               <Image
                 src="/assets/icons/bias.svg"
@@ -160,7 +174,6 @@ export default function Features() {
                 priority
               />
             </div>
-
             <div className="relative z-10">
               <h3 className="text-primary-800 text-heading-5-semibold mb-2">
                 Multi- Axis Bias Analysis
@@ -172,7 +185,12 @@ export default function Features() {
               </p>
             </div>
           </div>
-          <div className="relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-3">
+          {/* 5 - Local Language Support */}
+          <div
+            className={`relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-3 ${getCardAnimation(
+              4
+            )}`}
+          >
             <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
               <Image
                 src="/assets/icons/web.svg"
@@ -183,19 +201,16 @@ export default function Features() {
                 priority
               />
             </div>
-
-            {/* Middle right image */}
-            <div className="absolute top-0 right-0  z-0">
+            <div className="absolute top-0 right-0 z-0">
               <Image
                 src="/assets/images/global.png"
-                alt="GLobal Visual"
+                alt="Global Visual"
                 width={200}
                 height={200}
                 className="object-contain rounded-lg w-[100px] sm:w-[200px] h-[100] sm:h-[200px]"
                 priority
               />
             </div>
-
             <div className="relative z-10">
               <h3 className="text-secondary-800 text-heading-5-semibold mb-2">
                 Local Language Support
@@ -205,8 +220,9 @@ export default function Features() {
               </p>
             </div>
           </div>
-        </div>{" "}
+        </div>
       </div>
     </section>
   );
-}
+};
+export default FeaturesSection;

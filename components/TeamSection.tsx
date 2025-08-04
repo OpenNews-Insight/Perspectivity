@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { BookOpen, FolderOpen, LinkIcon, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/utils";
 
-export default function Team() {
+const TeamSection: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -19,11 +19,7 @@ export default function Team() {
       },
       { threshold: 0.1 }
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
@@ -46,24 +42,6 @@ export default function Team() {
       },
       gradient: "from-blue-500 to-purple-600",
     },
-    // {
-    //   name: "Roy Dipta",
-    //   role: "Co-Founder & CTO",
-    //   description:
-    //     "LLM researcher focusing on bias detection and event processing pipelines. Specializes in multi-axis bias analysis for low-resource language contexts.",
-    //   image: "/api/placeholder/400/400",
-    //   achievements: [
-    //     "Multi-axis bias detection framework",
-    //     "Event processing pipeline architecture",
-    //     "Low-resource language NLP specialist",
-    //   ],
-    //   links: {
-    //     github: "#",
-    //     linkedin: "#",
-    //     website: "#",
-    //   },
-    //   gradient: "from-purple-500 to-pink-600",
-    // },
   ];
 
   const journeyItems = [
@@ -97,6 +75,10 @@ export default function Team() {
       title: "Launch enterprise API for diaspora and business intelligence",
     },
   ];
+
+  const withStagger = (base: number, i: number) => ({
+    transitionDelay: isVisible ? `${base * i + 100}ms` : "0ms",
+  });
 
   return (
     <section
@@ -132,7 +114,7 @@ export default function Team() {
                 "group relative transition-all duration-1000 h-full opacity-0 translate-y-10",
                 isVisible && "opacity-100 translate-y-0"
               )}
-              style={{ transitionDelay: `${index * 150}ms` }}
+              style={withStagger(200, index)}
             >
               <div className="relative rounded-2xl shadow hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden bg-man-1 h-full flex flex-col">
                 <div className="h-48 sm:h-56 md:h-[400px] w-full relative bg-cover bg-center">
@@ -200,10 +182,15 @@ export default function Team() {
           Our shared values keep us connected and guide us as one team.
         </p>
         <div className="w-full max-w-full sm:max-w-[1062px] grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
-          {journeyItems.map((item) => (
+          {journeyItems.map((item, i) => (
             <div
               key={item.title}
-              className="flex flex-col items-center text-center"
+              className={`flex flex-col items-center text-center transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+              style={withStagger(220, i)}
             >
               <div className="border border-secondary-200 rounded-lg p-3 bg-transparent mb-6 sm:mb-8">
                 {item.icon}
@@ -223,10 +210,15 @@ export default function Team() {
           Next Milestones
         </h2>
         <div className="w-full max-w-full md:max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {milestoneItems.map((item) => (
+          {milestoneItems.map((item, i) => (
             <div
               key={item.period}
-              className="bg-white bg-opacity-90 border border-primary-200 rounded-2xl p-5 flex flex-col items-center text-center shadow-md hover:shadow-lg transition"
+              className={`bg-white bg-opacity-90 border border-primary-200 rounded-2xl p-5 flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all duration-1000 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+              style={withStagger(220, i)}
             >
               <div className="flex items-center gap-2 mb-1 sm:mb-2">
                 <CheckCircle className="w-6 h-6 text-primary-500" />
@@ -243,4 +235,5 @@ export default function Team() {
       </section>
     </section>
   );
-}
+};
+export default TeamSection;

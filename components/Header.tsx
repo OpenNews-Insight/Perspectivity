@@ -78,7 +78,7 @@ const Header: FC = () => {
 
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-16 left-0 right-0 glass-effect border-b shadow-lg transition-all duration-300 bg-base-white border border-primary-100">
-            <div className="px-4 py-4 space-y-4">
+            <div className="flex flex-col px-4 py-4 space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
