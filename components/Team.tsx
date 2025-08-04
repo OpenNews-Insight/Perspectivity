@@ -111,7 +111,7 @@ export default function Team() {
           }`}
         >
           <p className="text-paragraph-md-mMedium text-primary-600 mb-2 md:mb-3">
-            Meet the Team
+            Meet the Founder
           </p>
           <h2 className="text-heading-3-semibold text-secondary-800 mb-2 md:mb-3">
             Building the future of transparent
