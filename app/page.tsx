@@ -10,7 +10,7 @@ import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
-    <main className="container mx-auto">
+    <main className="container mx-auto w-full overflow-x-hidden">
       <Header />
       <Hero />
       <Problem />
