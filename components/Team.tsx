@@ -101,24 +101,22 @@ export default function Team() {
   return (
     <section
       id="team"
-      className="px-20 py-[120px] bg-surface-secondary"
+      className="px-5 sm:px-10 md:px-20 py-16 sm:py-24 md:py-[120px] mb-10 sm:mb-0 bg-surface-secondary"
       ref={ref}
     >
-      <div className="max-w-4xl mx-auto ">
+      <div className="max-w-full md:max-w-4xl mx-auto">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${
+          className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <p className="text-paragraph-md-mMedium  text-primary-600 mb-3">
+          <p className="text-paragraph-md-mMedium text-primary-600 mb-2 md:mb-3">
             Meet the Team
           </p>
-
-          <h2 className="text-heading-3-semibold text-secondary-800 mb-3">
+          <h2 className="text-heading-3-semibold text-secondary-800 mb-2 md:mb-3">
             Building the future of transparent
             <span className="text-primary-700"> journalism</span>
           </h2>
-
           <p className="text-paragraph-lg-regular text-secondary-700 w-full text-center">
             Our team combines deep technical expertise in NLP and AI with a
             mission to restore trust in news through transparency and
@@ -126,7 +124,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 grid-rows-1 gap-8 mt-20 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mt-14 md:mt-20 mb-20 md:mb-32">
           {team.map((member, index) => (
             <div
               key={index}
@@ -137,7 +135,7 @@ export default function Team() {
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="relative rounded-2xl shadow hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden bg-man-1 h-full flex flex-col">
-                <div className="h-64 w-full relative bg-cover bg-center">
+                <div className="h-48 sm:h-56 md:h-64 w-full relative bg-cover bg-center">
                   <div
                     className={cn(
                       "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-15 transition-opacity duration-500",
@@ -145,10 +143,10 @@ export default function Team() {
                     )}
                   />
                 </div>
-                <div className="relative p-6 z-10 flex-1 flex flex-col justify-between">
-                  <div className="absolute inset-0  bg-[#FFFFFF4D] backdrop-blur-[24px] border-t border-[#FFFFFF4D] z-0" />
+                <div className="relative p-4 sm:p-6 z-10 flex-1 flex flex-col justify-between">
+                  <div className="absolute inset-0 bg-[#FFFFFF4D] backdrop-blur-[24px] border-t border-[#FFFFFF4D] z-0" />
                   <div className="relative z-10 flex flex-col h-full">
-                    <h3 className="text-heading-3-semibold text-base-white mb-4">
+                    <h3 className="text-heading-3-semibold text-base-white mb-3 sm:mb-4">
                       {member.name}
                     </h3>
                     <p className="text-paragraph-md-semibold text-base-white mb-1">
@@ -158,7 +156,7 @@ export default function Team() {
                       {member.description}
                     </p>
                   </div>
-                  <div className="flex gap-5 mt-8">
+                  <div className="flex gap-4 sm:gap-5 mt-6 sm:mt-8">
                     <Link
                       href={member.links.github}
                       className="flex items-center space-x-3"
@@ -212,20 +210,19 @@ export default function Team() {
         <h2 className="text-heading-3-semibold text-secondary-800 mb-3 text-center">
           Our Journey So Far
         </h2>
-        <p className="text-paragraph-lg-regular text-secondary-700 mb-16 text-center">
+        <p className="text-paragraph-lg-regular text-secondary-700 mb-10 md:mb-16 text-center">
           Our shared values keep us connected and guide us as one team.
         </p>
-
-        <div className="w-full max-w-[1062px] grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="w-full max-w-full sm:max-w-[1062px] grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
           {journeyItems.map((item) => (
             <div
               key={item.title}
               className="flex flex-col items-center text-center"
             >
-              <div className="border border-secondary-200 rounded-lg p-3 bg-transparent mb-8">
+              <div className="border border-secondary-200 rounded-lg p-3 bg-transparent mb-6 sm:mb-8">
                 {item.icon}
               </div>
-              <h3 className="text-heading-5-semibold text-secondary-800 mb-2">
+              <h3 className="text-heading-5-semibold text-secondary-800 mb-1 sm:mb-2">
                 {item.title}
               </h3>
               <p className="text-paragraph-md-regular text-secondary-700">
@@ -235,17 +232,17 @@ export default function Team() {
           ))}
         </div>
       </section>
-      <section className="w-full pt-16 px-5 flex flex-col items-center">
-        <h2 className="text-heading-3-semibold text-secondary-800 mb-14 text-center">
+      <section className="w-full pt-10 sm:pt-16 px-5 flex flex-col items-center">
+        <h2 className="text-heading-3-semibold text-secondary-800 mb-10 sm:mb-14 text-center">
           Next Milestones
         </h2>
-        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="w-full max-w-full md:max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {milestoneItems.map((item) => (
             <div
               key={item.period}
               className="bg-white bg-opacity-90 border border-primary-200 rounded-2xl p-5 flex flex-col items-center text-center shadow-md hover:shadow-lg transition"
             >
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1 sm:mb-2">
                 <CheckCircle className="w-6 h-6 text-primary-500" />
                 <h3 className="text-heading-5-semibold text-secondary-800 my-2">
                   {item.period}
