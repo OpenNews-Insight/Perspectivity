@@ -1,17 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  Github,
-  Linkedin,
-  ExternalLink,
-  Award,
-  BookOpen,
-  FolderOpen,
-  LinkIcon,
-  CheckCircle,
-} from "lucide-react";
+import { BookOpen, FolderOpen, LinkIcon, CheckCircle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { cn } from "@/utils";
 
 export default function Team() {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,17 +68,17 @@ export default function Team() {
 
   const journeyItems = [
     {
-      icon: <BookOpen className="w-7 h-7 text-primary-500" />,
+      icon: <BookOpen className="w-6 h-6 text-secondary-800" />,
       title: "Research Foundation",
       desc: "Published BongLLaMA research on ArXiv, establishing the technical foundation for civic NLP in Bangla",
     },
     {
-      icon: <FolderOpen className="w-7 h-7 text-primary-500" />,
+      icon: <FolderOpen className="w-6 h-6 text-secondary-800" />,
       title: "Open Source Impact",
       desc: "Released first open-source Bangla LLM on Hugging Face with 10k+ downloads from researchers worldwide",
     },
     {
-      icon: <LinkIcon className="w-7 h-7 text-primary-500" />,
+      icon: <LinkIcon className="w-6 h-6 text-secondary-800" />,
       title: "Live Pilot",
       desc: "Launched Drishtikon beta in Bangladesh, processing 200+ news sources across 4 districts",
     },
@@ -137,103 +130,130 @@ export default function Team() {
           {team.map((member, index) => (
             <div
               key={index}
-              className={`group relative transition-all duration-1000 h-full ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
+              className={cn(
+                "group relative transition-all duration-1000 h-full opacity-0 translate-y-10",
+                isVisible && "opacity-100 translate-y-0"
+              )}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <div className="relative border border-gray-200 rounded-2xl shadow hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden bg-man-1 h-full flex flex-col">
+              <div className="relative rounded-2xl shadow hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden bg-man-1 h-full flex flex-col">
                 <div className="h-64 w-full relative bg-cover bg-center">
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${member.gradient} opacity-0 group-hover:opacity-15 transition-opacity duration-500`}
-                    aria-hidden="true"
+                    className={cn(
+                      "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-15 transition-opacity duration-500",
+                      member.gradient
+                    )}
                   />
                 </div>
-                <div className="relative px-6 pt-8 pb-6 z-10 flex-1 flex flex-col justify-between">
-                  <div className="absolute inset-0  bg-[#FFFFFF4D] backdrop-blur-[24px] border z-0" />
+                <div className="relative p-6 z-10 flex-1 flex flex-col justify-between">
+                  <div className="absolute inset-0  bg-[#FFFFFF4D] backdrop-blur-[24px] border-t border-[#FFFFFF4D] z-0" />
                   <div className="relative z-10 flex flex-col h-full">
-                    <div className="text-base-white">
-                      <h3 className="text-2xl font-bold mb-1">{member.name}</h3>
-                      <div className=" font-semibold mb-2">{member.role}</div>
-                      <p className=" leading-relaxed mb-5">
-                        {member.description}
-                      </p>
-                    </div>
-                    {/* Social links at the bottom */}
-                    <div className="flex gap-3 mt-4">
-                      <a
-                        href={member.links.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-10 h-10 bg-gradient-to-r ${member.gradient} rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform duration-300`}
-                      >
-                        <Github size={18} />
-                      </a>
-                      <a
-                        href={member.links.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-10 h-10 bg-gradient-to-r ${member.gradient} rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform duration-300`}
-                      >
-                        <Linkedin size={18} />
-                      </a>
-                      <a
-                        href={member.links.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`w-10 h-10 bg-gradient-to-r ${member.gradient} rounded-lg flex items-center justify-center text-white hover:scale-110 transition-transform duration-300`}
-                      >
-                        <ExternalLink size={18} />
-                      </a>
-                    </div>
+                    <h3 className="text-heading-3-semibold text-base-white mb-4">
+                      {member.name}
+                    </h3>
+                    <p className="text-paragraph-md-semibold text-base-white mb-1">
+                      {member.role}
+                    </p>
+                    <p className="text-paragraph-md-regular text-base-white">
+                      {member.description}
+                    </p>
+                  </div>
+                  <div className="flex gap-5 mt-8">
+                    <Link
+                      href={member.links.github}
+                      className="flex items-center space-x-3"
+                    >
+                      <div className="relative w-6 h-6 rounded-lg">
+                        <Image
+                          src="/assets/icons/team-x-icon.svg"
+                          alt="X Logo"
+                          fill
+                          className="object-contain rounded-lg hover:scale-110"
+                          priority
+                        />
+                      </div>
+                    </Link>
+                    <Link
+                      href={member.links.linkedin}
+                      className="flex items-center space-x-3"
+                    >
+                      <div className="relative w-6 h-6 rounded-lg">
+                        <Image
+                          src="/assets/icons/team-linkedin-icon.svg"
+                          alt="Linkedin Logo"
+                          fill
+                          className="object-contain rounded-lg hover:scale-110"
+                          priority
+                        />
+                      </div>
+                    </Link>
+                    <Link
+                      href={member.links.website}
+                      className="flex items-center space-x-3"
+                    >
+                      <div className="relative w-6 h-6 rounded-lg">
+                        <Image
+                          src="/assets/icons/team-website-icon.svg"
+                          alt="Website Logo"
+                          fill
+                          className="object-contain rounded-lg hover:scale-110"
+                          priority
+                        />
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
-      </div>{" "}
-      <section className="w-full  py-16 px-3 flex flex-col items-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
+      </div>
+      <section className="w-full px-5 flex flex-col items-center">
+        <h2 className="text-heading-3-semibold text-secondary-800 mb-3 text-center">
           Our Journey So Far
         </h2>
-        <p className="text-base text-gray-500 mb-12 text-center max-w-lg">
+        <p className="text-paragraph-lg-regular text-secondary-700 mb-16 text-center">
           Our shared values keep us connected and guide us as one team.
         </p>
-        <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-3 gap-8">
+
+        <div className="w-full max-w-[1062px] grid grid-cols-1 sm:grid-cols-3 gap-8">
           {journeyItems.map((item) => (
             <div
               key={item.title}
-              className="bg-white border border-gray-100 rounded-2xl p-7 flex flex-col items-center text-center shadow-md hover:shadow-lg transition"
+              className="flex flex-col items-center text-center"
             >
-              <div className="mb-4">{item.icon}</div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-900">
+              <div className="border border-secondary-200 rounded-lg p-3 bg-transparent mb-8">
+                {item.icon}
+              </div>
+              <h3 className="text-heading-5-semibold text-secondary-800 mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-600 text-base">{item.desc}</p>
+              <p className="text-paragraph-md-regular text-secondary-700">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
       </section>
-      <section className="w-full py-16 px-3 flex flex-col items-center ">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 text-center">
+      <section className="w-full pt-16 px-5 flex flex-col items-center">
+        <h2 className="text-heading-3-semibold text-secondary-800 mb-14 text-center">
           Next Milestones
         </h2>
-        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-8">
           {milestoneItems.map((item) => (
             <div
               key={item.period}
-              className="bg-white bg-opacity-90 border border-primary-200 rounded-2xl p-7 flex flex-col items-center text-center shadow-md hover:shadow-lg transition"
+              className="bg-white bg-opacity-90 border border-primary-200 rounded-2xl p-5 flex flex-col items-center text-center shadow-md hover:shadow-lg transition"
             >
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle className="w-6 h-6 text-primary-500" />
-                <span className="text-base font-bold text-primary-700">
+                <h3 className="text-heading-5-semibold text-secondary-800 my-2">
                   {item.period}
-                </span>
+                </h3>
               </div>
-              <p className="text-primary-900 text-base">{item.title}</p>
+              <p className="text-paragraph-md-regular text-secondary-700">
+                {item.title}
+              </p>
             </div>
           ))}
         </div>
