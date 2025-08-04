@@ -77,11 +77,11 @@ const Hero: FC = () => {
           </div>
 
           <h1 className="text-2xl sm:text-4xl md:text-display-semibold text-secondary-800 my-6">
-            Real Time{" "}
+            Expose{" "}
             <span className="bg-gradient-to-r from-cyan-500 to-sky-400 bg-clip-text text-transparent">
-              AI News Bias{" "}
+              Media Bias{" "}
             </span>
-            Agent For Emerging Markets
+            in Emerging Democracies
           </h1>
 
           <p className="text-sm sm:text-base md:text-paragraph-lg-regular text-secondary-700 mb-6 max-w-2xl mx-auto">
