@@ -153,17 +153,20 @@ export default function Problem() {
     //   </div>
     // </section>
 
-    <section id="problem" className="px-5 sm:px-20 py-[120px]  mx-auto ">
-      <h2 className="text-paragraph-md-medium text-primary-500 mb-8 sm:mb-12 text-center">
+    <section
+      id="problem"
+      className="px-5 sm:px-6 md:px-10 lg:px-20 py-12 sm:py-[80px] md:py-[120px] mx-auto"
+    >
+      <h2 className="text-paragraph-md-medium text-primary-500 mb-6 sm:mb-8 text-center">
         Frequently Asked Questions
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-5">
-        <div className="flex flex-col justify-between bg-surface-secondary p-6 md:p-10 lg:p-20 rounded-l-3xl aspect-square">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-10">
+        <div className="flex flex-col justify-between bg-surface-secondary p-4 sm:p-6 md:p-10 lg:p-20 rounded-3xl aspect-square">
           <div>
-            <h2 className="text-heading-3-semibold text-secondary-800 mb-6">
+            <h2 className="text-heading-3-semibold text-secondary-800 mb-4 sm:mb-6">
               The Information Crisis in Emerging Markets
             </h2>
-            <p className="text-paragraph-md-regular mb-6">
+            <p className="text-paragraph-sm-regular sm:text-paragraph-md-regular mb-4 sm:mb-6">
               In countries like Bangladesh, local news is often biased,
               fragmented, and lost in language barriers. Citizens, NGOs, and
               global audiences struggle to find trustworthy information -
@@ -171,7 +174,7 @@ export default function Problem() {
               media rarely reveals its bias, making it hard to know what's true.
             </p>
           </div>
-          <div className="bg-primary-50 px-3 py-2 rounded-2xl max-w-[480px]">
+          <div className="bg-primary-50 px-3 py-2 rounded-2xl max-w-full sm:max-w-[480px]">
             <div className="text-primary-800 text-paragraph-sm-medium mb-2">
               Real Impact
             </div>
@@ -183,12 +186,12 @@ export default function Problem() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 p-6 md:p-10 lg:p-20 mx-auto aspect-square w-full">
-          <div className="flex items-center gap-4 justify-end">
-            <div className="bg-surface-secondary border border-secondary-100 text-secondary-700 text-paragraph-md-medium py-[14px] px-5 rounded-[9999px] w-full max-w-[245px]">
+        <div className="flex flex-col gap-6 md:gap-8 p-4 sm:p-6 md:p-10 lg:p-20 mx-auto w-full aspect-square">
+          <div className="flex items-center gap-3 justify-end">
+            <div className="bg-surface-secondary border border-secondary-100 text-secondary-700 text-paragraph-md-medium py-[10px] px-4 rounded-[9999px] w-full max-w-[245px] text-xs sm:text-sm md:text-base">
               64 Districts in Bangladesh Need Local News Insights
             </div>
-            <div className="relative w-[76px] h-[76px]">
+            <div className="relative w-[60px] h-[60px] sm:w-[76px] sm:h-[76px]">
               <Image
                 src="/assets/images/bd-map.png"
                 alt="Bangladesh Map"
@@ -198,9 +201,8 @@ export default function Problem() {
               />
             </div>
           </div>
-
           <div className="flex items-center gap-4 justify-start">
-            <div className="bg-surface-secondary border border-secondary-100 text-secondary-800 text-heading-1-medium py-2 px-5 rounded-[9999px]">
+            <div className="bg-surface-secondary border border-secondary-100 text-secondary-800 text-heading-3-medium md:text-heading-1-medium py-1 md:py-2 px-4 rounded-[9999px]">
               80%
             </div>
             <div>
@@ -209,23 +211,25 @@ export default function Problem() {
               </span>
             </div>
           </div>
-          <div className="w-full flex items-center gap-4 justify-between bg-primary-500 px-5 py-2 rounded-[9999px] text-primary-50">
-            <div className="text-display-semibold">200 M</div>
+          <div className="w-full flex items-center gap-4 justify-between bg-primary-500 px-5 py-2 rounded-[9999px] text-primary-50 ">
+            <div className=" text-heading-3-medium md:text-heading-1-medium">
+              200 M
+            </div>
             <div>
               <span className="text-paragraph-md-regular">People Affected</span>
             </div>
           </div>
           <div className="flex items-center gap-4 justify-end">
-            <div className="bg-surface-secondary border border-secondary-100 text-secondary-700 text-paragraph-md-medium py-[14px] px-5 rounded-[9999px] w-full max-w-[260px]">
+            <div className="bg-surface-secondary border border-secondary-100 text-secondary-700 text-paragraph-md-medium py-[10px] px-4 rounded-[9999px] w-full max-w-[260px]">
               15+ Languages underserved by current solutions
             </div>
-            <div className="relative w-[100px] h-[76px] bg-primary-500 rounded-[9999px] flex justify-center items-center">
+            <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-primary-500 rounded-[9999px] flex justify-center items-center">
               <Image
                 src="/assets/icons/team-website-icon.svg"
                 alt="World Map"
                 width={48}
                 height={48}
-                className="object-contain rounded-lg w-12 h-12"
+                className="object-contain rounded-lg w-10 h-10 sm:w-12 sm:h-12"
                 priority
               />
             </div>
