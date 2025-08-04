@@ -10,36 +10,39 @@ const Footer: FC = () => {
         title: "Product",
         links: [
           { label: "Drishtikon (Bangladesh)", href: "https://drishtikon.life" },
-          { label: "Find Opportunities", href: "#" },
-          { label: "Features", href: "#" },
-          { label: "For Business", href: "#" },
-          { label: "For Investors", href: "#" },
+          { label: "Features", href: "#features" },
+        ],
+      },
+      {
+        title: "Socials",
+        links: [
+          {
+            label: "Linkedin",
+            href: "https://www.linkedin.com/company/banglallm/ ",
+          },
+          {
+            label: "Youtube",
+            href: "https://www.youtube.com/@Perspective1357",
+          },
         ],
       },
       {
         title: "Company",
         links: [
-          { label: "About us", href: "#team" },
-          { label: "Careers", href: "#" },
-          { label: "Press", href: "#" },
-          { label: "Contact", href: "#contact" },
-        ],
-      },
-      {
-        title: "Careers",
-        links: [
-          { label: "FAQ", href: "#" },
-          { label: "Feedback", href: "#" },
-          { label: "GitHub", href: "#" },
-          { label: "Get Support", href: "#" },
+          { label: "FAQ", href: "#faq" },
+          { label: "Feedback", href: "#feedback" },
+          { label: "Team", href: "#team" },
         ],
       },
       {
         title: "Resources",
         links: [
-          { label: "BongLLaMA", href: "#" },
-          { label: "ArXiv Papers", href: "#" },
-          { label: "GitHub", href: "#" },
+          {
+            label: "BongLLaMA Paper",
+            href: "https://arxiv.org/abs/2410.21200",
+          },
+          { label: "Hugging Face", href: "https://huggingface.co/BanglaLLM" },
+          { label: "GitHub", href: "https://github.com/BanglaLLM/Drishtikon/" },
         ],
       },
     ],
@@ -74,13 +77,19 @@ const Footer: FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="relative w-8 h-8 bg-primary-950 rounded-lg mb-6">
-              <Image
-                src="/assets/logo.png"
-                alt="Perspectivity Logo"
-                fill
-                className="object-contain rounded-lg"
-                priority
-              />
+              <Link
+                href={'#'}
+                target="_blank"
+                className="text-paragraph-md-semibold text-secondary-700 hover:text-primary-500 whitespace-nowrap"
+              >
+                <Image
+                  src="/assets/logo.png"
+                  alt="Perspectivity Logo"
+                  fill
+                  className="object-contain rounded-lg"
+                  priority
+                />
+              </Link>
             </div>
             <p className="text-paragraph-md-medium text-secondary-700">
               Real‑time AI news bias agent for emerging markets. Empowering
@@ -99,6 +108,7 @@ const Footer: FC = () => {
                     <li key={link.label}>
                       <Link
                         href={link.href}
+                        target="_blank"
                         className="text-paragraph-md-semibold text-secondary-700 hover:text-primary-500 whitespace-nowrap"
                       >
                         {link.label}
@@ -112,45 +122,10 @@ const Footer: FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-between items-center border-t border-secondary-100 pt-8 gap-6">
+      <div className="flex flex-col sm:flex-row justify-center items-center border-t border-secondary-100 pt-8 gap-6">
         <p className="text-paragraph-md-regular text-secondary-600">
           &copy; 2025 Perspectivity. All rights reserved
         </p>
-        <div className="flex gap-6 justify-center">
-          <Link href="/" className="flex items-center space-x-3 ">
-            <div className="relative w-6 h-6 rounded-lg">
-              <Image
-                src="/assets/icons/linkedin-icon.svg"
-                alt="Linkedin Logo"
-                fill
-                className="object-contain rounded-lg"
-                priority
-              />
-            </div>
-          </Link>
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="relative w-6 h-6 rounded-lg">
-              <Image
-                src="/assets/icons/x-icon.svg"
-                alt="X Logo"
-                fill
-                className="object-contain rounded-lg"
-                priority
-              />
-            </div>
-          </Link>
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="relative w-6 h-6 rounded-lg">
-              <Image
-                src="/assets/icons/facebook-icon.svg"
-                alt="Facebook Logo"
-                fill
-                className="object-contain rounded-lg"
-                priority
-              />
-            </div>
-          </Link>
-        </div>
       </div>
     </footer>
   );

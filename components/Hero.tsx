@@ -32,30 +32,32 @@ const Hero: FC = () => {
 
   const newsData = [
     {
-      image: "/assets/images/demo-image.png",
-      tag: "Local",
+      image: "/assets/images/bangladesh.png",
+      tag: "Bangladesh",
       title:
         "Bangladesh secures 20% US tariff for garments, exporters relieved",
     },
     {
-      image: "/assets/images/demo-image.png",
-      tag: "Technology",
-      title: "Uttara University Hosts 5th International Robo Tech Olympiad",
+      image: "/assets/images/world.png",
+      tag: "World",
+      title:
+        "After Trump's announcement, now Russia-China joint naval exercise",
     },
     {
-      image: "/assets/images/demo-image.png",
-      tag: "Local",
-      title: "Time for political parties to priorities disability rights",
+      image: "/assets/images/sports.png",
+      tag: "Sports",
+      title: "England batting at 65/1 chasing 374 runs against Shubman’s India",
     },
     {
-      image: "/assets/images/demo-image.png",
-      tag: "Local",
-      title: "Fire at Gulistan Sundarban So Market under control",
+      image: "/assets/images/politics.png",
+      tag: "Political",
+      title:
+        "Election Commission is a spineless institution: Nasiruddin Patwary",
     },
     {
-      image: "/assets/images/demo-image.png",
-      tag: "Local",
-      title: "Fire at Gulistan Sundarban So Market under control",
+      image: "/assets/images/business.png",
+      tag: "Business",
+      title: "Apple's revenue has crossed 900 billion dollars",
     },
   ];
 
@@ -102,7 +104,7 @@ const Hero: FC = () => {
             </Link>
 
             <Link
-              href="https://drishtikon.life"
+              href="#demo"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-transparent border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-primary-400 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"

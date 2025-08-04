@@ -15,7 +15,10 @@ const FinalCTA: FC = () => {
     []
   );
   return (
-    <section className="w-full bg-base-white md:border-b px-5 sm:pt-16 lg:pt-[120px] lg:ps-20">
+    <section
+      id="feadback"
+      className="w-full bg-base-white md:border-b px-5 sm:pt-16 lg:pt-[120px] lg:ps-20"
+    >
       <div className="flex flex-col-reverse md:flex-row gap-10 md:gap-8 md:items-center md:justify-between max-w-7xl mx-auto">
         <div className="flex-1 md:max-w-[47%]">
           <h2 className="text-center sm:text-left text-heading-4-medium sm:text-heading-1-medium text-secondary-800 mb-8">
@@ -46,7 +49,7 @@ const FinalCTA: FC = () => {
         <div className="flex-1 flex justify-center md:justify-end">
           <div className="w-full">
             <Image
-              src="/assets/images/demo-image.png"
+              src="/assets/images/thumbnail.png"
               alt="News"
               width={600}
               height={430}

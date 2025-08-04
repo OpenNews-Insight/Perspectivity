@@ -40,9 +40,9 @@ export default function Team() {
         "Hugging Face model with 10K+ downloads",
       ],
       links: {
-        github: "#",
-        linkedin: "#",
-        website: "#",
+        x: "https://x.com/brishtiteveja",
+        linkedin: "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/",
+        github: "",
       },
       gradient: "from-blue-500 to-purple-600",
     },
@@ -158,7 +158,7 @@ export default function Team() {
                   </div>
                   <div className="flex gap-4 sm:gap-5 mt-6 sm:mt-8">
                     <Link
-                      href={member.links.github}
+                      href={member.links.x}
                       className="flex items-center space-x-3"
                     >
                       <div className="relative w-6 h-6 rounded-lg">
@@ -179,20 +179,6 @@ export default function Team() {
                         <Image
                           src="/assets/icons/team-linkedin-icon.svg"
                           alt="Linkedin Logo"
-                          fill
-                          className="object-contain rounded-lg hover:scale-110"
-                          priority
-                        />
-                      </div>
-                    </Link>
-                    <Link
-                      href={member.links.website}
-                      className="flex items-center space-x-3"
-                    >
-                      <div className="relative w-6 h-6 rounded-lg">
-                        <Image
-                          src="/assets/icons/team-website-icon.svg"
-                          alt="Website Logo"
                           fill
                           className="object-contain rounded-lg hover:scale-110"
                           priority

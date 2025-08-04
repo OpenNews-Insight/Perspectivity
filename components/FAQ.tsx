@@ -10,32 +10,38 @@ const FAQ: FC = () => {
   const FAQ_ITEMS = useMemo(
     () => [
       {
-        question: "Is this really free?",
+        question:
+          "What is Drishtikon and how is it different from other news platforms?",
         answer:
-          "Absolutely! Enjoy a hassle-free experience with zero fees, no commission, and absolutely no hidden charges.",
+          "Drishtikon shows you not just what's happening, but who's telling the story and how they're framing it. We aggregate coverage from 200+ sources and reveal the bias, political leaning, and ownership behind each story. Think of it as having X-ray vision for news.",
       },
       {
-        question: "FAQ 2",
-        answer: "Answer for FAQ 2 goes here.",
+        question: "How does your bias detection actually work?",
+        answer:
+          "We map media ownership and institutional connections—not AI guesswork. Our database tracks who owns each outlet, their political ties, and historical coverage patterns. When you see a story, you'll know exactly which interests each source represents.",
       },
       {
-        question: "FAQ 3",
-        answer: "Answer for FAQ 3 goes here.",
+        question:
+          "Why should I trust your summaries over reading original articles?",
+        answer:
+          "Our summaries extract key facts from multiple sources, not just one outlet's take. You can always click through to read full articles. We enhance your understanding—we don't replace original reporting.",
       },
       {
-        question: "FAQ 4",
-        answer: "Answer for FAQ 4 goes here.",
+        question: "What makes this especially important for Bangladesh?",
+        answer:
+          "76% of Bangladeshis struggle with news literacy (UNICEF survey). With highly fragmented and politicized news sources, people get confused by conflicting headlines during elections, protests, or crises. Drishtikon gives citizens tools to navigate this complexity.",
       },
       {
-        question: "FAQ 5",
-        answer: "Answer for FAQ 5 goes here.",
+        question: "What's your long-term vision beyond Bangladesh?",
+        answer:
+          "Bangladesh is our proving ground. Through our parent company Perspectivity, we're building technology for any democracy facing information fragmentation. Once perfected here, we'll expand to similar markets across Asia and Africa.",
       },
     ],
     []
   );
 
   return (
-    <section className="w-full py-10 sm:py-20 lg:py-[120px] flex flex-col items-center px-5">
+    <section id='faq' className="w-full py-10 sm:py-20 lg:py-[120px] flex flex-col items-center px-5">
       <h2 className="text-paragraph-md-medium text-primary-500 mb-8 sm:mb-12 text-center">
         Frequently Asked Questions
       </h2>
