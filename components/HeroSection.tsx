@@ -104,12 +104,12 @@ const HeroSection: FC = () => {
             </Link>
 
             <Link
-              href="#demo"
+              href="https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-transparent border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-primary-400 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
             >
-              <span>Watch Demo</span>
+              <span>Watch Why We Built This</span>
               <div className="relative w-5 h-5 rounded-lg ms-2">
                 <Image
                   src="/assets/icons/resume-icon.svg"
