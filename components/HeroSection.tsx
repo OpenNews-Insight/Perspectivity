@@ -72,7 +72,7 @@ const HeroSection: FC = () => {
         >
           <div className="w-full flex items-center justify-center">
             <div className="w-max flex items-center justify-center bg-base-white border border-primary-100 rounded-[9999px] px-3 py-2">
-              <p className="text-paragraph-sm-medium text-primary-500 transition-all duration-500 animate-fade-in-up text-xs sm:text-sm">
+              <p className="text-paragraph-sm-medium text-primary-500 transition-all duration-500 animate-fade-in-up text-base sm:text-lg md:text-xl">
                 {slogans[currentSlogan]}
               </p>
             </div>
