@@ -34,7 +34,7 @@ const FinalCTASection: FC = () => {
     <section
       id="feedback"
       ref={ref}
-      className="w-full bg-base-white md:border-b px-5 sm:pt-16 lg:pt-[120px] lg:ps-20"
+      className="w-full container mx-auto bg-base-white md:border-b px-5 sm:py-16 lg:py-[120px] lg:ps-20"
     >
       <div
         className={cn(
