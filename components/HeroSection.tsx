@@ -64,7 +64,6 @@ const HeroSection: FC = () => {
   return (
     <section className="relative min-h-screen flex flex-col items-center overflow-hidden bg-surface-secondary">
       <div className="container mx-auto w-full">
-        {" "}
         <div className="max-w-[1060px] mx-auto px-4 sm:px-5 text-center pt-24 sm:pt-[110px] md:pt-[188px]">
           <div
             className={cn(
@@ -74,7 +73,7 @@ const HeroSection: FC = () => {
           >
             <div className="w-full flex items-center justify-center">
               <div className="w-max flex items-center justify-center bg-base-white border border-primary-100 rounded-[9999px] px-3 py-2">
-                <p className="text-paragraph-sm-medium text-primary-500 transition-all duration-500 animate-fade-in-up text-xs sm:text-sm">
+                <p className="text-paragraph-sm-medium text-primary-500 transition-all duration-500 animate-fade-in-up text-base sm:text-lg md:text-xl">
                   {slogans[currentSlogan]}
                 </p>
               </div>
@@ -106,12 +105,13 @@ const HeroSection: FC = () => {
               </Link>
 
               <Link
-                href="#demo"
+                href="https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-transparent border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-primary-400 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
               >
-                <span>Watch Demo</span>
+                <span>Watch Why We Built This</span>
+
                 <div className="relative w-5 h-5 rounded-lg ms-2">
                   <Image
                     src="/assets/icons/resume-icon.svg"
