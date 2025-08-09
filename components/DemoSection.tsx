@@ -28,7 +28,7 @@ const DemoSection: FC = () => {
     <section
       id="demo"
       ref={ref}
-      className="relative pb-[120px] pt-10 overflow-hidden flex flex-col items-center justify-center"
+      className="container relative pb-[120px] pt-10 overflow-hidden flex flex-col items-center justify-center mx-auto"
     >
       {/* Rotated Badge */}
       <div

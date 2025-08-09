@@ -10,7 +10,7 @@ import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
   return (
-    <main className="container mx-auto w-full overflow-x-hidden">
+    <main className="overflow-x-hidden">
       <Header />
       <HeroSection />
       <InformationCrisisSection />

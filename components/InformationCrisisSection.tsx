@@ -24,7 +24,7 @@ const InformationCrisisSection: FC = () => {
     <section
       id="problem"
       ref={ref}
-      className="px-5 sm:px-6 md:px-10 lg:px-20 py-12 sm:py-[80px] md:py-[120px] mx-auto"
+      className="px-5 sm:px-6 md:px-10 lg:px-20 py-12 sm:py-[80px] md:py-[120px] mx-auto container w-full "
     >
       <h2 className="text-paragraph-md-medium text-primary-500 mb-6 sm:mb-8 text-center">
         CRITICAL INFORMATION CRISIS

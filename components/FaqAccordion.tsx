@@ -41,7 +41,10 @@ const FaqAccordion: FC = () => {
   );
 
   return (
-    <section id="faq" className="w-full py-10 sm:py-20 lg:py-[120px] flex flex-col items-center px-5">
+    <section
+      id="faq"
+      className="w-full container mx-auto py-10 sm:py-20 lg:py-[120px] flex flex-col items-center px-5"
+    >
       <h2 className="text-paragraph-md-medium text-primary-500 mb-8 sm:mb-12 text-center">
         Frequently Asked Questions
       </h2>
@@ -60,10 +63,12 @@ const FaqAccordion: FC = () => {
               role="button"
               aria-expanded={expanded}
             >
-              <div className={cn(
-                "flex-shrink-0 flex items-start pt-1 transition-transform duration-200",
-                expanded ? "rotate-0" : "rotate-90"
-              )}>
+              <div
+                className={cn(
+                  "flex-shrink-0 flex items-start pt-1 transition-transform duration-200",
+                  expanded ? "rotate-0" : "rotate-90"
+                )}
+              >
                 {expanded ? (
                   <div className="relative w-6 h-6">
                     <Image
