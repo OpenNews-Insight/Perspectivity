@@ -510,20 +510,13 @@ const TeamsPage: FC = () => {
                 <div className="relative p-5 sm:p-7 z-10 flex flex-col justify-between">
                   <div className="absolute inset-0 bg-[#FFFFFF4D] backdrop-blur-[24px] border-t border-[#FFFFFF4D] z-0" />
                   <div className="relative z-10 flex flex-col">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center ring-2 ring-white/50">
-                        <span className="text-sm font-semibold text-white">
-                          {founder.initials}
-                        </span>
-                      </div>
-                      <div>
-                        <h3 className="text-heading-5-semibold text-base-white">
-                          {founder.name}
-                        </h3>
-                        <p className="text-paragraph-sm-medium text-white/80">
-                          {founder.role}
-                        </p>
-                      </div>
+                    <div className="mb-3">
+                      <h3 className="text-heading-5-semibold text-base-white">
+                        {founder.name}
+                      </h3>
+                      <p className="text-paragraph-sm-medium text-white/80">
+                        {founder.role}
+                      </p>
                     </div>
                     <p className="text-paragraph-md-regular text-white/90 mt-1">
                       {founder.description}

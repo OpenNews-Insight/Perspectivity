@@ -10,6 +10,7 @@ const Footer: FC = () => {
         title: "Product",
         links: [
           { label: "Drishtikon (Bangladesh)", href: "https://drishtikon.life" },
+          { label: "Perspectivity (US)", href: "https://app.perspectivity.co/" },
           { label: "Features", href: "/#features" },
         ],
       },
@@ -23,6 +24,10 @@ const Footer: FC = () => {
           {
             label: "Youtube",
             href: "https://www.youtube.com/@Perspective1357",
+          },
+          {
+            label: "Facebook",
+            href: "https://web.facebook.com/DrishtikonBangladesh",
           },
         ],
       },

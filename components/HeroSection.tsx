@@ -94,16 +94,101 @@ const HeroSection: FC = () => {
               analyzes local news in real time.
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+            {/* Product cards */}
+            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-5 mb-6">
+              {/* Perspectivity (US) */}
+              <Link
+                href="https://app.perspectivity.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-500/15"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#3C3B6E] to-[#1a1a4e] opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                  <svg viewBox="0 0 36 36" className="w-full h-full" aria-hidden>
+                    <rect fill="#B22234" width="36" height="36" />
+                    <rect fill="#fff" y="2.77" width="36" height="2.77" />
+                    <rect fill="#fff" y="8.31" width="36" height="2.77" />
+                    <rect fill="#fff" y="13.85" width="36" height="2.77" />
+                    <rect fill="#fff" y="19.38" width="36" height="2.77" />
+                    <rect fill="#fff" y="24.92" width="36" height="2.77" />
+                    <rect fill="#fff" y="30.46" width="36" height="2.77" />
+                    <rect fill="#3C3B6E" width="15.12" height="19.38" />
+                  </svg>
+                </div>
+                <div className="relative z-10 px-5 py-4 flex flex-col gap-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-paragraph-md-medium text-white">Perspectivity</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                      </span>
+                      <span className="text-[11px] text-green-300 font-medium">LIVE</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-[3px] flex-shrink-0" aria-hidden>
+                      <rect fill="#B22234" width="36" height="36" />
+                      <rect fill="#fff" y="2.77" width="36" height="2.77" />
+                      <rect fill="#fff" y="8.31" width="36" height="2.77" />
+                      <rect fill="#fff" y="13.85" width="36" height="2.77" />
+                      <rect fill="#fff" y="19.38" width="36" height="2.77" />
+                      <rect fill="#fff" y="24.92" width="36" height="2.77" />
+                      <rect fill="#fff" y="30.46" width="36" height="2.77" />
+                      <rect fill="#3C3B6E" width="15.12" height="19.38" />
+                    </svg>
+                    <span className="text-[12px] text-white/60">United States</span>
+                  </div>
+                  <div className="mt-2 flex items-center gap-1 text-[12px] text-white/50 group-hover:text-white/80 transition-colors duration-300">
+                    <span>Try it now</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              </Link>
+
+              {/* Drishtikon (BD) */}
               <Link
                 href="https://drishtikon.life"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary-500 border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-base-white px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
+                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/15"
               >
-                <span>Try Drishtokon Live</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#006A4E] to-[#004a36] opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                  <svg viewBox="0 0 36 36" className="w-full h-full" aria-hidden>
+                    <rect fill="#006A4E" width="36" height="36" />
+                    <circle fill="#F42A41" cx="16" cy="18" r="8" />
+                  </svg>
+                </div>
+                <div className="relative z-10 px-5 py-4 flex flex-col gap-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-paragraph-md-medium text-white">Drishtikon</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                      </span>
+                      <span className="text-[11px] text-green-300 font-medium">LIVE</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-[3px] flex-shrink-0" aria-hidden>
+                      <rect fill="#006A4E" width="36" height="36" rx="2" />
+                      <circle fill="#F42A41" cx="16" cy="18" r="8" />
+                    </svg>
+                    <span className="text-[12px] text-white/60">Bangladesh</span>
+                  </div>
+                  <div className="mt-2 flex items-center gap-1 text-[12px] text-white/50 group-hover:text-white/80 transition-colors duration-300">
+                    <span>Try it now</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
               </Link>
+            </div>
 
+            {/* Watch video link */}
+            <div className="flex justify-center">
               <Link
                 href="https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI"
                 target="_blank"
