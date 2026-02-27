@@ -56,7 +56,7 @@ const departments: Department[] = [
       { name: "Shubhashis Roy Dipta", role: "Researcher", initials: "SD",image: "/assets/images/team/dipta.jpeg" },
       { name: "Nusrat Jahan Lia", role: "Researcher", initials: "NL",image: "/assets/images/team/lia.jpeg" },
       { name: "Naymul Islam", role: "Researcher", initials: "NY",image: "/assets/images/team/naimul.jpeg" },
-      { name: "Opu Chakraborty", role: "Researcher", initials: "OC",image: "/assets/images/team/opu.jpeg" },
+      { name: "Opu Chakraborty", role: "Researcher", initials: "OC",image: "/assets/images/team/opu.png" },
     ],
   },
 
