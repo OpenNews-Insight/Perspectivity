@@ -21,10 +21,12 @@ const FeaturesSection: FC = () => {
   // Staggered delays for animating each card
   const getCardAnimation = (index: number) =>
     isVisible
-      ? `opacity-100 translate-y-0 transition-all duration-1000 delay-${
-          index * 150
-        }`
+      ? "opacity-100 translate-y-0 transition-all duration-1000"
       : "opacity-0 translate-y-8";
+
+  const getCardDelay = (index: number) => ({
+    transitionDelay: isVisible ? `${index * 150}ms` : "0ms",
+  });
 
   return (
     <section
@@ -38,7 +40,7 @@ const FeaturesSection: FC = () => {
         }`}
       >
         <div className="mb-10 sm:mb-[56px] max-w-6xl mx-auto">
-          <p className="text-paragraph-md-mMedium text-primary-600 mb-2 md:mb-3">
+          <p className="text-paragraph-md-medium text-primary-600 mb-2 md:mb-3">
             POWERED BY AI
           </p>
           <h2 className="text-heading-3-semibold text-secondary-800 mb-2 md:mb-3">
@@ -56,6 +58,7 @@ const FeaturesSection: FC = () => {
             className={`col-span-1 sm:col-span-4 bg-primary-950 border border-primary-900 rounded-2xl p-6 relative flex flex-col justify-between md:row-span-2 min-h-[280px] shadow-lg ${getCardAnimation(
               0
             )}`}
+            style={getCardDelay(0)}
           >
             <div className="relative w-[56px] h-[56px] bg-primary-900 rounded-full flex justify-center items-center">
               <Image
@@ -89,9 +92,10 @@ const FeaturesSection: FC = () => {
           </div>
           {/* 2 - Summarizer */}
           <div
-            className={`relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-3 ${getCardAnimation(
+            className={`relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-3 ${getCardAnimation(
               1
             )}`}
+            style={getCardDelay(1)}
           >
             <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
               <Image
@@ -124,9 +128,10 @@ const FeaturesSection: FC = () => {
           </div>
           {/* 3 - Interactive Chat */}
           <div
-            className={`relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-5 ${getCardAnimation(
+            className={`relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-5 ${getCardAnimation(
               2
             )}`}
+            style={getCardDelay(2)}
           >
             <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
               <Image
@@ -160,9 +165,10 @@ const FeaturesSection: FC = () => {
           </div>
           {/* 4 - Multi-Axis Bias Analysis */}
           <div
-            className={`relative rounded-lg p-6 bg-primary-50 flex flex-col justify-between col-span-1 sm:col-span-5 ${getCardAnimation(
+            className={`relative rounded-2xl p-6 bg-primary-50 flex flex-col justify-between col-span-1 sm:col-span-5 ${getCardAnimation(
               3
             )}`}
+            style={getCardDelay(3)}
           >
             <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
               <Image
@@ -187,9 +193,10 @@ const FeaturesSection: FC = () => {
           </div>
           {/* 5 - Local Language Support */}
           <div
-            className={`relative rounded-lg p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-3 ${getCardAnimation(
+            className={`relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between col-span-1 sm:col-span-3 ${getCardAnimation(
               4
             )}`}
+            style={getCardDelay(4)}
           >
             <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
               <Image
@@ -207,7 +214,7 @@ const FeaturesSection: FC = () => {
                 alt="Global Visual"
                 width={200}
                 height={200}
-                className="object-contain rounded-lg w-[100px] sm:w-[200px] h-[100] sm:h-[200px]"
+                className="object-contain rounded-lg w-[100px] sm:w-[200px] h-[100px] sm:h-[200px]"
                 priority
               />
             </div>

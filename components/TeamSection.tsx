@@ -29,7 +29,7 @@ const TeamSection: FC = () => {
       role: "Founder & CEO",
       description:
         "ML infrastructure builder and BongLLaMA engineer. Built the first open-source Bangla LLM fine-tuned for civic NLP, available on Hugging Face with ArXiv publication.",
-      image: "/api/placeholder/400/400",
+      image: "/assets/images/team/aninda.jpeg",
       achievements: [
         "First open-source Bangla LLM (BongLLaMA)",
         "ArXiv publication on civic NLP",
@@ -92,7 +92,7 @@ const TeamSection: FC = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <p className="text-paragraph-md-mMedium text-primary-600 mb-2 md:mb-3">
+          <p className="text-paragraph-md-medium text-primary-600 mb-2 md:mb-3">
             Meet the Founder
           </p>
           <h2 className="text-heading-3-semibold text-secondary-800 mb-2 md:mb-3">

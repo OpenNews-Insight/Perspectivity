@@ -71,9 +71,9 @@ const Footer: FC = () => {
               type="email"
               aria-label="Email address"
               placeholder="Enter your email"
-              className="text-paragraph-md-regular border border-secondary-300 px-4 py-[10px] w-full sm:w-auto focus:outline-none rounded-[9999px]"
+              className="text-paragraph-md-regular border border-secondary-300 px-4 py-2.5 w-full sm:w-auto focus:outline-none rounded-full"
             />
-            <button className="bg-primary-500 border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-base-white px-3 py-[10px] w-full sm:w-auto justify-center">
+            <button className="bg-primary-500 border border-primary-400 rounded-full transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-base-white px-3 py-2.5 w-full sm:w-auto justify-center">
               Subscribe
             </button>
           </form>
@@ -130,7 +130,7 @@ const Footer: FC = () => {
 
         <div className="flex flex-col sm:flex-row justify-center items-center border-t border-secondary-100 pt-8 gap-6">
           <p className="text-paragraph-md-regular text-secondary-600">
-            &copy; 2025 Perspectivity. All rights reserved
+            &copy; {new Date().getFullYear()} Perspectivity. All rights reserved
           </p>
         </div>
       </div>

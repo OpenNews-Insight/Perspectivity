@@ -62,7 +62,7 @@ const Header: FC = () => {
   );
   return (
     <header className="fixed top-0 sm:top-6 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
-      <nav className="mx-auto w-full max-w-[1062px] z-50 transition-all duration-300 bg-base-white border border-primary-100 rounded-none sm:rounded-[9999px] p-4 shadow-primary-50">
+      <nav className="mx-auto w-full max-w-[1062px] z-50 transition-all duration-300 bg-base-white border border-primary-100 rounded-none sm:rounded-full p-4 shadow-primary-50">
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center space-x-3">
             <div className="relative w-11 h-11 bg-primary-950 rounded-lg">
@@ -91,7 +91,7 @@ const Header: FC = () => {
           <div className="hidden md:flex items-center space-x-3 relative" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="bg-primary-500 border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center gap-2 text-paragraph-md-medium text-base-white px-4 py-[10px]"
+              className="bg-primary-500 border border-primary-400 rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2 text-paragraph-md-medium text-base-white px-4 py-2.5"
             >
               <Globe className="w-4 h-4" />
               <span>Try Now</span>

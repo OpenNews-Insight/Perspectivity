@@ -103,7 +103,7 @@ const FaqAccordion: FC = () => {
                       : "max-h-0 opacity-0 mt-0"
                   )}
                 >
-                  <div className="text-paragraph-md-medium text-primary-600">
+                  <div className="text-paragraph-md-regular text-primary-600">
                     {item.answer}
                   </div>
                 </div>

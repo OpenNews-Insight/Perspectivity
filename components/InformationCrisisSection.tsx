@@ -32,7 +32,7 @@ const InformationCrisisSection: FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-10">
         <div
           className={cn(
-            "flex flex-col justify-between bg-surface-secondary p-4 sm:p-6 md:p-10 lg:p-20 rounded-3xl aspect-square mx-auto transition-all duration-1000",
+            "flex flex-col justify-between bg-surface-secondary p-5 sm:p-8 md:p-12 lg:p-16 rounded-3xl aspect-square mx-auto transition-all duration-1000",
             isVisible
               ? "opacity-100 translate-x-0"
               : "opacity-0 -translate-x-10"
@@ -64,12 +64,12 @@ const InformationCrisisSection: FC = () => {
         </div>
         <div
           className={cn(
-            "flex flex-col gap-6 md:gap-8 p-4 sm:p-6 md:p-10 lg:p-20 mx-auto w-full justify-center aspect-square transition-all duration-1000 delay-200",
+            "flex flex-col gap-6 md:gap-8 p-5 sm:p-8 md:p-12 lg:p-16 mx-auto w-full justify-center aspect-square transition-all duration-1000 delay-200",
             isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
           )}
         >
           <div className="flex items-center gap-3 justify-end">
-            <div className="bg-surface-secondary border border-secondary-100 text-secondary-700 text-paragraph-md-medium py-[10px] px-4 rounded-[9999px] w-full max-w-[245px] text-xs sm:text-sm md:text-base">
+            <div className="bg-surface-secondary border border-secondary-100 text-secondary-700 text-paragraph-md-medium py-2.5 px-4 rounded-full w-full max-w-[245px] text-xs sm:text-sm md:text-base">
               64 Districts in Bangladesh Need Local News Insights
             </div>
             <div className="relative w-[60px] h-[60px] sm:w-[76px] sm:h-[76px]">
@@ -83,7 +83,7 @@ const InformationCrisisSection: FC = () => {
             </div>
           </div>
           <div className="flex items-center gap-4 justify-start">
-            <div className="bg-surface-secondary border border-secondary-100 text-secondary-800 text-heading-3-medium md:text-heading-1-medium py-1 md:py-2 px-4 rounded-[9999px]">
+            <div className="bg-surface-secondary border border-secondary-100 text-secondary-800 text-heading-3-medium md:text-heading-1-medium py-1 md:py-2 px-4 rounded-full">
               80%
             </div>
             <div>
@@ -92,7 +92,7 @@ const InformationCrisisSection: FC = () => {
               </span>
             </div>
           </div>
-          <div className="w-full flex items-center gap-4 justify-between bg-primary-500 px-5 py-2 rounded-[9999px] text-primary-50">
+          <div className="w-full flex items-center gap-4 justify-between bg-primary-500 px-5 py-2 rounded-full text-primary-50">
             <div className="text-heading-3-medium md:text-heading-1-medium">
               200 M
             </div>
@@ -101,10 +101,10 @@ const InformationCrisisSection: FC = () => {
             </div>
           </div>
           <div className="flex items-center gap-4 justify-end">
-            <div className="bg-surface-secondary border border-secondary-100 text-secondary-700 text-paragraph-md-medium py-[10px] px-4 rounded-[9999px] w-full max-w-[260px]">
+            <div className="bg-surface-secondary border border-secondary-100 text-secondary-700 text-paragraph-md-medium py-2.5 px-4 rounded-full w-full max-w-[260px]">
               15+ Languages underserved by current solutions
             </div>
-            <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-primary-500 rounded-[9999px] flex justify-center items-center">
+            <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-primary-500 rounded-full flex justify-center items-center">
               <Image
                 src="/assets/icons/team-website-icon.svg"
                 alt="World Map"

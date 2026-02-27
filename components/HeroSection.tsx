@@ -72,7 +72,7 @@ const HeroSection: FC = () => {
             )}
           >
             <div className="w-full flex items-center justify-center">
-              <div className="w-max flex items-center justify-center bg-base-white border border-primary-100 rounded-[9999px] px-3 py-2">
+              <div className="w-max flex items-center justify-center bg-base-white border border-primary-100 rounded-full px-3 py-2">
                 <p className="text-paragraph-sm-medium text-primary-500 transition-all duration-500 animate-fade-in-up text-base sm:text-lg md:text-xl">
                   {slogans[currentSlogan]}
                 </p>
@@ -193,7 +193,7 @@ const HeroSection: FC = () => {
                 href="https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-transparent border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-primary-400 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
+                className="bg-transparent border border-primary-400 rounded-full transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-primary-400 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
               >
                 <span>Watch Why We Built This</span>
 

@@ -67,7 +67,7 @@ const FinalCTASection: FC = () => {
           </ul>
           <Link
             href="mailto:support@perspectivity.co"
-            className="bg-primary-500 border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-base-white px-4 py-[10px] w-max"
+            className="bg-primary-500 border border-primary-400 rounded-full transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-base-white px-4 py-2.5 w-max"
           >
             <span>Get in Touch</span>
           </Link>
