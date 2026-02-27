@@ -10,7 +10,7 @@ const Footer: FC = () => {
         title: "Product",
         links: [
           { label: "Drishtikon (Bangladesh)", href: "https://drishtikon.life" },
-          { label: "Features", href: "#features" },
+          { label: "Features", href: "/#features" },
         ],
       },
       {
@@ -29,9 +29,9 @@ const Footer: FC = () => {
       {
         title: "Company",
         links: [
-          { label: "FAQ", href: "#faq" },
-          { label: "Feedback", href: "#feedback" },
-          { label: "Team", href: "#team" },
+          { label: "FAQ", href: "/#faq" },
+          { label: "Feedback", href: "/#feedback" },
+          { label: "Team", href: "/teams" },
         ],
       },
       {

@@ -10,10 +10,10 @@ const Header: FC = () => {
 
   const navItems = useMemo(
     () => [
-      { name: "Problem", href: "#problem" },
-      { name: "Solution", href: "#features" },
-      { name: "Demo", href: "#demo" },
-      { name: "Team", href: "#team" },
+      { name: "Problem", href: "/#problem" },
+      { name: "Solution", href: "/#features" },
+      { name: "Demo", href: "/#demo" },
+      { name: "Team", href: "/teams" },
     ],
     []
   );
