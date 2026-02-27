@@ -43,14 +43,14 @@ const FinalCTASection: FC = () => {
         )}
       >
         <div className="flex-1 md:max-w-[47%]">
-          <h2 className="text-center sm:text-left text-heading-4-medium sm:text-heading-1-medium text-secondary-800 mb-8">
+          <h2 className="text-center sm:text-left text-heading-4-medium sm:text-heading-1-medium text-secondary-900 mb-8">
             Ready to Restore trust in News{" "}
             <span className="block md:inline">With insights</span>
           </h2>
           <ul className="mb-8 space-y-2 sm:space-y-5">
             {features.map((feature, i) => (
               <li
-                className={`flex items-center gap-3 text-paragraph-lg-regular text-secondary-700 transition-all duration-700 ${
+                className={`flex items-center gap-3 text-paragraph-lg-regular text-secondary-500 transition-all duration-700 ${
                   isVisible
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 -translate-x-8"
@@ -58,8 +58,8 @@ const FinalCTASection: FC = () => {
                 key={feature}
                 style={{ transitionDelay: `${300 + i * 120}ms` }}
               >
-                <div className="bg-primary-50 rounded-full w-7 h-7 flex items-center justify-center">
-                  <Check className="w-5 h-5 text-primary-500 flex-shrink-0" />
+                <div className="bg-gray-100 rounded-full w-7 h-7 flex items-center justify-center">
+                  <Check className="w-5 h-5 text-secondary-900 flex-shrink-0" />
                 </div>
                 {feature}
               </li>
@@ -67,7 +67,7 @@ const FinalCTASection: FC = () => {
           </ul>
           <Link
             href="mailto:support@perspectivity.co"
-            className="bg-primary-500 border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-base-white px-4 py-[10px] w-max"
+            className="bg-secondary-900 rounded-full transition-all duration-300 hover:bg-secondary-800 flex items-center text-paragraph-md-medium text-base-white px-4 py-2.5 w-max"
           >
             <span>Get in Touch</span>
           </Link>

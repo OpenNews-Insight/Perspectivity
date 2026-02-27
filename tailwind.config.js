@@ -17,17 +17,17 @@ module.exports = {
           secondary: "#FAFAFA",
         },
         primary: {
-          50: "#F0F9FF",
-          100: "#E0F2FE",
-          200: "#BAE6FD",
-          300: "#7DD3FC",
-          400: "#38BDF8",
-          500: "#0EA5E9",
-          600: "#0284C7",
-          700: "#0369A1",
-          800: "#075985",
-          900: "#0C4A6E",
-          950: "#082F49",
+          50: "#ecfdf5",
+          100: "#d1fae5",
+          200: "#a7f3d0",
+          300: "#6ee7b7",
+          400: "#34d399",
+          500: "#10b981",
+          600: "#059669",
+          700: "#047857",
+          800: "#065f46",
+          900: "#064e3b",
+          950: "#022c22",
         },
         secondary: {
           50: "#F6F7F9",
@@ -83,7 +83,6 @@ module.exports = {
       fontFamily: {
         instrument: ["Instrument Sans", "Inter", "system-ui", "sans-serif"],
         geist: ["Geist", "Inter", "system-ui", "sans-serif"],
-        bradley: ['"Bradley Hand"', "cursive", "sans-serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       fontSize: {
@@ -305,7 +304,7 @@ module.exports = {
         ],
       },
       boxShadow: {
-        "primary-50": "0px 2px 24px 2px var(--primary-50)",
+        "primary-50": "0px 2px 24px 2px rgba(16, 185, 129, 0.08)",
       },
 
       animation: {

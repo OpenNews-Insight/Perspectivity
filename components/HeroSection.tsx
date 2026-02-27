@@ -72,43 +72,128 @@ const HeroSection: FC = () => {
             )}
           >
             <div className="w-full flex items-center justify-center">
-              <div className="w-max flex items-center justify-center bg-base-white border border-primary-100 rounded-[9999px] px-3 py-2">
-                <p className="text-paragraph-sm-medium text-primary-500 transition-all duration-500 animate-fade-in-up text-base sm:text-lg md:text-xl">
+              <div className="w-max flex items-center justify-center bg-base-white border border-secondary-200 rounded-full px-3 py-2">
+                <p className="text-paragraph-sm-medium text-secondary-600 transition-all duration-500 animate-fade-in-up text-base sm:text-lg md:text-xl">
                   {slogans[currentSlogan]}
                 </p>
               </div>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl md:text-display-semibold text-secondary-800 my-6">
+            <h1 className="text-2xl sm:text-4xl md:text-display-semibold text-secondary-900 my-6">
               Expose{" "}
-              <span className="bg-gradient-to-r from-cyan-500 to-sky-400 bg-clip-text text-transparent">
+              <span className="text-primary-600">
                 Media Bias{" "}
               </span>
               in Emerging Democracies
             </h1>
 
-            <p className="text-sm sm:text-base md:text-paragraph-lg-regular text-secondary-700 mb-6 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-paragraph-lg-regular text-secondary-500 mb-6 max-w-2xl mx-auto">
               Perspectivity delivers multi-perspective news in your
               language—cutting through bias and language barriers. Designed for
               low-resource regions, our open-source platform gathers and
               analyzes local news in real time.
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+            {/* Product cards */}
+            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-5 mb-6">
+              {/* Perspectivity (US) */}
+              <Link
+                href="https://app.perspectivity.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-lg"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary-900 to-secondary-950 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                  <svg viewBox="0 0 36 36" className="w-full h-full" aria-hidden>
+                    <rect fill="#B22234" width="36" height="36" />
+                    <rect fill="#fff" y="2.77" width="36" height="2.77" />
+                    <rect fill="#fff" y="8.31" width="36" height="2.77" />
+                    <rect fill="#fff" y="13.85" width="36" height="2.77" />
+                    <rect fill="#fff" y="19.38" width="36" height="2.77" />
+                    <rect fill="#fff" y="24.92" width="36" height="2.77" />
+                    <rect fill="#fff" y="30.46" width="36" height="2.77" />
+                    <rect fill="#3C3B6E" width="15.12" height="19.38" />
+                  </svg>
+                </div>
+                <div className="relative z-10 px-5 py-4 flex flex-col gap-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-paragraph-md-medium text-white">Perspectivity</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                      </span>
+                      <span className="text-[11px] text-green-300 font-medium">LIVE</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-[3px] flex-shrink-0" aria-hidden>
+                      <rect fill="#B22234" width="36" height="36" />
+                      <rect fill="#fff" y="2.77" width="36" height="2.77" />
+                      <rect fill="#fff" y="8.31" width="36" height="2.77" />
+                      <rect fill="#fff" y="13.85" width="36" height="2.77" />
+                      <rect fill="#fff" y="19.38" width="36" height="2.77" />
+                      <rect fill="#fff" y="24.92" width="36" height="2.77" />
+                      <rect fill="#fff" y="30.46" width="36" height="2.77" />
+                      <rect fill="#3C3B6E" width="15.12" height="19.38" />
+                    </svg>
+                    <span className="text-[12px] text-white/60">United States</span>
+                  </div>
+                  <div className="mt-2 flex items-center gap-1 text-[12px] text-white/50 group-hover:text-white/80 transition-colors duration-300">
+                    <span>Try it now</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
+              </Link>
+
+              {/* Drishtikon (BD) */}
               <Link
                 href="https://drishtikon.life"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-primary-500 border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-base-white px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
+                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-lg"
               >
-                <span>Try Drishtokon Live</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#006A4E] to-[#004a36] opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                  <svg viewBox="0 0 36 36" className="w-full h-full" aria-hidden>
+                    <rect fill="#006A4E" width="36" height="36" />
+                    <circle fill="#F42A41" cx="16" cy="18" r="8" />
+                  </svg>
+                </div>
+                <div className="relative z-10 px-5 py-4 flex flex-col gap-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-paragraph-md-medium text-white">Drishtikon</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                      </span>
+                      <span className="text-[11px] text-green-300 font-medium">LIVE</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-[3px] flex-shrink-0" aria-hidden>
+                      <rect fill="#006A4E" width="36" height="36" rx="2" />
+                      <circle fill="#F42A41" cx="16" cy="18" r="8" />
+                    </svg>
+                    <span className="text-[12px] text-white/60">Bangladesh</span>
+                  </div>
+                  <div className="mt-2 flex items-center gap-1 text-[12px] text-white/50 group-hover:text-white/80 transition-colors duration-300">
+                    <span>Try it now</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </div>
               </Link>
+            </div>
 
+            {/* Watch video link */}
+            <div className="flex justify-center">
               <Link
                 href="https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-transparent border border-primary-400 rounded-[9999px] transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-primary-400 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
+                className="bg-transparent border border-secondary-300 rounded-full transition-all duration-300 hover:border-secondary-500 flex items-center text-paragraph-md-medium text-secondary-600 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
               >
                 <span>Watch Why We Built This</span>
 
@@ -142,7 +227,7 @@ const HeroSection: FC = () => {
             {newsData.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-base-white border border-[#E4E4E7] rounded-lg shadow-primary-50 shadow-md min-w-[260px] sm:min-w-[280px] md:min-w-[320px] max-w-xs transition-transform hover:-translate-y-2 flex-shrink-0 p-2 sm:p-4"
+                className="bg-base-white border border-[#E4E4E7] rounded-lg shadow-md min-w-[260px] sm:min-w-[280px] md:min-w-[320px] max-w-xs transition-transform hover:-translate-y-2 flex-shrink-0 p-2 sm:p-4"
               >
                 <div className="bg-surface-secondary border border-[#FFFFFF00] rounded-full w-max px-2 sm:px-[10px] mb-2">
                   <span className="text-paragraph-sm-medium text-[11px] sm:text-[12px] text-base-black uppercase">
@@ -160,12 +245,12 @@ const HeroSection: FC = () => {
                   />
                 </div>
                 <div className="p-2 sm:p-4 flex flex-col gap-2">
-                  <h3 className="text-paragraph-md-medium text-secondary-800 text-sm sm:text-base">
+                  <h3 className="text-paragraph-md-medium text-secondary-900 text-sm sm:text-base">
                     {item.title}
                   </h3>
                 </div>
                 <div className="flex gap-1 sm:gap-2 px-2 sm:px-4 pb-2 sm:pb-4 mt-auto">
-                  <div className="h-1 sm:h-2 w-1/2 rounded-full bg-sky-300"></div>
+                  <div className="h-1 sm:h-2 w-1/2 rounded-full bg-secondary-300"></div>
                   <div className="h-1 sm:h-2 w-1/2 rounded-full bg-coral-200"></div>
                 </div>
               </div>
@@ -173,8 +258,8 @@ const HeroSection: FC = () => {
           </div>
         </div>
         <div className="absolute bottom-5 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
-          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-primary-900 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-primary-900 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-secondary-400 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-secondary-400 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>
           </div>
         </div>
       </div>

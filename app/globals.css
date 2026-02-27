@@ -20,26 +20,26 @@ body {
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, 
-    #3898ec 0%,     /* RealRoots vibrant blue */
-    #2dd4bf 25%,    /* Bright teal accent */  
-    #ea384c 75%,    /* RealRoots coral */
-    #f87171 100%    /* Soft coral */
+  background: linear-gradient(135deg,
+    #10b981 0%,
+    #34d399 25%,
+    #ea384c 75%,
+    #f87171 100%
   );
   background-size: 400% 400%;
   animation: gradientShift 8s ease-in-out infinite;
 }
 
 .gradient-bg-subtle {
-  background: linear-gradient(135deg, #eff9ff 0%, #dff2ff 100%);
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
 }
 
 .gradient-bg-cards {
-  background: linear-gradient(135deg, #eff9ff 0%, #b8e6ff 50%, #dff2ff 100%);
+  background: linear-gradient(135deg, #ecfdf5 0%, #a7f3d0 50%, #d1fae5 100%);
 }
 
 .gradient-primary {
-  background: linear-gradient(135deg, #3898ec 0%, #0f7bc7 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
 
 .gradient-secondary {
@@ -52,7 +52,7 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #3898ec 0%, #0f7bc7 50%, #ea384c 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 50%, #ea384c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -85,12 +85,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3898ec;
+  background: #c4c4c4;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0f7bc7;
+  background: #a0a0a0;
 }
 
 /* Hide scrollbar for screenshot thumbnails */
@@ -110,11 +110,11 @@ body {
 
 .hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(56, 152, 236, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .soft-shadow {
-  box-shadow: 0 4px 6px -1px rgba(56, 152, 236, 0.1), 0 2px 4px -1px rgba(56, 152, 236, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
 }
 
 .pulse-glow {
@@ -123,17 +123,17 @@ body {
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(56, 152, 236, 0.3);
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba(56, 152, 236, 0.5), 0 0 30px rgba(56, 152, 236, 0.3);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 30px rgba(16, 185, 129, 0.3);
   }
 }
 
 /* Mesh background pattern for subtle texture */
 .mesh-bg {
   background-image: 
-    radial-gradient(circle at 1px 1px, rgba(56, 152, 236, 0.05) 1px, transparent 0);
+    radial-gradient(circle at 1px 1px, rgba(16, 185, 129, 0.05) 1px, transparent 0);
   background-size: 20px 20px;
 }
 .bg-man-1 {

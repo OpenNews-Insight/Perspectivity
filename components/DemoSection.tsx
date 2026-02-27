@@ -32,7 +32,7 @@ const DemoSection: FC = () => {
     >
       {/* Rotated Badge */}
       <div
-        className={`relative bg-primary-50 w-max border border-border-primary-100 shadow-primary-50 p-3 rounded-[9999px] flex justify-start gap-3 items-center rotate-[10.35deg] mb-[90px] z-20
+        className={`relative bg-gray-50 w-max border border-gray-200 shadow-sm p-3 rounded-full flex justify-start gap-3 items-center rotate-[10.35deg] mb-[90px] z-20
         transition-all duration-1000 ${appear}`}
         style={{ transitionDelay: "0.1s" }}
       >
@@ -45,7 +45,7 @@ const DemoSection: FC = () => {
             priority
           />
         </div>
-        <p className="text-primary-500 font-bold text-[20px] leading-[30px] font-bradley">
+        <p className="text-secondary-900 font-bold text-[20px] leading-[30px]">
           SEE PERSPECTIVITY IN ACTION
         </p>
         <div
