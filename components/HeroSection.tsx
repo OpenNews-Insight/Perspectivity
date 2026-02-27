@@ -72,22 +72,22 @@ const HeroSection: FC = () => {
             )}
           >
             <div className="w-full flex items-center justify-center">
-              <div className="w-max flex items-center justify-center bg-base-white border border-primary-100 rounded-full px-3 py-2">
-                <p className="text-paragraph-sm-medium text-primary-500 transition-all duration-500 animate-fade-in-up text-base sm:text-lg md:text-xl">
+              <div className="w-max flex items-center justify-center bg-base-white border border-secondary-200 rounded-full px-3 py-2">
+                <p className="text-paragraph-sm-medium text-secondary-600 transition-all duration-500 animate-fade-in-up text-base sm:text-lg md:text-xl">
                   {slogans[currentSlogan]}
                 </p>
               </div>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl md:text-display-semibold text-secondary-800 my-6">
+            <h1 className="text-2xl sm:text-4xl md:text-display-semibold text-secondary-900 my-6">
               Expose{" "}
-              <span className="bg-gradient-to-r from-cyan-500 to-sky-400 bg-clip-text text-transparent">
+              <span className="text-primary-600">
                 Media Bias{" "}
               </span>
               in Emerging Democracies
             </h1>
 
-            <p className="text-sm sm:text-base md:text-paragraph-lg-regular text-secondary-700 mb-6 max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base md:text-paragraph-lg-regular text-secondary-500 mb-6 max-w-2xl mx-auto">
               Perspectivity delivers multi-perspective news in your
               language—cutting through bias and language barriers. Designed for
               low-resource regions, our open-source platform gathers and
@@ -101,9 +101,9 @@ const HeroSection: FC = () => {
                 href="https://app.perspectivity.co/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-500/15"
+                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-lg"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#3C3B6E] to-[#1a1a4e] opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary-900 to-secondary-950 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
                   <svg viewBox="0 0 36 36" className="w-full h-full" aria-hidden>
                     <rect fill="#B22234" width="36" height="36" />
@@ -152,7 +152,7 @@ const HeroSection: FC = () => {
                 href="https://drishtikon.life"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/15"
+                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-lg"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#006A4E] to-[#004a36] opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
@@ -193,7 +193,7 @@ const HeroSection: FC = () => {
                 href="https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-transparent border border-primary-400 rounded-full transition-all duration-300 hover:scale-105 flex items-center text-paragraph-md-medium text-primary-400 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
+                className="bg-transparent border border-secondary-300 rounded-full transition-all duration-300 hover:border-secondary-500 flex items-center text-paragraph-md-medium text-secondary-600 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
               >
                 <span>Watch Why We Built This</span>
 
@@ -227,7 +227,7 @@ const HeroSection: FC = () => {
             {newsData.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-base-white border border-[#E4E4E7] rounded-lg shadow-primary-50 shadow-md min-w-[260px] sm:min-w-[280px] md:min-w-[320px] max-w-xs transition-transform hover:-translate-y-2 flex-shrink-0 p-2 sm:p-4"
+                className="bg-base-white border border-[#E4E4E7] rounded-lg shadow-md min-w-[260px] sm:min-w-[280px] md:min-w-[320px] max-w-xs transition-transform hover:-translate-y-2 flex-shrink-0 p-2 sm:p-4"
               >
                 <div className="bg-surface-secondary border border-[#FFFFFF00] rounded-full w-max px-2 sm:px-[10px] mb-2">
                   <span className="text-paragraph-sm-medium text-[11px] sm:text-[12px] text-base-black uppercase">
@@ -245,12 +245,12 @@ const HeroSection: FC = () => {
                   />
                 </div>
                 <div className="p-2 sm:p-4 flex flex-col gap-2">
-                  <h3 className="text-paragraph-md-medium text-secondary-800 text-sm sm:text-base">
+                  <h3 className="text-paragraph-md-medium text-secondary-900 text-sm sm:text-base">
                     {item.title}
                   </h3>
                 </div>
                 <div className="flex gap-1 sm:gap-2 px-2 sm:px-4 pb-2 sm:pb-4 mt-auto">
-                  <div className="h-1 sm:h-2 w-1/2 rounded-full bg-sky-300"></div>
+                  <div className="h-1 sm:h-2 w-1/2 rounded-full bg-secondary-300"></div>
                   <div className="h-1 sm:h-2 w-1/2 rounded-full bg-coral-200"></div>
                 </div>
               </div>
@@ -258,8 +258,8 @@ const HeroSection: FC = () => {
           </div>
         </div>
         <div className="absolute bottom-5 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
-          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-primary-900 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-primary-900 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-secondary-400 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-secondary-400 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>
           </div>
         </div>
       </div>

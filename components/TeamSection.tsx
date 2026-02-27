@@ -40,23 +40,23 @@ const TeamSection: FC = () => {
         linkedin: "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/",
         github: "",
       },
-      gradient: "from-blue-500 to-purple-600",
+      gradient: "from-gray-600 to-gray-400",
     },
   ];
 
   const journeyItems = [
     {
-      icon: <BookOpen className="w-6 h-6 text-secondary-800" />,
+      icon: <BookOpen className="w-6 h-6 text-secondary-900" />,
       title: "Research Foundation",
       desc: "Published BongLLaMA research on ArXiv, establishing the technical foundation for civic NLP in Bangla",
     },
     {
-      icon: <FolderOpen className="w-6 h-6 text-secondary-800" />,
+      icon: <FolderOpen className="w-6 h-6 text-secondary-900" />,
       title: "Open Source Impact",
       desc: "Released first open-source Bangla LLM on Hugging Face with 10k+ downloads from researchers worldwide",
     },
     {
-      icon: <LinkIcon className="w-6 h-6 text-secondary-800" />,
+      icon: <LinkIcon className="w-6 h-6 text-secondary-900" />,
       title: "Live Pilot",
       desc: "Launched Drishtikon beta in Bangladesh, processing 200+ news sources across 4 districts",
     },
@@ -92,14 +92,14 @@ const TeamSection: FC = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <p className="text-paragraph-md-medium text-primary-600 mb-2 md:mb-3">
+          <p className="text-paragraph-md-medium text-secondary-500 mb-2 md:mb-3">
             Meet the Founder
           </p>
-          <h2 className="text-heading-3-semibold text-secondary-800 mb-2 md:mb-3">
+          <h2 className="text-heading-3-semibold text-secondary-900 mb-2 md:mb-3">
             Building the future of transparent
-            <span className="text-primary-700"> journalism</span>
+            <span className="text-primary-600"> journalism</span>
           </h2>
-          <p className="text-paragraph-lg-regular text-secondary-700 w-full text-center">
+          <p className="text-paragraph-lg-regular text-secondary-500 w-full text-center">
             Our team combines deep technical expertise in NLP and AI with a
             mission to restore trust in news through transparency and
             multi-perspective analysis.
@@ -175,10 +175,10 @@ const TeamSection: FC = () => {
         </div>
       </div>
       <section className="w-full px-5 flex flex-col items-center">
-        <h2 className="text-heading-3-semibold text-secondary-800 mb-3 text-center">
+        <h2 className="text-heading-3-semibold text-secondary-900 mb-3 text-center">
           Our Journey So Far
         </h2>
-        <p className="text-paragraph-lg-regular text-secondary-700 mb-10 md:mb-16 text-center">
+        <p className="text-paragraph-lg-regular text-secondary-500 mb-10 md:mb-16 text-center">
           Our shared values keep us connected and guide us as one team.
         </p>
         <div className="w-full max-w-full sm:max-w-[1062px] grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
@@ -195,10 +195,10 @@ const TeamSection: FC = () => {
               <div className="border border-secondary-200 rounded-lg p-3 bg-transparent mb-6 sm:mb-8">
                 {item.icon}
               </div>
-              <h3 className="text-heading-5-semibold text-secondary-800 mb-1 sm:mb-2">
+              <h3 className="text-heading-5-semibold text-secondary-900 mb-1 sm:mb-2">
                 {item.title}
               </h3>
-              <p className="text-paragraph-md-regular text-secondary-700">
+              <p className="text-paragraph-md-regular text-secondary-500">
                 {item.desc}
               </p>
             </div>
@@ -206,14 +206,14 @@ const TeamSection: FC = () => {
         </div>
       </section>
       <section className="w-full pt-10 sm:pt-16 px-5 flex flex-col items-center">
-        <h2 className="text-heading-3-semibold text-secondary-800 mb-10 sm:mb-14 text-center">
+        <h2 className="text-heading-3-semibold text-secondary-900 mb-10 sm:mb-14 text-center">
           Next Milestones
         </h2>
         <div className="w-full max-w-full md:max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {milestoneItems.map((item, i) => (
             <div
               key={item.period}
-              className={`bg-white bg-opacity-90 border border-primary-200 rounded-2xl p-5 flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all duration-1000 ${
+              className={`bg-white bg-opacity-90 border border-secondary-200 rounded-2xl p-5 flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all duration-1000 ${
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -221,12 +221,12 @@ const TeamSection: FC = () => {
               style={withStagger(220, i)}
             >
               <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                <CheckCircle className="w-6 h-6 text-primary-500" />
-                <h3 className="text-heading-5-semibold text-secondary-800 my-2">
+                <CheckCircle className="w-6 h-6 text-secondary-500" />
+                <h3 className="text-heading-5-semibold text-secondary-900 my-2">
                   {item.period}
                 </h3>
               </div>
-              <p className="text-paragraph-md-regular text-secondary-700">
+              <p className="text-paragraph-md-regular text-secondary-500">
                 {item.title}
               </p>
             </div>

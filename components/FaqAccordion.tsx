@@ -45,7 +45,7 @@ const FaqAccordion: FC = () => {
       id="faq"
       className="w-full container mx-auto py-10 sm:py-20 lg:py-[120px] flex flex-col items-center px-5"
     >
-      <h2 className="text-paragraph-md-medium text-primary-500 mb-8 sm:mb-12 text-center">
+      <h2 className="text-paragraph-md-medium text-secondary-500 mb-8 sm:mb-12 text-center">
         Frequently Asked Questions
       </h2>
       <div className="w-full max-w-3xl space-y-3 sm:space-y-4">
@@ -55,7 +55,7 @@ const FaqAccordion: FC = () => {
             <div
               key={item.question}
               className={cn(
-                "p-4 md:p-8 bg-primary-50 border border-primary-100 rounded-2xl flex gap-3 md:gap-6 cursor-pointer transition-all duration-400",
+                "p-4 md:p-8 bg-gray-50 border border-gray-200 rounded-2xl flex gap-3 md:gap-6 cursor-pointer transition-all duration-400",
                 !expanded && "bg-base-white"
               )}
               onClick={() => setOpenIndex(idx)}
@@ -92,7 +92,7 @@ const FaqAccordion: FC = () => {
                 )}
               </div>
               <div className="flex-1">
-                <h5 className="text-heading-5-semibold text-primary-800">
+                <h5 className="text-heading-5-semibold text-secondary-900">
                   {item.question}
                 </h5>
                 <div
@@ -103,7 +103,7 @@ const FaqAccordion: FC = () => {
                       : "max-h-0 opacity-0 mt-0"
                   )}
                 >
-                  <div className="text-paragraph-md-regular text-primary-600">
+                  <div className="text-paragraph-md-regular text-secondary-600">
                     {item.answer}
                   </div>
                 </div>
