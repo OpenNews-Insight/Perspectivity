@@ -184,3 +184,29 @@ body {
 .avatar-ring-pulse {
   animation: avatar-ring-pulse 3s ease-in-out infinite;
 }
+
+/* Marquee animations for news card strips */
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-33.333%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 45s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 45s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none;
+  }
+}
