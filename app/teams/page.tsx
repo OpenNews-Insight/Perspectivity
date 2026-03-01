@@ -67,7 +67,7 @@ const departments: Department[] = [
     glowColor: "rgba(236, 72, 153, 0.15)",
     members: [
       { name: "Taibur Rahman", role: "Content Creator", initials: "TB",image: "/assets/images/team/taibur.png" },
-      { name: "Mostare Mahajabin", role: "Content Creator", initials: "MM" },
+      { name: "Mostare Mahajabin", role: "Content Creator", initials: "MM" ,image: "/assets/images/team/misu.jpg"},
       { name: "Anika Afroz Saba", role: "Content Creator", initials: "SB",image: "/assets/images/team/saba.jpeg" },
     ],
   },
@@ -78,7 +78,7 @@ const departments: Department[] = [
     glowColor: "rgba(249, 115, 22, 0.15)",
     members: [
       { name: "Arif Hossain", role: "Marketing", initials: "AR" ,image: "/assets/images/team/arif.jpg" },
-      { name: "Mostare Mahajabin", role: "Marketing", initials: "MS"},
+      { name: "Mostare Mahajabin", role: "Marketing", initials: "MM",image: "/assets/images/team/misu.jpg"},
     ],
   },
 ];

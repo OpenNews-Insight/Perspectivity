@@ -44,10 +44,10 @@ const FeaturesSection: FC = () => {
             POWERED BY AI
           </p>
           <h2 className="text-heading-3-semibold text-secondary-900 mb-2 md:mb-3">
-            A Mash of Ground News + Perplexity
+            Multi-Perspective News Meets Conversational AI
           </h2>
           <p className="text-paragraph-lg-regular text-secondary-500 w-full text-center">
-            Six powerful AI agents working together to give you complete
+            Powerful AI agents working together to give you complete
             transparency into how news is framed, who's behind it, and what it
             really means for your community.
           </p>
@@ -158,8 +158,8 @@ const FeaturesSection: FC = () => {
                 Interactive Chat
               </h3>
               <p className="text-secondary-500 text-paragraph-md-regular">
-                Perplexity-style conversational interface. Ask "What's happening
-                with protests in Dhaka?" and get real-time answers.
+                AI-powered conversational interface. Ask "What's happening
+                with protests in Dhaka?" and get real-time, source-backed answers.
               </p>
             </div>
           </div>
