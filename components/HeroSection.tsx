@@ -6,8 +6,13 @@ import { ArrowRight, Play } from "lucide-react";
 import { cn } from "@/utils";
 import Image from "next/image";
 import NewsMarquee from "@/components/NewsMarquee";
+import type { MarqueeNewsItem } from "@/lib/fetchNews";
 
-const HeroSection: FC = () => {
+interface HeroSectionProps {
+  newsItems?: MarqueeNewsItem[];
+}
+
+const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -30,37 +35,6 @@ const HeroSection: FC = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, [slogans.length]);
-
-  const newsData = [
-    {
-      image: "/assets/images/bangladesh.png",
-      tag: "Bangladesh",
-      title:
-        "Bangladesh secures 20% US tariff for garments, exporters relieved",
-    },
-    {
-      image: "/assets/images/world.png",
-      tag: "World",
-      title:
-        "After Trump's announcement, now Russia-China joint naval exercise",
-    },
-    {
-      image: "/assets/images/sports.png",
-      tag: "Sports",
-      title: "England batting at 65/1 chasing 374 runs against Shubman’s India",
-    },
-    {
-      image: "/assets/images/politics.png",
-      tag: "Political",
-      title:
-        "Election Commission is a spineless institution: Nasiruddin Patwary",
-    },
-    {
-      image: "/assets/images/business.png",
-      tag: "Business",
-      title: "Apple's revenue has crossed 900 billion dollars",
-    },
-  ];
 
   return (
     <section className="relative min-h-screen flex flex-col items-center overflow-hidden bg-surface-secondary">
@@ -218,7 +192,7 @@ const HeroSection: FC = () => {
               "linear-gradient(178.26deg, rgba(250, 250, 250, 0) 1.65%, #FAFAFA 98.71%)",
           }}
         />
-        <NewsMarquee items={newsData} isVisible={isVisible} />
+        <NewsMarquee items={newsItems} isVisible={isVisible} />
         <div className="absolute bottom-5 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
           <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-secondary-400 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-secondary-400 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>
