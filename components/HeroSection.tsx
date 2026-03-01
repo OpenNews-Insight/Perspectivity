@@ -5,8 +5,14 @@ import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
 import { cn } from "@/utils";
 import Image from "next/image";
+import NewsMarquee from "@/components/NewsMarquee";
+import type { MarqueeNewsItem } from "@/lib/fetchNews";
 
-const HeroSection: FC = () => {
+interface HeroSectionProps {
+  newsItems?: MarqueeNewsItem[];
+}
+
+const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -29,37 +35,6 @@ const HeroSection: FC = () => {
     }, 4000);
     return () => clearInterval(interval);
   }, [slogans.length]);
-
-  const newsData = [
-    {
-      image: "/assets/images/bangladesh.png",
-      tag: "Bangladesh",
-      title:
-        "Bangladesh secures 20% US tariff for garments, exporters relieved",
-    },
-    {
-      image: "/assets/images/world.png",
-      tag: "World",
-      title:
-        "After Trump's announcement, now Russia-China joint naval exercise",
-    },
-    {
-      image: "/assets/images/sports.png",
-      tag: "Sports",
-      title: "England batting at 65/1 chasing 374 runs against Shubman’s India",
-    },
-    {
-      image: "/assets/images/politics.png",
-      tag: "Political",
-      title:
-        "Election Commission is a spineless institution: Nasiruddin Patwary",
-    },
-    {
-      image: "/assets/images/business.png",
-      tag: "Business",
-      title: "Apple's revenue has crossed 900 billion dollars",
-    },
-  ];
 
   return (
     <section className="relative min-h-screen flex flex-col items-center overflow-hidden bg-surface-secondary">
@@ -217,46 +192,7 @@ const HeroSection: FC = () => {
               "linear-gradient(178.26deg, rgba(250, 250, 250, 0) 1.65%, #FAFAFA 98.71%)",
           }}
         />
-        <div
-          className={cn(
-            "w-full py-6 sm:py-12 overflow-x-auto -skew-y-6 mt-6 transition-all duration-1000 opacity-0 translate-y-10",
-            isVisible && "opacity-100 translate-y-0"
-          )}
-        >
-          <div className="flex gap-4 sm:gap-6 overflow-hidden min-w-0 skew-7 px-2 sm:px-0">
-            {newsData.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-base-white border border-[#E4E4E7] rounded-lg shadow-md min-w-[260px] sm:min-w-[280px] md:min-w-[320px] max-w-xs transition-transform hover:-translate-y-2 flex-shrink-0 p-2 sm:p-4"
-              >
-                <div className="bg-surface-secondary border border-[#FFFFFF00] rounded-full w-max px-2 sm:px-[10px] mb-2">
-                  <span className="text-paragraph-sm-medium text-[11px] sm:text-[12px] text-base-black uppercase">
-                    {item.tag}
-                  </span>
-                </div>
-                <div className="w-full h-32 sm:h-40 rounded-t-xl overflow-x-auto sm:overflow-hidden flex items-center justify-center">
-                  <Image
-                    src={item.image}
-                    alt="News"
-                    width={320}
-                    height={160}
-                    priority
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-2 sm:p-4 flex flex-col gap-2">
-                  <h3 className="text-paragraph-md-medium text-secondary-900 text-sm sm:text-base">
-                    {item.title}
-                  </h3>
-                </div>
-                <div className="flex gap-1 sm:gap-2 px-2 sm:px-4 pb-2 sm:pb-4 mt-auto">
-                  <div className="h-1 sm:h-2 w-1/2 rounded-full bg-secondary-300"></div>
-                  <div className="h-1 sm:h-2 w-1/2 rounded-full bg-coral-200"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <NewsMarquee items={newsItems} isVisible={isVisible} />
         <div className="absolute bottom-5 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
           <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-secondary-400 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-secondary-400 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>

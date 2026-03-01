@@ -7,12 +7,17 @@ import Footer from "@/components/Footer";
 import DemoSection from "@/components/DemoSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import HeroSection from "@/components/HeroSection";
+import { fetchMarqueeNews } from "@/lib/fetchNews";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const newsItems = await fetchMarqueeNews(20);
+
   return (
     <main className="overflow-x-hidden">
       <Header />
-      <HeroSection />
+      <HeroSection newsItems={newsItems} />
       <InformationCrisisSection />
       <FeaturesSection />
       <DemoSection />

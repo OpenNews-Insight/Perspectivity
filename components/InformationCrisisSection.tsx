@@ -104,7 +104,7 @@ const InformationCrisisSection: FC = () => {
             <div className="bg-surface-secondary border border-secondary-100 text-secondary-500 text-paragraph-md-medium py-2.5 px-4 rounded-full w-full max-w-[260px]">
               15+ Languages underserved by current solutions
             </div>
-            <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-primary-500 rounded-full flex justify-center items-center">
+            <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-secondary-500 rounded-full flex justify-center items-center">
               <Image
                 src="/assets/icons/team-website-icon.svg"
                 alt="World Map"
