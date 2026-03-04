@@ -17,11 +17,13 @@ export const founder = {
   name: "Abdullah Khan Zehady (Aninda)",
   role: "Founder & CEO",
   description:
-    "ML infrastructure builder and BongLLaMA engineer. Built the first open-source Bangla LLM fine-tuned for civic NLP, available on Hugging Face with ArXiv publication.",
+    "ML infrastructure builder and BongLLaMA engineer. Built the first open-source Bangla LLM fine-tuned for civic NLP, available on Hugging Face (published in LoResLM @EACL 2026).",
   initials: "AK",
   links: {
     x: "https://x.com/brishtiteveja",
     linkedin: "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/",
+    huggingface: "https://huggingface.co/collections/BanglaLLM/banglallama",
+    paper: "https://arxiv.org/abs/2410.21200",
   },
 };
 
@@ -47,7 +49,7 @@ export const departments: Department[] = [
       { name: "Shubhashis Roy Dipta", role: "Researcher", initials: "SD", image: "/assets/images/team/dipta.jpeg" },
       { name: "Nusrat Jahan Lia", role: "Researcher", initials: "NL", image: "/assets/images/team/lia.jpeg" },
       { name: "Naymul Islam", role: "Researcher", initials: "NY", image: "/assets/images/team/naimul.jpeg" },
-      { name: "Opu Chakraborty", role: "Researcher", initials: "OC", image: "/assets/images/team/opu.png" },
+      { name: "Opu Chakraborty", role: "Researcher", initials: "OC", image: "/assets/images/team/opu.jpeg" },
     ],
   },
   {
