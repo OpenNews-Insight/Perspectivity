@@ -6,13 +6,15 @@ import { ArrowRight, Play } from "lucide-react";
 import { cn } from "@/utils";
 import Image from "next/image";
 import NewsMarquee from "@/components/NewsMarquee";
-import type { MarqueeNewsItem } from "@/lib/fetchNews";
+import type { MarqueeNewsData } from "@/lib/fetchNews";
 
 interface HeroSectionProps {
-  newsItems?: MarqueeNewsItem[];
+  newsData?: MarqueeNewsData;
 }
 
-const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
+const HeroSection: FC<HeroSectionProps> = ({
+  newsData = { perspectivity: [], drishtikon: [] },
+}) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -20,11 +22,11 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
   }, []);
 
   const slogans = [
-    "Every Story. Every Side. In Your Language.",
-    "Uncover Every Angle Behind the Headlines.",
-    "See the Divide. Grasp the Debate.",
-    "News with Nuance—Faith, Power, and Politics.",
-    "Where Perspectives Collide, Insight Emerges.",
+    // "Every Story Has Two Sides. We Show You All of Them.",
+    "Where Perspectives Collide, Truth Emerges.",
+    "Same Event. Different Outlets. Different Narratives.",
+    "Uncover the Narrative Behind the Headlines.",
+    // "See How Media Shapes What You Believe.",
   ];
 
   const [currentSlogan, setCurrentSlogan] = useState(0);
@@ -32,7 +34,7 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlogan((prev) => (prev + 1) % slogans.length);
-    }, 4000);
+    }, 15000);
     return () => clearInterval(interval);
   }, [slogans.length]);
 
@@ -43,7 +45,7 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
           <div
             className={cn(
               "transition-all duration-1000 opacity-0 translate-y-10",
-              isVisible && "opacity-100 translate-y-0"
+              isVisible && "opacity-100 translate-y-0",
             )}
           >
             <div className="w-full flex items-center justify-center">
@@ -55,18 +57,15 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
             </div>
 
             <h1 className="text-2xl sm:text-4xl md:text-display-semibold text-secondary-900 my-6">
-              Expose{" "}
-              <span className="text-primary-600">
-                Media Bias{" "}
-              </span>
-              in Emerging Democracies
+              Expose <span className="text-primary-600">Media Bias </span>
+              Before It Shapes Your Mind
             </h1>
 
             <p className="text-sm sm:text-base md:text-paragraph-lg-regular text-secondary-500 mb-6 max-w-2xl mx-auto">
-              Perspectivity delivers multi-perspective news in your
-              language—cutting through bias and language barriers. Designed for
-              low-resource regions, our open-source platform gathers and
-              analyzes local news in real time.
+              Every news outlet frames reality differently. Perspectivity cuts
+              through media narratives to show you how the same story is told
+              across sources—so you can think for yourself. Our AI-powered
+              platform analyzes bias, ownership, and framing in real time.
             </p>
 
             {/* Product cards */}
@@ -80,7 +79,11 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-secondary-900 to-secondary-950 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                  <svg viewBox="0 0 36 36" className="w-full h-full" aria-hidden>
+                  <svg
+                    viewBox="0 0 36 36"
+                    className="w-full h-full"
+                    aria-hidden
+                  >
                     <rect fill="#B22234" width="36" height="36" />
                     <rect fill="#fff" y="2.77" width="36" height="2.77" />
                     <rect fill="#fff" y="8.31" width="36" height="2.77" />
@@ -93,17 +96,25 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
                 </div>
                 <div className="relative z-10 px-5 py-4 flex flex-col gap-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-paragraph-md-medium text-white">Perspectivity</span>
+                    <span className="text-paragraph-md-medium text-white">
+                      Perspectivity
+                    </span>
                     <div className="flex items-center gap-1.5">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
                       </span>
-                      <span className="text-[11px] text-green-300 font-medium">LIVE</span>
+                      <span className="text-[11px] text-green-300 font-medium">
+                        LIVE
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-[3px] flex-shrink-0" aria-hidden>
+                    <svg
+                      viewBox="0 0 36 36"
+                      className="w-4 h-4 rounded-[3px] flex-shrink-0"
+                      aria-hidden
+                    >
                       <rect fill="#B22234" width="36" height="36" />
                       <rect fill="#fff" y="2.77" width="36" height="2.77" />
                       <rect fill="#fff" y="8.31" width="36" height="2.77" />
@@ -113,7 +124,9 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
                       <rect fill="#fff" y="30.46" width="36" height="2.77" />
                       <rect fill="#3C3B6E" width="15.12" height="19.38" />
                     </svg>
-                    <span className="text-[12px] text-white/60">United States</span>
+                    <span className="text-[12px] text-white/60">
+                      United States
+                    </span>
                   </div>
                   <div className="mt-2 flex items-center gap-1 text-[12px] text-white/50 group-hover:text-white/80 transition-colors duration-300">
                     <span>Try it now</span>
@@ -131,28 +144,42 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#006A4E] to-[#004a36] opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                  <svg viewBox="0 0 36 36" className="w-full h-full" aria-hidden>
+                  <svg
+                    viewBox="0 0 36 36"
+                    className="w-full h-full"
+                    aria-hidden
+                  >
                     <rect fill="#006A4E" width="36" height="36" />
                     <circle fill="#F42A41" cx="16" cy="18" r="8" />
                   </svg>
                 </div>
                 <div className="relative z-10 px-5 py-4 flex flex-col gap-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-paragraph-md-medium text-white">Drishtikon</span>
+                    <span className="text-paragraph-md-medium text-white">
+                      Drishtikon
+                    </span>
                     <div className="flex items-center gap-1.5">
                       <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
                       </span>
-                      <span className="text-[11px] text-green-300 font-medium">LIVE</span>
+                      <span className="text-[11px] text-green-300 font-medium">
+                        LIVE
+                      </span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-[3px] flex-shrink-0" aria-hidden>
+                    <svg
+                      viewBox="0 0 36 36"
+                      className="w-4 h-4 rounded-[3px] flex-shrink-0"
+                      aria-hidden
+                    >
                       <rect fill="#006A4E" width="36" height="36" rx="2" />
                       <circle fill="#F42A41" cx="16" cy="18" r="8" />
                     </svg>
-                    <span className="text-[12px] text-white/60">Bangladesh</span>
+                    <span className="text-[12px] text-white/60">
+                      Bangladesh
+                    </span>
                   </div>
                   <div className="mt-2 flex items-center gap-1 text-[12px] text-white/50 group-hover:text-white/80 transition-colors duration-300">
                     <span>Try it now</span>
@@ -192,7 +219,7 @@ const HeroSection: FC<HeroSectionProps> = ({ newsItems = [] }) => {
               "linear-gradient(178.26deg, rgba(250, 250, 250, 0) 1.65%, #FAFAFA 98.71%)",
           }}
         />
-        <NewsMarquee items={newsItems} isVisible={isVisible} />
+        <NewsMarquee newsData={newsData} isVisible={isVisible} />
         <div className="absolute bottom-5 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
           <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-secondary-400 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-secondary-400 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>

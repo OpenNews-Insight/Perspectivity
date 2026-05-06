@@ -47,9 +47,8 @@ const FeaturesSection: FC = () => {
             Multi-Perspective News Meets Conversational AI
           </h2>
           <p className="text-paragraph-lg-regular text-secondary-500 w-full text-center">
-            Powerful AI agents working together to give you complete
-            transparency into how news is framed, who's behind it, and what it
-            really means for your community.
+            Powerful AI agents working together to reveal who controls the narrative, and what every outlet chooses
+            to hide or highlight.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
@@ -84,9 +83,8 @@ const FeaturesSection: FC = () => {
                 News Aggregation AI Agent
               </h3>
               <p className="text-gray-300 md:text-paragraph-md-regular">
-                Automatically gathers related stories from TV, newspapers,
-                portals, and social media. You don't search for news — it finds
-                you.
+                Pulls stories from TV, print, web, and social into one
+                unified feed — every angle, one place.
               </p>
             </div>
           </div>
@@ -122,7 +120,7 @@ const FeaturesSection: FC = () => {
                 Summarizer
               </h3>
               <p className="text-secondary-500 text-paragraph-md-regular">
-                Condense long articles into clear, factual summaries.
+                Every article, stripped to what actually matters.
               </p>
             </div>
           </div>
@@ -158,8 +156,7 @@ const FeaturesSection: FC = () => {
                 Interactive Chat
               </h3>
               <p className="text-secondary-500 text-paragraph-md-regular">
-                AI-powered conversational interface. Ask "What's happening
-                with protests in Dhaka?" and get real-time, source-backed answers.
+                Ask questions, get sourced answers — not opinions.
               </p>
             </div>
           </div>
@@ -185,9 +182,8 @@ const FeaturesSection: FC = () => {
                 Multi- Axis Bias Analysis
               </h3>
               <p className="text-secondary-600 text-paragraph-md-regular">
-                Detects bias across political, cultural, and religious axes.
-                Shows whether stories lean pro- government, opposition, secular,
-                or religious.
+                Exposes framing, political affiliation, and narrative
+                gaps across outlets.
               </p>
             </div>
           </div>
@@ -220,10 +216,10 @@ const FeaturesSection: FC = () => {
             </div>
             <div className="relative z-10">
               <h3 className="text-secondary-900 text-heading-5-semibold mb-2">
-                Local Language Support
+                Multilingual Support
               </h3>
               <p className="text-secondary-500 text-paragraph-md-regular">
-                Built on BongLLaMA, the first open-source Bangla LLM.
+                Analyze news in 2+ languages.
               </p>
             </div>
           </div>

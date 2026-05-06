@@ -1,15 +1,50 @@
-const API_URL = "https://drishtikon.life/server/api/featured-article/";
+const DRISHTIKON_API_URL =
+  "https://drishtikon.life/server/api/featured-article/";
+const PERSPECTIVITY_API_URL =
+  "https://app.perspectivity.co/server/api/featured-article/";
 const FETCH_TIMEOUT = 8000; // 8 second timeout per request
 
-const BLOCKED_PATTERNS = [
-  "news.google.com/api/attachments",
-  "googleusercontent.com",
-  "/_next/image",
-  "/api/image-proxy",
-  "?url=",
+const BLOCKED_PATTERNS = ["/_next/image", "/api/image-proxy", "/img-proxy"];
+
+const VALID_IMAGE_EXTENSIONS = [
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  ".gif",
+  ".svg",
+  ".avif",
 ];
 
-const VALID_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
+const VALID_IMAGE_PATH_PATTERNS = [
+  "/image",
+  "/images",
+  "/media",
+  "/photo",
+  "/cdn",
+  "/uploads",
+  "/assets",
+  "/static",
+  "/img",
+];
+
+const KNOWN_CDN_DOMAINS = [
+  "cloudinary",
+  "cloudfront",
+  "amazonaws",
+  "imgix",
+  "unsplash",
+  "pexels",
+  "gstatic.com",
+];
+
+function cleanImageUrl(url: string): string {
+  // Strip Google News size constraints: -w100-h100-p-df-rw
+  let cleaned = url.replace(/-w\d+-h\d+[^&\s]*/g, "");
+  // Strip fopt param from gstatic
+  cleaned = cleaned.replace(/[&?]fopt=[^&]*/g, "");
+  return cleaned;
+}
 
 function isValidImageUrl(url?: string): boolean {
   if (!url?.trim()) return false;
@@ -22,15 +57,29 @@ function isValidImageUrl(url?: string): boolean {
     );
     if (isBlocked) return false;
 
-    const hasValidExtension = VALID_IMAGE_EXTENSIONS.some((ext) =>
-      urlLower.includes(ext),
-    );
-    if (!hasValidExtension) return false;
-
     const parsedUrl = new URL(url);
     if (parsedUrl.protocol === "data:") return false;
 
-    return true;
+    // Accept if has valid image extension
+    const hasValidExtension = VALID_IMAGE_EXTENSIONS.some((ext) =>
+      urlLower.includes(ext),
+    );
+    if (hasValidExtension) return true;
+
+    // Accept if URL path contains image-related segments
+    const hasImagePath = VALID_IMAGE_PATH_PATTERNS.some((p) =>
+      urlLower.includes(p),
+    );
+    if (hasImagePath) return true;
+
+    // Accept known CDN domains
+    const isKnownCDN = KNOWN_CDN_DOMAINS.some((cdn) => urlLower.includes(cdn));
+    if (isKnownCDN) return true;
+
+    // Accept Google News attachment URLs (they serve real images)
+    if (urlLower.includes("news.google.com/api/attachments")) return true;
+
+    return false;
   } catch {
     return false;
   }
@@ -83,13 +132,19 @@ interface APIResponse {
   has_manually_featured?: boolean;
 }
 
-function getFirstValidImage(sources?: APISource[]): string | null {
-  if (!sources?.length) return null;
-
-  for (const source of sources) {
-    if (isValidImageUrl(source.article_image)) {
-      return source.article_image!;
+function getFirstValidImage(article: APIArticle): string | null {
+  // Try source-level images first
+  if (article.info?.sources?.length) {
+    for (const source of article.info.sources) {
+      if (isValidImageUrl(source.article_image)) {
+        return cleanImageUrl(source.article_image!);
+      }
     }
+  }
+
+  // Fallback to top-level article_image
+  if (isValidImageUrl(article.article_image)) {
+    return cleanImageUrl(article.article_image!);
   }
 
   return null;
@@ -119,11 +174,20 @@ function getPerspectiveCount(article: APIArticle): number {
 }
 
 // In-memory cache for SSR
-let cachedItems: MarqueeNewsItem[] = [];
+let cachedDrishtikon: MarqueeNewsItem[] = [];
+let cachedPerspectivity: MarqueeNewsItem[] = [];
 let cacheTimestamp = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
-async function fetchWithTimeout(url: string, timeout: number): Promise<Response> {
+export interface MarqueeNewsData {
+  perspectivity: MarqueeNewsItem[];
+  drishtikon: MarqueeNewsItem[];
+}
+
+async function fetchWithTimeout(
+  url: string,
+  timeout: number,
+): Promise<Response> {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
 
@@ -138,34 +202,30 @@ async function fetchWithTimeout(url: string, timeout: number): Promise<Response>
   }
 }
 
-export async function fetchMarqueeNews(count = 20): Promise<MarqueeNewsItem[]> {
-  if (cachedItems.length > 0 && Date.now() - cacheTimestamp < CACHE_TTL) {
-    return cachedItems;
-  }
-
+async function fetchFromAPI(
+  apiUrl: string,
+  count: number,
+): Promise<MarqueeNewsItem[]> {
   try {
-    const items: MarqueeNewsItem[] = [];
-
-    // Single large request instead of paginated to avoid SSR timeout
     const res = await fetchWithTimeout(
-      `${API_URL}?page=1&page_size=${count + 10}`,
+      `${apiUrl}?page=1&page_size=${count + 10}`,
       FETCH_TIMEOUT,
     );
 
-    if (!res.ok) return cachedItems;
+    if (!res.ok) return [];
 
     const data: APIResponse = await res.json();
 
-    // featured-article API returns { results: { "home": [...] } }
     const rawResults = data.results;
     const articles: APIArticle[] = Array.isArray(rawResults)
       ? rawResults
-      : (rawResults as Record<string, APIArticle[]>)?.["home"] ?? [];
+      : ((rawResults as Record<string, APIArticle[]>)?.["home"] ?? []);
 
+    const items: MarqueeNewsItem[] = [];
     for (const article of articles) {
       if (items.length >= count) break;
 
-      const validImage = getFirstValidImage(article.info?.sources);
+      const validImage = getFirstValidImage(article);
       if (!validImage) continue;
 
       items.push({
@@ -182,14 +242,35 @@ export async function fetchMarqueeNews(count = 20): Promise<MarqueeNewsItem[]> {
       });
     }
 
-    if (items.length > 0) {
-      cachedItems = items;
-      cacheTimestamp = Date.now();
-    }
-
     return items;
   } catch (error) {
-    console.error("Failed to fetch marquee news:", error);
-    return cachedItems;
+    console.error(`Failed to fetch from ${apiUrl}:`, error);
+    return [];
   }
+}
+
+export async function fetchMarqueeNews(count = 20): Promise<MarqueeNewsData> {
+  if (
+    cachedPerspectivity.length > 0 &&
+    cachedDrishtikon.length > 0 &&
+    Date.now() - cacheTimestamp < CACHE_TTL
+  ) {
+    return { perspectivity: cachedPerspectivity, drishtikon: cachedDrishtikon };
+  }
+
+  const [perspectivityItems, drishtikonItems] = await Promise.all([
+    fetchFromAPI(PERSPECTIVITY_API_URL, count),
+    fetchFromAPI(DRISHTIKON_API_URL, count),
+  ]);
+
+  if (perspectivityItems.length > 0) cachedPerspectivity = perspectivityItems;
+  if (drishtikonItems.length > 0) cachedDrishtikon = drishtikonItems;
+  if (perspectivityItems.length > 0 || drishtikonItems.length > 0) {
+    cacheTimestamp = Date.now();
+  }
+
+  return {
+    perspectivity: cachedPerspectivity,
+    drishtikon: cachedDrishtikon,
+  };
 }

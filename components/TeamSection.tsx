@@ -17,7 +17,7 @@ const TeamSection: FC = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -28,12 +28,12 @@ const TeamSection: FC = () => {
       name: "Abdullah Khan Zehady",
       role: "Founder & CEO",
       description:
-        "ML infrastructure builder and BongLLaMA engineer. Built the first open-source Bangla LLM fine-tuned for civic NLP, available on Hugging Face with ArXiv publication.",
+        "ML infrastructure builder and LLM engineer. Built open-source language models for media analysis, available on Hugging Face with ArXiv publication.",
       image: "/assets/images/team/aninda.jpeg",
       achievements: [
-        "First open-source Bangla LLM (BongLLaMA)",
-        "ArXiv publication on civic NLP",
-        "Hugging Face model with 10K+ downloads",
+        "Open-source LLMs for media bias analysis",
+        "ArXiv publication on multilingual NLP",
+        "Hugging Face models with 10K+ downloads",
       ],
       links: {
         x: "https://x.com/brishtiteveja",
@@ -48,31 +48,31 @@ const TeamSection: FC = () => {
     {
       icon: <BookOpen className="w-6 h-6 text-secondary-900" />,
       title: "Research Foundation",
-      desc: "Published BongLLaMA research on ArXiv, establishing the technical foundation for civic NLP in Bangla",
+      desc: "Published peer-reviewed research on multilingual NLP for media analysis, laying the technical groundwork",
     },
     {
       icon: <FolderOpen className="w-6 h-6 text-secondary-900" />,
       title: "Open Source Impact",
-      desc: "Released first open-source Bangla LLM on Hugging Face with 10k+ downloads from researchers worldwide",
+      desc: "Released open-source language models on Hugging Face with 10k+ downloads from researchers worldwide",
     },
     {
       icon: <LinkIcon className="w-6 h-6 text-secondary-900" />,
-      title: "Live Pilot",
-      desc: "Launched Drishtikon beta in Bangladesh, processing 200+ news sources across 4 districts",
+      title: "Live Products",
+      desc: "Launched Perspectivity (US) and Drishtikon (Bangladesh), processing hundreds of news sources in real time",
     },
   ];
   const milestoneItems = [
     {
-      period: "Q1 2025",
-      title: "Complete Bangladesh market fit, onboard first NGO clients",
+      period: "Q2 2026",
+      title: "Launch iOS & Android apps for Drishtikon and Perspectivity",
     },
     {
-      period: "Q2 2025",
-      title: "Scale to other low-resource countries in South Asia",
+      period: "Q3 2026",
+      title: "Launch enterprise API for media monitoring and intelligence",
     },
     {
-      period: "Q3 2025",
-      title: "Launch enterprise API for diaspora and business intelligence",
+      period: "Q4 2026",
+      title: "Open-source bias detection framework for researchers worldwide",
     },
   ];
 
@@ -88,22 +88,17 @@ const TeamSection: FC = () => {
     >
       <div className="max-w-full md:max-w-4xl mx-auto">
         <div
-          className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          className={`text-center transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
           <p className="text-paragraph-md-medium text-secondary-500 mb-2 md:mb-3">
             Meet the Founder
           </p>
-          <h2 className="text-heading-3-semibold text-secondary-900 mb-2 md:mb-3">
-            Building the future of transparent
-            <span className="text-primary-600"> journalism</span>
+          <h2 className="text-heading-3-semibold text-secondary-900">
+            Building the future of
+            <span className="text-primary-600"> media transparency</span>
           </h2>
-          <p className="text-paragraph-lg-regular text-secondary-500 w-full text-center">
-            Our team combines deep technical expertise in NLP and AI with a
-            mission to restore trust in news through transparency and
-            multi-perspective analysis.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 max-w-2xl mx-auto mt-14 md:mt-20 mb-20 md:mb-32">
@@ -112,7 +107,7 @@ const TeamSection: FC = () => {
               key={index}
               className={cn(
                 "group relative transition-all duration-1000 h-full opacity-0 translate-y-10",
-                isVisible && "opacity-100 translate-y-0"
+                isVisible && "opacity-100 translate-y-0",
               )}
               style={withStagger(200, index)}
             >
@@ -121,7 +116,7 @@ const TeamSection: FC = () => {
                   <div
                     className={cn(
                       "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-15 transition-opacity duration-500",
-                      member.gradient
+                      member.gradient,
                     )}
                   />
                 </div>

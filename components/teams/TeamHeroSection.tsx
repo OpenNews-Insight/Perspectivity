@@ -71,8 +71,8 @@ const TeamHeroSection: FC<TeamHeroSectionProps> = ({ totalMembers }) => {
             )}
           >
             Engineers, researchers, marketers, and creators — united by the
-            mission to restore trust in news through transparency and
-            multi-perspective analysis.
+            mission to expose media bias and make narrative transparency
+            accessible to everyone, everywhere.
           </p>
 
           {/* Department pills */}

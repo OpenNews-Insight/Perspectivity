@@ -12,12 +12,12 @@ import { fetchMarqueeNews } from "@/lib/fetchNews";
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const newsItems = await fetchMarqueeNews(20);
+  const newsData = await fetchMarqueeNews(20);
 
   return (
     <main className="overflow-x-hidden">
       <Header />
-      <HeroSection newsItems={newsItems} />
+      <HeroSection newsData={newsData} />
       <InformationCrisisSection />
       <FeaturesSection />
       <DemoSection />

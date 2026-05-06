@@ -23,7 +23,7 @@ const Footer: FC = () => {
           },
           {
             label: "Youtube",
-            href: "https://www.youtube.com/@Perspective1357",
+            href: "https://www.youtube.com/@%E0%A6%A6%E0%A7%83%E0%A6%B7%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%95%E0%A7%8B%E0%A6%A3-Perspectivity",
           },
           {
             label: "Facebook",
@@ -98,8 +98,8 @@ const Footer: FC = () => {
                 </Link>
               </div>
               <p className="text-paragraph-md-medium text-secondary-500">
-                Real‑time AI news bias agent for emerging markets. Empowering
-                democratic resilience through transparent journalism.
+                Real‑time AI media bias analysis. Exposing how narratives
+                are framed so you can think for yourself.
               </p>
             </div>
 

@@ -4,10 +4,10 @@ import { FC, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/utils";
-import type { MarqueeNewsItem } from "@/lib/fetchNews";
+import type { MarqueeNewsItem, MarqueeNewsData } from "@/lib/fetchNews";
 
 interface NewsMarqueeProps {
-  items: MarqueeNewsItem[];
+  newsData: MarqueeNewsData;
   isVisible: boolean;
 }
 
@@ -81,17 +81,41 @@ function shuffleItems(items: MarqueeNewsItem[]): MarqueeNewsItem[] {
   return shuffled;
 }
 
-const NewsMarquee: FC<NewsMarqueeProps> = ({ items, isVisible }) => {
-  if (items.length === 0) return null;
+const RowLabel: FC<{ label: string; flag: React.ReactNode }> = ({ label, flag }) => (
+  <div className="flex items-center gap-2 mb-2 sm:mb-3 px-4">
+    {flag}
+    <span className="text-[11px] sm:text-xs font-semibold text-secondary-500 uppercase tracking-wider">
+      {label}
+    </span>
+  </div>
+);
 
-  // Split items into two halves for the two rows
-  const mid = Math.ceil(items.length / 2);
-  const row1Items = items.slice(0, mid);
-  const row2Items = shuffleItems(items.slice(mid));
+const USFlag = () => (
+  <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-sm flex-shrink-0" aria-hidden>
+    <rect fill="#B22234" width="36" height="36" />
+    <rect fill="#fff" y="2.77" width="36" height="2.77" />
+    <rect fill="#fff" y="8.31" width="36" height="2.77" />
+    <rect fill="#fff" y="13.85" width="36" height="2.77" />
+    <rect fill="#fff" y="19.38" width="36" height="2.77" />
+    <rect fill="#fff" y="24.92" width="36" height="2.77" />
+    <rect fill="#fff" y="30.46" width="36" height="2.77" />
+    <rect fill="#3C3B6E" width="15.12" height="19.38" />
+  </svg>
+);
 
-  // Triple for seamless infinite loop
-  const tripled1 = [...row1Items, ...row1Items, ...row1Items];
-  const tripled2 = [...row2Items, ...row2Items, ...row2Items];
+const BDFlag = () => (
+  <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-sm flex-shrink-0" aria-hidden>
+    <rect fill="#006A4E" width="36" height="36" rx="2" />
+    <circle fill="#F42A41" cx="16" cy="18" r="8" />
+  </svg>
+);
+
+const NewsMarquee: FC<NewsMarqueeProps> = ({ newsData, isVisible }) => {
+  const { perspectivity, drishtikon } = newsData;
+  if (perspectivity.length === 0 && drishtikon.length === 0) return null;
+
+  const tripledPerspectivity = [...perspectivity, ...perspectivity, ...perspectivity];
+  const tripledDrishtikon = [...shuffleItems(drishtikon), ...shuffleItems(drishtikon), ...shuffleItems(drishtikon)];
 
   return (
     <div
@@ -100,23 +124,33 @@ const NewsMarquee: FC<NewsMarqueeProps> = ({ items, isVisible }) => {
         isVisible && "opacity-100 translate-y-0"
       )}
     >
-      {/* Row 1 — scrolls left */}
-      <div className="overflow-hidden mb-4 sm:mb-6">
-        <div className="flex gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused]">
-          {tripled1.map((item, idx) => (
-            <NewsCard key={`row1-${idx}`} item={item} />
-          ))}
+      {/* Row 1 — Perspectivity (US), scrolls left */}
+      {perspectivity.length > 0 && (
+        <div className="mb-4 sm:mb-6">
+          <RowLabel label="Perspectivity — United States" flag={<USFlag />} />
+          <div className="overflow-hidden">
+            <div className="flex gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused]">
+              {tripledPerspectivity.map((item, idx) => (
+                <NewsCard key={`us-${idx}`} item={item} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Row 2 — scrolls right, hidden on mobile */}
-      <div className="overflow-hidden hidden sm:block">
-        <div className="flex gap-4 sm:gap-6 animate-marquee-right group-hover:[animation-play-state:paused]">
-          {tripled2.map((item, idx) => (
-            <NewsCard key={`row2-${idx}`} item={item} />
-          ))}
+      {/* Row 2 — Drishtikon (BD), scrolls right, hidden on mobile */}
+      {drishtikon.length > 0 && (
+        <div className="hidden sm:block">
+          <RowLabel label="Drishtikon — Bangladesh" flag={<BDFlag />} />
+          <div className="overflow-hidden">
+            <div className="flex gap-4 sm:gap-6 animate-marquee-right group-hover:[animation-play-state:paused]">
+              {tripledDrishtikon.map((item, idx) => (
+                <NewsCard key={`bd-${idx}`} item={item} />
+              ))}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

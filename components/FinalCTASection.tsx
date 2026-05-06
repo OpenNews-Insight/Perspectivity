@@ -12,9 +12,10 @@ const FinalCTASection: FC = () => {
 
   const features = useMemo(
     () => [
-      "Real Time News Analysis",
-      "All Your Favorite Newspapers in One Place",
-      "Get more insights just simply by asking question",
+      "Real-Time Bias and Framing Analysis",
+      "AI-Powered News Summaries",
+      "Interactive Chat with Source-Backed Answers",
+      "Multilingual News Coverage",
     ],
     []
   );
@@ -44,8 +45,8 @@ const FinalCTASection: FC = () => {
       >
         <div className="flex-1 md:max-w-[47%]">
           <h2 className="text-center sm:text-left text-heading-4-medium sm:text-heading-1-medium text-secondary-900 mb-8">
-            Ready to Restore trust in News{" "}
-            <span className="block md:inline">With insights</span>
+            Ready to See Through{" "}
+            <span className="block md:inline">the Narrative?</span>
           </h2>
           <ul className="mb-8 space-y-2 sm:space-y-5">
             {features.map((feature, i) => (
@@ -76,8 +77,8 @@ const FinalCTASection: FC = () => {
         <div className="flex-1 flex justify-center md:justify-end">
           <div className="w-full">
             <Image
-              src="/assets/images/thumbnail.png"
-              alt="News"
+              src="/assets/images/perspectivity-preview.png"
+              alt="Perspectivity Dashboard"
               width={600}
               height={430}
               className="rounded-xl w-full h-auto object-contain shadow-lg transition-all duration-1000"
