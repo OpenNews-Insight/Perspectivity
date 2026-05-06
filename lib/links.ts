@@ -24,6 +24,8 @@ export const LINKS = {
 
   // Research & open source
   arxivPaper: "https://arxiv.org/abs/2410.21200",
+  googleScholar:
+    "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=FA5RZj0AAAAJ&sortby=pubdate&citation_for_view=FA5RZj0AAAAJ:roLk4NBRz8UC",
   huggingFace: "https://huggingface.co/BanglaLLM",
   huggingFaceCollection:
     "https://huggingface.co/collections/BanglaLLM/banglallama",

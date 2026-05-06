@@ -85,6 +85,20 @@ function isValidImageUrl(url?: string): boolean {
   }
 }
 
+export type BiasPosition =
+  | "Left"
+  | "Left-Center"
+  | "Center"
+  | "Right-Center"
+  | "Right"
+  | "Not Rated";
+
+export interface SourceInfo {
+  name: string;
+  logo?: string;
+  biasLabel?: BiasPosition;
+}
+
 export interface MarqueeNewsItem {
   id: string;
   title: string;
@@ -94,12 +108,18 @@ export interface MarqueeNewsItem {
   sourceLogo?: string;
   totalSources: number;
   perspectiveCount: number;
+  sources: SourceInfo[];
+  biasDistribution: Record<BiasPosition, number>;
 }
 
 interface APISource {
   article_image?: string;
   source?: string;
   source_logo?: string;
+  bias_label?: {
+    position?: string;
+    scores?: Record<string, unknown>;
+  };
 }
 
 interface APIArticle {
@@ -160,6 +180,45 @@ function extractCategories(article: APIArticle): string[] {
   }
 
   return [];
+}
+
+const VALID_BIAS_POSITIONS: BiasPosition[] = [
+  "Left",
+  "Left-Center",
+  "Center",
+  "Right-Center",
+  "Right",
+];
+
+function extractSources(article: APIArticle): SourceInfo[] {
+  if (!article.info?.sources?.length) return [];
+  return article.info.sources
+    .filter((s) => s.source)
+    .map((s) => ({
+      name: s.source!,
+      logo: s.source_logo,
+      biasLabel: VALID_BIAS_POSITIONS.includes(s.bias_label?.position as BiasPosition)
+        ? (s.bias_label!.position as BiasPosition)
+        : undefined,
+    }));
+}
+
+function computeBiasDistribution(
+  sources: SourceInfo[],
+): Record<BiasPosition, number> {
+  const dist: Record<BiasPosition, number> = {
+    Left: 0,
+    "Left-Center": 0,
+    Center: 0,
+    "Right-Center": 0,
+    Right: 0,
+    "Not Rated": 0,
+  };
+  for (const s of sources) {
+    if (s.biasLabel) dist[s.biasLabel]++;
+    else dist["Not Rated"]++;
+  }
+  return dist;
 }
 
 function getPerspectiveCount(article: APIArticle): number {
@@ -228,6 +287,8 @@ async function fetchFromAPI(
       const validImage = getFirstValidImage(article);
       if (!validImage) continue;
 
+      const sourceInfos = extractSources(article);
+
       items.push({
         id: article._id,
         title: article.title,
@@ -239,6 +300,8 @@ async function fetchFromAPI(
         totalSources:
           article.info?.total_sources || article.info?.sources?.length || 0,
         perspectiveCount: getPerspectiveCount(article),
+        sources: sourceInfos,
+        biasDistribution: computeBiasDistribution(sourceInfos),
       });
     }
 

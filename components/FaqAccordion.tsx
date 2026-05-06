@@ -55,7 +55,7 @@ const FaqAccordion: FC = () => {
             <div
               key={item.question}
               className={cn(
-                "p-4 md:p-8 bg-gray-50 border border-gray-200 rounded-2xl flex gap-3 md:gap-6 cursor-pointer transition-all duration-400",
+                "p-4 md:p-8 bg-gray-50 border border-gray-200 rounded-2xl flex items-start gap-3 md:gap-6 cursor-pointer transition-all duration-400",
                 !expanded && "bg-base-white"
               )}
               onClick={() => setOpenIndex(idx)}
@@ -65,8 +65,7 @@ const FaqAccordion: FC = () => {
             >
               <div
                 className={cn(
-                  "flex-shrink-0 flex items-start pt-1 transition-transform duration-200",
-                  expanded ? "rotate-0" : "rotate-90"
+                  "flex-shrink-0 flex items-center justify-center w-6 h-6 mt-0.5 transition-transform duration-200"
                 )}
               >
                 {expanded ? (
@@ -92,7 +91,7 @@ const FaqAccordion: FC = () => {
                 )}
               </div>
               <div className="flex-1">
-                <h5 className="text-heading-5-semibold text-secondary-900">
+                <h5 className="text-paragraph-md-medium sm:text-heading-5-semibold text-secondary-900">
                   {item.question}
                 </h5>
                 <div
@@ -103,7 +102,7 @@ const FaqAccordion: FC = () => {
                       : "max-h-0 opacity-0 mt-0"
                   )}
                 >
-                  <div className="text-paragraph-md-regular text-secondary-600">
+                  <div className="text-paragraph-sm-regular sm:text-paragraph-md-regular text-secondary-600">
                     {item.answer}
                   </div>
                 </div>

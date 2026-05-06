@@ -10,18 +10,13 @@ const Footer: FC = () => {
       {
         title: "Product",
         links: [
-          { label: "Drishtikon (Bangladesh)", href: LINKS.drishtikon },
           { label: "Perspectivity (US)", href: LINKS.perspectivity },
-          { label: "Features", href: "/#features" },
+          { label: "Drishtikon (Bangladesh)", href: LINKS.drishtikon },
         ],
       },
       {
         title: "Socials",
         links: [
-          {
-            label: "Linkedin",
-            href: LINKS.linkedinCompany,
-          },
           {
             label: "Youtube",
             href: LINKS.youtube,
@@ -29,6 +24,10 @@ const Footer: FC = () => {
           {
             label: "Facebook",
             href: LINKS.facebook,
+          },
+          {
+            label: "Linkedin",
+            href: LINKS.linkedinCompany,
           },
         ],
       },
@@ -44,8 +43,12 @@ const Footer: FC = () => {
         title: "Resources",
         links: [
           {
-            label: "BongLLaMA Paper",
+            label: "BanglaLlama Paper",
             href: LINKS.arxivPaper,
+          },
+          {
+            label: "Read Between the Lines",
+            href: LINKS.googleScholar,
           },
           { label: "Hugging Face", href: LINKS.huggingFace },
           { label: "GitHub", href: LINKS.github },
@@ -58,6 +61,7 @@ const Footer: FC = () => {
   return (
     <footer className="bg-gray-50 py-12 px-5 sm:px-10 md:px-20">
       <div className="container mx-auto w-full">
+        {/* TODO: Wire up newsletter form with backend before uncommenting
         <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-4 sm:mb-12">
           <div>
             <p className="text-paragraph-md-medium text-secondary-500">
@@ -79,6 +83,7 @@ const Footer: FC = () => {
             </button>
           </form>
         </div>
+        */}
 
         <div className="py-6 sm:py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

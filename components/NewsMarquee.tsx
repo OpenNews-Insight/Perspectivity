@@ -4,12 +4,93 @@ import { FC, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/utils";
-import type { MarqueeNewsItem, MarqueeNewsData } from "@/lib/fetchNews";
+import type {
+  MarqueeNewsItem,
+  MarqueeNewsData,
+  BiasPosition,
+} from "@/lib/fetchNews";
 
 interface NewsMarqueeProps {
   newsData: MarqueeNewsData;
   isVisible: boolean;
 }
+
+const BIAS_COLORS: Record<BiasPosition, string> = {
+  Left: "#2D5A9B",
+  "Left-Center": "#5580BD",
+  Center: "#E8E8E8",
+  "Right-Center": "#B24C55",
+  Right: "#8B3340",
+  "Not Rated": "#6b7280",
+};
+
+const BIAS_ORDER: BiasPosition[] = [
+  "Left",
+  "Left-Center",
+  "Center",
+  "Right-Center",
+  "Right",
+];
+
+const BiasBar: FC<{ distribution: Record<BiasPosition, number> }> = ({
+  distribution,
+}) => {
+  const rated = BIAS_ORDER.reduce((sum, k) => sum + distribution[k], 0);
+  if (rated === 0) return null;
+
+  return (
+    <div className="flex items-center gap-1.5 w-full">
+      <div className="flex h-1.5 flex-1 rounded-full overflow-hidden bg-white/10">
+        {BIAS_ORDER.map((pos) => {
+          const count = distribution[pos];
+          if (count === 0) return null;
+          const pct = (count / rated) * 100;
+          return (
+            <div
+              key={pos}
+              className="h-full transition-all duration-500"
+              style={{
+                width: `${pct}%`,
+                backgroundColor: BIAS_COLORS[pos],
+              }}
+              title={`${pos}: ${count}`}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const SourceLogos: FC<{ sources: MarqueeNewsItem["sources"] }> = ({
+  sources,
+}) => {
+  const withLogos = sources.filter((s) => s.logo).slice(0, 5);
+  if (withLogos.length === 0) return null;
+
+  return (
+    <div className="flex items-center -space-x-1.5">
+      {withLogos.map((s, i) => (
+        <Image
+          key={`${s.name}-${i}`}
+          src={s.logo!}
+          alt={s.name}
+          width={18}
+          height={18}
+          className="w-[18px] h-[18px] rounded-full border border-white/30 bg-white object-cover"
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = "none";
+          }}
+        />
+      ))}
+      {sources.length > 5 && (
+        <span className="text-[10px] text-white/50 ml-1.5">
+          +{sources.length - 5}
+        </span>
+      )}
+    </div>
+  );
+};
 
 const NewsCard: FC<{ item: MarqueeNewsItem }> = ({ item }) => {
   const [imgError, setImgError] = useState(false);
@@ -55,17 +136,25 @@ const NewsCard: FC<{ item: MarqueeNewsItem }> = ({ item }) => {
           {item.title}
         </h3>
 
-        {/* Meta info */}
-        <div className="flex items-center gap-2 mt-2.5 text-white/60 text-[11px]">
-          {item.totalSources > 1 && (
-            <span className="flex-shrink-0">{item.totalSources} sources</span>
-          )}
-          {item.totalSources > 1 && item.perspectiveCount > 0 && (
-            <span className="text-white/25">|</span>
-          )}
-          {item.perspectiveCount > 0 && (
-            <span className="flex-shrink-0">{item.perspectiveCount} perspectives</span>
-          )}
+        {/* Bias spectrum bar */}
+        <div className="mt-2">
+          <BiasBar distribution={item.biasDistribution} />
+        </div>
+
+        {/* Meta info + source logos */}
+        <div className="flex items-center justify-between mt-2">
+          <div className="flex items-center gap-2 text-white/60 text-[11px]">
+            {item.totalSources > 1 && (
+              <span className="flex-shrink-0">{item.totalSources} sources</span>
+            )}
+            {item.totalSources > 1 && item.perspectiveCount > 0 && (
+              <span className="text-white/25">|</span>
+            )}
+            {item.perspectiveCount > 0 && (
+              <span className="flex-shrink-0">{item.perspectiveCount} perspectives</span>
+            )}
+          </div>
+          <SourceLogos sources={item.sources} />
         </div>
       </div>
     </motion.div>
@@ -140,7 +229,7 @@ const NewsMarquee: FC<NewsMarqueeProps> = ({ newsData, isVisible }) => {
 
       {/* Row 2 — Drishtikon (BD), scrolls right, hidden on mobile */}
       {drishtikon.length > 0 && (
-        <div className="hidden sm:block">
+        <div>
           <RowLabel label="Drishtikon — Bangladesh" flag={<BDFlag />} />
           <div className="overflow-hidden">
             <div className="flex gap-4 sm:gap-6 animate-marquee-right group-hover:[animation-play-state:paused]">
