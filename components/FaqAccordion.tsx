@@ -1,11 +1,24 @@
 "use client";
 
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useMemo, useState, useEffect, useRef } from "react";
 import { cn } from "@/utils";
 import Image from "next/image";
 
 const FaqAccordion: FC = () => {
   const [openIndex, setOpenIndex] = useState<number>(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.1 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
   const FAQ_ITEMS = useMemo(
     () => [
@@ -43,9 +56,15 @@ const FaqAccordion: FC = () => {
   return (
     <section
       id="faq"
+      ref={ref}
       className="w-full container mx-auto py-10 sm:py-20 lg:py-[120px] flex flex-col items-center px-5"
     >
-      <h2 className="text-paragraph-md-medium text-secondary-500 mb-8 sm:mb-12 text-center">
+      <h2
+        className={cn(
+          "text-paragraph-md-medium text-secondary-500 mb-8 sm:mb-12 text-center transition-all duration-700",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
+        )}
+      >
         Frequently Asked Questions
       </h2>
       <div className="w-full max-w-3xl space-y-3 sm:space-y-4">
@@ -55,9 +74,11 @@ const FaqAccordion: FC = () => {
             <div
               key={item.question}
               className={cn(
-                "p-4 md:p-8 bg-gray-50 border border-gray-200 rounded-2xl flex items-start gap-3 md:gap-6 cursor-pointer transition-all duration-400",
-                !expanded && "bg-base-white"
+                "p-4 md:p-8 bg-gray-50 border border-gray-200 rounded-2xl flex items-start gap-3 md:gap-6 cursor-pointer transition-all duration-500",
+                !expanded && "bg-base-white",
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
               )}
+              style={{ transitionDelay: isVisible ? `${200 + idx * 100}ms` : "0ms" }}
               onClick={() => setOpenIndex(idx)}
               tabIndex={0}
               role="button"

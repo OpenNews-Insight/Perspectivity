@@ -1,10 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useMemo } from "react";
 import { LINKS } from "@/lib/links";
+import { cn } from "@/utils";
 
 const Footer: FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.1 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
   const footerSections = useMemo(
     () => [
       {
@@ -59,7 +75,7 @@ const Footer: FC = () => {
   );
 
   return (
-    <footer className="bg-gray-50 py-12 px-5 sm:px-10 md:px-20">
+    <footer ref={ref} className="bg-gray-50 py-12 px-5 sm:px-10 md:px-20">
       <div className="container mx-auto w-full">
         {/* TODO: Wire up newsletter form with backend before uncommenting
         <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-4 sm:mb-12">
@@ -85,7 +101,10 @@ const Footer: FC = () => {
         </div>
         */}
 
-        <div className="py-6 sm:py-16">
+        <div className={cn(
+          "py-6 sm:py-16 transition-all duration-700",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+        )}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="relative w-8 h-8 bg-secondary-950 rounded-lg mb-6">
@@ -134,7 +153,11 @@ const Footer: FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center border-t border-secondary-100 pt-8 gap-6">
+        <div className={cn(
+          "flex flex-col sm:flex-row justify-center items-center border-t border-secondary-100 pt-8 gap-6 transition-all duration-700",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+        )}
+        style={{ transitionDelay: isVisible ? "200ms" : "0ms" }}>
           <p className="text-paragraph-md-regular text-secondary-600">
             &copy; {new Date().getFullYear()} Perspectivity. All rights reserved
           </p>
