@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { useMemo } from "react";
+import { LINKS } from "@/lib/links";
 
 const Footer: FC = () => {
   const footerSections = useMemo(
@@ -9,8 +10,8 @@ const Footer: FC = () => {
       {
         title: "Product",
         links: [
-          { label: "Drishtikon (Bangladesh)", href: "https://drishtikon.life" },
-          { label: "Perspectivity (US)", href: "https://app.perspectivity.co/" },
+          { label: "Drishtikon (Bangladesh)", href: LINKS.drishtikon },
+          { label: "Perspectivity (US)", href: LINKS.perspectivity },
           { label: "Features", href: "/#features" },
         ],
       },
@@ -19,15 +20,15 @@ const Footer: FC = () => {
         links: [
           {
             label: "Linkedin",
-            href: "https://www.linkedin.com/company/banglallm/ ",
+            href: LINKS.linkedinCompany,
           },
           {
             label: "Youtube",
-            href: "https://www.youtube.com/@%E0%A6%A6%E0%A7%83%E0%A6%B7%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%95%E0%A7%8B%E0%A6%A3-Perspectivity",
+            href: LINKS.youtube,
           },
           {
             label: "Facebook",
-            href: "https://web.facebook.com/DrishtikonBangladesh",
+            href: LINKS.facebook,
           },
         ],
       },
@@ -44,10 +45,10 @@ const Footer: FC = () => {
         links: [
           {
             label: "BongLLaMA Paper",
-            href: "https://arxiv.org/abs/2410.21200",
+            href: LINKS.arxivPaper,
           },
-          { label: "Hugging Face", href: "https://huggingface.co/BanglaLLM" },
-          { label: "GitHub", href: "https://github.com/BanglaLLM/Drishtikon/" },
+          { label: "Hugging Face", href: LINKS.huggingFace },
+          { label: "GitHub", href: LINKS.github },
         ],
       },
     ],

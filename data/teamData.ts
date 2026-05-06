@@ -13,6 +13,8 @@ export interface Department {
   members: TeamMember[];
 }
 
+import { LINKS } from "@/lib/links";
+
 export const founder = {
   name: "Abdullah Khan Zehady (Aninda)",
   role: "Founder & CEO",
@@ -20,10 +22,10 @@ export const founder = {
     "ML infrastructure builder and BongLLaMA engineer. Built the first open-source Bangla LLM fine-tuned for civic NLP, available on Hugging Face (published in LoResLM @EACL 2026).",
   initials: "AK",
   links: {
-    x: "https://x.com/brishtiteveja",
-    linkedin: "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/",
-    huggingface: "https://huggingface.co/collections/BanglaLLM/banglallama",
-    paper: "https://arxiv.org/abs/2410.21200",
+    x: LINKS.founderTwitter,
+    linkedin: LINKS.founderLinkedin,
+    huggingface: LINKS.huggingFaceCollection,
+    paper: LINKS.arxivPaper,
   },
 };
 

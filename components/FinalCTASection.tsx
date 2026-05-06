@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/utils";
+import { LINKS } from "@/lib/links";
 
 const FinalCTASection: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -67,7 +68,7 @@ const FinalCTASection: FC = () => {
             ))}
           </ul>
           <Link
-            href="mailto:support@perspectivity.co"
+            href={LINKS.supportEmail}
             className="bg-secondary-900 rounded-full transition-all duration-300 hover:bg-secondary-800 flex items-center text-paragraph-md-medium text-base-white px-4 py-2.5 w-max"
           >
             <span>Get in Touch</span>

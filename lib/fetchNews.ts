@@ -1,7 +1,7 @@
-const DRISHTIKON_API_URL =
-  "https://drishtikon.life/server/api/featured-article/";
-const PERSPECTIVITY_API_URL =
-  "https://app.perspectivity.co/server/api/featured-article/";
+import { LINKS } from "@/lib/links";
+
+const DRISHTIKON_API_URL = LINKS.drishtikonAPI;
+const PERSPECTIVITY_API_URL = LINKS.perspectivityAPI;
 const FETCH_TIMEOUT = 8000; // 8 second timeout per request
 
 const BLOCKED_PATTERNS = ["/_next/image", "/api/image-proxy", "/img-proxy"];

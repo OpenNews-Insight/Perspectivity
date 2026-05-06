@@ -6,6 +6,7 @@ import { ArrowRight, Play } from "lucide-react";
 import { cn } from "@/utils";
 import Image from "next/image";
 import NewsMarquee from "@/components/NewsMarquee";
+import { LINKS } from "@/lib/links";
 import type { MarqueeNewsData } from "@/lib/fetchNews";
 
 interface HeroSectionProps {
@@ -72,7 +73,7 @@ const HeroSection: FC<HeroSectionProps> = ({
             <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-5 mb-6">
               {/* Perspectivity (US) */}
               <Link
-                href="https://app.perspectivity.co/"
+                href={LINKS.perspectivity}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-lg"
@@ -137,7 +138,7 @@ const HeroSection: FC<HeroSectionProps> = ({
 
               {/* Drishtikon (BD) */}
               <Link
-                href="https://drishtikon.life"
+                href={LINKS.drishtikon}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-lg"
@@ -192,7 +193,7 @@ const HeroSection: FC<HeroSectionProps> = ({
             {/* Watch video link */}
             <div className="flex justify-center">
               <Link
-                href="https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI"
+                href={LINKS.demoVideo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-transparent border border-secondary-300 rounded-full transition-all duration-300 hover:border-secondary-500 flex items-center text-paragraph-md-medium text-secondary-600 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"

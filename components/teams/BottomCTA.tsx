@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
+import { LINKS } from "@/lib/links";
 
 const BottomCTA: FC = () => (
   <section className="relative bg-secondary-950 overflow-hidden">
@@ -24,7 +25,7 @@ const BottomCTA: FC = () => (
         transparent journalism and AI for social good.
       </p>
       <Link
-        href="mailto:support@perspectivity.co"
+        href={LINKS.supportEmail}
         className="inline-flex items-center bg-secondary-900 border border-secondary-700 rounded-full px-6 py-3 text-paragraph-md-medium text-base-white hover:bg-secondary-800 transition-all duration-300"
       >
         Get in Touch

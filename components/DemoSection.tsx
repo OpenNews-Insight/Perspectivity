@@ -3,6 +3,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import VideoPlayer from "./VideoPlayer";
+import { LINKS } from "@/lib/links";
 
 const DemoSection: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -72,7 +73,7 @@ const DemoSection: FC = () => {
         style={{ transitionDelay: "0.7s" }}
       >
         <VideoPlayer
-          videoSrc="https://www.loom.com/embed/3f5e1e09fdda48aa8c10157ada5bee70?sid=bbc6376a-a513-410f-b6c4-90b2d1aca624"
+          videoSrc={LINKS.loomDemo}
           thumbnailSrc="/assets/images/thumbnail.png"
           altText="Demonstration video"
         />
