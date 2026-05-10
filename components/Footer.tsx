@@ -52,6 +52,7 @@ const Footer: FC = () => {
         links: [
           { label: "FAQ", href: "/#faq" },
           { label: "Feedback", href: "/#feedback" },
+          { label: "Research", href: "/research" },
           { label: "Team", href: "/teams" },
         ],
       },

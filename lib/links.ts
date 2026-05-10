@@ -38,6 +38,32 @@ export const LINKS = {
 
   // Contact
   supportEmail: "mailto:support@perspectivity.co",
+  researchContactEmail: "mailto:brishtiteveja@gmail.com",
+
+  // BanglaLLM research
+  banglallmGitHub: "https://github.com/BanglaLLM",
+  banglallmHuggingFace: "https://huggingface.co/BanglaLLM",
+  banglallmCollection: "https://huggingface.co/collections/BanglaLLM/banglallama",
+
+  // Publications (arXiv + ACL links)
+  banglallamaArxiv: "https://arxiv.org/abs/2410.21200",
+  readBetweenLinesArxiv: "https://arxiv.org/abs/2510.03898",
+  readBetweenLinesACL: "https://aclanthology.org/2025.banglalp-1.5/",
+
+  // Datasets
+  banglaAlpacaOrcaDataset: "https://huggingface.co/datasets/BanglaLLM/bangla-alpaca-orca",
+  banglaAlpacaDataset: "https://huggingface.co/datasets/BanglaLLM/bangla-alpaca",
+  banglaMathDataset: "https://huggingface.co/datasets/BanglaLLM",
+
+  // GitHub repos
+  banglaLlamaRepo: "https://github.com/BanglaLLM/bangla-llama",
+  s1BengaliRepo: "https://github.com/BanglaLLM/s1-bengali",
+  lmEvaluationHarnessRepo: "https://github.com/BanglaLLM/lm-evaluation-harness",
+  banglaDataManagerRepo: "https://github.com/BanglaLLM/BanglaDataManager",
+  bdNewspaperCrawlersRepo: "https://github.com/BanglaLLM/bd-newspaper-crawlers",
+  openTranslatorRepo: "https://github.com/BanglaLLM/Open-Translator",
+  youtubeBanglaRepo: "https://github.com/BanglaLLM/youtube_bangla",
+  openMAICRepo: "https://github.com/BanglaLLM/OpenMAIC",
 
   // Analytics
   gtag: "https://www.googletagmanager.com/gtag/js?id=G-DLK18KPVM1",

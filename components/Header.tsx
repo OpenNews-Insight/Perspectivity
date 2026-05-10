@@ -113,6 +113,7 @@ const Header: FC = () => {
       { name: "Problem", href: "/#problem", sectionId: "problem" },
       { name: "Solution", href: "/#features", sectionId: "features" },
       { name: "Demo", href: "/#demo", sectionId: "demo" },
+      { name: "Research", href: "/research", sectionId: "" },
       { name: "Team", href: "/teams", sectionId: "team" },
     ],
     []
