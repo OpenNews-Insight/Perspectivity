@@ -8,8 +8,8 @@ export const LINKS = {
   perspectivityDomain: "https://perspectivity.co",
 
   // API endpoints
-  drishtikonAPI: "https://drishtikon.life/server/api/featured-article/",
-  perspectivityAPI: "https://app.perspectivity.co/server/api/featured-article/",
+  drishtikonAPI: "https://drishtikon.life/server/api/articles/",
+  perspectivityAPI: "https://app.perspectivity.co/server/api/articles/",
 
   // Social media
   youtube:

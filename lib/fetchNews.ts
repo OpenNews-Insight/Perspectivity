@@ -148,7 +148,7 @@ interface APIArticle {
 interface APIResponse {
   count?: number;
   next?: string | null;
-  results: Record<string, APIArticle[]> | APIArticle[];
+  results: APIArticle[];
   has_manually_featured?: boolean;
 }
 
@@ -275,10 +275,7 @@ async function fetchFromAPI(
 
     const data: APIResponse = await res.json();
 
-    const rawResults = data.results;
-    const articles: APIArticle[] = Array.isArray(rawResults)
-      ? rawResults
-      : ((rawResults as Record<string, APIArticle[]>)?.["home"] ?? []);
+    const articles: APIArticle[] = data.results ?? [];
 
     const items: MarqueeNewsItem[] = [];
     for (const article of articles) {
