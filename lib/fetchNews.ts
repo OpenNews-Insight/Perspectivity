@@ -43,6 +43,10 @@ function cleanImageUrl(url: string): string {
   let cleaned = url.replace(/-w\d+-h\d+[^&\s]*/g, "");
   // Strip fopt param from gstatic
   cleaned = cleaned.replace(/[&?]fopt=[^&]*/g, "");
+  // Proxy Google News attachment images through drishtikon to avoid CORS blocks
+  if (cleaned.includes("news.google.com/api/attachments")) {
+    cleaned = `https://drishtikon.life/img-proxy?url=${encodeURIComponent(cleaned)}`;
+  }
   return cleaned;
 }
 
