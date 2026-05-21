@@ -200,13 +200,23 @@ export const researchTeam: ResearchTeamMember[] = [
   },
   {
     name: "Shubhashis Roy Dipta",
-    role: "Researcher",
+    role: "Research Lead",
     affiliation: "PhD Student, UMBC",
     initials: "SD",
     image: "/research/people/dipta.jpg",
     links: {
       github: "https://github.com/dipta007",
       website: "https://roydipta.com/",
+    },
+  },
+  {
+    name: "Naymul Islam",
+    role: "Research Lead",
+    affiliation: "BanglaLLM",
+    initials: "NI",
+    image: "/research/people/naimul.jpg",
+    links: {
+      github: "https://github.com/ai-naymul",
     },
   },
   {
@@ -217,16 +227,6 @@ export const researchTeam: ResearchTeamMember[] = [
     image: "/research/people/santu.jpg",
     links: {
       website: "https://karmake2.github.io/",
-    },
-  },
-  {
-    name: "Naymul Islam",
-    role: "Researcher",
-    affiliation: "BanglaLLM",
-    initials: "NI",
-    image: "/research/people/naimul.jpg",
-    links: {
-      github: "https://github.com/ai-naymul",
     },
   },
   {

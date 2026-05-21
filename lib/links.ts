@@ -35,6 +35,8 @@ export const LINKS = {
   demoVideo: "https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI",
   loomDemo:
     "https://www.loom.com/embed/3f5e1e09fdda48aa8c10157ada5bee70?sid=bbc6376a-a513-410f-b6c4-90b2d1aca624",
+  perspectivityYouTube: "https://www.youtube.com/embed/YVqdN4XWbWg?autoplay=1&controls=0",
+  drishtikonYouTube: "https://www.youtube.com/embed/X3_Tdz3np24?autoplay=1&controls=0",
 
   // Contact
   supportEmail: "mailto:support@perspectivity.co",

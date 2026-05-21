@@ -109,6 +109,7 @@ const NewsCard: FC<{ item: MarqueeNewsItem }> = ({ item }) => {
         alt={item.title}
         fill
         sizes="340px"
+        unoptimized
         className="object-cover transition-transform duration-700 group-hover/card:scale-[1.03]"
         onError={() => setImgError(true)}
       />

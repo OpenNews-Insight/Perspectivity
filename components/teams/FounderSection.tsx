@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/utils";
 import { useSectionVisibility } from "@/hooks/useSectionVisibility";
-import { founder } from "@/data/teamData";
+import { founder, foundingMember } from "@/data/teamData";
 
 const FounderSection: FC = () => {
   const { ref, isVisible } = useSectionVisibility();
@@ -30,12 +30,12 @@ const FounderSection: FC = () => {
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-1 w-10 rounded-full bg-secondary-300" />
             <p className="text-paragraph-sm-medium text-secondary-500 uppercase tracking-wider">
-              Founder
+              Founders
             </p>
             <div className="h-1 w-10 rounded-full bg-secondary-300" />
           </div>
           <h2 className="text-heading-3-semibold text-secondary-900 mb-2">
-            The Visionary Behind{" "}
+            The Visionaries Behind{" "}
             <span className="text-gradient">Perspectivity</span>
           </h2>
         </div>
@@ -151,6 +151,57 @@ const FounderSection: FC = () => {
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        {/* Founding Member */}
+        <div
+          className={cn(
+            "group max-w-md mx-auto mt-10 transition-all duration-1000",
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10",
+          )}
+          style={{
+            transitionDelay: isVisible ? "400ms" : "0ms",
+          }}
+        >
+          <div className="relative">
+            <div className="absolute -inset-2 bg-gradient-to-br from-gray-400/20 via-gray-300/20 to-gray-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative rounded-xl shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-hidden bg-white border border-gray-100 flex items-center gap-5 p-5">
+              {foundingMember.image && (
+                <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 relative">
+                  <Image
+                    src={foundingMember.image}
+                    alt={foundingMember.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-heading-6-semibold text-secondary-900">
+                  {foundingMember.name}
+                </h3>
+                <p className="text-paragraph-sm-medium text-secondary-500">
+                  {foundingMember.role}
+                </p>
+                <p className="text-paragraph-sm-regular text-secondary-600 mt-1 line-clamp-2">
+                  {foundingMember.description}
+                </p>
+              </div>
+              {foundingMember.links.github && (
+                <Link
+                  href={foundingMember.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all duration-300 hover:scale-110 flex-shrink-0"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-secondary-700">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.607.069-.607 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                  </svg>
+                </Link>
+              )}
             </div>
           </div>
         </div>
