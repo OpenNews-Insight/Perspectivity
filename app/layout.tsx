@@ -6,18 +6,17 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Perspectivity - Real‑time AI news bias agent for emerging markets',
-  description: 'Empowering citizens with multi-perspective news in their own language. Built for low-resource countries, Perspectivity is an open-source news insight framework that scrapes, aggregates, and analyzes regional news in real time.',
+  title: 'Perspectivity - AI-Powered Media Bias & Narrative Analysis',
+  description: 'See how every outlet frames the same story. Perspectivity uses AI to expose media bias, reveal narrative framing, and help you think for yourself.',
   keywords: [
-    'news bias detection',
+    'media bias detection',
     'AI news analysis',
-    'Bangladesh news',
-    'emerging markets',
+    'narrative analysis',
     'media transparency',
-    'BongLLaMA',
+    'news framing',
     'news aggregation',
     'bias analysis',
-    'democratic resilience',
+    'media literacy',
     'multi-perspective journalism'
   ],
   authors: [
@@ -40,21 +39,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://perspectivity.co',
     siteName: 'Perspectivity',
-    title: 'Perspectivity - Real‑time AI news bias agent for emerging markets',
-    description: 'Empowering citizens with multi-perspective news in their own language. Built for low-resource countries, Perspectivity is an open-source news insight framework that scrapes, aggregates, and analyzes regional news in real time.',
+    title: 'Perspectivity - AI-Powered Media Bias & Narrative Analysis',
+    description: 'See how every outlet frames the same story. Perspectivity uses AI to expose media bias, reveal narrative framing, and help you think for yourself.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Perspectivity - Every Story. Every Side. In Your Language.',
+        alt: 'Perspectivity - See How Media Shapes What You Believe',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Perspectivity - Real‑time AI news bias agent for emerging markets',
-    description: 'Empowering citizens with multi-perspective news in their own language. Built for low-resource countries, Perspectivity is an open-source news insight framework.',
+    title: 'Perspectivity - AI-Powered Media Bias & Narrative Analysis',
+    description: 'See how every outlet frames the same story. Perspectivity uses AI to expose media bias and reveal narrative framing.',
     images: ['/og-image.png'],
     creator: '@perspectivityai',
   },

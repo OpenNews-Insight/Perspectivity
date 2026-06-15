@@ -1,15 +1,54 @@
-const API_URL = "https://drishtikon.life/server/api/featured-article/";
+import { LINKS } from "@/lib/links";
+
+const DRISHTIKON_API_URL = LINKS.drishtikonAPI;
+const PERSPECTIVITY_API_URL = LINKS.perspectivityAPI;
 const FETCH_TIMEOUT = 8000; // 8 second timeout per request
 
-const BLOCKED_PATTERNS = [
-  "news.google.com/api/attachments",
-  "googleusercontent.com",
-  "/_next/image",
-  "/api/image-proxy",
-  "?url=",
+const BLOCKED_PATTERNS = ["/_next/image", "/api/image-proxy", "/img-proxy"];
+
+const VALID_IMAGE_EXTENSIONS = [
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  ".gif",
+  ".svg",
+  ".avif",
 ];
 
-const VALID_IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
+const VALID_IMAGE_PATH_PATTERNS = [
+  "/image",
+  "/images",
+  "/media",
+  "/photo",
+  "/cdn",
+  "/uploads",
+  "/assets",
+  "/static",
+  "/img",
+];
+
+const KNOWN_CDN_DOMAINS = [
+  "cloudinary",
+  "cloudfront",
+  "amazonaws",
+  "imgix",
+  "unsplash",
+  "pexels",
+  "gstatic.com",
+];
+
+function cleanImageUrl(url: string): string {
+  // Strip Google News size constraints: -w100-h100-p-df-rw
+  let cleaned = url.replace(/-w\d+-h\d+[^&\s]*/g, "");
+  // Strip fopt param from gstatic
+  cleaned = cleaned.replace(/[&?]fopt=[^&]*/g, "");
+  // Proxy Google News attachment images through drishtikon to avoid CORS blocks
+  if (cleaned.includes("news.google.com/api/attachments")) {
+    cleaned = `https://drishtikon.life/img-proxy?url=${encodeURIComponent(cleaned)}`;
+  }
+  return cleaned;
+}
 
 function isValidImageUrl(url?: string): boolean {
   if (!url?.trim()) return false;
@@ -22,18 +61,46 @@ function isValidImageUrl(url?: string): boolean {
     );
     if (isBlocked) return false;
 
-    const hasValidExtension = VALID_IMAGE_EXTENSIONS.some((ext) =>
-      urlLower.includes(ext),
-    );
-    if (!hasValidExtension) return false;
-
     const parsedUrl = new URL(url);
     if (parsedUrl.protocol === "data:") return false;
 
-    return true;
+    // Accept if has valid image extension
+    const hasValidExtension = VALID_IMAGE_EXTENSIONS.some((ext) =>
+      urlLower.includes(ext),
+    );
+    if (hasValidExtension) return true;
+
+    // Accept if URL path contains image-related segments
+    const hasImagePath = VALID_IMAGE_PATH_PATTERNS.some((p) =>
+      urlLower.includes(p),
+    );
+    if (hasImagePath) return true;
+
+    // Accept known CDN domains
+    const isKnownCDN = KNOWN_CDN_DOMAINS.some((cdn) => urlLower.includes(cdn));
+    if (isKnownCDN) return true;
+
+    // Accept Google News attachment URLs (they serve real images)
+    if (urlLower.includes("news.google.com/api/attachments")) return true;
+
+    return false;
   } catch {
     return false;
   }
+}
+
+export type BiasPosition =
+  | "Left"
+  | "Left-Center"
+  | "Center"
+  | "Right-Center"
+  | "Right"
+  | "Not Rated";
+
+export interface SourceInfo {
+  name: string;
+  logo?: string;
+  biasLabel?: BiasPosition;
 }
 
 export interface MarqueeNewsItem {
@@ -45,12 +112,18 @@ export interface MarqueeNewsItem {
   sourceLogo?: string;
   totalSources: number;
   perspectiveCount: number;
+  sources: SourceInfo[];
+  biasDistribution: Record<BiasPosition, number>;
 }
 
 interface APISource {
   article_image?: string;
   source?: string;
   source_logo?: string;
+  bias_label?: {
+    position?: string;
+    scores?: Record<string, unknown>;
+  };
 }
 
 interface APIArticle {
@@ -79,17 +152,23 @@ interface APIArticle {
 interface APIResponse {
   count?: number;
   next?: string | null;
-  results: Record<string, APIArticle[]> | APIArticle[];
+  results: APIArticle[];
   has_manually_featured?: boolean;
 }
 
-function getFirstValidImage(sources?: APISource[]): string | null {
-  if (!sources?.length) return null;
-
-  for (const source of sources) {
-    if (isValidImageUrl(source.article_image)) {
-      return source.article_image!;
+function getFirstValidImage(article: APIArticle): string | null {
+  // Try source-level images first
+  if (article.info?.sources?.length) {
+    for (const source of article.info.sources) {
+      if (isValidImageUrl(source.article_image)) {
+        return cleanImageUrl(source.article_image!);
+      }
     }
+  }
+
+  // Fallback to top-level article_image
+  if (isValidImageUrl(article.article_image)) {
+    return cleanImageUrl(article.article_image!);
   }
 
   return null;
@@ -107,6 +186,45 @@ function extractCategories(article: APIArticle): string[] {
   return [];
 }
 
+const VALID_BIAS_POSITIONS: BiasPosition[] = [
+  "Left",
+  "Left-Center",
+  "Center",
+  "Right-Center",
+  "Right",
+];
+
+function extractSources(article: APIArticle): SourceInfo[] {
+  if (!article.info?.sources?.length) return [];
+  return article.info.sources
+    .filter((s) => s.source)
+    .map((s) => ({
+      name: s.source!,
+      logo: s.source_logo,
+      biasLabel: VALID_BIAS_POSITIONS.includes(s.bias_label?.position as BiasPosition)
+        ? (s.bias_label!.position as BiasPosition)
+        : undefined,
+    }));
+}
+
+function computeBiasDistribution(
+  sources: SourceInfo[],
+): Record<BiasPosition, number> {
+  const dist: Record<BiasPosition, number> = {
+    Left: 0,
+    "Left-Center": 0,
+    Center: 0,
+    "Right-Center": 0,
+    Right: 0,
+    "Not Rated": 0,
+  };
+  for (const s of sources) {
+    if (s.biasLabel) dist[s.biasLabel]++;
+    else dist["Not Rated"]++;
+  }
+  return dist;
+}
+
 function getPerspectiveCount(article: APIArticle): number {
   const perspective = article.info?.bias_summary?.perspective;
   if (!perspective) return 0;
@@ -119,11 +237,20 @@ function getPerspectiveCount(article: APIArticle): number {
 }
 
 // In-memory cache for SSR
-let cachedItems: MarqueeNewsItem[] = [];
+let cachedDrishtikon: MarqueeNewsItem[] = [];
+let cachedPerspectivity: MarqueeNewsItem[] = [];
 let cacheTimestamp = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
-async function fetchWithTimeout(url: string, timeout: number): Promise<Response> {
+export interface MarqueeNewsData {
+  perspectivity: MarqueeNewsItem[];
+  drishtikon: MarqueeNewsItem[];
+}
+
+async function fetchWithTimeout(
+  url: string,
+  timeout: number,
+): Promise<Response> {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
 
@@ -138,35 +265,30 @@ async function fetchWithTimeout(url: string, timeout: number): Promise<Response>
   }
 }
 
-export async function fetchMarqueeNews(count = 20): Promise<MarqueeNewsItem[]> {
-  if (cachedItems.length > 0 && Date.now() - cacheTimestamp < CACHE_TTL) {
-    return cachedItems;
-  }
-
+async function fetchFromAPI(
+  apiUrl: string,
+  count: number,
+): Promise<MarqueeNewsItem[]> {
   try {
-    const items: MarqueeNewsItem[] = [];
-
-    // Single large request instead of paginated to avoid SSR timeout
     const res = await fetchWithTimeout(
-      `${API_URL}?page=1&page_size=${count + 10}`,
+      `${apiUrl}?page=1&page_size=${count + 10}`,
       FETCH_TIMEOUT,
     );
 
-    if (!res.ok) return cachedItems;
+    if (!res.ok) return [];
 
     const data: APIResponse = await res.json();
 
-    // featured-article API returns { results: { "home": [...] } }
-    const rawResults = data.results;
-    const articles: APIArticle[] = Array.isArray(rawResults)
-      ? rawResults
-      : (rawResults as Record<string, APIArticle[]>)?.["home"] ?? [];
+    const articles: APIArticle[] = data.results ?? [];
 
+    const items: MarqueeNewsItem[] = [];
     for (const article of articles) {
       if (items.length >= count) break;
 
-      const validImage = getFirstValidImage(article.info?.sources);
+      const validImage = getFirstValidImage(article);
       if (!validImage) continue;
+
+      const sourceInfos = extractSources(article);
 
       items.push({
         id: article._id,
@@ -179,17 +301,40 @@ export async function fetchMarqueeNews(count = 20): Promise<MarqueeNewsItem[]> {
         totalSources:
           article.info?.total_sources || article.info?.sources?.length || 0,
         perspectiveCount: getPerspectiveCount(article),
+        sources: sourceInfos,
+        biasDistribution: computeBiasDistribution(sourceInfos),
       });
-    }
-
-    if (items.length > 0) {
-      cachedItems = items;
-      cacheTimestamp = Date.now();
     }
 
     return items;
   } catch (error) {
-    console.error("Failed to fetch marquee news:", error);
-    return cachedItems;
+    console.error(`Failed to fetch from ${apiUrl}:`, error);
+    return [];
   }
+}
+
+export async function fetchMarqueeNews(count = 20): Promise<MarqueeNewsData> {
+  if (
+    cachedPerspectivity.length > 0 &&
+    cachedDrishtikon.length > 0 &&
+    Date.now() - cacheTimestamp < CACHE_TTL
+  ) {
+    return { perspectivity: cachedPerspectivity, drishtikon: cachedDrishtikon };
+  }
+
+  const [perspectivityItems, drishtikonItems] = await Promise.all([
+    fetchFromAPI(PERSPECTIVITY_API_URL, count),
+    fetchFromAPI(DRISHTIKON_API_URL, count),
+  ]);
+
+  if (perspectivityItems.length > 0) cachedPerspectivity = perspectivityItems;
+  if (drishtikonItems.length > 0) cachedDrishtikon = drishtikonItems;
+  if (perspectivityItems.length > 0 || drishtikonItems.length > 0) {
+    cacheTimestamp = Date.now();
+  }
+
+  return {
+    perspectivity: cachedPerspectivity,
+    drishtikon: cachedDrishtikon,
+  };
 }

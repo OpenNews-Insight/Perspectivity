@@ -3,6 +3,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import VideoPlayer from "./VideoPlayer";
+import { LINKS } from "@/lib/links";
 
 const DemoSection: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +20,6 @@ const DemoSection: FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // --- Animation classes
   const appear = isVisible
     ? "opacity-100 translate-y-0"
     : "opacity-0 translate-y-8";
@@ -46,7 +46,7 @@ const DemoSection: FC = () => {
           />
         </div>
         <p className="text-secondary-900 font-bold text-[20px] leading-[30px]">
-          SEE PERSPECTIVITY IN ACTION
+          SEE IT IN ACTION
         </p>
         <div
           className={`absolute left-[45%] -translate-x-1/2 top-0 translate-y-1/2 z-10 pointer-events-none transition-all duration-1000
@@ -68,14 +68,25 @@ const DemoSection: FC = () => {
       </div>
 
       <div
-        className={`w-full flex items-center justify-center transition-all duration-1000 ${appear}`}
+        className={`w-full grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[1200px] transition-all duration-1000 ${appear}`}
         style={{ transitionDelay: "0.7s" }}
       >
-        <VideoPlayer
-          videoSrc="https://www.loom.com/embed/3f5e1e09fdda48aa8c10157ada5bee70?sid=bbc6376a-a513-410f-b6c4-90b2d1aca624"
-          thumbnailSrc="/assets/images/thumbnail.png"
-          altText="Demonstration video"
-        />
+        <div className="flex flex-col items-center gap-4">
+          <h3 className="text-lg font-semibold text-gray-800 tracking-wide">Perspectivity</h3>
+          <VideoPlayer
+            videoSrc={LINKS.perspectivityYouTube}
+            thumbnailSrc={`https://img.youtube.com/vi/YVqdN4XWbWg/maxresdefault.jpg`}
+            altText="Perspectivity demo"
+          />
+        </div>
+        <div className="flex flex-col items-center gap-4">
+          <h3 className="text-lg font-semibold text-gray-800 tracking-wide">Drishtikon</h3>
+          <VideoPlayer
+            videoSrc={LINKS.drishtikonYouTube}
+            thumbnailSrc={`https://img.youtube.com/vi/X3_Tdz3np24/maxresdefault.jpg`}
+            altText="Drishtikon demo"
+          />
+        </div>
       </div>
     </section>
   );

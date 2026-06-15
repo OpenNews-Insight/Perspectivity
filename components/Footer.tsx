@@ -1,33 +1,49 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { useMemo } from "react";
+import { LINKS } from "@/lib/links";
+import { cn } from "@/utils";
 
 const Footer: FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.1 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
   const footerSections = useMemo(
     () => [
       {
         title: "Product",
         links: [
-          { label: "Drishtikon (Bangladesh)", href: "https://drishtikon.life" },
-          { label: "Perspectivity (US)", href: "https://app.perspectivity.co/" },
-          { label: "Features", href: "/#features" },
+          { label: "Perspectivity (US)", href: LINKS.perspectivity },
+          { label: "Drishtikon (Bangladesh)", href: LINKS.drishtikon },
         ],
       },
       {
         title: "Socials",
         links: [
           {
-            label: "Linkedin",
-            href: "https://www.linkedin.com/company/banglallm/ ",
-          },
-          {
             label: "Youtube",
-            href: "https://www.youtube.com/@Perspective1357",
+            href: LINKS.youtube,
           },
           {
             label: "Facebook",
-            href: "https://web.facebook.com/DrishtikonBangladesh",
+            href: LINKS.facebook,
+          },
+          {
+            label: "Linkedin",
+            href: LINKS.linkedinCompany,
           },
         ],
       },
@@ -36,6 +52,7 @@ const Footer: FC = () => {
         links: [
           { label: "FAQ", href: "/#faq" },
           { label: "Feedback", href: "/#feedback" },
+          { label: "Research", href: "/research" },
           { label: "Team", href: "/teams" },
         ],
       },
@@ -43,11 +60,15 @@ const Footer: FC = () => {
         title: "Resources",
         links: [
           {
-            label: "BongLLaMA Paper",
-            href: "https://arxiv.org/abs/2410.21200",
+            label: "BanglaLlama Paper",
+            href: LINKS.arxivPaper,
           },
-          { label: "Hugging Face", href: "https://huggingface.co/BanglaLLM" },
-          { label: "GitHub", href: "https://github.com/BanglaLLM/Drishtikon/" },
+          {
+            label: "Read Between the Lines",
+            href: LINKS.googleScholar,
+          },
+          { label: "Hugging Face", href: LINKS.huggingFace },
+          { label: "GitHub", href: LINKS.github },
         ],
       },
     ],
@@ -55,8 +76,9 @@ const Footer: FC = () => {
   );
 
   return (
-    <footer className="bg-gray-50 py-12 px-5 sm:px-10 md:px-20">
+    <footer ref={ref} className="bg-gray-50 py-12 px-5 sm:px-10 md:px-20">
       <div className="container mx-auto w-full">
+        {/* TODO: Wire up newsletter form with backend before uncommenting
         <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-4 sm:mb-12">
           <div>
             <p className="text-paragraph-md-medium text-secondary-500">
@@ -78,8 +100,12 @@ const Footer: FC = () => {
             </button>
           </form>
         </div>
+        */}
 
-        <div className="py-6 sm:py-16">
+        <div className={cn(
+          "py-6 sm:py-16 transition-all duration-700",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+        )}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="relative w-8 h-8 bg-secondary-950 rounded-lg mb-6">
@@ -98,8 +124,8 @@ const Footer: FC = () => {
                 </Link>
               </div>
               <p className="text-paragraph-md-medium text-secondary-500">
-                Real‑time AI news bias agent for emerging markets. Empowering
-                democratic resilience through transparent journalism.
+                Real‑time AI media bias analysis. Exposing how narratives
+                are framed so you can think for yourself.
               </p>
             </div>
 
@@ -128,7 +154,11 @@ const Footer: FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center border-t border-secondary-100 pt-8 gap-6">
+        <div className={cn(
+          "flex flex-col sm:flex-row justify-center items-center border-t border-secondary-100 pt-8 gap-6 transition-all duration-700",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+        )}
+        style={{ transitionDelay: isVisible ? "200ms" : "0ms" }}>
           <p className="text-paragraph-md-regular text-secondary-600">
             &copy; {new Date().getFullYear()} Perspectivity. All rights reserved
           </p>

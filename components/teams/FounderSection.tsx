@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/utils";
 import { useSectionVisibility } from "@/hooks/useSectionVisibility";
-import { founder } from "@/data/teamData";
+import { founder, foundingMember } from "@/data/teamData";
 
 const FounderSection: FC = () => {
   const { ref, isVisible } = useSectionVisibility();
@@ -30,12 +30,12 @@ const FounderSection: FC = () => {
           <div className="flex items-center justify-center gap-3 mb-3">
             <div className="h-1 w-10 rounded-full bg-secondary-300" />
             <p className="text-paragraph-sm-medium text-secondary-500 uppercase tracking-wider">
-              Founder
+              Founders
             </p>
             <div className="h-1 w-10 rounded-full bg-secondary-300" />
           </div>
           <h2 className="text-heading-3-semibold text-secondary-900 mb-2">
-            The Visionary Behind{" "}
+            The Visionaries Behind{" "}
             <span className="text-gradient">Perspectivity</span>
           </h2>
         </div>
@@ -79,7 +79,7 @@ const FounderSection: FC = () => {
                     href={founder.links.x}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110"
+                    className="w-9 h-9 rounded-full bg-white/40 border border-white/30 hover:bg-white/55 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110"
                   >
                     <div className="relative w-5 h-5">
                       <Image
@@ -94,7 +94,7 @@ const FounderSection: FC = () => {
                     href={founder.links.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110"
+                    className="w-9 h-9 rounded-full bg-white/40 border border-white/30 hover:bg-white/55 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110"
                   >
                     <div className="relative w-5 h-5">
                       <Image
@@ -105,8 +105,103 @@ const FounderSection: FC = () => {
                       />
                     </div>
                   </Link>
+                  {founder.links.huggingface && (
+                    <Link
+                      href={founder.links.huggingface}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 rounded-full bg-white/40 border border-white/30 hover:bg-white/55 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110"
+                      title="Hugging Face"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="w-5 h-5 text-white"
+                      >
+                        <path d="M10.7 2.1C7.5 2.5 5 5.3 5 8.6v.7c-1.2.8-2 2.2-2 3.7 0 1.3.5 2.4 1.4 3.2-.3 1.6.3 3.3 1.6 4.4 1.5 1.2 3.5 1.5 5.3.8l.7-.3.7.3c1.8.7 3.8.4 5.3-.8 1.3-1.1 1.9-2.8 1.6-4.4.9-.8 1.4-2 1.4-3.2 0-1.6-.8-3-2-3.7v-.7c0-3.3-2.5-6.1-5.7-6.5-.8-.1-1.6-.1-2.3 0zm1.1 1.9c.4-.1.9-.1 1.4 0 2.1.3 3.7 2.1 3.7 4.3v1.2l.6.3c.7.4 1.2 1.2 1.2 2.1 0 .8-.4 1.5-1 2l-.5.3.1.6c.3 1.1-.1 2.3-1 3.1-1 .8-2.3 1-3.4.5l-1-.4-1 .4c-1.2.5-2.5.3-3.4-.5-.9-.8-1.3-2-1-3.1l.1-.6-.5-.4c-.6-.4-1-1.1-1-1.9 0-1 .5-1.8 1.2-2.2l.6-.3V8.3c0-2.2 1.6-4 3.7-4.3zM9 9.5c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5 1.5-.7 1.5-1.5S9.8 9.5 9 9.5zm6 0c-.8 0-1.5.7-1.5 1.5s.7 1.5 1.5 1.5 1.5-.7 1.5-1.5-.7-1.5-1.5-1.5zm-6.5 5c0 .3.1.5.3.7C9.8 16.3 11 17 12 17s2.2-.7 3.2-1.8c.2-.2.3-.4.3-.7 0-.4-.3-.5-.6-.3-1 .7-1.9 1.3-2.9 1.3s-1.9-.6-2.9-1.3c-.3-.2-.6-.1-.6.3z" />
+                      </svg>
+                    </Link>
+                  )}
+                  {founder.links.paper && (
+                    <Link
+                      href={founder.links.paper}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 rounded-full bg-white/40 border border-white/30 hover:bg-white/55 backdrop-blur-md flex items-center justify-center transition-all duration-300 hover:scale-110"
+                      title="Research Paper"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="w-5 h-5 text-white"
+                      >
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                      </svg>
+                    </Link>
+                  )}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        {/* Founding Member */}
+        <div
+          className={cn(
+            "group max-w-md mx-auto mt-10 transition-all duration-1000",
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10",
+          )}
+          style={{
+            transitionDelay: isVisible ? "400ms" : "0ms",
+          }}
+        >
+          <div className="relative">
+            <div className="absolute -inset-2 bg-gradient-to-br from-gray-400/20 via-gray-300/20 to-gray-400/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative rounded-xl shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 overflow-hidden bg-white border border-gray-100 flex items-center gap-5 p-5">
+              {foundingMember.image && (
+                <div className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 relative">
+                  <Image
+                    src={foundingMember.image}
+                    alt={foundingMember.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-heading-6-semibold text-secondary-900">
+                  {foundingMember.name}
+                </h3>
+                <p className="text-paragraph-sm-medium text-secondary-500">
+                  {foundingMember.role}
+                </p>
+                <p className="text-paragraph-sm-regular text-secondary-600 mt-1 line-clamp-2">
+                  {foundingMember.description}
+                </p>
+              </div>
+              {foundingMember.links.github && (
+                <Link
+                  href={foundingMember.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all duration-300 hover:scale-110 flex-shrink-0"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-secondary-700">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.607.069-.607 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                  </svg>
+                </Link>
+              )}
             </div>
           </div>
         </div>

@@ -204,9 +204,19 @@ body {
   animation: marquee-right 45s linear infinite;
 }
 
+.animate-marquee-left-slow {
+  animation: marquee-left 500s linear infinite;
+}
+
+.animate-marquee-right-slow {
+  animation: marquee-right 500s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee-left,
-  .animate-marquee-right {
+  .animate-marquee-right,
+  .animate-marquee-left-slow,
+  .animate-marquee-right-slow {
     animation: none;
   }
 }
