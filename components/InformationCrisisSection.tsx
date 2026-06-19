@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import Image from "next/image";
-import { Reveal } from "@/lib/motionfold";
+import { Reveal, CountUp } from "@/lib/motionfold";
 
 const InformationCrisisSection: FC = () => {
   return (
@@ -39,7 +39,7 @@ const InformationCrisisSection: FC = () => {
           <Reveal delay={0.1}>
             <div className="flex items-center gap-3 justify-end">
               <div className="bg-surface-secondary border border-secondary-100 text-secondary-500 text-paragraph-md-medium py-2.5 px-4 rounded-full w-full max-w-[265px] text-xs sm:text-sm md:text-base">
-                180+ Countries Affected by Media Narrative Manipulation
+                <CountUp end={180} suffix="+" /> Countries Affected by Media Narrative Manipulation
               </div>
               <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-secondary-500 rounded-full flex justify-center items-center">
                 <Image
@@ -56,7 +56,7 @@ const InformationCrisisSection: FC = () => {
           <Reveal delay={0.2}>
             <div className="flex items-center gap-4 justify-start">
               <div className="bg-surface-secondary border border-secondary-100 text-secondary-900 text-heading-3-medium md:text-heading-1-medium py-1 md:py-2 px-4 rounded-full">
-                86%
+                <CountUp end={86} suffix="%" />
               </div>
               <div>
                 <span className="text-paragraph-md-medium text-secondary-500 text-center">
@@ -68,7 +68,7 @@ const InformationCrisisSection: FC = () => {
           <Reveal delay={0.3}>
             <div className="w-full flex items-center gap-4 justify-between bg-secondary-900 px-5 py-2 rounded-full text-gray-50">
               <div className="text-heading-3-medium md:text-heading-1-medium">
-                5B+
+                <CountUp end={5} suffix="B+" />
               </div>
               <div>
                 <span className="text-paragraph-md-regular">
@@ -80,7 +80,7 @@ const InformationCrisisSection: FC = () => {
           <Reveal delay={0.4}>
             <div className="flex items-center gap-4 justify-end">
               <div className="bg-surface-secondary border border-secondary-100 text-secondary-500 text-paragraph-md-medium py-2.5 px-4 rounded-full w-full max-w-[260px]">
-                2+ Languages supported and growing
+                <CountUp end={2} suffix="+ Languages supported and growing" />
               </div>
               <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-secondary-500 rounded-full flex justify-center items-center">
                 <Image
