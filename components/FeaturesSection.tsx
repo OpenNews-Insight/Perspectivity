@@ -60,10 +60,10 @@ const FeaturesSection: FC = () => {
           {Cards.map((c, i) => {
             const V = c.Viz;
             return (
-              <Reveal key={c.tag} delay={i * 0.06}>
-                <div className="group h-full rounded-2xl border border-line bg-white p-5 sm:p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-30px_rgba(22,39,63,0.4)]">
-                  <div className="rounded-xl border border-line bg-surface-secondary px-3 py-4 mb-5 h-[220px] flex items-center overflow-x-auto overflow-y-hidden">
-                    <V className="h-auto max-h-[200px] min-w-[440px] w-full flex-1" />
+              <Reveal key={c.tag} delay={i * 0.06} className="min-w-0">
+                <div className="group h-full min-w-0 overflow-hidden rounded-2xl border border-line bg-white p-5 sm:p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-30px_rgba(22,39,63,0.4)]">
+                  <div className="rounded-xl border border-line bg-surface-secondary px-3 py-4 mb-5 min-h-[180px] flex items-center justify-center overflow-hidden">
+                    <V className="w-full h-auto min-w-0" />
                   </div>
                   <span className="font-hanken text-[11px] font-semibold tracking-[0.16em] uppercase mb-2 inline-block" style={{ color: c.accent }}>{c.tag}</span>
                   <h3 className="font-serif text-navy text-xl sm:text-2xl tracking-tight mb-2">{c.title}</h3>
