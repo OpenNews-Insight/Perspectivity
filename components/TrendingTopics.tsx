@@ -2,6 +2,7 @@
 
 import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { cn } from "@/utils";
 import { TrendingUp } from "lucide-react";
 import type { SourceInfo } from "@/lib/fetchNews";
@@ -50,9 +51,11 @@ const SourceMarquee: FC<{ sources: SourceInfo[]; direction?: "left" | "right" }>
         )}
       >
         {tripled.map((src, i) => (
-          <div
+          <motion.div
             key={`${src.name}-${i}`}
             className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-gray-100 border border-gray-200 flex-shrink-0"
+            whileHover={{ scale: 1.05, y: -2 }}
+            transition={{ duration: 0.2 }}
           >
             <Image
               src={src.logo!}
@@ -67,7 +70,7 @@ const SourceMarquee: FC<{ sources: SourceInfo[]; direction?: "left" | "right" }>
             <span className="text-paragraph-sm-medium text-secondary-700 whitespace-nowrap">
               {src.name}
             </span>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>
@@ -103,19 +106,26 @@ const TopicRow: FC<{
           </p>
           <div className="flex flex-wrap gap-2">
             {topics.map((topic, i) => (
-              <span
+              <motion.span
                 key={topic}
                 className={cn(
-                  "px-3 py-1.5 rounded-full text-paragraph-sm-medium transition-all duration-500",
+                  "px-3 py-1.5 rounded-full text-paragraph-sm-medium cursor-pointer",
                   `${accentColor} text-white`,
-                  isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95",
                 )}
-                style={{
-                  transitionDelay: isVisible ? `${(delayOffset + i) * 50}ms` : "0ms",
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{
+                  opacity: isVisible ? 1 : 0,
+                  scale: isVisible ? 1 : 0.95,
                 }}
+                transition={{
+                  duration: 0.3,
+                  delay: isVisible ? (delayOffset + i) * 0.05 : 0,
+                }}
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {topic}
-              </span>
+              </motion.span>
             ))}
           </div>
         </div>
