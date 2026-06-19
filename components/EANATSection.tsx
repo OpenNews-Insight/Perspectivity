@@ -20,30 +20,32 @@ interface Layer {
   blurb: string;
   accent: string;
   only: string;
+  image: string;
 }
 
+// One atmospheric image per layer builds the story (all PD/CC0 — no attribution required).
 const LAYERS: Layer[] = [
-  { num: "01", name: "Event Intelligence", frame: "What actually happened", blurb: "The core — every event, fully reconstructed from dozens of sources.", accent: "#10B981", only: "53 sources, 6 shared facts, 2 disputed claims — reconciled into one view." },
-  { num: "02", name: "Actor Intelligence", frame: "Who shapes the narrative", blurb: "A knowledge graph of influence — who repeats what, and for whom.", accent: "#3B82F6", only: "This commentator flipped on the bill 48 hours after the rally." },
-  { num: "03", name: "Narrative Intelligence", frame: "Which story is winning", blurb: "The AI-native layer: every emerging story, tracked as it spreads.", accent: "#8B5CF6", only: "“Iran struck first” is amplified by right-leaning sources — absent from 13 others." },
-  { num: "04", name: "Affiliation Intelligence", frame: "Who they are connected to", blurb: "Source-backed. Confidence-scored. Never asserted.", accent: "#EC4899", only: "Appeared with, cited, and defended X — every link backed by a clip." },
-  { num: "05", name: "Time-Series Intelligence", frame: "How it all moves over time", blurb: "The longitudinal view — how narratives travel and transform.", accent: "#4FD1C5", only: "A talking point traveled from 2 fringe channels to 9 mainstream outlets in 6 days." },
+  { num: "01", name: "Event Intelligence", frame: "What actually happened", blurb: "The core — every event, fully reconstructed from dozens of sources.", accent: "#10B981", only: "53 sources, 6 shared facts, 2 disputed claims — reconciled into one view.", image: "/assets/images/hero-press-room.jpg" },
+  { num: "02", name: "Actor Intelligence", frame: "Who shapes the narrative", blurb: "A knowledge graph of influence — who repeats what, and for whom.", accent: "#3B82F6", only: "This commentator flipped on the bill 48 hours after the rally.", image: "/assets/images/eanat/actor.jpg" },
+  { num: "03", name: "Narrative Intelligence", frame: "Which story is winning", blurb: "The AI-native layer: every emerging story, tracked as it spreads.", accent: "#8B5CF6", only: "“Iran struck first” is amplified by right-leaning sources — absent from 13 others.", image: "/assets/images/eanat/narrative.jpg" },
+  { num: "04", name: "Affiliation Intelligence", frame: "Who they are connected to", blurb: "Source-backed. Confidence-scored. Never asserted.", accent: "#EC4899", only: "Appeared with, cited, and defended X — every link backed by a clip.", image: "/assets/images/eanat/affiliation.jpg" },
+  { num: "05", name: "Time-Series Intelligence", frame: "How it all moves over time", blurb: "The longitudinal view — how narratives travel and transform.", accent: "#4FD1C5", only: "A talking point traveled from 2 fringe channels to 9 mainstream outlets in 6 days.", image: "/assets/images/eanat/time.jpg" },
 ];
 
-type Act = { id: string; accent: string; kind: "intro" | "layer"; layer?: Layer };
+type Act = { id: string; accent: string; image: string; kind: "intro" | "layer"; layer?: Layer };
 
 const ACTS: Act[] = [
-  { id: "intro", accent: "#6EE7B7", kind: "intro" },
-  ...LAYERS.map((l) => ({ id: l.num, accent: l.accent, kind: "layer" as const, layer: l })),
+  { id: "intro", accent: "#6EE7B7", image: "/assets/images/hero-press-room.jpg", kind: "intro" },
+  ...LAYERS.map((l) => ({ id: l.num, accent: l.accent, image: l.image, kind: "layer" as const, layer: l })),
 ];
 
-function ActBackground({ accent }: { accent: string }): ReactNode {
+function ActBackground({ accent, image }: { accent: string; image: string }): ReactNode {
   return (
     <div className="absolute inset-0 bg-navy-deep">
-      <Image src="/assets/images/hero-press-room.jpg" alt="" fill className="object-cover opacity-[0.10]" />
+      <Image src={image} alt="" fill className="object-cover opacity-30" />
       <div
         className="absolute inset-0"
-        style={{ background: `radial-gradient(55% 65% at 72% 38%, ${accent}26 0%, ${accent}00 60%), linear-gradient(180deg, #0F1C2E 0%, #16273F 100%)` }}
+        style={{ background: `radial-gradient(60% 70% at 70% 35%, ${accent}33 0%, ${accent}00 60%), linear-gradient(180deg, rgba(15,28,46,0.80) 0%, rgba(22,39,63,0.55) 100%)` }}
       />
     </div>
   );
@@ -58,7 +60,7 @@ const EANATSection: FC = () => {
         progressLine="vertical"
         progressColor="#6EE7B7"
         progressTrackColor="rgba(255,255,255,0.10)"
-        renderBackground={(act) => <ActBackground accent={act.accent} />}
+        renderBackground={(act) => <ActBackground accent={act.accent} image={act.image} />}
       >
         {(act) => (
           <div className="h-full flex items-center">
