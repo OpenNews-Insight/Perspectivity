@@ -1,102 +1,110 @@
 "use client";
 
 import { FC } from "react";
-import Image from "next/image";
-import { Reveal, CountUp } from "@/lib/motionfold";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { CountUp, easeOutExpo } from "@/lib/motionfold";
+
+interface Stat { end: number; suffix?: string; label: string; note: string; accent: string; }
+
+const STATS: Stat[] = [
+  { end: 86, suffix: "%", label: "can't identify biased news framing", note: "Readers absorb the framing without noticing the slant.", accent: "#E0A030" },
+  { end: 5, suffix: "B+", label: "people exposed to manipulated narratives daily", note: "Algorithmic feeds amplify spin, omission, and outright falsehoods.", accent: "#DC2626" },
+  { end: 180, suffix: "+", label: "countries affected by narrative manipulation", note: "A global crisis of trust, not a local one.", accent: "#3B82F6" },
+];
+
+// headline tokens — "framing" is emphasized (green italic)
+const HEADLINE: { t: string; em?: boolean }[] = [
+  { t: "You're" }, { t: "not" }, { t: "reading" }, { t: "the" }, { t: "news." },
+  { t: "You're" }, { t: "reading" }, { t: "a" }, { t: "framing", em: true }, { t: "of" }, { t: "it." },
+];
+const PARA1 = "Every outlet chooses what to emphasize, what to omit, and how to angle a story. When a major event breaks, the same facts become competing narratives — and most readers never see the seams.";
+
+const wordContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.035 } } };
+const wordVar = {
+  hidden: { opacity: 0, y: "0.45em", filter: "blur(8px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.5, ease: easeOutExpo } },
+};
+const reveal = { hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOutExpo } } };
+const viewport = { once: true, amount: 0.4 } as const;
 
 const InformationCrisisSection: FC = () => {
   return (
-    <section
-      id="problem"
-      className="px-5 sm:px-6 md:px-10 lg:px-20 my-12 sm:my-[80px] md:my-[120px] mx-auto container w-full"
-    >
-      <Reveal>
-        <h2 className="text-paragraph-md-medium text-secondary-500 mb-6 sm:mb-8 text-center">
-          THE GLOBAL NARRATIVE CRISIS
-        </h2>
-      </Reveal>
-      <div className="grid grid-cols-1 md:grid-cols-2 items-start gap-6 md:gap-10">
-        <Reveal>
-          <div className="flex flex-col justify-between bg-surface-secondary p-5 sm:p-8 md:p-12 lg:p-16 rounded-3xl aspect-square mx-auto">
-            <div className="flex flex-col items-center justify-center text-center h-full">
-              <h2 className="text-heading-3-semibold text-secondary-900 mb-4 sm:mb-6 flex items-center gap-2 text-center">
-                Media Narratives Shape Your Reality
-              </h2>
-              <div className="bg-gray-50 px-3 py-2 rounded-2xl max-w-full sm:max-w-[480px]">
-                <div className="text-secondary-900 text-paragraph-sm-medium mb-2">
-                  Real Impact
-                </div>
-                <div className="text-secondary-600 text-paragraph-sm-regular">
-                  When a major event breaks, our AI agents compare how every
-                  outlet frames it—revealing hidden bias, missing context, and
-                  conflicting narratives.
-                </div>
-              </div>
-            </div>
+    <section id="problem" className="bg-white">
+      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+        <div className="grid lg:grid-cols-[1fr_1.25fr] gap-10 lg:gap-16 items-start">
+          {/* framing */}
+          <div className="lg:sticky lg:top-28">
+            <motion.p
+              className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600 mb-4"
+              initial="hidden" whileInView="visible" viewport={viewport} variants={reveal}
+            >
+              The Problem
+            </motion.p>
+
+            <h2 className="font-serif text-navy text-[34px] leading-[1.12] sm:text-[44px] sm:leading-[1.1] tracking-[-0.02em] mb-6">
+              <motion.span variants={wordContainer} initial="hidden" whileInView="visible" viewport={viewport} className="inline">
+                {HEADLINE.map((w, i) => (
+                  <motion.span key={i} variants={wordVar} className={`inline-block ${w.em ? "italic text-primary-600" : ""}`}>
+                    {w.t}&nbsp;
+                  </motion.span>
+                ))}
+              </motion.span>
+            </h2>
+
+            <p className="font-hanken text-base sm:text-lg text-secondary-500 leading-relaxed mb-6">
+              <motion.span variants={wordContainer} initial="hidden" whileInView="visible" viewport={viewport} className="inline">
+                {PARA1.split(/\s+/).map((w, i) => (
+                  <motion.span key={i} variants={wordVar} className="inline-block">
+                    {w}&nbsp;
+                  </motion.span>
+                ))}
+              </motion.span>
+            </p>
+
+            <motion.p
+              className="font-hanken text-[15px] text-secondary-700 leading-relaxed mb-7"
+              initial="hidden" whileInView="visible" viewport={viewport} variants={reveal}
+            >
+              Perspectivity compares how every outlet frames each event — revealing the
+              hidden bias, the missing context, and the contradictions.
+            </motion.p>
+
+            <motion.div initial="hidden" whileInView="visible" viewport={viewport} variants={reveal}>
+              <Link href="#platform" className="group inline-flex items-center gap-2 font-hanken font-semibold text-navy text-[15px]">
+                <span>See how we map it</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </motion.div>
           </div>
-        </Reveal>
-        <div className="flex flex-col gap-6 md:gap-8 p-5 sm:p-8 md:p-12 lg:p-16 mx-auto w-full justify-center aspect-square">
-          <Reveal delay={0.1}>
-            <div className="flex items-center gap-3 justify-end">
-              <div className="bg-surface-secondary border border-secondary-100 text-secondary-500 text-paragraph-md-medium py-2.5 px-4 rounded-full w-full max-w-[265px] text-xs sm:text-sm md:text-base">
-                <CountUp end={180} suffix="+" /> Countries Affected by Media Narrative Manipulation
-              </div>
-              <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-secondary-500 rounded-full flex justify-center items-center">
-                <Image
-                  src="/assets/icons/team-website-icon.svg"
-                  alt="World Map"
-                  width={48}
-                  height={48}
-                  className="object-contain rounded-lg w-10 h-10 sm:w-12 sm:h-12"
-                  priority
-                />
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="flex items-center gap-4 justify-start">
-              <div className="bg-surface-secondary border border-secondary-100 text-secondary-900 text-heading-3-medium md:text-heading-1-medium py-1 md:py-2 px-4 rounded-full">
-                <CountUp end={86} suffix="%" />
-              </div>
-              <div>
-                <span className="text-paragraph-md-medium text-secondary-500 text-center">
-                  of people can't identify biased news framing
-                </span>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="w-full flex items-center gap-4 justify-between bg-secondary-900 px-5 py-2 rounded-full text-gray-50">
-              <div className="text-heading-3-medium md:text-heading-1-medium">
-                <CountUp end={5} suffix="B+" />
-              </div>
-              <div>
-                <span className="text-paragraph-md-regular">
-                  People exposed to manipulated narratives daily
-                </span>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.4}>
-            <div className="flex items-center gap-4 justify-end">
-              <div className="bg-surface-secondary border border-secondary-100 text-secondary-500 text-paragraph-md-medium py-2.5 px-4 rounded-full w-full max-w-[260px]">
-                <CountUp end={2} suffix="+ Languages supported and growing" />
-              </div>
-              <div className="relative w-[80px] sm:w-[100px] h-[60px] sm:h-[76px] bg-secondary-500 rounded-full flex justify-center items-center">
-                <Image
-                  src="/assets/icons/team-website-icon.svg"
-                  alt="World Map"
-                  width={48}
-                  height={48}
-                  className="object-contain rounded-lg w-10 h-10 sm:w-12 sm:h-12"
-                  priority
-                />
-              </div>
-            </div>
-          </Reveal>
+
+          {/* stats — alternate slide-in from the sides */}
+          <div className="grid sm:grid-cols-1 gap-5">
+            {STATS.map((s, i) => (
+              <motion.div
+                key={s.label}
+                className="group relative rounded-2xl border border-line bg-surface-secondary p-6 sm:p-7 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-30px_rgba(22,39,63,0.4)]"
+                initial={{ opacity: 0, x: i % 2 === 0 ? -36 : 36 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.6, ease: easeOutExpo, delay: i * 0.12 }}
+              >
+                <div className="flex items-baseline gap-4">
+                  <span className="font-serif text-5xl sm:text-6xl leading-none tracking-tight" style={{ color: s.accent }}>
+                    <CountUp end={s.end} suffix={s.suffix} />
+                  </span>
+                  <span className="font-hanken text-secondary-900 font-medium text-base sm:text-lg leading-snug">{s.label}</span>
+                </div>
+                <p className="font-hanken text-[14px] text-secondary-500 leading-relaxed mt-3">{s.note}</p>
+                <span className="absolute left-0 top-6 bottom-6 w-[3px] rounded-full" style={{ background: s.accent }} />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
+
 export default InformationCrisisSection;

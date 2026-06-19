@@ -1,234 +1,100 @@
 "use client";
 
-import { FC, useEffect, useRef, useState } from "react";
-import { BookOpen, FolderOpen, LinkIcon, CheckCircle } from "lucide-react";
+import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/utils";
+import { BookOpen, FolderOpen, LinkIcon, ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/lib/motionfold";
+
+const founder = {
+  name: "Abdullah Khan Zehady",
+  role: "Founder & CEO",
+  description: "ML infrastructure builder and LLM engineer. Published peer-reviewed research on multilingual NLP for media analysis and released open-source language models used by researchers worldwide.",
+  image: "/assets/images/team/aninda.jpeg",
+  achievements: ["Open-source LLMs for media bias analysis", "ArXiv publication on multilingual NLP", "Hugging Face models with 10K+ downloads"],
+  links: { x: "https://x.com/brishtiteveja", linkedin: "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/" },
+};
+
+const journey = [
+  { icon: BookOpen, title: "Research foundation", desc: "Peer-reviewed multilingual NLP research for media analysis." },
+  { icon: FolderOpen, title: "Open-source impact", desc: "Language models on Hugging Face with 10k+ downloads." },
+  { icon: LinkIcon, title: "Live products", desc: "Perspectivity (US) and Drishtikon (Bangladesh), processing hundreds of sources in real time." },
+];
+
+const milestones = [
+  { period: "Q2 2026", title: "iOS & Android apps for Drishtikon and Perspectivity" },
+  { period: "Q3 2026", title: "Enterprise API for media monitoring and intelligence" },
+  { period: "Q4 2026", title: "Open-source bias detection framework for researchers" },
+];
 
 const TeamSection: FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const team = [
-    {
-      name: "Abdullah Khan Zehady",
-      role: "Founder & CEO",
-      description:
-        "ML infrastructure builder and LLM engineer. Built open-source language models for media analysis, available on Hugging Face with ArXiv publication.",
-      image: "/assets/images/team/aninda.jpeg",
-      achievements: [
-        "Open-source LLMs for media bias analysis",
-        "ArXiv publication on multilingual NLP",
-        "Hugging Face models with 10K+ downloads",
-      ],
-      links: {
-        x: "https://x.com/brishtiteveja",
-        linkedin: "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/",
-        github: "",
-      },
-      gradient: "from-gray-600 to-gray-400",
-    },
-  ];
-
-  const journeyItems = [
-    {
-      icon: <BookOpen className="w-6 h-6 text-secondary-900" />,
-      title: "Research Foundation",
-      desc: "Published peer-reviewed research on multilingual NLP for media analysis, laying the technical groundwork",
-    },
-    {
-      icon: <FolderOpen className="w-6 h-6 text-secondary-900" />,
-      title: "Open Source Impact",
-      desc: "Released open-source language models on Hugging Face with 10k+ downloads from researchers worldwide",
-    },
-    {
-      icon: <LinkIcon className="w-6 h-6 text-secondary-900" />,
-      title: "Live Products",
-      desc: "Launched Perspectivity (US) and Drishtikon (Bangladesh), processing hundreds of news sources in real time",
-    },
-  ];
-  const milestoneItems = [
-    {
-      period: "Q2 2026",
-      title: "Launch iOS & Android apps for Drishtikon and Perspectivity",
-    },
-    {
-      period: "Q3 2026",
-      title: "Launch enterprise API for media monitoring and intelligence",
-    },
-    {
-      period: "Q4 2026",
-      title: "Open-source bias detection framework for researchers worldwide",
-    },
-  ];
-
-  const withStagger = (base: number, i: number) => ({
-    transitionDelay: isVisible ? `${base * i + 100}ms` : "0ms",
-  });
-
   return (
-    <section
-      id="team"
-      className="px-5 sm:px-10 md:px-20 py-16 sm:py-24 md:py-[120px] mb-10 sm:mb-0 bg-surface-secondary"
-      ref={ref}
-    >
-      <div className="max-w-full md:max-w-4xl mx-auto">
-        <div
-          className={`text-center transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          <p className="text-paragraph-md-medium text-secondary-500 mb-2 md:mb-3">
-            Meet the Founder
+    <section id="team" className="bg-navy-deep text-white">
+      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+        <Reveal className="max-w-2xl mb-12 sm:mb-14">
+          <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-[#6EE7B7] mb-4">
+            Meet the founder
           </p>
-          <h2 className="text-heading-3-semibold text-secondary-900">
-            Building the future of
-            <span className="text-primary-600"> media transparency</span>
+          <h2 className="font-serif text-white text-[34px] leading-[1.1] sm:text-[44px] sm:leading-[1.08] tracking-[-0.02em]">
+            Building the future of <span className="italic text-[#6EE7B7]">media transparency.</span>
           </h2>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 max-w-2xl mx-auto mt-14 md:mt-20 mb-20 md:mb-32">
-          {team.map((member, index) => (
-            <div
-              key={index}
-              className={cn(
-                "group relative transition-all duration-1000 h-full opacity-0 translate-y-10",
-                isVisible && "opacity-100 translate-y-0",
-              )}
-              style={withStagger(200, index)}
-            >
-              <div className="relative rounded-2xl shadow hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden bg-man-1 h-full flex flex-col">
-                <div className="h-48 sm:h-56 md:h-[400px] w-full relative bg-cover bg-center">
-                  <div
-                    className={cn(
-                      "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-15 transition-opacity duration-500",
-                      member.gradient,
-                    )}
-                  />
-                </div>
-                <div className="relative p-4 sm:p-6 z-10 flex-1 flex flex-col justify-between">
-                  <div className="absolute inset-0 bg-[#FFFFFF4D] backdrop-blur-[24px] border-t border-[#FFFFFF4D] z-0" />
-                  <div className="relative z-10 flex flex-col h-full">
-                    <h3 className="text-heading-3-semibold text-base-white mb-3 sm:mb-4">
-                      {member.name}
-                    </h3>
-                    <p className="text-paragraph-md-semibold text-base-white mb-1">
-                      {member.role}
-                    </p>
-                    <p className="text-paragraph-md-regular text-base-white">
-                      {member.description}
-                    </p>
-                  </div>
-                  <div className="flex gap-4 sm:gap-5 mt-6 sm:mt-8">
-                    <Link
-                      href={member.links.x}
-                      className="flex items-center space-x-3"
-                    >
-                      <div className="relative w-6 h-6 rounded-lg">
-                        <Image
-                          src="/assets/icons/team-x-icon.svg"
-                          alt="X Logo"
-                          fill
-                          className="object-contain rounded-lg hover:scale-110"
-                          priority
-                        />
-                      </div>
-                    </Link>
-                    <Link
-                      href={member.links.linkedin}
-                      className="flex items-center space-x-3"
-                    >
-                      <div className="relative w-6 h-6 rounded-lg">
-                        <Image
-                          src="/assets/icons/team-linkedin-icon.svg"
-                          alt="Linkedin Logo"
-                          fill
-                          className="object-contain rounded-lg hover:scale-110"
-                          priority
-                        />
-                      </div>
-                    </Link>
-                  </div>
-                </div>
+        <Reveal className="mb-16">
+          <div className="grid md:grid-cols-[280px_1fr] gap-8 items-center rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
+            <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-navy">
+              <Image src={founder.image} alt={founder.name} fill className="object-cover" />
+            </div>
+            <div>
+              <h3 className="font-serif text-white text-2xl sm:text-3xl mb-1">{founder.name}</h3>
+              <p className="font-hanken text-[#6EE7B7] font-semibold text-[15px] mb-4">{founder.role}</p>
+              <p className="font-hanken text-white/65 leading-relaxed mb-5">{founder.description}</p>
+              <ul className="space-y-2 mb-6">
+                {founder.achievements.map((a) => (
+                  <li key={a} className="font-hanken text-[14px] text-white/80 flex items-start gap-2.5">
+                    <span className="mt-[7px] h-1 w-1 rounded-full bg-[#6EE7B7] flex-shrink-0" />
+                    {a}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex gap-4">
+                <Link href={founder.links.x} target="_blank" rel="noopener noreferrer" className="font-hanken text-[13px] font-semibold text-white/80 hover:text-[#6EE7B7] inline-flex items-center gap-1">X / Twitter <ArrowUpRight className="w-3.5 h-3.5" /></Link>
+                <Link href={founder.links.linkedin} target="_blank" rel="noopener noreferrer" className="font-hanken text-[13px] font-semibold text-white/80 hover:text-[#6EE7B7] inline-flex items-center gap-1">LinkedIn <ArrowUpRight className="w-3.5 h-3.5" /></Link>
               </div>
             </div>
+          </div>
+        </Reveal>
+
+        <Reveal className="mb-4"><h3 className="font-serif text-white text-2xl sm:text-3xl mb-2">Our journey so far</h3></Reveal>
+        <div className="grid sm:grid-cols-3 gap-5 mb-16">
+          {journey.map((j, i) => (
+            <Reveal key={j.title} delay={i * 0.08}>
+              <div className="h-full rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+                <div className="w-11 h-11 rounded-xl bg-[#6EE7B7]/10 grid place-items-center mb-4">
+                  <j.icon className="w-5 h-5 text-[#6EE7B7]" />
+                </div>
+                <h4 className="font-serif text-white text-lg mb-1.5">{j.title}</h4>
+                <p className="font-hanken text-[14px] text-white/55 leading-relaxed">{j.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="mb-4"><h3 className="font-serif text-white text-2xl sm:text-3xl">Next milestones</h3></Reveal>
+        <div className="grid md:grid-cols-3 gap-5">
+          {milestones.map((m, i) => (
+            <Reveal key={m.period} delay={i * 0.08}>
+              <div className="relative h-full rounded-2xl border border-white/10 bg-white/[0.04] p-6 pl-7">
+                <span className="absolute left-0 top-6 bottom-6 w-[3px] rounded-full bg-[#6EE7B7]" />
+                <p className="font-hanken text-[12px] font-semibold tracking-[0.14em] uppercase text-[#6EE7B7] mb-2">{m.period}</p>
+                <p className="font-hanken text-white/80 leading-snug">{m.title}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
-      <section className="w-full px-5 flex flex-col items-center">
-        <h2 className="text-heading-3-semibold text-secondary-900 mb-3 text-center">
-          Our Journey So Far
-        </h2>
-        <p className="text-paragraph-lg-regular text-secondary-500 mb-10 md:mb-16 text-center">
-          Our shared values keep us connected and guide us as one team.
-        </p>
-        <div className="w-full max-w-full sm:max-w-[1062px] grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
-          {journeyItems.map((item, i) => (
-            <div
-              key={item.title}
-              className={`flex flex-col items-center text-center transition-all duration-1000 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              style={withStagger(220, i)}
-            >
-              <div className="border border-secondary-200 rounded-lg p-3 bg-transparent mb-6 sm:mb-8">
-                {item.icon}
-              </div>
-              <h3 className="text-heading-5-semibold text-secondary-900 mb-1 sm:mb-2">
-                {item.title}
-              </h3>
-              <p className="text-paragraph-md-regular text-secondary-500">
-                {item.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="w-full pt-10 sm:pt-16 px-5 flex flex-col items-center">
-        <h2 className="text-heading-3-semibold text-secondary-900 mb-10 sm:mb-14 text-center">
-          Next Milestones
-        </h2>
-        <div className="w-full max-w-full md:max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {milestoneItems.map((item, i) => (
-            <div
-              key={item.period}
-              className={`bg-white bg-opacity-90 border border-secondary-200 rounded-2xl p-5 flex flex-col items-center text-center shadow-md hover:shadow-lg transition-all duration-1000 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-10"
-              }`}
-              style={withStagger(220, i)}
-            >
-              <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                <CheckCircle className="w-6 h-6 text-secondary-500" />
-                <h3 className="text-heading-5-semibold text-secondary-900 my-2">
-                  {item.period}
-                </h3>
-              </div>
-              <p className="text-paragraph-md-regular text-secondary-500">
-                {item.title}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
     </section>
   );
 };
+
 export default TeamSection;

@@ -1,180 +1,102 @@
 "use client";
 
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/utils";
+import { Reveal } from "@/lib/motionfold";
 
-const comparisons = [
-  {
-    source: "Outlet A",
-    bias: "Left-Center",
-    biasColor: "#5580BD",
-    headline: "Government Announces Historic Climate Investment Package",
-    framing: "Focuses on environmental benefits and job creation",
-  },
-  {
-    source: "Outlet B",
-    bias: "Center",
-    biasColor: "#E8E8E8",
-    headline: "White House Unveils Multibillion-Dollar Climate Spending Plan",
-    framing: "Balanced coverage of costs and projected outcomes",
-  },
-  {
-    source: "Outlet C",
-    bias: "Right-Center",
-    biasColor: "#B24C55",
-    headline: "Administration Pushes Costly Climate Agenda Amid Budget Concerns",
-    framing: "Emphasizes fiscal impact and taxpayer burden",
-  },
+interface Framing {
+  id: number;
+  outlet: string;
+  bias: string;
+  biasColor: string;
+  headline: string;
+  emphasizes: string;
+  omits: string;
+}
+
+const FRAMINGS: Framing[] = [
+  { id: 0, outlet: "Left-leaning outlet", bias: "Left", biasColor: "#3B82F6", headline: "House Forces Trump to Stand Down on Illegal War", emphasizes: "Constitutional check · presidential overreach", omits: "Iran provocation · bipartisan margin" },
+  { id: 1, outlet: "Center outlet", bias: "Center", biasColor: "#94A3B8", headline: "House Passes War Powers Resolution on Iran", emphasizes: "The vote · both readings of the law", omits: "nothing material — states the facts" },
+  { id: 2, outlet: "Right-leaning outlet", bias: "Right", biasColor: "#DC2626", headline: "Democrats Tie Trump’s Hands as Iran Strikes US", emphasizes: "Iran threat · national security risk", omits: "Bipartisan support · constitutional precedent" },
+];
+
+const SPECTRUM = [
+  { label: "Left", color: "#3B82F6" },
+  { label: "Center", color: "#94A3B8" },
+  { label: "Right", color: "#DC2626" },
 ];
 
 const ComparisonShowcase: FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [activeCard, setActiveCard] = useState(1);
-  const ref = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(1);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 },
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!isVisible) return;
-    const interval = setInterval(() => {
-      setActiveCard((prev) => (prev + 1) % 3);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [isVisible]);
+    if (paused) return;
+    const id = setInterval(() => setActive((a) => (a + 1) % FRAMINGS.length), 3500);
+    return () => clearInterval(id);
+  }, [paused]);
 
   return (
-    <section
-      ref={ref}
-      className="container w-full px-5 sm:px-10 md:px-20 py-12 sm:py-20 mx-auto"
-    >
-      <div
-        className={cn(
-          "text-center mb-10 sm:mb-14 transition-all duration-1000",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
-        )}
-      >
-        <p className="text-paragraph-md-medium text-secondary-500 mb-2 md:mb-3">
-          SAME EVENT, DIFFERENT NARRATIVES
-        </p>
-        <h2 className="text-heading-3-semibold text-secondary-900 mb-3">
-          One Story. Three Framings.
-        </h2>
-        <p className="text-paragraph-lg-regular text-secondary-500 max-w-2xl mx-auto">
-          See how different outlets shape the same event — what they emphasize,
-          what they omit, and why it matters.
-        </p>
-      </div>
+    <section className="bg-navy-deep text-white">
+      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+        <Reveal className="max-w-2xl mb-12 sm:mb-14">
+          <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-[#6EE7B7] mb-4">
+            Event Prism · same event, different narratives
+          </p>
+          <h2 className="font-serif text-white text-[34px] leading-[1.1] sm:text-[44px] sm:leading-[1.08] tracking-[-0.02em] mb-4">
+            One event. <span className="italic text-[#6EE7B7]">Three framings.</span>
+          </h2>
+          <p className="font-hanken text-base sm:text-lg text-white/60 leading-relaxed">
+            The same vote, refracted across the political spectrum. Each outlet
+            chooses what to emphasize — and what to leave out.
+          </p>
+        </Reveal>
 
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
-          {comparisons.map((item, i) => (
-            <div
-              key={item.source}
-              className={cn(
-                "relative rounded-2xl border p-5 sm:p-6 transition-all duration-500 cursor-pointer",
-                activeCard === i
-                  ? "border-secondary-300 bg-white shadow-lg scale-[1.02]"
-                  : "border-gray-200 bg-gray-50 hover:bg-white hover:border-secondary-200",
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8",
-              )}
-              style={{
-                transitionDelay: isVisible ? `${i * 150}ms` : "0ms",
-              }}
-              onMouseEnter={() => setActiveCard(i)}
-            >
-              {/* Bias badge */}
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-paragraph-sm-medium text-secondary-600">
-                  {item.source}
-                </span>
-                <span
-                  className="text-[11px] font-semibold px-2.5 py-1 rounded-full"
-                  style={{
-                    backgroundColor: item.biasColor,
-                    color: item.biasColor === "#E8E8E8" ? "#374151" : "#ffffff",
-                  }}
+        <div className="grid md:grid-cols-3 gap-5" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+          {FRAMINGS.map((f, i) => {
+            const isActive = active === f.id;
+            return (
+              <Reveal key={f.id} delay={i * 0.08}>
+                <button
+                  type="button"
+                  onClick={() => setActive(f.id)}
+                  className="text-left w-full h-full rounded-2xl border bg-white/[0.04] p-6 transition-all duration-500"
+                  style={{ borderColor: isActive ? f.biasColor : "rgba(255,255,255,0.1)", boxShadow: isActive ? `0 24px 50px -30px ${f.biasColor}` : "none", transform: isActive ? "translateY(-4px)" : "none" }}
                 >
-                  {item.bias}
-                </span>
-              </div>
-
-              {/* Headline */}
-              <h3 className="text-paragraph-md-medium text-secondary-900 mb-3 leading-snug">
-                &ldquo;{item.headline}&rdquo;
-              </h3>
-
-              {/* Framing note */}
-              <p className="text-paragraph-sm-regular text-secondary-500 italic">
-                {item.framing}
-              </p>
-
-              {/* Active indicator */}
-              <div
-                className={cn(
-                  "absolute bottom-0 left-4 right-4 h-[3px] rounded-full transition-all duration-500",
-                  activeCard === i ? "opacity-100" : "opacity-0",
-                )}
-                style={{ backgroundColor: item.biasColor }}
-              />
-            </div>
-          ))}
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-hanken text-[12px] text-white/40 uppercase tracking-wide">{f.outlet}</span>
+                    <span className="font-hanken text-[11px] font-semibold px-2.5 py-1 rounded-full" style={{ backgroundColor: `${f.biasColor}26`, color: f.biasColor }}>{f.bias}</span>
+                  </div>
+                  <h3 className="font-serif text-white text-xl sm:text-[22px] leading-snug mb-5 min-h-[64px]">“{f.headline}”</h3>
+                  <div className="space-y-2">
+                    <p className="font-hanken text-[13px] text-white/60 leading-relaxed"><span className="font-semibold text-white">Emphasizes · </span>{f.emphasizes}</p>
+                    <p className="font-hanken text-[13px] text-white/60 leading-relaxed"><span className="font-semibold text-white">Omits · </span>{f.omits}</p>
+                  </div>
+                  <div className="mt-5 h-[3px] rounded-full transition-all duration-500" style={{ backgroundColor: isActive ? f.biasColor : "rgba(255,255,255,0.08)" }} />
+                </button>
+              </Reveal>
+            );
+          })}
         </div>
 
-        {/* Animated bias spectrum bar */}
-        <div className="mt-8 sm:mt-10">
-          <div className="relative h-2 rounded-full bg-gradient-to-r from-[#2D5A9B] via-[#5580BD] via-[#E8E8E8] via-[#B24C55] to-[#8B3340]">
+        <Reveal delay={0.1} className="mt-10 max-w-2xl mx-auto">
+          <div className="relative h-2 rounded-full" style={{ background: "linear-gradient(90deg, #3B82F6 0%, #94A3B8 50%, #DC2626 100%)" }}>
             <motion.div
               className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-lg"
-              initial={false}
-              animate={{
-                left: activeCard === 0 ? "20%" : activeCard === 1 ? "50%" : "80%",
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              style={{
-                backgroundColor: comparisons[activeCard].biasColor,
-              }}
+              animate={{ left: active === 0 ? "8%" : active === 1 ? "50%" : "92%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 28 }}
+              style={{ x: "-50%", backgroundColor: FRAMINGS[active].biasColor }}
             />
           </div>
-
-          {/* Spectrum labels with active highlight */}
-          <div className="flex items-center justify-between mt-3 text-[11px] sm:text-xs text-secondary-500">
-            {[
-              { label: "Left", color: "#2D5A9B", position: 0 },
-              { label: "Left-Center", color: "#5580BD", position: 0 },
-              { label: "Center", color: "#E8E8E8", position: 1 },
-              { label: "Right-Center", color: "#B24C55", position: 2 },
-              { label: "Right", color: "#8B3340", position: 2 },
-            ].map((item) => (
-              <motion.div
-                key={item.label}
-                className="flex items-center gap-1.5"
-                animate={{
-                  opacity: item.position === activeCard ? 1 : 0.6,
-                  scale: item.position === activeCard ? 1.1 : 1,
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                <div
-                  className="w-2.5 h-2.5 rounded-full"
-                  style={{ backgroundColor: item.color }}
-                />
-                <span>{item.label}</span>
-              </motion.div>
+          <div className="flex items-center justify-between mt-3">
+            {SPECTRUM.map((s) => (
+              <div key={s.label} className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: s.color }} />
+                <span className="font-hanken text-[12px] text-white/55">{s.label}</span>
+              </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

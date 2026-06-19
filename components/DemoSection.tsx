@@ -1,94 +1,57 @@
 "use client";
 
-import { FC, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { FC } from "react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/lib/motionfold";
 import VideoPlayer from "./VideoPlayer";
 import { LINKS } from "@/lib/links";
 
 const DemoSection: FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const appear = isVisible
-    ? "opacity-100 translate-y-0"
-    : "opacity-0 translate-y-8";
+  const demos = [
+    { name: "Perspectivity", region: "United States", flag: "🇺🇸", videoSrc: LINKS.perspectivityYouTube, thumb: "https://img.youtube.com/vi/YVqdN4XWbWg/maxresdefault.jpg", href: LINKS.perspectivity },
+    { name: "Drishtikon", region: "Bangladesh", flag: "🇧🇩", videoSrc: LINKS.drishtikonYouTube, thumb: "https://img.youtube.com/vi/X3_Tdz3np24/maxresdefault.jpg", href: LINKS.drishtikon },
+  ];
 
   return (
-    <section
-      id="demo"
-      ref={ref}
-      className="container relative pb-[120px] pt-10 overflow-hidden flex flex-col items-center justify-center mx-auto"
-    >
-      {/* Rotated Badge */}
-      <div
-        className={`relative bg-gray-50 w-max border border-gray-200 shadow-sm p-3 rounded-full flex justify-start gap-3 items-center rotate-[10.35deg] mb-[90px] z-20
-        transition-all duration-1000 ${appear}`}
-        style={{ transitionDelay: "0.1s" }}
-      >
-        <div className="relative w-5 h-5 rounded-lg ms-2">
-          <Image
-            src="/assets/icons/resume-icon.svg"
-            alt="Resume"
-            fill
-            className="object-contain rounded-lg"
-            priority
-          />
-        </div>
-        <p className="text-secondary-900 font-bold text-[20px] leading-[30px]">
-          SEE IT IN ACTION
-        </p>
-        <div
-          className={`absolute left-[45%] -translate-x-1/2 top-0 translate-y-1/2 z-10 pointer-events-none transition-all duration-1000
-          ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-          style={{ transitionDelay: "0.4s" }}
-        >
-          <div className="relative w-[48px] h-[100px]">
-            <Image
-              src="/assets/icons/connecting-line.svg"
-              alt="Connecting line"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-        </div>
-      </div>
+    <section id="demo" className="bg-white">
+      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+        <Reveal className="max-w-2xl mb-12 sm:mb-14">
+          <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600 mb-4">See it in action</p>
+          <h2 className="font-serif text-navy text-[34px] leading-[1.1] sm:text-[44px] sm:leading-[1.08] tracking-[-0.02em] mb-4">
+            Watch Perspectivity <span className="italic text-primary-600">think.</span>
+          </h2>
+          <p className="font-hanken text-base sm:text-lg text-secondary-500 leading-relaxed">
+            Two products, one engine — live across the US and Bangladesh.
+          </p>
+        </Reveal>
 
-      <div
-        className={`w-full grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-[1200px] transition-all duration-1000 ${appear}`}
-        style={{ transitionDelay: "0.7s" }}
-      >
-        <div className="flex flex-col items-center gap-4">
-          <h3 className="text-lg font-semibold text-gray-800 tracking-wide">Perspectivity</h3>
-          <VideoPlayer
-            videoSrc={LINKS.perspectivityYouTube}
-            thumbnailSrc={`https://img.youtube.com/vi/YVqdN4XWbWg/maxresdefault.jpg`}
-            altText="Perspectivity demo"
-          />
-        </div>
-        <div className="flex flex-col items-center gap-4">
-          <h3 className="text-lg font-semibold text-gray-800 tracking-wide">Drishtikon</h3>
-          <VideoPlayer
-            videoSrc={LINKS.drishtikonYouTube}
-            thumbnailSrc={`https://img.youtube.com/vi/X3_Tdz3np24/maxresdefault.jpg`}
-            altText="Drishtikon demo"
-          />
+        <div className="grid md:grid-cols-2 gap-6">
+          {demos.map((d, i) => (
+            <Reveal key={d.name} delay={i * 0.1}>
+              <div className="group rounded-2xl border border-line bg-surface-secondary overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-30px_rgba(22,39,63,0.4)]">
+                <div className="flex items-center justify-between px-5 sm:px-6 pt-5 pb-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-lg leading-none">{d.flag}</span>
+                    <div>
+                      <div className="font-serif text-navy text-lg leading-tight">{d.name}</div>
+                      <div className="font-hanken text-[12px] text-secondary-400">{d.region}</div>
+                    </div>
+                  </div>
+                  <Link href={d.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-hanken text-[13px] font-semibold text-navy hover:text-primary-600 transition-colors">
+                    Open app <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+                <div className="px-3 pb-3">
+                  <VideoPlayer videoSrc={d.videoSrc} thumbnailSrc={d.thumb} altText={`${d.name} demo`} />
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
   );
 };
+
 export default DemoSection;

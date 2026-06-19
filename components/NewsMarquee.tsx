@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { cn } from "@/utils";
+import { LINKS } from "@/lib/links";
 import type {
   MarqueeNewsItem,
   MarqueeNewsData,
@@ -92,17 +93,18 @@ const SourceLogos: FC<{ sources: MarqueeNewsItem["sources"] }> = ({
   );
 };
 
-const NewsCard: FC<{ item: MarqueeNewsItem }> = ({ item }) => {
+const NewsCard: FC<{ item: MarqueeNewsItem; href?: string }> = ({ item, href }) => {
   const [imgError, setImgError] = useState(false);
 
   if (imgError) return null;
 
-  return (
-    <motion.div
-      whileHover={{ scale: 1.05, y: -8 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="relative min-w-[280px] sm:min-w-[300px] md:min-w-[340px] h-[200px] sm:h-[220px] rounded-xl overflow-hidden flex-shrink-0 cursor-pointer shadow-md hover:shadow-2xl group/card"
-    >
+  const cls =
+    "relative min-w-[280px] sm:min-w-[300px] md:min-w-[340px] h-[200px] sm:h-[220px] rounded-xl overflow-hidden flex-shrink-0 cursor-pointer shadow-md hover:shadow-2xl group/card";
+  const hover = { scale: 1.05, y: -8 };
+  const trans = { type: "spring" as const, stiffness: 300, damping: 20 };
+
+  const inner = (
+    <>
       {/* Background image */}
       <Image
         src={item.image}
@@ -158,6 +160,28 @@ const NewsCard: FC<{ item: MarqueeNewsItem }> = ({ item }) => {
           <SourceLogos sources={item.sources} />
         </div>
       </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={hover}
+        transition={trans}
+        className={cls}
+        aria-label={`${item.title} — open in app`}
+      >
+        {inner}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.div whileHover={hover} transition={trans} className={cls}>
+      {inner}
     </motion.div>
   );
 };
@@ -221,7 +245,7 @@ const NewsMarquee: FC<NewsMarqueeProps> = ({ newsData, isVisible }) => {
           <div className="overflow-hidden">
             <div className="flex gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused]">
               {tripledPerspectivity.map((item, idx) => (
-                <NewsCard key={`us-${idx}`} item={item} />
+                <NewsCard key={`us-${idx}`} item={item} href={LINKS.perspectivity} />
               ))}
             </div>
           </div>
@@ -235,7 +259,7 @@ const NewsMarquee: FC<NewsMarqueeProps> = ({ newsData, isVisible }) => {
           <div className="overflow-hidden">
             <div className="flex gap-4 sm:gap-6 animate-marquee-right group-hover:[animation-play-state:paused]">
               {tripledDrishtikon.map((item, idx) => (
-                <NewsCard key={`bd-${idx}`} item={item} />
+                <NewsCard key={`bd-${idx}`} item={item} href={LINKS.drishtikon} />
               ))}
             </div>
           </div>

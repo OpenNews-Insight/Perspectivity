@@ -53,7 +53,7 @@ export default async function Home() {
   const drishtikonSources = extractUniqueSources(newsData.drishtikon);
 
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-clip">
       <Header />
       <HeroSection newsData={newsData} />
       <TrendingTopics

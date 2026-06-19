@@ -9,7 +9,7 @@ interface PageWrapperProps {
 
 export default function PageWrapper({ children, className = "" }: PageWrapperProps) {
   return (
-    <div className={`min-h-screen bg-white overflow-x-hidden ${className}`}>
+    <div className={`min-h-screen bg-white overflow-x-clip ${className}`}>
       <Header />
       {children}
       <Footer />

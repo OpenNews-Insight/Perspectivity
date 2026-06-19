@@ -1,273 +1,81 @@
 "use client";
 
-import { FC, useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { type FC } from "react";
 import { Reveal } from "@/lib/motionfold";
+import NarrativeGraph from "@/components/NarrativeGraph";
+import { EventPrism, StanceDrift, NarrativeMomentum, AffiliationNetwork } from "@/components/SignatureVisuals";
+
+interface Sig { tag: string; accent: string; title: string; body: string; Viz: FC<{ className?: string }>; }
+
+const Featured: Sig = {
+  tag: "Signature · Narrative Graph", accent: "#10B981",
+  title: "Every outlet, mapped on the spectrum of bias.",
+  body: "Where each source sits — and who covers, aligns, or contradicts whom. One event becomes a structure you can read at a glance.",
+  Viz: NarrativeGraph,
+};
+
+const Cards: Sig[] = [
+  { tag: "Signature · Event Prism", accent: "#3B82F6", title: "One event, five framings.", body: "The same fact, refracted across the political spectrum. See what each side emphasizes — and what it omits.", Viz: EventPrism },
+  { tag: "Signature · Stance Drift", accent: "#8B5CF6", title: "When a stance quietly shifts.", body: "Track any actor's position over months. Catch the contradictions, the softening, and the hardening.", Viz: StanceDrift },
+  { tag: "Signature · Narrative Momentum", accent: "#EC4899", title: "Which story is winning.", body: "Rising, fading, or suppressed — plus the coordinated-framing signals the public never sees flagged.", Viz: NarrativeMomentum },
+  { tag: "Signature · Affiliation Network", accent: "#4FD1C5", title: "Hidden ties, evidence-scored.", body: "Who funds, owns, and amplifies whom. Every link confirmed, medium, or alleged — never asserted.", Viz: AffiliationNetwork },
+];
 
 const FeaturesSection: FC = () => {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  // Cards that are related to each other
-  const relatedCards: Record<number, number[]> = {
-    0: [1, 3], // News Aggregation → Summarizer, Bias Analysis
-    1: [0, 2], // Summarizer → News Aggregation, Chat
-    2: [1],    // Chat → Summarizer
-    3: [0, 4], // Bias Analysis → News Aggregation, Multilingual
-    4: [3],    // Multilingual → Bias Analysis
-  };
-
+  const FFeatured = Featured.Viz;
   return (
-    <section
-      id="features"
-      className="container w-full px-5 sm:px-10 md:px-20 pb-10 sm:pb-[120px] mx-auto"
-    >
-      <div className="text-center mb-12 md:mb-16">
-        <Reveal>
-          <div className="mb-10 sm:mb-[56px] max-w-6xl mx-auto">
-            <p className="text-paragraph-md-medium text-secondary-500 mb-2 md:mb-3">
-              POWERED BY AI
-            </p>
-            <h2 className="text-heading-3-semibold text-secondary-900 mb-2 md:mb-3">
-              Multi-Perspective News Meets Conversational AI
-            </h2>
-            <p className="text-paragraph-lg-regular text-secondary-500 w-full text-center">
-              Powerful AI agents working together to reveal who controls the narrative, and what every outlet chooses
-              to hide or highlight.
-            </p>
+    <section id="features" className="bg-surface-secondary">
+      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+        <Reveal className="max-w-2xl mb-12 sm:mb-16">
+          <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600 mb-4">Signature Visualizations</p>
+          <h2 className="font-serif text-navy text-[34px] leading-[1.1] sm:text-5xl sm:leading-[1.08] tracking-[-0.02em] mb-4">
+            See what no headline can show you.
+          </h2>
+          <p className="font-hanken text-base sm:text-lg text-secondary-500 leading-relaxed">
+            Five lenses — each one an insight only Perspectivity surfaces. Not summaries. <span className="italic text-navy">Structure.</span>
+          </p>
+        </Reveal>
+
+        <Reveal className="mb-6">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center rounded-2xl border border-line bg-white p-6 sm:p-8 transition-all duration-300 hover:shadow-[0_24px_60px_-34px_rgba(22,39,63,0.4)]">
+            <div>
+              <span className="font-hanken text-[11px] font-semibold tracking-[0.18em] uppercase mb-3 inline-block" style={{ color: Featured.accent }}>{Featured.tag}</span>
+              <h3 className="font-serif text-navy text-2xl sm:text-3xl tracking-tight mb-3">{Featured.title}</h3>
+              <p className="font-hanken text-secondary-500 text-[15px] sm:text-base leading-relaxed mb-5">{Featured.body}</p>
+              <div className="flex flex-wrap gap-x-5 gap-y-2">
+                {["Bias-spectrum positioning", "Aligned framing", "Contradictions"].map((p) => (
+                  <span key={p} className="font-hanken text-[12px] text-secondary-400 flex items-center gap-1.5">
+                    <span className="h-1 w-1 rounded-full" style={{ background: Featured.accent }} />{p}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-xl border border-line bg-surface-secondary mesh-bg p-4 sm:p-5">
+              <FFeatured />
+            </div>
           </div>
         </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-          {/* 1 - News Aggregation */}
-          <Reveal delay={0} className="col-span-1 sm:col-span-4 md:row-span-2">
-            <motion.div
-              className="bg-secondary-950 border border-secondary-800 rounded-2xl p-6 relative flex flex-col justify-between min-h-[280px] h-full shadow-lg"
-              onHoverStart={() => setHoveredCard(0)}
-              onHoverEnd={() => setHoveredCard(null)}
-              animate={{
-                borderColor: hoveredCard === 0 ? "rgba(22, 122, 80, 0.8)" : "rgba(30, 41, 59, 1)",
-                boxShadow: hoveredCard === 0
-                  ? "0 0 30px rgba(22, 122, 80, 0.3)"
-                  : "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="relative w-[56px] h-[56px] bg-secondary-800 rounded-full flex justify-center items-center">
-                <Image
-                  src="/assets/icons/sparkel-icon.svg"
-                  alt="World Map"
-                  width={28}
-                  height={28}
-                  className="object-contain rounded-lg w-7 h-7"
-                  priority
-                />
-              </div>
-              <div className="relative h-auto sm:h-[350px] rounded-full flex justify-center items-center">
-                <Image
-                  src="/assets/icons/design-image.svg"
-                  alt="Design"
-                  fill
-                  className="object-contain rounded-lg w-full"
-                  priority
-                />
-              </div>
-              <div>
-                <h3 className="text-gray-50 text-heading-5-semibold mt-[14px] mb-2">
-                  News Aggregation AI Agent
-                </h3>
-                <p className="text-gray-300 md:text-paragraph-md-regular">
-                  Pulls stories from TV, print, web, and social into one
-                  unified feed — every angle, one place.
-                </p>
-              </div>
-            </motion.div>
-          </Reveal>
 
-          {/* 2 - Summarizer */}
-          <Reveal delay={0.1} className="col-span-1 sm:col-span-3">
-            <motion.div
-              className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full"
-              onHoverStart={() => setHoveredCard(1)}
-              onHoverEnd={() => setHoveredCard(null)}
-              animate={{
-                borderColor: hoveredCard === 1 || (hoveredCard !== null && relatedCards[hoveredCard]?.includes(1))
-                  ? "rgba(22, 122, 80, 0.6)"
-                  : "rgba(229, 231, 235, 1)",
-                boxShadow: hoveredCard === 1
-                  ? "0 0 25px rgba(22, 122, 80, 0.25)"
-                  : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-              }}
-              transition={{ duration: 0.3 }}
-              style={{ border: "1px solid transparent" }}
-            >
-              <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
-                <Image
-                  src="/assets/icons/summeriser.svg"
-                  alt="Summarizer Icon"
-                  width={32}
-                  height={32}
-                  className="object-contain rounded-lg w-8 h-8"
-                  priority
-                />
-              </div>
-              <div className="absolute top-1/2 -right-4 -translate-y-1/2 z-0">
-                <Image
-                  src="/assets/images/image-8.png"
-                  alt="Summarizer Visual"
-                  width={165}
-                  height={96}
-                  className="object-contain rounded-lg w-[100px] sm:w-[165px] h-[56px] sm:h-[96px]"
-                  priority
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-secondary-900 text-heading-5-semibold mb-2">
-                  Summarizer
-                </h3>
-                <p className="text-secondary-500 text-paragraph-md-regular">
-                  Every article, stripped to what actually matters.
-                </p>
-              </div>
-            </motion.div>
-          </Reveal>
-
-          {/* 3 - Interactive Chat */}
-          <Reveal delay={0.2} className="col-span-1 sm:col-span-5">
-            <motion.div
-              className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full"
-              onHoverStart={() => setHoveredCard(2)}
-              onHoverEnd={() => setHoveredCard(null)}
-              animate={{
-                borderColor: hoveredCard === 2 || (hoveredCard !== null && relatedCards[hoveredCard]?.includes(2))
-                  ? "rgba(22, 122, 80, 0.6)"
-                  : "rgba(229, 231, 235, 1)",
-                boxShadow: hoveredCard === 2
-                  ? "0 0 25px rgba(22, 122, 80, 0.25)"
-                  : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-              }}
-              transition={{ duration: 0.3 }}
-              style={{ border: "1px solid transparent" }}
-            >
-              <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
-                <Image
-                  src="/assets/icons/chat.svg"
-                  alt="Chat Icon"
-                  width={32}
-                  height={32}
-                  className="object-contain rounded-lg w-8 h-8"
-                  priority
-                />
-              </div>
-              <div className="absolute top-0 right-0 z-0">
-                <Image
-                  src="/assets/images/image-9.png"
-                  alt="Chat Visual"
-                  width={250}
-                  height={240}
-                  className="object-contain rounded-lg w-[150px] sm:w-[250px] h-[150px] sm:h-[240px]"
-                  priority
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-secondary-900 text-heading-5-semibold mb-2">
-                  Interactive Chat
-                </h3>
-                <p className="text-secondary-500 text-paragraph-md-regular">
-                  Ask questions, get sourced answers — not opinions.
-                </p>
-              </div>
-            </motion.div>
-          </Reveal>
-
-          {/* 4 - Multi-Axis Bias Analysis */}
-          <Reveal delay={0.3} className="col-span-1 sm:col-span-5">
-            <motion.div
-              className="relative rounded-2xl p-6 bg-gray-50 flex flex-col justify-between h-full"
-              onHoverStart={() => setHoveredCard(3)}
-              onHoverEnd={() => setHoveredCard(null)}
-              animate={{
-                borderColor: hoveredCard === 3 || (hoveredCard !== null && relatedCards[hoveredCard]?.includes(3))
-                  ? "rgba(22, 122, 80, 0.6)"
-                  : "rgba(243, 244, 246, 1)",
-                boxShadow: hoveredCard === 3
-                  ? "0 0 25px rgba(22, 122, 80, 0.25)"
-                  : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-              }}
-              transition={{ duration: 0.3 }}
-              style={{ border: "1px solid transparent" }}
-            >
-              <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
-                <Image
-                  src="/assets/icons/bias.svg"
-                  alt="Bias Icon"
-                  width={32}
-                  height={32}
-                  className="object-contain rounded-lg w-8 h-8"
-                  priority
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-secondary-900 text-heading-5-semibold mb-2">
-                  Multi-Axis Bias Analysis
-                </h3>
-                <p className="text-secondary-600 text-paragraph-md-regular">
-                  Exposes framing, political affiliation, and narrative
-                  gaps across outlets.
-                </p>
-              </div>
-            </motion.div>
-          </Reveal>
-
-          {/* 5 - Multilingual Support */}
-          <Reveal delay={0.4} className="col-span-1 sm:col-span-3">
-            <motion.div
-              className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full"
-              onHoverStart={() => setHoveredCard(4)}
-              onHoverEnd={() => setHoveredCard(null)}
-              animate={{
-                borderColor: hoveredCard === 4 || (hoveredCard !== null && relatedCards[hoveredCard]?.includes(4))
-                  ? "rgba(22, 122, 80, 0.6)"
-                  : "rgba(229, 231, 235, 1)",
-                boxShadow: hoveredCard === 4
-                  ? "0 0 25px rgba(22, 122, 80, 0.25)"
-                  : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
-              }}
-              transition={{ duration: 0.3 }}
-              style={{ border: "1px solid transparent" }}
-            >
-              <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
-                <Image
-                  src="/assets/icons/web.svg"
-                  alt="Global Icon"
-                  width={32}
-                  height={32}
-                  className="object-contain rounded-lg w-8 h-8"
-                  priority
-                />
-              </div>
-              <div className="absolute top-0 right-0 z-0">
-                <Image
-                  src="/assets/images/global.png"
-                  alt="Global Visual"
-                  width={200}
-                  height={200}
-                  className="object-contain rounded-lg w-[100px] sm:w-[200px] h-[100px] sm:h-[200px]"
-                  priority
-                />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-secondary-900 text-heading-5-semibold mb-2">
-                  Multilingual Support
-                </h3>
-                <p className="text-secondary-500 text-paragraph-md-regular">
-                  Analyze news in 2+ languages.
-                </p>
-              </div>
-            </motion.div>
-          </Reveal>
+        <div className="grid md:grid-cols-2 gap-6">
+          {Cards.map((c, i) => {
+            const V = c.Viz;
+            return (
+              <Reveal key={c.tag} delay={i * 0.06}>
+                <div className="group h-full rounded-2xl border border-line bg-white p-5 sm:p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_50px_-30px_rgba(22,39,63,0.4)]">
+                  <div className="rounded-xl border border-line bg-surface-secondary px-3 py-4 mb-5 h-[220px] flex items-center overflow-x-auto overflow-y-hidden">
+                    <V className="h-auto max-h-[200px] min-w-[440px] w-full flex-1" />
+                  </div>
+                  <span className="font-hanken text-[11px] font-semibold tracking-[0.16em] uppercase mb-2 inline-block" style={{ color: c.accent }}>{c.tag}</span>
+                  <h3 className="font-serif text-navy text-xl sm:text-2xl tracking-tight mb-2">{c.title}</h3>
+                  <p className="font-hanken text-secondary-500 text-[14.5px] leading-relaxed">{c.body}</p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
+
 export default FeaturesSection;
