@@ -1,10 +1,22 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Reveal } from "@/lib/motionfold";
 
 const FeaturesSection: FC = () => {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  // Cards that are related to each other
+  const relatedCards: Record<number, number[]> = {
+    0: [1, 3], // News Aggregation → Summarizer, Bias Analysis
+    1: [0, 2], // Summarizer → News Aggregation, Chat
+    2: [1],    // Chat → Summarizer
+    3: [0, 4], // Bias Analysis → News Aggregation, Multilingual
+    4: [3],    // Multilingual → Bias Analysis
+  };
+
   return (
     <section
       id="features"
@@ -28,7 +40,18 @@ const FeaturesSection: FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
           {/* 1 - News Aggregation */}
           <Reveal delay={0} className="col-span-1 sm:col-span-4 md:row-span-2">
-            <div className="bg-secondary-950 border border-secondary-800 rounded-2xl p-6 relative flex flex-col justify-between min-h-[280px] h-full shadow-lg">
+            <motion.div
+              className="bg-secondary-950 border border-secondary-800 rounded-2xl p-6 relative flex flex-col justify-between min-h-[280px] h-full shadow-lg"
+              onHoverStart={() => setHoveredCard(0)}
+              onHoverEnd={() => setHoveredCard(null)}
+              animate={{
+                borderColor: hoveredCard === 0 ? "rgba(22, 122, 80, 0.8)" : "rgba(30, 41, 59, 1)",
+                boxShadow: hoveredCard === 0
+                  ? "0 0 30px rgba(22, 122, 80, 0.3)"
+                  : "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+              }}
+              transition={{ duration: 0.3 }}
+            >
               <div className="relative w-[56px] h-[56px] bg-secondary-800 rounded-full flex justify-center items-center">
                 <Image
                   src="/assets/icons/sparkel-icon.svg"
@@ -57,11 +80,26 @@ const FeaturesSection: FC = () => {
                   unified feed — every angle, one place.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </Reveal>
+
           {/* 2 - Summarizer */}
           <Reveal delay={0.1} className="col-span-1 sm:col-span-3">
-            <div className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full">
+            <motion.div
+              className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full"
+              onHoverStart={() => setHoveredCard(1)}
+              onHoverEnd={() => setHoveredCard(null)}
+              animate={{
+                borderColor: hoveredCard === 1 || (hoveredCard !== null && relatedCards[hoveredCard]?.includes(1))
+                  ? "rgba(22, 122, 80, 0.6)"
+                  : "rgba(229, 231, 235, 1)",
+                boxShadow: hoveredCard === 1
+                  ? "0 0 25px rgba(22, 122, 80, 0.25)"
+                  : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
+              }}
+              transition={{ duration: 0.3 }}
+              style={{ border: "1px solid transparent" }}
+            >
               <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
                 <Image
                   src="/assets/icons/summeriser.svg"
@@ -90,11 +128,26 @@ const FeaturesSection: FC = () => {
                   Every article, stripped to what actually matters.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </Reveal>
+
           {/* 3 - Interactive Chat */}
           <Reveal delay={0.2} className="col-span-1 sm:col-span-5">
-            <div className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full">
+            <motion.div
+              className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full"
+              onHoverStart={() => setHoveredCard(2)}
+              onHoverEnd={() => setHoveredCard(null)}
+              animate={{
+                borderColor: hoveredCard === 2 || (hoveredCard !== null && relatedCards[hoveredCard]?.includes(2))
+                  ? "rgba(22, 122, 80, 0.6)"
+                  : "rgba(229, 231, 235, 1)",
+                boxShadow: hoveredCard === 2
+                  ? "0 0 25px rgba(22, 122, 80, 0.25)"
+                  : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
+              }}
+              transition={{ duration: 0.3 }}
+              style={{ border: "1px solid transparent" }}
+            >
               <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
                 <Image
                   src="/assets/icons/chat.svg"
@@ -123,11 +176,26 @@ const FeaturesSection: FC = () => {
                   Ask questions, get sourced answers — not opinions.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </Reveal>
+
           {/* 4 - Multi-Axis Bias Analysis */}
           <Reveal delay={0.3} className="col-span-1 sm:col-span-5">
-            <div className="relative rounded-2xl p-6 bg-gray-50 flex flex-col justify-between h-full">
+            <motion.div
+              className="relative rounded-2xl p-6 bg-gray-50 flex flex-col justify-between h-full"
+              onHoverStart={() => setHoveredCard(3)}
+              onHoverEnd={() => setHoveredCard(null)}
+              animate={{
+                borderColor: hoveredCard === 3 || (hoveredCard !== null && relatedCards[hoveredCard]?.includes(3))
+                  ? "rgba(22, 122, 80, 0.6)"
+                  : "rgba(243, 244, 246, 1)",
+                boxShadow: hoveredCard === 3
+                  ? "0 0 25px rgba(22, 122, 80, 0.25)"
+                  : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
+              }}
+              transition={{ duration: 0.3 }}
+              style={{ border: "1px solid transparent" }}
+            >
               <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
                 <Image
                   src="/assets/icons/bias.svg"
@@ -147,11 +215,26 @@ const FeaturesSection: FC = () => {
                   gaps across outlets.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </Reveal>
-          {/* 5 - Local Language Support */}
+
+          {/* 5 - Multilingual Support */}
           <Reveal delay={0.4} className="col-span-1 sm:col-span-3">
-            <div className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full">
+            <motion.div
+              className="relative rounded-2xl p-6 bg-surface-secondary flex flex-col justify-between h-full"
+              onHoverStart={() => setHoveredCard(4)}
+              onHoverEnd={() => setHoveredCard(null)}
+              animate={{
+                borderColor: hoveredCard === 4 || (hoveredCard !== null && relatedCards[hoveredCard]?.includes(4))
+                  ? "rgba(22, 122, 80, 0.6)"
+                  : "rgba(229, 231, 235, 1)",
+                boxShadow: hoveredCard === 4
+                  ? "0 0 25px rgba(22, 122, 80, 0.25)"
+                  : "0 1px 3px 0 rgba(0, 0, 0, 0.1)",
+              }}
+              transition={{ duration: 0.3 }}
+              style={{ border: "1px solid transparent" }}
+            >
               <div className="relative w-[56px] h-[56px] bg-surface-primary rounded-full flex justify-center items-center z-10">
                 <Image
                   src="/assets/icons/web.svg"
@@ -180,7 +263,7 @@ const FeaturesSection: FC = () => {
                   Analyze news in 2+ languages.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </Reveal>
         </div>
       </div>
