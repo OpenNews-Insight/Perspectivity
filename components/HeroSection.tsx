@@ -38,6 +38,17 @@ const HeroSection: FC<HeroSectionProps> = ({
         }}
       />
 
+      {/* Animated radar sweep */}
+      <div className="radar-sweep" />
+
+      {/* Floating network nodes around radar center */}
+      <div className="network-node" style={{ top: '35%', left: '70%', animationDelay: '0s' }} />
+      <div className="network-node" style={{ top: '45%', left: '85%', animationDelay: '1s' }} />
+      <div className="network-node" style={{ top: '55%', left: '72%', animationDelay: '2s' }} />
+      <div className="network-node" style={{ top: '38%', left: '80%', animationDelay: '0.5s' }} />
+      <div className="network-node" style={{ top: '50%', left: '88%', animationDelay: '1.5s' }} />
+      <div className="network-node" style={{ top: '58%', left: '76%', animationDelay: '2.5s' }} />
+
       <div className="relative z-10 container mx-auto w-full flex-1 flex items-center">
         <div className="max-w-[1062px] mx-auto w-full px-5 sm:px-6 pt-32 sm:pt-40 pb-16">
           <div className="max-w-3xl">
