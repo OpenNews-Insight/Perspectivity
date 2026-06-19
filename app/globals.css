@@ -19,6 +19,37 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+/* ── Institutional design system (deck + lens mockups) ── */
+:root {
+  --navy: #16273F;
+  --navy-deep: #0F1C2E;
+  --ink: #1B1E26;
+  --amber: #E0A030;
+  --signal-green: #16A06B;
+  --muted: #616B7A;
+  --faint: #97A0AD;
+  --line: #E4E7EC;
+}
+
+/* Concentric-ring radar field — pitch-deck hero motif */
+.bg-radar-rings {
+  background-image:
+    radial-gradient(circle at 78% 42%, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 78% 42%, transparent 0, transparent 120px, rgba(255, 255, 255, 0.05) 121px, transparent 122px),
+    radial-gradient(circle at 78% 42%, transparent 0, transparent 200px, rgba(255, 255, 255, 0.04) 201px, transparent 202px),
+    radial-gradient(circle at 78% 42%, transparent 0, transparent 290px, rgba(255, 255, 255, 0.03) 291px, transparent 292px);
+}
+
+/* Subtle film-grain overlay for dark institutional sections */
+.bg-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
 .gradient-bg {
   background: linear-gradient(135deg,
     #10b981 0%,

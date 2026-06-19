@@ -11,7 +11,9 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^10.16.16",
+    "lenis": "^1.3.23",
     "lucide-react": "^0.303.0",
+    "motionfold": "file:../../../VidToCode/packages/motionfold",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",

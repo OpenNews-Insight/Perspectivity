@@ -2,9 +2,8 @@
 
 import { useState, useEffect, FC } from "react";
 import Link from "next/link";
-import { ArrowRight, Play } from "lucide-react";
-import { cn } from "@/utils";
-import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { Reveal, TextReveal, ScrollCue } from "@/lib/motionfold";
 import NewsMarquee from "@/components/NewsMarquee";
 import { LINKS } from "@/lib/links";
 import type { MarqueeNewsData } from "@/lib/fetchNews";
@@ -22,210 +21,102 @@ const HeroSection: FC<HeroSectionProps> = ({
     setIsVisible(true);
   }, []);
 
-  const slogans = [
-    // "Every Story Has Two Sides. We Show You All of Them.",
-    "Where Perspectives Collide, Truth Emerges.",
-    "Same Event. Different Outlets. Different Narratives.",
-    "Uncover the Narrative Behind the Headlines.",
-    // "See How Media Shapes What You Believe.",
+  const proofPoints = [
+    "Live on iOS + Android",
+    "29,000+ followers",
+    "Millions of social views",
   ];
 
-  const [currentSlogan, setCurrentSlogan] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlogan((prev) => (prev + 1) % slogans.length);
-    }, 15000);
-    return () => clearInterval(interval);
-  }, [slogans.length]);
-
   return (
-    <section className="relative min-h-screen flex flex-col items-center overflow-hidden bg-surface-secondary">
-      <div className="container mx-auto w-full">
-        <div className="max-w-[1060px] mx-auto px-4 sm:px-5 text-center pt-24 sm:pt-[110px] md:pt-[188px]">
-          <div
-            className={cn(
-              "transition-all duration-1000 opacity-0 translate-y-10",
-              isVisible && "opacity-100 translate-y-0",
-            )}
-          >
-            <div className="w-full flex items-center justify-center">
-              <div className="w-max flex items-center justify-center bg-base-white border border-secondary-200 rounded-full px-3 py-2">
-                <p className="text-paragraph-sm-medium text-secondary-600 transition-all duration-500 animate-fade-in-up text-base sm:text-lg md:text-xl">
-                  {slogans[currentSlogan]}
-                </p>
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-navy bg-radar-rings bg-grain">
+      {/* depth gradient */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(120% 90% at 15% 0%, rgba(30,51,80,0.55) 0%, rgba(22,39,63,0) 55%)",
+        }}
+      />
+
+      <div className="relative z-10 container mx-auto w-full flex-1 flex items-center">
+        <div className="max-w-[1062px] mx-auto w-full px-5 sm:px-6 pt-32 sm:pt-40 pb-16">
+          <div className="max-w-3xl">
+            <Reveal>
+              <p className="font-hanken text-[12px] sm:text-sm font-semibold tracking-[0.22em] uppercase text-[#6BA4D6] mb-6">
+                Narrative Intelligence Platform
+              </p>
+            </Reveal>
+
+            <TextReveal
+              as="h1"
+              splitWords
+              className="font-serif text-white text-[40px] leading-[1.05] sm:text-[60px] sm:leading-[1.04] md:text-[72px] md:leading-[1.02] tracking-[-0.02em] mb-7"
+            >
+              News is only the surface. We map the hidden structure of public narratives.
+            </TextReveal>
+
+            <Reveal delay={0.3}>
+              <p className="font-hanken text-base sm:text-lg md:text-xl text-[#C2CAD1] leading-relaxed max-w-2xl mb-9">
+                Who pushes what, what&rsquo;s disputed, what&rsquo;s amplified or
+                suppressed, and how it all moves over time — across news, social,
+                commentators, politicians, and institutions.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.45}>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-10">
+                <Link
+                  href={LINKS.supportEmail}
+                  className="group inline-flex items-center justify-center gap-2 bg-amber hover:bg-amber-bright text-navy-deep font-hanken font-semibold text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <span>Request a Demo</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+                <Link
+                  href="#platform"
+                  className="inline-flex items-center justify-center gap-2 border border-white/25 hover:border-white/50 text-white font-hanken font-medium text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:bg-white/5"
+                >
+                  <span>Explore the Platform</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
-            </div>
+            </Reveal>
 
-            <h1 className="text-2xl sm:text-4xl md:text-display-semibold text-secondary-900 my-6">
-              Expose <span className="text-primary-600">Media Bias </span>
-              Before It Shapes Your Mind
-            </h1>
-
-            <p className="text-sm sm:text-base md:text-paragraph-lg-regular text-secondary-500 mb-6 max-w-2xl mx-auto">
-              Every news outlet frames reality differently. Perspectivity cuts
-              through media narratives to show you how the same story is told
-              across sources—so you can think for yourself. Our AI-powered
-              platform analyzes bias, ownership, and framing in real time.
-            </p>
-
-            {/* Product cards */}
-            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-5 mb-6">
-              {/* Perspectivity (US) */}
-              <Link
-                href={LINKS.perspectivity}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-lg"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary-900 to-secondary-950 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                  <svg
-                    viewBox="0 0 36 36"
-                    className="w-full h-full"
-                    aria-hidden
+            <Reveal delay={0.6}>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal-green opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-signal-green" />
+                  </span>
+                  <span className="font-hanken text-sm text-white/80 font-medium">
+                    Live
+                  </span>
+                </div>
+                {proofPoints.map((p) => (
+                  <span
+                    key={p}
+                    className="font-hanken text-sm text-white/55"
                   >
-                    <rect fill="#B22234" width="36" height="36" />
-                    <rect fill="#fff" y="2.77" width="36" height="2.77" />
-                    <rect fill="#fff" y="8.31" width="36" height="2.77" />
-                    <rect fill="#fff" y="13.85" width="36" height="2.77" />
-                    <rect fill="#fff" y="19.38" width="36" height="2.77" />
-                    <rect fill="#fff" y="24.92" width="36" height="2.77" />
-                    <rect fill="#fff" y="30.46" width="36" height="2.77" />
-                    <rect fill="#3C3B6E" width="15.12" height="19.38" />
-                  </svg>
-                </div>
-                <div className="relative z-10 px-5 py-4 flex flex-col gap-1">
-                  <div className="flex items-center justify-between">
-                    <span className="text-paragraph-md-medium text-white">
-                      Perspectivity
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
-                      </span>
-                      <span className="text-[11px] text-green-300 font-medium">
-                        LIVE
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg
-                      viewBox="0 0 36 36"
-                      className="w-4 h-4 rounded-[3px] flex-shrink-0"
-                      aria-hidden
-                    >
-                      <rect fill="#B22234" width="36" height="36" />
-                      <rect fill="#fff" y="2.77" width="36" height="2.77" />
-                      <rect fill="#fff" y="8.31" width="36" height="2.77" />
-                      <rect fill="#fff" y="13.85" width="36" height="2.77" />
-                      <rect fill="#fff" y="19.38" width="36" height="2.77" />
-                      <rect fill="#fff" y="24.92" width="36" height="2.77" />
-                      <rect fill="#fff" y="30.46" width="36" height="2.77" />
-                      <rect fill="#3C3B6E" width="15.12" height="19.38" />
-                    </svg>
-                    <span className="text-[12px] text-white/60">
-                      United States
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-center gap-1 text-[12px] text-white/50 group-hover:text-white/80 transition-colors duration-300">
-                    <span>Try it now</span>
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
-                </div>
-              </Link>
-
-              {/* Drishtikon (BD) */}
-              <Link
-                href={LINKS.drishtikon}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative w-full sm:w-[220px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-lg"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#006A4E] to-[#004a36] opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute top-0 right-0 w-20 h-20 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                  <svg
-                    viewBox="0 0 36 36"
-                    className="w-full h-full"
-                    aria-hidden
-                  >
-                    <rect fill="#006A4E" width="36" height="36" />
-                    <circle fill="#F42A41" cx="16" cy="18" r="8" />
-                  </svg>
-                </div>
-                <div className="relative z-10 px-5 py-4 flex flex-col gap-1">
-                  <div className="flex items-center justify-between">
-                    <span className="text-paragraph-md-medium text-white">
-                      Drishtikon
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
-                      </span>
-                      <span className="text-[11px] text-green-300 font-medium">
-                        LIVE
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <svg
-                      viewBox="0 0 36 36"
-                      className="w-4 h-4 rounded-[3px] flex-shrink-0"
-                      aria-hidden
-                    >
-                      <rect fill="#006A4E" width="36" height="36" rx="2" />
-                      <circle fill="#F42A41" cx="16" cy="18" r="8" />
-                    </svg>
-                    <span className="text-[12px] text-white/60">
-                      Bangladesh
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-center gap-1 text-[12px] text-white/50 group-hover:text-white/80 transition-colors duration-300">
-                    <span>Try it now</span>
-                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            {/* Watch video link */}
-            <div className="flex justify-center">
-              <Link
-                href={LINKS.demoVideo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-transparent border border-secondary-300 rounded-full transition-all duration-300 hover:border-secondary-500 flex items-center text-paragraph-md-medium text-secondary-600 px-4 py-2 sm:py-[10px] min-w-[180px] justify-center"
-              >
-                <span>Watch Why We Built This</span>
-
-                <div className="relative w-5 h-5 rounded-lg ms-2">
-                  <Image
-                    src="/assets/icons/resume-icon.svg"
-                    alt="Resume"
-                    fill
-                    className="object-contain rounded-lg"
-                    priority
-                  />
-                </div>
-              </Link>
-            </div>
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
-        <div
-          className="pointer-events-none absolute left-0 right-0 bottom-0 h-40 sm:h-[220px] md:h-[266px] max-h-[266px] z-10"
-          style={{
-            background:
-              "linear-gradient(178.26deg, rgba(250, 250, 250, 0) 1.65%, #FAFAFA 98.71%)",
-          }}
-        />
+      </div>
+
+      {/* Live-ingest strip — evidence the data layer is real (full relocation to Live Proof in Phase 4) */}
+      <div className="relative z-10 border-t border-white/10 bg-navy-deep/40 backdrop-blur-sm py-4">
+        <p className="font-hanken text-[11px] tracking-[0.18em] uppercase text-white/40 text-center mb-3">
+          Now analyzing across sources
+        </p>
         <NewsMarquee newsData={newsData} isVisible={isVisible} />
-        <div className="absolute bottom-5 sm:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
-          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-secondary-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-secondary-400 rounded-full mt-1.5 sm:mt-2 animate-pulse"></div>
-          </div>
-        </div>
+      </div>
+
+      <div className="absolute bottom-24 sm:bottom-28 left-1/2 -translate-x-1/2 z-10">
+        <ScrollCue label="SCROLL" color="rgba(255,255,255,0.5)" />
       </div>
     </section>
   );

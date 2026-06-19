@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import InformationCrisisSection from "@/components/InformationCrisisSection";
-import HowItWorksSection from "@/components/HowItWorksSection";
+import EANATSection from "@/components/EANATSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import ComparisonShowcase from "@/components/ComparisonShowcase";
 import TeamSection from "@/components/TeamSection";
@@ -63,7 +63,7 @@ export default async function Home() {
         drishtikonSources={drishtikonSources}
       />
       <InformationCrisisSection />
-      <HowItWorksSection />
+      <EANATSection />
       <FeaturesSection />
       <ComparisonShowcase />
       <DemoSection />

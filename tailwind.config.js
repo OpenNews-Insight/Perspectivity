@@ -11,6 +11,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Institutional design system (deck + lens mockups) — "narrative intelligence"
+        navy: {
+          DEFAULT: "#16273F",
+          deep: "#0F1C2E",
+          soft: "#1E3350",
+        },
+        ink: "#1B1E26",
+        amber: {
+          DEFAULT: "#E0A030",
+          bright: "#F0B43E",
+        },
+        signal: {
+          green: "#16A06B",
+          "green-deep": "#0E7A50",
+        },
+        muted: {
+          DEFAULT: "#616B7A",
+          faint: "#97A0AD",
+        },
+        line: {
+          DEFAULT: "#E4E7EC",
+          dark: "rgba(255,255,255,0.10)",
+        },
+        sand: "#FAFAFA",
+
         base: {
           white: "#FFFFFF",
           black: "#000000",
@@ -87,6 +112,11 @@ module.exports = {
         instrument: ["Instrument Sans", "Inter", "system-ui", "sans-serif"],
         geist: ["Geist", "Inter", "system-ui", "sans-serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
+      },
+      fontFamily: {
+        serif: ["var(--font-serif)", "Newsreader", "Georgia", "serif"],
+        hanken: ["var(--font-sans)", "Hanken Grotesk", "system-ui", "sans-serif"],
+        bengali: ["var(--font-bengali)", "Noto Serif Bengali", "serif"],
       },
       fontSize: {
         "display-semibold": [
