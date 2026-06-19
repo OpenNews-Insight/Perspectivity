@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookOpen, FolderOpen, LinkIcon, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/lib/motionfold";
+import SectionBackdrop from "@/components/SectionBackdrop";
 
 const founder = {
   name: "Abdullah Khan Zehady",
@@ -29,8 +30,9 @@ const milestones = [
 
 const TeamSection: FC = () => {
   return (
-    <section id="team" className="bg-navy-deep text-white">
-      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+    <section id="team" className="relative overflow-hidden bg-navy-deep text-white">
+      <SectionBackdrop image="/assets/images/eanat/actor.jpg" dark />
+      <div className="relative z-10 container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
         <Reveal className="max-w-2xl mb-12 sm:mb-14">
           <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-[#6EE7B7] mb-4">
             Meet the founder

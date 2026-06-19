@@ -3,6 +3,7 @@
 import { FC, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Reveal } from "@/lib/motionfold";
+import SectionBackdrop from "@/components/SectionBackdrop";
 
 interface Framing {
   id: number;
@@ -37,8 +38,9 @@ const ComparisonShowcase: FC = () => {
   }, [paused]);
 
   return (
-    <section className="bg-navy-deep text-white">
-      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-navy-deep text-white">
+      <SectionBackdrop image="/assets/images/eanat/actor.jpg" dark />
+      <div className="relative z-10 container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
         <Reveal className="max-w-2xl mb-12 sm:mb-14">
           <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-[#6EE7B7] mb-4">
             Event Prism · same event, different narratives

@@ -3,6 +3,7 @@
 import { FC, useState } from "react";
 import { Plus, Minus } from "lucide-react";
 import { Reveal } from "@/lib/motionfold";
+import SectionBackdrop from "@/components/SectionBackdrop";
 
 const FAQ_ITEMS = [
   { q: "What is Perspectivity, and how is it different from other news platforms?", a: "Perspectivity doesn't just show you the news — it shows you how the news is being told. We aggregate coverage from hundreds of sources and reveal the bias, ownership, and framing behind each story. Think of it as X-ray vision for media narratives." },
@@ -16,8 +17,9 @@ const FaqAccordion: FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-surface-secondary">
-      <div className="container mx-auto px-5 sm:px-6 max-w-[820px] py-24 sm:py-32">
+    <section id="faq" className="relative overflow-hidden bg-surface-secondary">
+      <SectionBackdrop image="/assets/images/eanat/narrative.jpg" />
+      <div className="relative z-10 container mx-auto px-5 sm:px-6 max-w-[820px] py-24 sm:py-32">
         <Reveal className="text-center mb-12 sm:mb-14">
           <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600 mb-4">Questions</p>
           <h2 className="font-serif text-navy text-[34px] leading-[1.1] sm:text-[44px] sm:leading-[1.08] tracking-[-0.02em]">Frequently asked.</h2>

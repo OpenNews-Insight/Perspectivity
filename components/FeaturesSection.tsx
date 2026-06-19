@@ -2,6 +2,7 @@
 
 import { type FC } from "react";
 import { Reveal } from "@/lib/motionfold";
+import SectionBackdrop from "@/components/SectionBackdrop";
 import NarrativeGraph from "@/components/NarrativeGraph";
 import { EventPrism, StanceDrift, NarrativeMomentum, AffiliationNetwork } from "@/components/SignatureVisuals";
 
@@ -24,8 +25,9 @@ const Cards: Sig[] = [
 const FeaturesSection: FC = () => {
   const FFeatured = Featured.Viz;
   return (
-    <section id="features" className="bg-surface-secondary">
-      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+    <section id="features" className="relative overflow-hidden bg-surface-secondary">
+      <SectionBackdrop image="/assets/images/eanat/time.jpg" />
+      <div className="relative z-10 container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
         <Reveal className="max-w-2xl mb-12 sm:mb-16">
           <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600 mb-4">Signature Visualizations</p>
           <h2 className="font-serif text-navy text-[34px] leading-[1.1] sm:text-5xl sm:leading-[1.08] tracking-[-0.02em] mb-4">

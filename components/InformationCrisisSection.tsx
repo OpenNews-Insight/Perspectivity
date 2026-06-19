@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { CountUp, easeOutExpo } from "@/lib/motionfold";
+import SectionBackdrop from "@/components/SectionBackdrop";
 
 interface Stat { end: number; suffix?: string; label: string; note: string; accent: string; }
 
@@ -31,8 +32,9 @@ const viewport = { once: true, amount: 0.4 } as const;
 
 const InformationCrisisSection: FC = () => {
   return (
-    <section id="problem" className="bg-white">
-      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+    <section id="problem" className="relative overflow-hidden bg-white">
+      <SectionBackdrop image="/assets/images/eanat/narrative.jpg" />
+      <div className="relative z-10 container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
         <div className="grid lg:grid-cols-[1fr_1.25fr] gap-10 lg:gap-16 items-start">
           {/* framing */}
           <div className="lg:sticky lg:top-28">

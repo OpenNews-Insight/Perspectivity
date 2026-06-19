@@ -4,6 +4,7 @@ import { FC } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/lib/motionfold";
+import SectionBackdrop from "@/components/SectionBackdrop";
 import VideoPlayer from "./VideoPlayer";
 import { LINKS } from "@/lib/links";
 
@@ -14,8 +15,9 @@ const DemoSection: FC = () => {
   ];
 
   return (
-    <section id="demo" className="bg-white">
-      <div className="container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
+    <section id="demo" className="relative overflow-hidden bg-white">
+      <SectionBackdrop image="/assets/images/hero-press-room.jpg" />
+      <div className="relative z-10 container mx-auto px-5 sm:px-6 max-w-[1180px] py-24 sm:py-32">
         <Reveal className="max-w-2xl mb-12 sm:mb-14">
           <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600 mb-4">See it in action</p>
           <h2 className="font-serif text-navy text-[34px] leading-[1.1] sm:text-[44px] sm:leading-[1.08] tracking-[-0.02em] mb-4">

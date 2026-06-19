@@ -4,6 +4,7 @@ import { FC } from "react";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/lib/motionfold";
+import SectionBackdrop from "@/components/SectionBackdrop";
 import { LINKS } from "@/lib/links";
 
 const FEATURES = [
@@ -16,6 +17,7 @@ const FEATURES = [
 const FinalCTASection: FC = () => {
   return (
     <section id="feedback" className="relative bg-navy overflow-hidden">
+      <SectionBackdrop image="/assets/images/eanat/affiliation.jpg" dark />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: "radial-gradient(60% 80% at 50% 0%, rgba(16,185,129,0.12) 0%, rgba(22,39,63,0) 60%)" }}

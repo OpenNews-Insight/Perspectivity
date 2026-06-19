@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, useEffect, useRef, useState, useMemo } from "react";
 import { LINKS } from "@/lib/links";
+import SectionBackdrop from "@/components/SectionBackdrop";
 
 const Footer: FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -58,8 +59,9 @@ const Footer: FC = () => {
   );
 
   return (
-    <footer ref={ref} className="bg-navy-deep text-white">
-      <div className="container mx-auto w-full px-5 sm:px-6 max-w-[1180px] py-16">
+    <footer ref={ref} className="relative overflow-hidden bg-navy-deep text-white">
+      <SectionBackdrop image="/assets/images/hero-press-room.jpg" dark />
+      <div className="relative z-10 container mx-auto w-full px-5 sm:px-6 max-w-[1180px] py-16">
         <div
           className={`grid grid-cols-1 md:grid-cols-3 gap-10 transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
