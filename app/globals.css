@@ -31,6 +31,19 @@ body {
   --line: #E4E7EC;
 }
 
+/* Utility classes for institutional design */
+.bg-navy {
+  background-color: var(--navy);
+}
+
+.font-hanken {
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, 'Times New Roman', serif;
+}
+
 /* Concentric-ring radar field — pitch-deck hero motif */
 .bg-radar-rings {
   background-image:
