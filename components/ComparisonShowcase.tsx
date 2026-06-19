@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/utils";
 
 const comparisons = [
@@ -131,23 +132,48 @@ const ComparisonShowcase: FC = () => {
           ))}
         </div>
 
-        {/* Bias spectrum legend */}
-        <div className="flex items-center justify-center gap-4 sm:gap-6 mt-8 text-[11px] sm:text-xs text-secondary-500">
-          {[
-            { label: "Left", color: "#2D5A9B" },
-            { label: "Left-Center", color: "#5580BD" },
-            { label: "Center", color: "#E8E8E8" },
-            { label: "Right-Center", color: "#B24C55" },
-            { label: "Right", color: "#8B3340" },
-          ].map((item) => (
-            <div key={item.label} className="flex items-center gap-1.5">
-              <div
-                className="w-2.5 h-2.5 rounded-full"
-                style={{ backgroundColor: item.color }}
-              />
-              <span>{item.label}</span>
-            </div>
-          ))}
+        {/* Animated bias spectrum bar */}
+        <div className="mt-8 sm:mt-10">
+          <div className="relative h-2 rounded-full bg-gradient-to-r from-[#2D5A9B] via-[#5580BD] via-[#E8E8E8] via-[#B24C55] to-[#8B3340]">
+            <motion.div
+              className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-lg"
+              initial={false}
+              animate={{
+                left: activeCard === 0 ? "20%" : activeCard === 1 ? "50%" : "80%",
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              style={{
+                backgroundColor: comparisons[activeCard].biasColor,
+              }}
+            />
+          </div>
+
+          {/* Spectrum labels with active highlight */}
+          <div className="flex items-center justify-between mt-3 text-[11px] sm:text-xs text-secondary-500">
+            {[
+              { label: "Left", color: "#2D5A9B", position: 0 },
+              { label: "Left-Center", color: "#5580BD", position: 0 },
+              { label: "Center", color: "#E8E8E8", position: 1 },
+              { label: "Right-Center", color: "#B24C55", position: 2 },
+              { label: "Right", color: "#8B3340", position: 2 },
+            ].map((item) => (
+              <motion.div
+                key={item.label}
+                className="flex items-center gap-1.5"
+                animate={{
+                  opacity: item.position === activeCard ? 1 : 0.6,
+                  scale: item.position === activeCard ? 1.1 : 1,
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                <div
+                  className="w-2.5 h-2.5 rounded-full"
+                  style={{ backgroundColor: item.color }}
+                />
+                <span>{item.label}</span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
