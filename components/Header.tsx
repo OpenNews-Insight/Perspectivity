@@ -40,7 +40,7 @@ const products = [
 const Header: FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("");
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -54,14 +54,14 @@ const Header: FC = () => {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["problem", "features", "demo", "team"];
+    const sectionIds = ["problem", "platform", "features", "demo", "team"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { threshold: 0.3, rootMargin: "-100px 0px -50% 0px" }
+      { threshold: 0, rootMargin: "-30% 0px -65% 0px" }
     );
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
@@ -84,7 +84,7 @@ const Header: FC = () => {
       { name: "Problem", href: "/#problem", sectionId: "problem" },
       { name: "Solution", href: "/#features", sectionId: "features" },
       { name: "Demo", href: "/#demo", sectionId: "demo" },
-      { name: "Research", href: "/research", sectionId: "" },
+      { name: "Research", href: "/research", sectionId: "research" },
       { name: "Team", href: "/#team", sectionId: "team" },
     ],
     []
@@ -105,6 +105,7 @@ const Header: FC = () => {
               <Link
                 key={item.name}
                 href={item.href}
+                onClick={() => setActiveSection(item.sectionId)}
                 className={`font-hanken text-[15px] font-medium transition-colors duration-200 ${
                   activeSection === item.sectionId ? "text-[#6EE7B7]" : "text-white/65 hover:text-white"
                 }`}
