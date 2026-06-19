@@ -622,7 +622,8 @@ function StackContentLayer({ index, total, progress, children }: { index: number
   if (index === 0 && index === total - 1) {
     oIn = [0, 0.04, 1]; oOut = [0, 1, 1];
   } else if (index === 0) {
-    oIn = [0, 0.04, hideAt, hideFull]; oOut = [0, 1, 1, 0];
+    // First act is visible immediately (no empty stage on entry); only fades out near its exit.
+    oIn = [0, hideAt, hideFull]; oOut = [1, 1, 0];
   } else if (index === total - 1) {
     oIn = [showAt, showFull, 1]; oOut = [0, 1, 1];
   } else {
@@ -632,7 +633,7 @@ function StackContentLayer({ index, total, progress, children }: { index: number
 
   let cIn: number[];
   let cOut: number[];
-  if (index === 0) { cIn = [0, 0.04, hideAt, hideFull]; cOut = [20, 0, 0, -20]; }
+  if (index === 0) { cIn = [0, hideAt, hideFull]; cOut = [0, 0, -20]; }
   else if (index === total - 1) { cIn = [showAt, showFull, 1]; cOut = [20, 0, 0]; }
   else { cIn = [showAt, showFull, hideAt, hideFull]; cOut = [20, 0, 0, -20]; }
   const contentY = useTransform(progress, cIn, cOut);

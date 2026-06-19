@@ -24,6 +24,7 @@ interface Node {
   y: number;
   bias: Bias;
   biasLabel: string;
+  domain: string;
 }
 
 const BIAS_COLOR: Record<Bias, string> = {
@@ -32,15 +33,18 @@ const BIAS_COLOR: Record<Bias, string> = {
   right: "#DC2626",
 };
 
+const logoUrl = (domain: string) =>
+  `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
+
 const NODES: Node[] = [
-  { id: "cnn", code: "CNN", x: 78, y: 150, bias: "left", biasLabel: "Left-Center" },
-  { id: "nyt", code: "NYT", x: 118, y: 300, bias: "left", biasLabel: "Left-Center" },
-  { id: "npr", code: "NPR", x: 82, y: 430, bias: "left", biasLabel: "Left" },
-  { id: "bbc", code: "BBC", x: 300, y: 92, bias: "center", biasLabel: "Center" },
-  { id: "ap", code: "AP", x: 300, y: 458, bias: "center", biasLabel: "Center" },
-  { id: "wsj", code: "WSJ", x: 486, y: 150, bias: "right", biasLabel: "Right-Center" },
-  { id: "fox", code: "FOX", x: 524, y: 300, bias: "right", biasLabel: "Right" },
-  { id: "nyp", code: "NYP", x: 480, y: 430, bias: "right", biasLabel: "Right" },
+  { id: "cnn", code: "CNN", x: 78, y: 150, bias: "left", biasLabel: "Left-Center", domain: "cnn.com" },
+  { id: "nyt", code: "NYT", x: 118, y: 300, bias: "left", biasLabel: "Left-Center", domain: "nytimes.com" },
+  { id: "npr", code: "NPR", x: 82, y: 430, bias: "left", biasLabel: "Left", domain: "npr.org" },
+  { id: "bbc", code: "BBC", x: 300, y: 92, bias: "center", biasLabel: "Center", domain: "bbc.com" },
+  { id: "ap", code: "AP", x: 300, y: 458, bias: "center", biasLabel: "Center", domain: "apnews.com" },
+  { id: "wsj", code: "WSJ", x: 486, y: 150, bias: "right", biasLabel: "Right-Center", domain: "wsj.com" },
+  { id: "fox", code: "FOX", x: 524, y: 300, bias: "right", biasLabel: "Right", domain: "foxnews.com" },
+  { id: "nyp", code: "NYP", x: 480, y: 430, bias: "right", biasLabel: "Right", domain: "nypost.com" },
 ];
 
 const CENTER = { x: 300, y: 275 };
@@ -74,7 +78,7 @@ function nodeById(id: string) {
   return NODES.find((n) => n.id === id)!;
 }
 
-const R = 18;
+const R = 22;
 
 interface NarrativeGraphProps {
   className?: string;
@@ -137,6 +141,11 @@ const NarrativeGraph: FC<NarrativeGraphProps> = ({ className, dark = false }) =>
         initial="hidden"
         animate="visible"
       >
+        <defs>
+          <clipPath id="ngLogoClip" clipPathUnits="objectBoundingBox">
+            <circle cx="0.5" cy="0.5" r="0.5" />
+          </clipPath>
+        </defs>
         {/* spectrum axis hint */}
         <line x1="60" y1="515" x2="540" y2="515" stroke={axisLine} strokeWidth="1" />
         <text x="60" y="532" fontSize="9" letterSpacing="2" fill={axisLabel} fontFamily="Inter, sans-serif">LEFT</text>
@@ -222,18 +231,25 @@ const NarrativeGraph: FC<NarrativeGraphProps> = ({ className, dark = false }) =>
                 />
               )}
               <motion.g variants={nodeVar} style={{ transformBox: "fill-box", transformOrigin: "center" }}>
-                <circle r={R} fill={BIAS_COLOR[n.bias]} />
+                <circle r={R} fill="#FFFFFF" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <image
+                  href={logoUrl(n.domain)}
+                  x={-R + 3}
+                  y={-R + 3}
+                  width={(R - 3) * 2}
+                  height={(R - 3) * 2}
+                  clipPath="url(#ngLogoClip)"
+                  preserveAspectRatio="xMidYMid slice"
+                />
                 <circle
                   r={R}
                   fill="none"
-                  stroke={dark ? "rgba(255,255,255,0.85)" : "#FFFFFF"}
-                  strokeWidth={2}
+                  stroke={BIAS_COLOR[n.bias]}
+                  strokeWidth={3}
                   className="ng-twinkle"
                   style={{ animationDelay: `${i * 0.22}s` }}
                 />
-                <text textAnchor="middle" y={4} fontSize="10.5" fontWeight="700" fill="#FFFFFF" fontFamily="Inter, sans-serif">
-                  {n.code}
-                </text>
               </motion.g>
               <text textAnchor="middle" y={R + 16} fontSize="8.5" letterSpacing="1.2" fontWeight="600" fill={biasLabelColor(n.bias)} fontFamily="Inter, sans-serif">
                 {n.biasLabel.toUpperCase()}
