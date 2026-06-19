@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import PerspectivitySplash from "@/components/PerspectivitySplash";
 import InformationCrisisSection from "@/components/InformationCrisisSection";
 import EANATSection from "@/components/EANATSection";
 import FeaturesSection from "@/components/FeaturesSection";
@@ -54,6 +55,7 @@ export default async function Home() {
 
   return (
     <main className="overflow-x-clip">
+      <PerspectivitySplash />
       <Header />
       <HeroSection newsData={newsData} />
       <TrendingTopics
