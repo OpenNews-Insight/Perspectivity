@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Newsreader, Hanken_Grotesk, Noto_Serif_Bengali } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
+import { homepageSchemas } from '@/lib/structured-data'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 
@@ -25,18 +26,21 @@ const notoBengali = Noto_Serif_Bengali({
 })
 
 export const metadata: Metadata = {
-  title: 'Perspectivity - AI-Powered Media Bias & Narrative Analysis',
-  description: 'See how every outlet frames the same story. Perspectivity uses AI to expose media bias, reveal narrative framing, and help you think for yourself.',
+  title: 'Perspectivity | Narrative Intelligence Platform',
+  description: 'Perspectivity maps how every outlet frames the same story — exposing media bias, ownership, and hidden narrative structure across languages. See the structure beneath the news.',
   keywords: [
-    'media bias detection',
-    'AI news analysis',
-    'narrative analysis',
-    'media transparency',
+    'Perspectivity',
+    'narrative intelligence',
+    'media bias',
+    'media bias checker',
     'news framing',
-    'news aggregation',
+    'compare news sources',
+    'narrative analysis',
     'bias analysis',
-    'media literacy',
-    'multi-perspective journalism'
+    'media transparency',
+    'multilingual news analysis',
+    'Ground News alternative',
+    'AllSides alternative',
   ],
   authors: [
     { name: 'Abdullah Khan Zehady', url: 'https://perspectivity.co' },
@@ -44,6 +48,7 @@ export const metadata: Metadata = {
   ],
   creator: 'Perspectivity Team',
   publisher: 'Perspectivity',
+  category: 'technology',
   formatDetection: {
     email: false,
     address: false,
@@ -58,21 +63,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://perspectivity.co',
     siteName: 'Perspectivity',
-    title: 'Perspectivity - AI-Powered Media Bias & Narrative Analysis',
-    description: 'See how every outlet frames the same story. Perspectivity uses AI to expose media bias, reveal narrative framing, and help you think for yourself.',
+    title: 'Perspectivity | Narrative Intelligence Platform',
+    description: 'See how every outlet frames the same story. Perspectivity maps media bias, ownership, and hidden narrative structure across languages.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Perspectivity - See How Media Shapes What You Believe',
+        alt: 'Perspectivity — Narrative Intelligence Platform',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Perspectivity - AI-Powered Media Bias & Narrative Analysis',
-    description: 'See how every outlet frames the same story. Perspectivity uses AI to expose media bias and reveal narrative framing.',
+    title: 'Perspectivity | Narrative Intelligence Platform',
+    description: 'See how every outlet frames the same story. Perspectivity maps media bias, ownership, and hidden narrative structure.',
     images: ['/og-image.png'],
     creator: '@perspectivityai',
   },
@@ -86,9 +91,6 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  verification: {
-    google: 'your-google-verification-code',
   },
 }
 
@@ -118,9 +120,16 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {homepageSchemas().map((schema, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
       </head>
       <body
         className={`${inter.variable} ${newsreader.variable} ${hanken.variable} ${notoBengali.variable} ${inter.className}`}
