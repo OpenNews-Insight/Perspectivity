@@ -72,8 +72,8 @@ export default async function Home() {
       <ComparisonShowcase />
       <DemoSection />
       <TeamSection />
-      <FinalCTASection />
       <FaqAccordion />
+      <FinalCTASection />
       <Footer />
     </main>
   );
