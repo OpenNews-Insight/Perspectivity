@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import DemoSection from "@/components/DemoSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import HeroSection from "@/components/HeroSection";
+import EventPrismSection from "@/components/EventPrismSection";
 import TrendingTopics from "@/components/TrendingTopics";
 import { fetchMarqueeNews } from "@/lib/fetchNews";
 import type { SourceInfo } from "@/lib/fetchNews";
@@ -58,6 +59,7 @@ export default async function Home() {
       <PerspectivitySplash />
       <Header />
       <HeroSection newsData={newsData} />
+      <EventPrismSection />
       <TrendingTopics
         perspectivity={perspectivityTopics}
         drishtikon={drishtikonTopics}
