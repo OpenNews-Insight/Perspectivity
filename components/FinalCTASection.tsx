@@ -53,19 +53,19 @@ const FinalCTASection: FC = () => {
         <Reveal delay={0.18}>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
             <Link
-              href={LINKS.supportEmail}
-              className="group inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 text-navy font-hanken font-semibold text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5"
-            >
-              <span>Request a Demo</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </Link>
-            <Link
               href={LINKS.perspectivity}
               target="_blank"
               rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 text-navy font-hanken font-semibold text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+            >
+              <span>Analyze Today&rsquo;s News &mdash; Free</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
+            <Link
+              href={LINKS.demoRequest}
               className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white/60 text-white font-hanken font-medium text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:bg-white/10"
             >
-              <span>Try the app</span>
+              <span>Request a Demo</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

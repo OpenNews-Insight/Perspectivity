@@ -128,7 +128,7 @@ const Header: FC = () => {
               className="bg-white rounded-full transition-all duration-300 hover:bg-white/90 flex items-center gap-2 font-hanken font-semibold text-navy px-4 py-2.5"
             >
               <Globe className="w-4 h-4" />
-              <span className="text-[14px]">Try Now</span>
+              <span className="text-[14px]">Try Free</span>
               <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
             </button>
 
@@ -149,7 +149,7 @@ const Header: FC = () => {
             )}
           </div>
 
-          {/* mobile: compact socials + Try Now (nav links stay in the hamburger menu) */}
+          {/* mobile: compact socials + Try Free (nav links stay in the hamburger menu) */}
           <div className="flex md:hidden items-center gap-1.5">
             {socialLinks.map((social) => (
               <Link key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.name} className={`group/social w-8 h-8 rounded-lg flex items-center justify-center bg-white/5 ${social.hoverBg} transition-all duration-200 [&_svg]:w-3.5 [&_svg]:h-3.5`}>
@@ -157,7 +157,7 @@ const Header: FC = () => {
               </Link>
             ))}
             <Link href={LINKS.perspectivity} target="_blank" rel="noopener noreferrer" className="bg-white rounded-full font-hanken font-semibold text-navy px-3.5 py-2 text-[13px] inline-flex items-center gap-1">
-              <Globe className="w-3.5 h-3.5" /> Try Now
+              <Globe className="w-3.5 h-3.5" /> Try Free
             </Link>
           </div>
 
@@ -178,7 +178,7 @@ const Header: FC = () => {
                 ))}
               </div>
               <div className="flex flex-col gap-2 pt-2 border-t border-white/10">
-                <p className="font-hanken text-[13px] font-medium text-white/45 px-1">Try Now</p>
+                <p className="font-hanken text-[13px] font-medium text-white/45 px-1">Try Free</p>
                 {products.map((product) => (
                   <Link key={product.name} href={product.href} target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-white/5 transition-colors duration-200">
                     <div className="flex-shrink-0 w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">{product.flag}</div>

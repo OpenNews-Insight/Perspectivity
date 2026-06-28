@@ -40,6 +40,8 @@ export const LINKS = {
 
   // Contact
   supportEmail: "mailto:support@perspectivity.co",
+  demoRequest:
+    "mailto:support@perspectivity.co?subject=Demo%20Request%20%E2%80%94%20Perspectivity&body=Hi%20Perspectivity%20team%2C%0D%0A%0D%0AI%27d%20like%20to%20request%20a%20demo%20of%20the%20narrative%20intelligence%20platform.%0D%0A%0D%0AOrganization%3A%0D%0ARole%3A%0D%0AUse%20case%3A%0D%0A%0D%0AThanks.",
   researchContactEmail: "mailto:brishtiteveja@gmail.com",
 
   // BanglaLLM research
