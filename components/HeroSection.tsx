@@ -56,10 +56,10 @@ const TONE_COLOR: Record<Tone, string> = {
   question: "#B68FE0",
 };
 
-// headline tokens — last four are the emphasized (green italic) phrase
+// headline tokens — D1 verbatim (deck). Emphasized (green italic) phrase = the product concept.
 const HEADLINE_WORDS: { t: string; em?: boolean }[] = [
-  { t: "Cut" }, { t: "through" }, { t: "the" }, { t: "noise" }, { t: "—" }, { t: "to" }, { t: "the" },
-  { t: "structure", em: true }, { t: "beneath", em: true }, { t: "every", em: true }, { t: "narrative.", em: true },
+  { t: "News" }, { t: "is" }, { t: "only" }, { t: "the" }, { t: "surface." },
+  { t: "We" }, { t: "map" }, { t: "the" }, { t: "hidden", em: true }, { t: "structure", em: true }, { t: "of" }, { t: "public" }, { t: "narratives." },
 ];
 
 const HeroSection: FC<HeroSectionProps> = ({
@@ -73,9 +73,10 @@ const HeroSection: FC<HeroSectionProps> = ({
   }, []);
 
   const proofPoints = [
-    "Live on iOS + Android",
-    "50k+ followers",
-    "Millions of social views",
+    "Hundreds of sources",
+    "iOS + Android · live",
+    "Open-source on Hugging Face",
+    "Peer-reviewed research",
   ];
 
   // headline typewriter: words appear one at a time (caret blinks, then vanishes)
@@ -168,7 +169,7 @@ const HeroSection: FC<HeroSectionProps> = ({
               {/* message */}
               <div>
                 <p className="font-hanken text-[12px] sm:text-sm font-semibold tracking-[0.22em] uppercase text-[#E0A030] mb-4">
-                  Trust in media · at its lowest
+                  Narrative Intelligence Platform
                 </p>
                 <h1 className="font-serif text-white text-[30px] leading-[1.12] sm:text-[40px] sm:leading-[1.1] tracking-[-0.02em] mb-5">
                   <motion.span variants={hlContainer} initial="hidden" animate="visible" className="inline">
@@ -198,9 +199,9 @@ const HeroSection: FC<HeroSectionProps> = ({
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{ duration: 0.7, ease: easeOutExpo, delay: reduced ? 0 : 1.5 }}
                 >
-                  Fragmented news, spin, and misinformation flying at you from every
-                  outlet and leaning. Perspectivity maps it, cross-checks it, and hands
-                  you the unbiased truth.
+                  See how every outlet frames the same story — who pushes what,
+                  what's amplified or suppressed, and how narratives move over
+                  time. Across hundreds of sources, in English and Bangla.
                 </motion.p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
                   <Link
