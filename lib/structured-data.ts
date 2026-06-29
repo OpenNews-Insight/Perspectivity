@@ -79,13 +79,8 @@ export function faqSchema() {
   };
 }
 
-export function homepageSchemas() {
-  return [
-    organizationSchema(),
-    websiteSchema(),
-    softwareApplicationSchema(),
-    faqSchema(),
-  ];
+export function siteSchemas() {
+  return [organizationSchema(), websiteSchema(), softwareApplicationSchema()];
 }
 
 export function jsonLd(obj: object) {

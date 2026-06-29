@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Newsreader, Hanken_Grotesk, Noto_Serif_Bengali } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
-import { homepageSchemas } from '@/lib/structured-data'
+import { siteSchemas } from '@/lib/structured-data'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 
@@ -114,7 +114,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {homepageSchemas().map((schema, i) => (
+        {siteSchemas().map((schema, i) => (
           <script
             key={i}
             type="application/ld+json"

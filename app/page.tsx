@@ -17,6 +17,7 @@ import EventPrismSection from "@/components/EventPrismSection";
 import TrendingTopics from "@/components/TrendingTopics";
 import { fetchMarqueeNews } from "@/lib/fetchNews";
 import type { SourceInfo } from "@/lib/fetchNews";
+import { faqSchema } from "@/lib/structured-data";
 
 export const dynamic = "force-dynamic";
 
@@ -59,6 +60,10 @@ export default async function Home() {
 
   return (
     <main className="overflow-x-clip">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema()) }}
+      />
       <PerspectivitySplash />
       <Header />
       <HeroSection newsData={newsData} />
