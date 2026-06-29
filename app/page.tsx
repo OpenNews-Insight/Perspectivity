@@ -3,8 +3,11 @@ import PerspectivitySplash from "@/components/PerspectivitySplash";
 import InformationCrisisSection from "@/components/InformationCrisisSection";
 import EANATSection from "@/components/EANATSection";
 import FeaturesSection from "@/components/FeaturesSection";
+import PositioningQuadrant from "@/components/PositioningQuadrant";
 import ComparisonShowcase from "@/components/ComparisonShowcase";
+import TwoFaces from "@/components/TwoFaces";
 import TeamSection from "@/components/TeamSection";
+import Market from "@/components/Market";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 import DemoSection from "@/components/DemoSection";
@@ -69,8 +72,11 @@ export default async function Home() {
       <InformationCrisisSection />
       <EANATSection />
       <FeaturesSection />
+      <PositioningQuadrant />
       <ComparisonShowcase />
+      <TwoFaces />
       <DemoSection />
+      <Market />
       <TeamSection />
       <FaqAccordion />
       <FinalCTASection />
