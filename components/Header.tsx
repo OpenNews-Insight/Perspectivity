@@ -37,16 +37,47 @@ const products = [
   },
 ];
 
+const SOLUTIONS_MENU: { useCases: { name: string; href: string }[]; industries: { name: string; href: string }[]; roles: { name: string; href: string }[] } = {
+  useCases: [
+    { name: "Election Integrity", href: "/solutions/election-integrity" },
+    { name: "Coordinated Framing", href: "/solutions/coordinated-framing" },
+    { name: "Foreign Influence", href: "/solutions/foreign-influence" },
+    { name: "Crisis Communications", href: "/solutions/crisis-communications" },
+    { name: "Narrative Risk Monitoring", href: "/solutions/narrative-risk" },
+    { name: "Stance & Affiliation Tracking", href: "/solutions/stance-tracking" },
+  ],
+  industries: [
+    { name: "Newsrooms", href: "/solutions" },
+    { name: "Election Monitors", href: "/solutions" },
+    { name: "NGOs & Civil Society", href: "/solutions" },
+    { name: "Academic Research", href: "/solutions" },
+    { name: "Government & Defense", href: "/solutions" },
+    { name: "Multinational Comms", href: "/solutions" },
+  ],
+  roles: [
+    { name: "Editor / Newsroom Lead", href: "/solutions" },
+    { name: "Research Director", href: "/solutions" },
+    { name: "Trust & Safety", href: "/solutions" },
+    { name: "Communications / PR", href: "/solutions" },
+    { name: "Risk / Threat Intel", href: "/solutions" },
+  ],
+};
+
 const Header: FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const solutionsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setIsDropdownOpen(false);
+      }
+      if (solutionsRef.current && !solutionsRef.current.contains(e.target as Node)) {
+        setIsSolutionsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -101,6 +132,30 @@ const Header: FC = () => {
           </Link>
 
           <div className="hidden md:flex items-center space-x-7">
+            <div
+              className="relative"
+              ref={solutionsRef}
+              onMouseEnter={() => setIsSolutionsOpen(true)}
+              onMouseLeave={() => setIsSolutionsOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setIsSolutionsOpen((v) => !v)}
+                className="flex items-center gap-1 font-hanken text-[15px] font-medium text-white/65 hover:text-white transition-colors duration-200"
+              >
+                Solutions
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isSolutionsOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isSolutionsOpen && (
+                <div className="absolute left-0 top-full pt-3 w-[680px] z-50">
+                  <div className="bg-navy-deep/95 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl p-5 grid grid-cols-3 gap-5">
+                    <MegaColumn title="Use Cases" items={SOLUTIONS_MENU.useCases} onClose={() => setIsSolutionsOpen(false)} />
+                    <MegaColumn title="Industries" items={SOLUTIONS_MENU.industries} onClose={() => setIsSolutionsOpen(false)} />
+                    <MegaColumn title="Roles" items={SOLUTIONS_MENU.roles} onClose={() => setIsSolutionsOpen(false)} />
+                  </div>
+                </div>
+              )}
+            </div>
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -169,6 +224,7 @@ const Header: FC = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-3 rounded-2xl bg-navy-deep/95 backdrop-blur-md border border-white/10 shadow-lg">
             <div className="flex flex-col px-4 py-4 space-y-4">
+              <Link href="/solutions" onClick={() => setIsMobileMenuOpen(false)} className="font-hanken text-white/70 hover:text-white text-[15px] font-medium transition-colors duration-200">Solutions</Link>
               {navItems.map((item) => (
                 <Link key={item.name} href={item.href} className="font-hanken text-white/70 hover:text-white text-[15px] font-medium transition-colors duration-200">{item.name}</Link>
               ))}
@@ -196,5 +252,23 @@ const Header: FC = () => {
     </header>
   );
 };
+
+const MegaColumn: FC<{ title: string; items: { name: string; href: string }[]; onClose: () => void }> = ({ title, items, onClose }) => (
+  <div>
+    <p className="font-hanken text-[10px] font-semibold tracking-[0.2em] uppercase text-[#6EE7B7] mb-3 px-2">{title}</p>
+    <div className="space-y-0.5">
+      {items.map((item) => (
+        <Link
+          key={item.name}
+          href={item.href}
+          onClick={onClose}
+          className="block px-2 py-2 rounded-lg font-hanken text-[13.5px] text-white/70 hover:text-white hover:bg-white/5 transition-colors duration-200"
+        >
+          {item.name}
+        </Link>
+      ))}
+    </div>
+  </div>
+);
 
 export default Header;
