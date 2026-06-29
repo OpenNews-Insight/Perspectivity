@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/solutions`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/alternatives`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/learn`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${SITE_URL}/live/media-bias-tracker`, lastModified: now, changeFrequency: 'daily', priority: 0.9 },
   ]
   const content: MetadataRoute.Sitemap = ALL_CONTENT.map((p) => ({
     url: `${SITE_URL}/${p.collection}/${p.slug}`,

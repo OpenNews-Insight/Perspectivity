@@ -65,20 +65,11 @@ export const metadata: Metadata = {
     siteName: 'Perspectivity',
     title: 'Perspectivity | Narrative Intelligence Platform',
     description: 'See how every outlet frames the same story. Perspectivity maps media bias, ownership, and hidden narrative structure across languages.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Perspectivity — Narrative Intelligence Platform',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Perspectivity | Narrative Intelligence Platform',
     description: 'See how every outlet frames the same story. Perspectivity maps media bias, ownership, and hidden narrative structure.',
-    images: ['/og-image.png'],
     creator: '@perspectivityai',
   },
   robots: {
