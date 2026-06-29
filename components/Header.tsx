@@ -113,7 +113,8 @@ const Header: FC = () => {
   const navItems = useMemo(
     () => [
       { name: "Problem", href: "/#problem", sectionId: "problem" },
-      { name: "Solution", href: "/#features", sectionId: "features" },
+      { name: "Approach", href: "/#platform", sectionId: "platform" },
+      { name: "Methodology", href: "/methodology", sectionId: "methodology" },
       { name: "Demo", href: "/#demo", sectionId: "demo" },
       { name: "Research", href: "/research", sectionId: "research" },
       { name: "Team", href: "/#team", sectionId: "team" },
