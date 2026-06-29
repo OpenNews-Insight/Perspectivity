@@ -1,7 +1,8 @@
 "use client";
 
 import { FC, useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import Link from "next/link";
+import { Plus, Minus, ArrowRight } from "lucide-react";
 import { Reveal } from "@/lib/motionfold";
 import SectionBackdrop from "@/components/SectionBackdrop";
 import { FAQS } from "@/lib/faqs";
@@ -40,6 +41,15 @@ const FaqAccordion: FC = () => {
             );
           })}
         </div>
+
+        <Reveal delay={0.1}>
+          <div className="mt-8 text-center">
+            <Link href="/methodology" className="group inline-flex items-center gap-1.5 font-hanken text-[14px] font-semibold text-navy">
+              <span>Read the full methodology &mdash; Bias-Agents, OpenNewsInsight &amp; BanglaLLM</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

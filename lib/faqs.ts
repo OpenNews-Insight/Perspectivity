@@ -7,7 +7,15 @@ export const FAQS: FaqItem[] = [
   },
   {
     q: "How does your bias detection actually work?",
-    a: "We map media ownership, funding sources, and institutional connections — not AI guesswork. Our system tracks who owns each outlet, their editorial history, and coverage patterns, so you know exactly which interests a source represents.",
+    a: "Autonomous AI Bias-Agents — built on our open-source OpenNewsInsight framework — read the actual content of each story and score bias per article, not per outlet. We combine that with ownership, funding, and affiliation mapping, so you see both how a story was framed and which interests the source represents.",
+  },
+  {
+    q: "How is your scoring different from Ground News or AllSides?",
+    a: "Ground News relies on static, manual per-outlet ratings; AllSides uses credit-gated manual checks. Both assign each outlet a fixed leaning. Perspectivity's AI Bias-Agents read each story in real time and score it per article — across multiple axes, not just left versus right, and in Bangla as well as English.",
+  },
+  {
+    q: "Is your methodology open source?",
+    a: "Yes. The OpenNewsInsight framework is open-source, and the underlying language research (BanglaLLM / BongLLaMA) is peer-reviewed, with models and datasets published on Hugging Face. You can inspect how a result was produced — not just trust a black-box score.",
   },
   {
     q: "Why should I trust your summaries over reading the originals?",
@@ -22,3 +30,4 @@ export const FAQS: FaqItem[] = [
     a: "To build the global standard for media transparency. Starting with the US and South Asia, we're expanding to every major news market — because the right to understand media bias shouldn't depend on where you live.",
   },
 ];
+
