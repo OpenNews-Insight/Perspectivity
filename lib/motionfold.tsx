@@ -650,10 +650,15 @@ function StackProgressLine({ progress, total, variant, fillColor, trackColor }: 
     const idx = Math.min(Math.floor(p * total), total - 1);
     return p * total - idx;
   });
+  // All hooks must run unconditionally (rules-of-hooks) — declare every variant's
+  // transforms up front, then branch on `variant` only in the JSX.
+  const scaleX = useTransform(sectionProgress, [0, 1], [0, 1]);
+  const dotLeft = useTransform(sectionProgress, [0, 1], ["0%", "100%"]);
+  const dotOp = useTransform(sectionProgress, [0, 0.3, 0.7, 1], [0, 0.4, 0.6, 0]);
+  const scaleY = useTransform(progress, [0, 1], [0, 1]);
+  const dotTop = useTransform(progress, [0, 1], ["0%", "100%"]);
+
   if (variant === "horizontal") {
-    const scaleX = useTransform(sectionProgress, [0, 1], [0, 1]);
-    const dotLeft = useTransform(sectionProgress, [0, 1], ["0%", "100%"]);
-    const dotOp = useTransform(sectionProgress, [0, 0.3, 0.7, 1], [0, 0.4, 0.6, 0]);
     return (
       <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: "min(60vw,400px)", height: 1, background: trackColor, zIndex: total + 2, overflow: "visible" }}>
         <motion.div style={{ width: "100%", height: "100%", background: fillColor, transformOrigin: "left", scaleX }} />
@@ -663,8 +668,6 @@ function StackProgressLine({ progress, total, variant, fillColor, trackColor }: 
   }
   if (variant === "vertical") {
     // Global (whole-stack) progress, pinned to the right edge so it never crosses the content.
-    const scaleY = useTransform(progress, [0, 1], [0, 1]);
-    const dotTop = useTransform(progress, [0, 1], ["0%", "100%"]);
     return (
       <div className="hidden sm:block" style={{ position: "absolute", right: "clamp(16px,3%,40px)", top: "50%", transform: "translateY(-50%)", width: 2, height: "min(52vh,380px)", background: trackColor, zIndex: total + 2, borderRadius: 2, overflow: "visible" }}>
         <motion.div style={{ width: "100%", height: "100%", background: fillColor, transformOrigin: "top", scaleY, borderRadius: 2 }} />

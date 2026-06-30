@@ -19,7 +19,10 @@ import { fetchMarqueeNews } from "@/lib/fetchNews";
 import type { SourceInfo } from "@/lib/fetchNews";
 import { faqSchema } from "@/lib/structured-data";
 
-export const dynamic = "force-dynamic";
+// ISR: serve cached HTML instantly, regenerate in the background every 5 min.
+// Matches the 5-min news cache in lib/fetchNews. Avoids blocking every request
+// on the two external news APIs (was force-dynamic -> ~9s TTFB).
+export const revalidate = 300;
 
 function extractTopicsFrom(items: Awaited<ReturnType<typeof fetchMarqueeNews>>["perspectivity"]): string[] {
   const freq = new Map<string, number>();
