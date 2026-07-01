@@ -1,11 +1,12 @@
 "use client";
 
 /**
- * PerspectivitySplash — a "designed in a vector tool" intro that plays on every
- * load. A square selection frame with transform handles scales out around the
- * (square) Perspectivity logo, then the wordmark "Perspectivity" writes in
- * letter-by-letter, then the cover lifts to reveal the page. Skip button
- * fast-forwards; reduced-motion users get a brief static brand flash.
+ * PerspectivitySplash — a "designed in a vector tool" intro that plays ONCE per
+ * browser session (sessionStorage gate). A square selection frame with transform
+ * handles scales out around the (square) Perspectivity logo, then the wordmark
+ * "Perspectivity" writes in letter-by-letter, then the cover lifts to reveal the
+ * page. Skip button fast-forwards; reduced-motion users get a brief static brand
+ * flash. Returning visitors in the same session skip it entirely.
  */
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -16,6 +17,7 @@ const COVER = "#0F1C2E";
 const ACCENT = "#6EE7B7";
 const FRAME = "rgba(255,255,255,0.55)";
 const GUIDE = "rgba(255,255,255,0.16)";
+const SESSION_KEY = "perspectivity-splash-played";
 
 // 8 transform handles around a square bounding box (corners + edge midpoints)
 const HANDLES: React.CSSProperties[] = [
@@ -35,19 +37,36 @@ export default function PerspectivitySplash() {
   const reduced = useReducedMotionFlag();
   const [revealed, setRevealed] = useState(false);
   const [unmount, setUnmount] = useState(false);
+  // Play once per session. Gated on mount to avoid an SSR/hydration flash:
+  // server + first client render show nothing; only first-time visitors see it.
+  const [shouldPlay, setShouldPlay] = useState(false);
 
   useEffect(() => {
+    try {
+      setShouldPlay(sessionStorage.getItem(SESSION_KEY) !== "1");
+    } catch {
+      setShouldPlay(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!shouldPlay) return;
     const id = window.setTimeout(() => setRevealed(true), reduced ? 1200 : 3100);
     return () => window.clearTimeout(id);
-  }, [reduced]);
+  }, [reduced, shouldPlay]);
 
   useEffect(() => {
     if (!revealed) return;
+    try {
+      sessionStorage.setItem(SESSION_KEY, "1");
+    } catch {
+      /* ignore */
+    }
     const id = window.setTimeout(() => setUnmount(true), 700);
     return () => window.clearTimeout(id);
   }, [revealed]);
 
-  if (unmount) return null;
+  if (!shouldPlay || unmount) return null;
 
   return (
     <motion.div

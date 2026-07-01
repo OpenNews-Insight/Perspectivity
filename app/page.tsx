@@ -1,23 +1,28 @@
 import Header from "@/components/Header";
 import PerspectivitySplash from "@/components/PerspectivitySplash";
+import HeroSection from "@/components/HeroSection";
+import EventPrismSection from "@/components/EventPrismSection";
+import TrendingTopics from "@/components/TrendingTopics";
 import InformationCrisisSection from "@/components/InformationCrisisSection";
 import EANATSection from "@/components/EANATSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import PositioningQuadrant from "@/components/PositioningQuadrant";
 import ComparisonShowcase from "@/components/ComparisonShowcase";
 import TwoFaces from "@/components/TwoFaces";
-import TeamSection from "@/components/TeamSection";
-import Market from "@/components/Market";
-import FinalCTASection from "@/components/FinalCTASection";
-import Footer from "@/components/Footer";
 import DemoSection from "@/components/DemoSection";
+import Market from "@/components/Market";
+import TeamSection from "@/components/TeamSection";
+import FinalCTASection from "@/components/FinalCTASection";
 import FaqAccordion from "@/components/FaqAccordion";
-import HeroSection from "@/components/HeroSection";
-import EventPrismSection from "@/components/EventPrismSection";
-import TrendingTopics from "@/components/TrendingTopics";
+import Footer from "@/components/Footer";
 import { fetchMarqueeNews } from "@/lib/fetchNews";
 import type { SourceInfo } from "@/lib/fetchNews";
 import { faqSchema } from "@/lib/structured-data";
+
+// NOTE: below-fold sections are imported eagerly (not via next/dynamic). Tested
+// lazy-loading — it does NOT reduce First Load JS in the App Router, because
+// ssr:true (required so content stays in SSR for SEO) still pulls each chunk
+// eagerly for hydration. The 172 kB is framer-motion + shared runtime bound.
 
 // ISR: serve cached HTML instantly, regenerate in the background every 5 min.
 // Matches the 5-min news cache in lib/fetchNews. Avoids blocking every request
