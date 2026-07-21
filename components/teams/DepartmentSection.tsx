@@ -56,14 +56,14 @@ const DepartmentSection: FC<DepartmentSectionProps> = ({ dept, index, isLastDept
             />
             <p
               className={cn(
-                "text-paragraph-sm-medium uppercase tracking-wider bg-gradient-to-r bg-clip-text text-transparent",
+                "font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase bg-gradient-to-r bg-clip-text text-transparent",
                 dept.gradient,
               )}
             >
               {dept.name}
             </p>
           </div>
-          <p className="text-paragraph-lg-regular text-secondary-600 max-w-lg">
+          <p className="font-hanken text-paragraph-lg-regular text-secondary-500 max-w-lg">
             {dept.description}
           </p>
         </div>
@@ -98,7 +98,7 @@ const DepartmentSection: FC<DepartmentSectionProps> = ({ dept, index, isLastDept
         >
           <path
             d="M0,0 C480,60 960,60 1440,0 L1440,60 L0,60 Z"
-            fill={isLastDept ? "#23272E" : isEven ? "#FAFAFA" : "#FFFFFF"}
+            fill={isLastDept ? "#0F1C2E" : isEven ? "#FAFAFA" : "#FFFFFF"}
           />
         </svg>
       </div>

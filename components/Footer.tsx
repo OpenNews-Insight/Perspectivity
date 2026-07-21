@@ -41,7 +41,7 @@ const Footer: FC = () => {
         links: [
           { label: "FAQ", href: "/#faq" },
           { label: "Demo", href: "/#demo" },
-          { label: "Team", href: "/#team" },
+          { label: "Team", href: "/teams" },
           { label: "Research", href: "/research" },
         ],
       },

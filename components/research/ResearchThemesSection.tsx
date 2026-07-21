@@ -30,16 +30,14 @@ const ResearchThemesSection: FC = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
-            <div className="h-1 w-10 rounded-full bg-secondary-300" />
-            <p className="text-paragraph-sm-medium text-secondary-500 uppercase tracking-wider">
+            <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600">
               What We Work On
             </p>
-            <div className="h-1 w-10 rounded-full bg-secondary-300" />
           </div>
 
           <h2
             className={cn(
-              "text-heading-2-semibold text-secondary-900 mb-3 transition-all duration-1000 delay-150",
+              "font-serif text-heading-2-semibold text-navy mb-3 transition-all duration-1000 delay-150",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -48,7 +46,7 @@ const ResearchThemesSection: FC = () => {
 
           <p
             className={cn(
-              "text-paragraph-lg-regular text-secondary-500 max-w-xl mx-auto transition-all duration-1000 delay-300",
+              "font-hanken text-paragraph-lg-regular text-secondary-500 max-w-xl mx-auto transition-all duration-1000 delay-300",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -63,7 +61,7 @@ const ResearchThemesSection: FC = () => {
             <div
               key={theme.id}
               className={cn(
-                "group relative rounded-2xl p-6 bg-surface-secondary border border-secondary-100 hover:border-primary-200 hover:-translate-y-2 transition-all duration-500 hover:shadow-lg",
+                "group relative rounded-2xl p-6 bg-surface-secondary border border-line hover:border-primary-300 hover:-translate-y-2 transition-all duration-500 hover:shadow-lg",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
               style={{
@@ -71,17 +69,17 @@ const ResearchThemesSection: FC = () => {
               }}
             >
               {/* Icon circle */}
-              <div className="w-12 h-12 rounded-xl bg-secondary-950 flex items-center justify-center mb-4 text-white group-hover:text-primary-400 transition-colors duration-300">
+              <div className="w-12 h-12 rounded-xl bg-navy flex items-center justify-center mb-4 text-white group-hover:text-[#6EE7B7] transition-colors duration-300">
                 {iconMap[theme.icon] || <Cpu size={24} />}
               </div>
 
               {/* Accent line on hover */}
               <div className="h-0.5 w-8 bg-primary-500 rounded-full mb-4 group-hover:w-14 transition-all duration-500" />
 
-              <h3 className="text-heading-5-semibold text-secondary-900 mb-2">
+              <h3 className="font-serif text-heading-5-semibold text-navy mb-2">
                 {theme.name}
               </h3>
-              <p className="text-paragraph-md-regular text-secondary-500">
+              <p className="font-hanken text-paragraph-md-regular text-secondary-500">
                 {theme.description}
               </p>
             </div>

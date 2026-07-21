@@ -54,7 +54,7 @@ const Header: FC = () => {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ["problem", "platform", "features", "demo", "team"];
+    const sectionIds = ["problem", "platform", "features", "demo"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -85,7 +85,7 @@ const Header: FC = () => {
       { name: "Solution", href: "/#features", sectionId: "features" },
       { name: "Demo", href: "/#demo", sectionId: "demo" },
       { name: "Research", href: "/research", sectionId: "research" },
-      { name: "Team", href: "/#team", sectionId: "team" },
+      { name: "Team", href: "/teams", sectionId: "teams" },
     ],
     []
   );

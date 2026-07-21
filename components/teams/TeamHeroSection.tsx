@@ -3,6 +3,7 @@
 import { FC, useState, useEffect } from "react";
 import { cn } from "@/utils";
 import { departments } from "@/data/teamData";
+import SectionBackdrop from "@/components/SectionBackdrop";
 
 interface TeamHeroSectionProps {
   totalMembers: number;
@@ -16,7 +17,9 @@ const TeamHeroSection: FC<TeamHeroSectionProps> = ({ totalMembers }) => {
   }, []);
 
   return (
-    <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-secondary-950">
+    <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-navy-deep">
+      <SectionBackdrop image="/assets/images/eanat/actor.jpg" dark />
+
       {/* Mesh dot pattern */}
       <div
         className="absolute inset-0 opacity-30"
@@ -28,43 +31,43 @@ const TeamHeroSection: FC<TeamHeroSectionProps> = ({ totalMembers }) => {
       />
 
       {/* Floating gradient orbs */}
-      <div className="absolute top-20 -left-32 w-96 h-96 bg-gray-400 rounded-full opacity-10 blur-3xl" />
-      <div className="absolute bottom-10 -right-32 w-80 h-80 bg-gray-500 rounded-full opacity-10 blur-3xl" />
+      <div className="absolute top-20 -left-32 w-96 h-96 bg-[#6EE7B7] rounded-full opacity-10 blur-3xl" />
+      <div className="absolute bottom-10 -right-32 w-80 h-80 bg-[#6EE7B7] rounded-full opacity-10 blur-3xl" />
 
       <div className="relative z-10 container mx-auto px-5 sm:px-10 md:px-20 pt-28 sm:pt-36 pb-16 sm:pb-24">
         <div className="max-w-3xl mx-auto text-center">
           {/* Pill badge */}
           <div
             className={cn(
-              "inline-flex items-center gap-2 bg-secondary-900 border border-secondary-700 rounded-full px-4 py-2 mb-6 transition-all duration-1000",
+              "inline-flex items-center gap-2 bg-white/[0.06] border border-white/10 rounded-full px-4 py-2 mb-6 transition-all duration-1000",
               heroVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-6",
             )}
           >
-            <div className="w-2 h-2 rounded-full bg-gray-400 animate-pulse" />
-            <span className="text-paragraph-sm-medium text-secondary-200">
+            <div className="w-2 h-2 rounded-full bg-[#6EE7B7] animate-pulse" />
+            <span className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-[#6EE7B7]">
               {totalMembers} people building the future of news
             </span>
           </div>
 
           <h1
             className={cn(
-              "text-3xl sm:text-4xl md:text-5xl lg:text-display-semibold font-semibold text-white mb-5 transition-all duration-1000 delay-150",
+              "font-serif text-3xl sm:text-4xl md:text-5xl lg:text-display-semibold font-semibold text-white mb-5 transition-all duration-1000 delay-150",
               heroVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8",
             )}
           >
             Meet the{" "}
-            <span className="text-gray-300">Minds</span>{" "}
+            <span className="italic text-[#6EE7B7]">Minds</span>{" "}
             Behind
             <br className="hidden sm:block" /> Perspectivity
           </h1>
 
           <p
             className={cn(
-              "text-paragraph-lg-regular text-secondary-300 max-w-xl mx-auto mb-10 transition-all duration-1000 delay-300",
+              "font-hanken text-paragraph-lg-regular text-white/65 max-w-xl mx-auto mb-10 transition-all duration-1000 delay-300",
               heroVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8",
@@ -87,7 +90,7 @@ const TeamHeroSection: FC<TeamHeroSectionProps> = ({ totalMembers }) => {
             {departments.map((dept) => (
               <span
                 key={dept.name}
-                className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-paragraph-sm-medium text-white/80 border border-white/10 backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-colors duration-300"
+                className="inline-flex items-center gap-2 rounded-full px-4 py-2 font-hanken text-paragraph-sm-medium text-white/80 border border-white/10 backdrop-blur-sm bg-white/[0.06] hover:bg-white/[0.1] transition-colors duration-300"
               >
                 <span
                   className={cn(

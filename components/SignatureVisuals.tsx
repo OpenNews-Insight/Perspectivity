@@ -156,10 +156,10 @@ export const NarrativeMomentum: FC<{ className?: string }> = ({ className }) => 
 export const AffiliationNetwork: FC<{ className?: string }> = ({ className }) => {
   const C = { cx: 240, cy: 130 };
   const nodes = [
-    { id: "a", x: 80, y: 70, label: "Meghna Group", conf: "confirmed", color: "#16273F" },
-    { id: "b", x: 400, y: 64, label: "Padma Holdings", conf: "medium", color: "#3B82F6" },
+    { id: "a", x: 80, y: 70, label: "Apex Media Group", conf: "confirmed", color: "#16273F" },
+    { id: "b", x: 400, y: 64, label: "Crestline Holdings", conf: "medium", color: "#3B82F6" },
     { id: "c", x: 96, y: 196, label: "Party X", conf: "alleged", color: "#8B5CF6" },
-    { id: "d", x: 392, y: 198, label: "BASIS", conf: "confirmed", color: "#10B981" },
+    { id: "d", x: 392, y: 198, label: "Press Assn.", conf: "confirmed", color: "#10B981" },
     { id: "e", x: 240, y: 36, label: "Sister outlet", conf: "medium", color: "#EC4899" },
   ];
   const edgeColor: Record<string, string> = { confirmed: "#10B981", medium: "#E0A030", alleged: "#8B5CF6" };
@@ -182,8 +182,8 @@ export const AffiliationNetwork: FC<{ className?: string }> = ({ className }) =>
       ))}
       {/* central node */}
       <circle cx={C.cx} cy={C.cy} r="30" fill="#16273F" />
-      <text x={C.cx} y={C.cy - 2} textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#FFFFFF" fontFamily="Inter,sans-serif">জনমত TV</text>
-      <text x={C.cx} y={C.cy + 11} textAnchor="middle" fontSize="7" fill="#6EE7B7" fontFamily="Inter,sans-serif">8.4L subs</text>
+      <text x={C.cx} y={C.cy - 2} textAnchor="middle" fontSize="9.5" fontWeight="700" fill="#FFFFFF" fontFamily="Inter,sans-serif">Beacon TV</text>
+      <text x={C.cx} y={C.cy + 11} textAnchor="middle" fontSize="7" fill="#6EE7B7" fontFamily="Inter,sans-serif">8.4M subs</text>
       {/* nodes */}
       {nodes.map((n) => (
         <g key={n.id}>

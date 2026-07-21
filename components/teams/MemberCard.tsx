@@ -95,7 +95,7 @@ const MemberCard: FC<MemberCardProps> = ({ member, dept, index, isVisible }) => 
                   className="object-cover"
                 />
               ) : (
-                <span className="text-xl sm:text-2xl font-bold text-white tracking-wide select-none">
+                <span className="font-hanken text-xl sm:text-2xl font-bold text-white tracking-wide select-none">
                   {member.initials}
                 </span>
               )}
@@ -112,13 +112,13 @@ const MemberCard: FC<MemberCardProps> = ({ member, dept, index, isVisible }) => 
 
         {/* Info section */}
         <div className="px-5 sm:px-6 pt-4 pb-6 sm:pb-7 flex flex-col items-center text-center">
-          <h3 className="text-heading-5-semibold text-secondary-900 mb-1.5 group-hover:text-secondary-900 transition-colors duration-300">
+          <h3 className="font-serif text-heading-5-semibold text-navy mb-1.5 group-hover:text-navy transition-colors duration-300">
             {member.name}
           </h3>
           {/* Role as a pill */}
           <span
             className={cn(
-              "inline-flex items-center rounded-full px-3 py-1 text-paragraph-sm-medium mt-1",
+              "inline-flex items-center rounded-full px-3 py-1 font-hanken font-semibold text-paragraph-sm-medium mt-1",
               "bg-gradient-to-r bg-clip-text text-transparent",
               dept.gradient,
             )}

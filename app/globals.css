@@ -309,12 +309,14 @@ body {
   animation: marquee-right 45s linear infinite;
 }
 
+/* Source-logo strips: a slow, readable drift (track width is capped in
+   TrendingTopics, so this duration maps to a predictable speed). */
 .animate-marquee-left-slow {
-  animation: marquee-left 500s linear infinite;
+  animation: marquee-left 300s linear infinite;
 }
 
 .animate-marquee-right-slow {
-  animation: marquee-right 500s linear infinite;
+  animation: marquee-right 300s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

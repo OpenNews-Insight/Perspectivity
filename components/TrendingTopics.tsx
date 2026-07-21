@@ -9,9 +9,7 @@ import type { SourceInfo } from "@/lib/fetchNews";
 
 interface TrendingTopicsProps {
   perspectivity: string[];
-  drishtikon: string[];
   perspectivitySources: SourceInfo[];
-  drishtikonSources: SourceInfo[];
 }
 
 const USFlag = () => (
@@ -27,12 +25,10 @@ const USFlag = () => (
   </svg>
 );
 
-const BDFlag = () => (
-  <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-sm flex-shrink-0" aria-hidden>
-    <rect fill="#006A4E" width="36" height="36" rx="2" />
-    <circle fill="#F42A41" cx="16" cy="18" r="8" />
-  </svg>
-);
+// The feed can yield hundreds of distinct outlets. The marquee duration is fixed,
+// so an unbounded list makes the track wider and therefore scroll faster (and
+// mounts thousands of nodes). Cap it to keep the drift slow and the DOM small.
+const MAX_MARQUEE_SOURCES = 40;
 
 const SourceMarquee: FC<{ sources: SourceInfo[]; direction?: "left" | "right" }> = ({
   sources,
@@ -40,7 +36,8 @@ const SourceMarquee: FC<{ sources: SourceInfo[]; direction?: "left" | "right" }>
 }) => {
   if (sources.length === 0) return null;
 
-  const tripled = [...sources, ...sources, ...sources];
+  const capped = sources.slice(0, MAX_MARQUEE_SOURCES);
+  const tripled = [...capped, ...capped, ...capped];
 
   return (
     <div className="overflow-hidden">
@@ -146,9 +143,7 @@ const TopicRow: FC<{
 
 const TrendingTopics: FC<TrendingTopicsProps> = ({
   perspectivity,
-  drishtikon,
   perspectivitySources,
-  drishtikonSources,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -164,7 +159,7 @@ const TrendingTopics: FC<TrendingTopicsProps> = ({
     return () => observer.disconnect();
   }, []);
 
-  if (perspectivity.length === 0 && drishtikon.length === 0) return null;
+  if (perspectivity.length === 0) return null;
 
   return (
     <section ref={ref} className="container w-full px-5 sm:px-10 md:px-20 py-8 sm:py-12 mx-auto">
@@ -194,17 +189,6 @@ const TrendingTopics: FC<TrendingTopicsProps> = ({
             isVisible={isVisible}
             marqueeDirection="left"
             accentColor="bg-secondary-900"
-          />
-          <hr className="border-gray-300" />
-          <TopicRow
-            label="Drishtikon — Bangladesh"
-            flag={<BDFlag />}
-            topics={drishtikon}
-            sources={drishtikonSources}
-            isVisible={isVisible}
-            delayOffset={perspectivity.length}
-            marqueeDirection="right"
-            accentColor="bg-[#006A4E]"
           />
         </div>
       </div>

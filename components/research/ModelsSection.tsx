@@ -17,22 +17,18 @@ const ModelsSection: FC = () => {
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12 md:mb-16">
-          <div
+          <p
             className={cn(
-              "flex items-center justify-center gap-3 mb-3 transition-all duration-1000",
+              "font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600 mb-3 transition-all duration-1000",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
-            <div className="h-1 w-10 rounded-full bg-secondary-300" />
-            <p className="text-paragraph-sm-medium text-secondary-500 uppercase tracking-wider">
-              Models & Datasets
-            </p>
-            <div className="h-1 w-10 rounded-full bg-secondary-300" />
-          </div>
+            Models & Datasets
+          </p>
 
           <h2
             className={cn(
-              "text-heading-2-semibold text-secondary-900 mb-3 transition-all duration-1000 delay-150",
+              "font-serif text-heading-2-semibold text-navy mb-3 transition-all duration-1000 delay-150",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -41,7 +37,7 @@ const ModelsSection: FC = () => {
 
           <p
             className={cn(
-              "text-paragraph-lg-regular text-secondary-500 max-w-xl mx-auto transition-all duration-1000 delay-300",
+              "font-hanken text-paragraph-lg-regular text-secondary-500 max-w-xl mx-auto transition-all duration-1000 delay-300",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -53,7 +49,7 @@ const ModelsSection: FC = () => {
         <div className="mb-16">
           <h3
             className={cn(
-              "text-heading-5-semibold text-secondary-900 mb-6 transition-all duration-1000 delay-300",
+              "font-serif text-heading-5-semibold text-navy mb-6 transition-all duration-1000 delay-300",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -68,7 +64,7 @@ const ModelsSection: FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "group rounded-2xl p-6 bg-secondary-950 border border-secondary-800 hover:border-primary-500 hover:-translate-y-2 hover:shadow-xl transition-all duration-500",
+                  "group rounded-2xl p-6 bg-navy-deep border border-white/10 hover:border-[#6EE7B7]/50 hover:-translate-y-2 hover:shadow-xl transition-all duration-500",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
                 style={{
@@ -76,23 +72,23 @@ const ModelsSection: FC = () => {
                 }}
               >
                 {/* Badge pill */}
-                <span className="inline-block rounded-full px-3 py-1 bg-primary-900 text-primary-300 text-paragraph-sm-medium mb-4 border border-primary-700">
+                <span className="inline-block rounded-full px-3 py-1 bg-white/[0.06] text-[#6EE7B7] font-hanken text-paragraph-sm-medium mb-4 border border-white/10">
                   {model.badge}
                 </span>
 
                 {/* Title */}
-                <h4 className="text-heading-5-semibold text-white mb-2">
+                <h4 className="font-serif text-heading-5-semibold text-white mb-2">
                   {model.name}
                 </h4>
 
                 {/* Description */}
-                <p className="text-paragraph-md-regular text-secondary-400 mb-4">
+                <p className="font-hanken text-paragraph-md-regular text-white/65 mb-4">
                   {model.description}
                 </p>
 
                 {/* Link with arrow */}
-                <div className="flex items-center gap-2 text-primary-400 group-hover:gap-3 transition-all duration-300">
-                  <span className="text-paragraph-sm-medium">
+                <div className="flex items-center gap-2 text-[#6EE7B7] group-hover:gap-3 transition-all duration-300">
+                  <span className="font-hanken text-paragraph-sm-medium">
                     View on HuggingFace
                   </span>
                   <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
@@ -106,7 +102,7 @@ const ModelsSection: FC = () => {
         <div>
           <h3
             className={cn(
-              "text-heading-5-semibold text-secondary-900 mb-6 transition-all duration-1000 delay-300",
+              "font-serif text-heading-5-semibold text-navy mb-6 transition-all duration-1000 delay-300",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -121,7 +117,7 @@ const ModelsSection: FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "group rounded-2xl p-5 bg-surface-secondary border border-secondary-100 hover:border-primary-200 hover:-translate-y-1 hover:shadow-md transition-all duration-500",
+                  "group rounded-2xl p-5 bg-surface-secondary border border-line hover:border-primary-300 hover:-translate-y-1 hover:shadow-md transition-all duration-500",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
                 style={{
@@ -131,17 +127,17 @@ const ModelsSection: FC = () => {
                 }}
               >
                 {/* Large size number */}
-                <div className="text-heading-2-semibold text-secondary-900 mb-2">
+                <div className="font-serif text-heading-2-semibold text-navy mb-2">
                   {dataset.size}
                 </div>
 
                 {/* Dataset name in monospace */}
-                <h4 className="text-paragraph-md-semibold text-secondary-700 mb-2 font-mono text-sm">
+                <h4 className="text-paragraph-md-semibold text-navy mb-2 font-mono text-sm">
                   {dataset.name}
                 </h4>
 
                 {/* Description */}
-                <p className="text-paragraph-sm-regular text-secondary-500">
+                <p className="font-hanken text-paragraph-sm-regular text-secondary-500">
                   {dataset.description}
                 </p>
               </a>

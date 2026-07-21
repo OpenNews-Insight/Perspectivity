@@ -31,22 +31,18 @@ const ReposSection: FC = () => {
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12 md:mb-16">
-          <div
+          <p
             className={cn(
-              "flex items-center justify-center gap-3 mb-3 transition-all duration-1000",
+              "font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600 mb-3 transition-all duration-1000",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
-            <div className="h-1 w-10 rounded-full bg-secondary-300" />
-            <p className="text-paragraph-sm-medium text-secondary-500 uppercase tracking-wider">
-              Open Source
-            </p>
-            <div className="h-1 w-10 rounded-full bg-secondary-300" />
-          </div>
+            Open Source
+          </p>
 
           <h2
             className={cn(
-              "text-heading-2-semibold text-secondary-900 mb-3 transition-all duration-1000 delay-150",
+              "font-serif text-heading-2-semibold text-navy mb-3 transition-all duration-1000 delay-150",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -55,7 +51,7 @@ const ReposSection: FC = () => {
 
           <p
             className={cn(
-              "text-paragraph-lg-regular text-secondary-500 max-w-xl mx-auto transition-all duration-1000 delay-300",
+              "font-hanken text-paragraph-lg-regular text-secondary-500 max-w-xl mx-auto transition-all duration-1000 delay-300",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -72,7 +68,7 @@ const ReposSection: FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                "group rounded-2xl p-5 bg-surface-secondary border border-secondary-100 hover:border-secondary-300 hover:-translate-y-2 hover:shadow-lg transition-all duration-500 flex flex-col justify-between",
+                "group rounded-2xl p-5 bg-surface-secondary border border-line hover:border-primary-300 hover:-translate-y-2 hover:shadow-lg transition-all duration-500 flex flex-col justify-between",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
               style={{
@@ -82,17 +78,17 @@ const ReposSection: FC = () => {
               {/* Top: GitHub icon + repo name */}
               <div className="flex items-start gap-3 mb-3">
                 {/* GitHub icon in rounded square */}
-                <div className="w-9 h-9 rounded-lg bg-secondary-950 flex items-center justify-center flex-shrink-0 text-white">
+                <div className="w-9 h-9 rounded-lg bg-navy text-white flex items-center justify-center flex-shrink-0">
                   <GitHubIcon />
                 </div>
 
-                <span className="text-paragraph-sm-semibold text-secondary-700 font-mono text-sm group-hover:text-secondary-900 transition-colors duration-300 break-all">
+                <span className="text-paragraph-sm-semibold text-navy font-mono text-sm group-hover:text-primary-600 transition-colors duration-300 break-all">
                   {repo.name}
                 </span>
               </div>
 
               {/* Description */}
-              <p className="text-paragraph-sm-regular text-secondary-500 mb-4 flex-1">
+              <p className="font-hanken text-paragraph-sm-regular text-secondary-500 mb-4 flex-1">
                 {repo.description}
               </p>
 
@@ -102,7 +98,7 @@ const ReposSection: FC = () => {
                   {repo.topics.map((topic) => (
                     <span
                       key={topic}
-                      className="rounded-full px-2 py-0.5 bg-primary-50 text-primary-700 text-[11px] font-medium border border-primary-100"
+                      className="font-hanken rounded-full px-2 py-0.5 bg-primary-50 text-primary-700 text-[11px] font-medium border border-line"
                     >
                       {topic}
                     </span>
@@ -111,8 +107,8 @@ const ReposSection: FC = () => {
               )}
 
               {/* Arrow link */}
-              <div className="flex items-center gap-1 mt-auto text-secondary-400 group-hover:text-secondary-900 transition-colors duration-300">
-                <span className="text-paragraph-sm-medium">View repo</span>
+              <div className="flex items-center gap-1 mt-auto text-secondary-500 group-hover:text-primary-600 transition-colors duration-300">
+                <span className="font-hanken text-paragraph-sm-medium">View repo</span>
                 <ArrowRight
                   size={12}
                   className="group-hover:translate-x-0.5 transition-transform"
