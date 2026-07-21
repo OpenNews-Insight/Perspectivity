@@ -1,6 +1,5 @@
 import { LINKS } from "@/lib/links";
 
-const DRISHTIKON_API_URL = LINKS.drishtikonAPI;
 const PERSPECTIVITY_API_URL = LINKS.perspectivityAPI;
 const FETCH_TIMEOUT = 8000; // 8 second timeout per request
 
@@ -237,14 +236,12 @@ function getPerspectiveCount(article: APIArticle): number {
 }
 
 // In-memory cache for SSR
-let cachedDrishtikon: MarqueeNewsItem[] = [];
 let cachedPerspectivity: MarqueeNewsItem[] = [];
 let cacheTimestamp = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 export interface MarqueeNewsData {
   perspectivity: MarqueeNewsItem[];
-  drishtikon: MarqueeNewsItem[];
 }
 
 async function fetchWithTimeout(
@@ -316,25 +313,17 @@ async function fetchFromAPI(
 export async function fetchMarqueeNews(count = 20): Promise<MarqueeNewsData> {
   if (
     cachedPerspectivity.length > 0 &&
-    cachedDrishtikon.length > 0 &&
     Date.now() - cacheTimestamp < CACHE_TTL
   ) {
-    return { perspectivity: cachedPerspectivity, drishtikon: cachedDrishtikon };
+    return { perspectivity: cachedPerspectivity };
   }
 
-  const [perspectivityItems, drishtikonItems] = await Promise.all([
-    fetchFromAPI(PERSPECTIVITY_API_URL, count),
-    fetchFromAPI(DRISHTIKON_API_URL, count),
-  ]);
+  const perspectivityItems = await fetchFromAPI(PERSPECTIVITY_API_URL, count);
 
-  if (perspectivityItems.length > 0) cachedPerspectivity = perspectivityItems;
-  if (drishtikonItems.length > 0) cachedDrishtikon = drishtikonItems;
-  if (perspectivityItems.length > 0 || drishtikonItems.length > 0) {
+  if (perspectivityItems.length > 0) {
+    cachedPerspectivity = perspectivityItems;
     cacheTimestamp = Date.now();
   }
 
-  return {
-    perspectivity: cachedPerspectivity,
-    drishtikon: cachedDrishtikon,
-  };
+  return { perspectivity: cachedPerspectivity };
 }

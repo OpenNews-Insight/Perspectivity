@@ -63,7 +63,7 @@ const HEADLINE_WORDS: { t: string; em?: boolean }[] = [
 ];
 
 const HeroSection: FC<HeroSectionProps> = ({
-  newsData = { perspectivity: [], drishtikon: [] },
+  newsData = { perspectivity: [] },
 }) => {
   const reduced = useReducedMotionFlag();
   const [isVisible, setIsVisible] = useState(false);

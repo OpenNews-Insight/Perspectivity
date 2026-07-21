@@ -28,16 +28,14 @@ const PublicationsSection: FC = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             )}
           >
-            <div className="h-1 w-10 rounded-full bg-secondary-300" />
-            <p className="text-paragraph-sm-medium text-secondary-500 uppercase tracking-wider">
+            <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-primary-600">
               Publications
             </p>
-            <div className="h-1 w-10 rounded-full bg-secondary-300" />
           </div>
 
           <h2
             className={cn(
-              "text-heading-2-semibold text-secondary-900 mb-3 transition-all duration-1000 delay-150",
+              "font-serif text-heading-2-semibold text-navy mb-3 transition-all duration-1000 delay-150",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -49,7 +47,7 @@ const PublicationsSection: FC = () => {
         <div className="mb-12">
           <h3
             className={cn(
-              "text-heading-5-semibold text-secondary-900 mb-6 transition-all duration-1000 delay-300",
+              "font-serif text-heading-5-semibold text-navy mb-6 transition-all duration-1000 delay-300",
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
@@ -61,7 +59,7 @@ const PublicationsSection: FC = () => {
               <div
                 key={paper.id}
                 className={cn(
-                  "group relative rounded-2xl p-6 bg-white border border-secondary-100 hover:border-primary-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-500",
+                  "group relative rounded-2xl p-6 bg-white border border-line hover:border-primary-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-500",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
                 style={{
@@ -70,27 +68,27 @@ const PublicationsSection: FC = () => {
               >
                 {/* Top row: badges */}
                 <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <span className="rounded-full px-3 py-1 bg-secondary-950 text-white text-paragraph-sm-medium">
+                  <span className="rounded-full px-3 py-1 bg-navy text-white font-hanken text-paragraph-sm-medium">
                     {paper.venue}
                   </span>
-                  <span className="rounded-full px-3 py-1 bg-primary-50 text-primary-700 text-paragraph-sm-medium border border-primary-200">
+                  <span className="rounded-full px-3 py-1 bg-primary-50 text-primary-700 font-hanken text-paragraph-sm-medium border border-primary-200">
                     {paper.year}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h4 className="text-heading-5-semibold text-secondary-900 mb-3 group-hover:text-primary-600 transition-colors duration-300">
+                <h4 className="font-serif text-heading-5-semibold text-navy mb-3 group-hover:text-primary-600 transition-colors duration-300">
                   {paper.title}
                 </h4>
 
                 {/* Authors */}
-                <p className="text-paragraph-sm-regular text-secondary-500 mb-3">
+                <p className="font-hanken text-paragraph-sm-regular text-secondary-500 mb-3">
                   {paper.authors.map((author, i) => (
                     <span key={i}>
                       <span
                         className={
                           author.isLabMember
-                            ? "font-semibold text-secondary-900"
+                            ? "font-semibold text-navy"
                             : "text-secondary-500"
                         }
                       >
@@ -103,7 +101,7 @@ const PublicationsSection: FC = () => {
 
                 {/* Note */}
                 {paper.note && (
-                  <p className="text-paragraph-sm-regular text-secondary-400 italic mb-4">
+                  <p className="font-hanken text-paragraph-sm-regular text-secondary-400 italic mb-4">
                     {paper.note}
                   </p>
                 )}
@@ -116,7 +114,7 @@ const PublicationsSection: FC = () => {
                         href={paper.links.arxiv}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-paragraph-sm-medium text-primary-600 hover:text-primary-700 transition-colors duration-300"
+                        className="inline-flex items-center gap-1.5 font-hanken text-paragraph-sm-medium text-primary-600 hover:text-primary-700 transition-colors duration-300"
                       >
                         arXiv
                         <ExternalLink size={14} />
@@ -127,7 +125,7 @@ const PublicationsSection: FC = () => {
                         href={paper.links.acl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-paragraph-sm-medium text-primary-600 hover:text-primary-700 transition-colors duration-300"
+                        className="inline-flex items-center gap-1.5 font-hanken text-paragraph-sm-medium text-primary-600 hover:text-primary-700 transition-colors duration-300"
                       >
                         ACL Anthology
                         <ExternalLink size={14} />
@@ -148,7 +146,7 @@ const PublicationsSection: FC = () => {
           <div>
             <h3
               className={cn(
-                "text-heading-5-semibold text-secondary-900 mb-6 transition-all duration-1000 delay-300",
+                "font-serif text-heading-5-semibold text-navy mb-6 transition-all duration-1000 delay-300",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
             >
@@ -160,7 +158,7 @@ const PublicationsSection: FC = () => {
                 <div
                   key={paper.id}
                   className={cn(
-                    "group relative rounded-2xl p-6 bg-white border border-secondary-100 hover:border-amber-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-500",
+                    "group relative rounded-2xl p-6 bg-white border border-line hover:border-amber/40 hover:shadow-lg hover:-translate-y-1 transition-all duration-500",
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   )}
                   style={{
@@ -171,26 +169,26 @@ const PublicationsSection: FC = () => {
                 >
                   {/* Badge: In Progress */}
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="rounded-full px-3 py-1 bg-amber-50 text-amber-700 text-paragraph-sm-medium border border-amber-200">
+                    <span className="rounded-full px-3 py-1 bg-amber/10 text-[#8A6212] font-hanken text-paragraph-sm-medium border border-amber/40">
                       In Progress
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-heading-5-semibold text-secondary-900 mb-3">
+                  <h4 className="font-serif text-heading-5-semibold text-navy mb-3">
                     {paper.title}
                   </h4>
 
                   {/* Note */}
                   {paper.note && (
-                    <p className="text-paragraph-sm-regular text-secondary-500 mb-2">
+                    <p className="font-hanken text-paragraph-sm-regular text-secondary-500 mb-2">
                       {paper.note}
                     </p>
                   )}
 
                   {/* Coming soon */}
                   {paper.comingSoon && (
-                    <p className="text-paragraph-sm-medium text-secondary-400">
+                    <p className="font-hanken text-paragraph-sm-medium text-secondary-400">
                       {paper.comingSoon}
                     </p>
                   )}

@@ -47,11 +47,9 @@ function extractUniqueSources(items: Awaited<ReturnType<typeof fetchMarqueeNews>
 }
 
 export default async function Home() {
-  const newsData = await fetchMarqueeNews(20);
+  const newsData = await fetchMarqueeNews(40);
   const perspectivityTopics = extractTopicsFrom(newsData.perspectivity);
-  const drishtikonTopics = extractTopicsFrom(newsData.drishtikon);
   const perspectivitySources = extractUniqueSources(newsData.perspectivity);
-  const drishtikonSources = extractUniqueSources(newsData.drishtikon);
 
   return (
     <main className="overflow-x-clip">
@@ -60,9 +58,7 @@ export default async function Home() {
       <HeroSection newsData={newsData} />
       <TrendingTopics
         perspectivity={perspectivityTopics}
-        drishtikon={drishtikonTopics}
         perspectivitySources={perspectivitySources}
-        drishtikonSources={drishtikonSources}
       />
       <InformationCrisisSection />
       <EANATSection />

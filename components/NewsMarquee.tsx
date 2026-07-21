@@ -186,15 +186,6 @@ const NewsCard: FC<{ item: MarqueeNewsItem; href?: string }> = ({ item, href }) 
   );
 };
 
-function shuffleItems(items: MarqueeNewsItem[]): MarqueeNewsItem[] {
-  const shuffled = [...items];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor((i * 7 + 3) % (i + 1)); // deterministic shuffle
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
-
 const RowLabel: FC<{ label: string; flag: React.ReactNode }> = ({ label, flag }) => (
   <div className="flex items-center gap-2 mb-2 sm:mb-3 px-4">
     {flag}
@@ -217,19 +208,30 @@ const USFlag = () => (
   </svg>
 );
 
-const BDFlag = () => (
-  <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-sm flex-shrink-0" aria-hidden>
-    <rect fill="#006A4E" width="36" height="36" rx="2" />
-    <circle fill="#F42A41" cx="16" cy="18" r="8" />
-  </svg>
-);
+function shuffleItems(items: MarqueeNewsItem[]): MarqueeNewsItem[] {
+  const shuffled = [...items];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor((i * 7 + 3) % (i + 1)); // deterministic shuffle
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
 
 const NewsMarquee: FC<NewsMarqueeProps> = ({ newsData, isVisible }) => {
-  const { perspectivity, drishtikon } = newsData;
-  if (perspectivity.length === 0 && drishtikon.length === 0) return null;
+  const { perspectivity } = newsData;
+  if (perspectivity.length === 0) return null;
 
-  const tripledPerspectivity = [...perspectivity, ...perspectivity, ...perspectivity];
-  const tripledDrishtikon = [...shuffleItems(drishtikon), ...shuffleItems(drishtikon), ...shuffleItems(drishtikon)];
+  // Split feed into two halves so the rows show different stories.
+  // If the API returned too few items for a real second row, fall back to a shuffle.
+  const half = Math.ceil(perspectivity.length / 2);
+  const rowOne = perspectivity.slice(0, half);
+  const rowTwo =
+    perspectivity.length - half >= 4
+      ? perspectivity.slice(half)
+      : shuffleItems(perspectivity);
+
+  const tripledRowOne = [...rowOne, ...rowOne, ...rowOne];
+  const tripledRowTwo = [...rowTwo, ...rowTwo, ...rowTwo];
 
   return (
     <div
@@ -238,33 +240,26 @@ const NewsMarquee: FC<NewsMarqueeProps> = ({ newsData, isVisible }) => {
         isVisible && "opacity-100 translate-y-0"
       )}
     >
-      {/* Row 1 — Perspectivity (US), scrolls left */}
-      {perspectivity.length > 0 && (
-        <div className="mb-4 sm:mb-6">
-          <RowLabel label="Perspectivity — United States" flag={<USFlag />} />
-          <div className="overflow-hidden">
-            <div className="flex gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused]">
-              {tripledPerspectivity.map((item, idx) => (
-                <NewsCard key={`us-${idx}`} item={item} href={LINKS.perspectivity} />
-              ))}
-            </div>
+      {/* Row 1 — scrolls left */}
+      <div className="mb-4 sm:mb-6">
+        <RowLabel label="Perspectivity — United States" flag={<USFlag />} />
+        <div className="overflow-hidden">
+          <div className="flex gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused]">
+            {tripledRowOne.map((item, idx) => (
+              <NewsCard key={`us-${idx}`} item={item} href={LINKS.perspectivity} />
+            ))}
           </div>
         </div>
-      )}
+      </div>
 
-      {/* Row 2 — Drishtikon (BD), scrolls right, hidden on mobile */}
-      {drishtikon.length > 0 && (
-        <div>
-          <RowLabel label="Drishtikon — Bangladesh" flag={<BDFlag />} />
-          <div className="overflow-hidden">
-            <div className="flex gap-4 sm:gap-6 animate-marquee-right group-hover:[animation-play-state:paused]">
-              {tripledDrishtikon.map((item, idx) => (
-                <NewsCard key={`bd-${idx}`} item={item} href={LINKS.drishtikon} />
-              ))}
-            </div>
-          </div>
+      {/* Row 2 — second half of the feed, scrolls right */}
+      <div className="overflow-hidden">
+        <div className="flex gap-4 sm:gap-6 animate-marquee-right group-hover:[animation-play-state:paused]">
+          {tripledRowTwo.map((item, idx) => (
+            <NewsCard key={`us2-${idx}`} item={item} href={LINKS.perspectivity} />
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };

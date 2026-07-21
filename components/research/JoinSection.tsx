@@ -4,6 +4,7 @@ import { FC } from "react";
 import { cn } from "@/utils";
 import { useSectionVisibility } from "@/hooks/useSectionVisibility";
 import { Github, Mail } from "lucide-react";
+import SectionBackdrop from "@/components/SectionBackdrop";
 import { LINKS } from "@/lib/links";
 
 const JoinSection: FC = () => {
@@ -12,21 +13,23 @@ const JoinSection: FC = () => {
   return (
     <section
       ref={ref}
-      className="relative bg-secondary-950 overflow-hidden px-5 sm:px-10 md:px-20 py-16 sm:py-24"
+      className="relative bg-navy-deep overflow-hidden px-5 sm:px-10 md:px-20 py-16 sm:py-24"
     >
+      <SectionBackdrop image="/assets/images/eanat/affiliation.jpg" dark />
+
       {/* Dot mesh background */}
       <div
         className="absolute inset-0 opacity-15"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(16,185,129,0.08) 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, rgba(110,231,183,0.08) 1px, transparent 0)",
           backgroundSize: "24px 24px",
         }}
       />
 
       {/* Blur orbs */}
-      <div className="absolute top-1/2 -left-48 w-96 h-96 bg-emerald-400 rounded-full opacity-5 blur-3xl" />
-      <div className="absolute top-1/2 -right-48 w-96 h-96 bg-purple-500 rounded-full opacity-5 blur-3xl" />
+      <div className="absolute top-1/2 -left-48 w-96 h-96 bg-[#6EE7B7] rounded-full opacity-5 blur-3xl" />
+      <div className="absolute top-1/2 -right-48 w-96 h-96 bg-[#6EE7B7] rounded-full opacity-5 blur-3xl" />
 
       <div className="relative z-10 max-w-3xl mx-auto text-center">
         {/* Eyebrow divider */}
@@ -36,27 +39,25 @@ const JoinSection: FC = () => {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           )}
         >
-          <div className="h-px w-12 bg-secondary-600" />
-          <span className="text-paragraph-sm-medium text-secondary-400 uppercase tracking-wider">
+          <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-[#6EE7B7]">
             Get Involved
-          </span>
-          <div className="h-px w-12 bg-secondary-600" />
+          </p>
         </div>
 
         {/* Headline */}
         <h2
           className={cn(
-            "text-heading-3-semibold text-white mb-4 transition-all duration-1000 delay-150",
+            "font-serif text-heading-3-semibold text-white mb-4 transition-all duration-1000 delay-150",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
-          Collaborate with <span className="text-gray-300">BanglaLLM</span>
+          Collaborate with <span className="italic text-[#6EE7B7]">BanglaLLM</span>
         </h2>
 
         {/* Subtext */}
         <p
           className={cn(
-            "text-paragraph-lg-regular text-secondary-300 mb-8 transition-all duration-1000 delay-300",
+            "font-hanken text-paragraph-lg-regular text-white/65 mb-8 transition-all duration-1000 delay-300",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}
         >
@@ -77,7 +78,7 @@ const JoinSection: FC = () => {
             href={LINKS.banglallmGitHub}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-secondary-900 border border-secondary-700 rounded-full px-6 py-3 text-paragraph-md-medium text-white hover:bg-secondary-800 hover:border-secondary-600 transition-all duration-300"
+            className="inline-flex items-center justify-center gap-2 bg-white/[0.06] border border-white/10 rounded-full px-6 py-3 font-hanken text-paragraph-md-medium text-white hover:bg-white/[0.1] hover:border-white/30 transition-all duration-300"
           >
             <Github size={18} />
             GitHub Org
@@ -86,7 +87,7 @@ const JoinSection: FC = () => {
           {/* Email button */}
           <a
             href={LINKS.researchContactEmail}
-            className="inline-flex items-center justify-center gap-2 bg-primary-500 hover:bg-primary-600 rounded-full px-6 py-3 text-paragraph-md-medium text-white transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 rounded-full px-6 py-3 font-hanken text-paragraph-md-medium text-navy transition-all duration-300 hover:scale-105"
           >
             <Mail size={18} />
             Get in Touch

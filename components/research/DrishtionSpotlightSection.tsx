@@ -4,6 +4,7 @@ import { FC, useState, useEffect } from "react";
 import Image from "next/image";
 import { cn } from "@/utils";
 import { ArrowRight } from "lucide-react";
+import SectionBackdrop from "@/components/SectionBackdrop";
 import { LINKS } from "@/lib/links";
 
 interface ProductCard {
@@ -45,28 +46,30 @@ const DrishtionSpotlightSection: FC = () => {
   }, []);
 
   return (
-    <section className="relative bg-secondary-950 px-5 sm:px-10 md:px-20 pt-16 sm:pt-24 pb-20 sm:pb-28 overflow-hidden">
+    <section className="relative bg-navy-deep px-5 sm:px-10 md:px-20 pt-16 sm:pt-24 pb-20 sm:pb-28 overflow-hidden">
+      <SectionBackdrop image="/assets/images/eanat/actor.jpg" dark />
+
       {/* Dot mesh background */}
       <div
         className="absolute inset-0 opacity-20"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(16,185,129,0.1) 1px, transparent 0)",
+            "radial-gradient(circle at 1px 1px, rgba(110,231,183,0.1) 1px, transparent 0)",
           backgroundSize: "24px 24px",
         }}
       />
 
       {/* Blur orbs */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-400 rounded-full opacity-5 blur-3xl" />
-      <div className="absolute -bottom-40 right-0 w-96 h-96 bg-amber-500 rounded-full opacity-5 blur-3xl" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#6EE7B7] rounded-full opacity-5 blur-3xl" />
+      <div className="absolute -bottom-40 right-0 w-96 h-96 bg-amber rounded-full opacity-5 blur-3xl" />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
-          <p className="text-paragraph-sm-medium text-primary-400 uppercase tracking-wider mb-3">
+          <p className="font-hanken text-[12px] font-semibold tracking-[0.22em] uppercase text-[#6EE7B7] mb-3">
             Research in Production
           </p>
-          <h2 className="text-heading-2-semibold text-white">
+          <h2 className="font-serif text-heading-2-semibold text-white">
             Powering Real-World Impact
           </h2>
         </div>
@@ -77,7 +80,7 @@ const DrishtionSpotlightSection: FC = () => {
             <div
               key={product.name}
               className={cn(
-                "rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm p-8 hover:border-primary-500/50 hover:bg-white/10 transition-all duration-500",
+                "rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm p-8 hover:border-[#6EE7B7]/50 hover:bg-white/[0.07] transition-all duration-500",
                 isVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
@@ -87,7 +90,7 @@ const DrishtionSpotlightSection: FC = () => {
               }}
             >
               {/* Logo */}
-              <div className="w-20 h-20 rounded-xl bg-secondary-800 border border-secondary-700 p-2 flex items-center justify-center overflow-hidden mb-5">
+              <div className="w-20 h-20 rounded-xl bg-white/[0.06] border border-white/10 p-2 flex items-center justify-center overflow-hidden mb-5">
                 <Image
                   src={product.logo}
                   alt={product.logoAlt}
@@ -98,12 +101,12 @@ const DrishtionSpotlightSection: FC = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-heading-4-semibold text-white mb-3">
+              <h3 className="font-serif text-heading-4-semibold text-white mb-3">
                 {product.name}
               </h3>
 
               {/* Description */}
-              <p className="text-paragraph-md-regular text-secondary-300 mb-6 line-clamp-3">
+              <p className="font-hanken text-paragraph-md-regular text-white/65 mb-6 line-clamp-3">
                 {product.description}
               </p>
 
@@ -112,7 +115,7 @@ const DrishtionSpotlightSection: FC = () => {
                 href={product.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-primary-500 hover:bg-primary-600 text-white rounded-full px-5 py-2.5 text-paragraph-sm-medium transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-white hover:bg-white/90 text-navy font-hanken rounded-full px-5 py-2.5 text-paragraph-sm-medium transition-all duration-300 hover:scale-105"
               >
                 {product.cta}
                 <ArrowRight size={14} />

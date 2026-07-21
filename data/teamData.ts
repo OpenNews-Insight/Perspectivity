@@ -50,6 +50,7 @@ export const departments: Department[] = [
     members: [
       { name: "Minhajul Islam Tapadar", role: "Founding Software Engineer", initials: "MJ", image: "/assets/images/team/minhaj.png" },
       { name: "Naim Lasker", role: "Founding Software Engineer", initials: "NM", image: "/assets/images/team/naim-lasker.jpeg" },
+      { name: "Naymul Islam", role: "Founding Software Engineer", initials: "NY", image: "/assets/images/team/naimul.jpeg" },
     ],
   },
   {
