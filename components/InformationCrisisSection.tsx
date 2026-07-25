@@ -7,12 +7,12 @@ import { motion } from "framer-motion";
 import { CountUp, easeOutExpo } from "@/lib/motionfold";
 import SectionBackdrop from "@/components/SectionBackdrop";
 
-interface Stat { end: number; suffix?: string; label: string; note: string; accent: string; }
+interface Stat { end: number; suffix?: string; label: string; note: string; accent: string; source: string; }
 
 const STATS: Stat[] = [
-  { end: 86, suffix: "%", label: "can't identify biased news framing", note: "Readers absorb the framing without noticing the slant.", accent: "#E0A030" },
-  { end: 5, suffix: "B+", label: "people exposed to manipulated narratives daily", note: "Algorithmic feeds amplify spin, omission, and outright falsehoods.", accent: "#DC2626" },
-  { end: 180, suffix: "+", label: "countries affected by narrative manipulation", note: "A global crisis of trust, not a local one.", accent: "#3B82F6" },
+  { end: 80, suffix: "%", label: "struggle to identify a story's bias or framing", note: "Readers absorb the slant without noticing it's there.", accent: "#E0A030", source: "Stanford History Education Group" },
+  { end: 39, suffix: "%", label: "sometimes or often avoid the news", note: "Worn down and overwhelmed by relentless, conflicting coverage.", accent: "#DC2626", source: "Reuters Institute Digital News Report, 2024" },
+  { end: 31, suffix: "%", label: "of Americans trust the mass media", note: "Trust in news sits near record lows — a crisis, not a blip.", accent: "#3B82F6", source: "Gallup, 2024" },
 ];
 
 // headline tokens — "framing" is emphasized (green italic)
@@ -99,6 +99,7 @@ const InformationCrisisSection: FC = () => {
                   <span className="font-hanken text-secondary-900 font-medium text-base sm:text-lg leading-snug">{s.label}</span>
                 </div>
                 <p className="font-hanken text-[14px] text-secondary-500 leading-relaxed mt-3">{s.note}</p>
+                <p className="font-hanken text-[11px] text-secondary-400 mt-3 tracking-wide">Source: {s.source}</p>
                 <span className="absolute left-0 top-6 bottom-6 w-[3px] rounded-full" style={{ background: s.accent }} />
               </motion.div>
             ))}

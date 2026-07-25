@@ -41,6 +41,9 @@ export const LINKS = {
   // Contact
   supportEmail: "mailto:support@perspectivity.co",
   researchContactEmail: "mailto:brishtiteveja@gmail.com",
+  // Pre-filled demo request so the inbound lead carries context.
+  demoRequest:
+    "mailto:support@perspectivity.co?subject=Perspectivity%20demo%20request&body=Hi%20Perspectivity%20team%2C%0A%0AI%27d%20like%20a%20demo.%0A%0AName%3A%0AOrganization%3A%0AWhat%20you%27re%20trying%20to%20understand%3A%0A",
 
   // BanglaLLM research
   banglallmGitHub: "https://github.com/BanglaLLM",

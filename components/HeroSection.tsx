@@ -73,9 +73,9 @@ const HeroSection: FC<HeroSectionProps> = ({
   }, []);
 
   const proofPoints = [
-    "Live on iOS + Android",
-    "50k+ followers",
-    "Millions of social views",
+    "Live in the US + Bangladesh",
+    "Open-source LLMs on Hugging Face",
+    "Peer-reviewed research (ACL 2025)",
   ];
 
   // headline typewriter: words appear one at a time (caret blinks, then vanishes)
@@ -199,22 +199,25 @@ const HeroSection: FC<HeroSectionProps> = ({
                   transition={{ duration: 0.7, ease: easeOutExpo, delay: reduced ? 0 : 1.5 }}
                 >
                   Fragmented news, spin, and misinformation flying at you from every
-                  outlet and leaning. Perspectivity maps it, cross-checks it, and hands
-                  you the unbiased truth.
+                  outlet and leaning. Perspectivity maps every framing, cross-checks it
+                  across hundreds of sources, and shows you the structure beneath — with
+                  every claim linked back to where it came from.
                 </motion.p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
                   <Link
-                    href={LINKS.supportEmail}
+                    href={LINKS.perspectivity}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group inline-flex items-center justify-center gap-2 bg-white hover:bg-white/90 text-navy font-hanken font-semibold text-base px-6 py-3 rounded-full transition-all duration-300 hover:-translate-y-0.5"
                   >
-                    <span>Request a Demo</span>
+                    <span>Analyze today&rsquo;s news</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </Link>
                   <Link
-                    href="#platform"
+                    href={LINKS.demoRequest}
                     className="inline-flex items-center justify-center gap-2 border border-white/35 hover:border-white/70 text-white font-hanken font-medium text-base px-6 py-3 rounded-full transition-all duration-300 hover:bg-white/10"
                   >
-                    <span>Explore the Platform</span>
+                    <span>Request a demo</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>

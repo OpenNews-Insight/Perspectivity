@@ -112,7 +112,7 @@ const Footer: FC = () => {
             © {new Date().getFullYear()} Perspectivity. All rights reserved.
           </p>
           <p className="font-hanken text-[12px] text-white/35 italic">
-            Palantir for narratives. A Bloomberg terminal for public discourse.
+            Narrative intelligence — for readers, researchers, and newsrooms.
           </p>
         </div>
       </div>

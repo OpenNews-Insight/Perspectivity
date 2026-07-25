@@ -10,9 +10,9 @@ import SectionBackdrop from "@/components/SectionBackdrop";
 const founder = {
   name: "Abdullah Khan Zehady",
   role: "Founder & CEO",
-  description: "ML infrastructure builder and LLM engineer. Published peer-reviewed research on multilingual NLP for media analysis and released open-source language models used by researchers worldwide.",
+  description: "ML infrastructure builder and LLM engineer. Peer-reviewed research on multilingual NLP for media analysis (published at ACL 2025), and open-source language models used by researchers worldwide.",
   image: "/assets/images/team/aninda.jpeg",
-  achievements: ["Open-source LLMs for media bias analysis", "ArXiv publication on multilingual NLP", "Hugging Face models with 10K+ downloads"],
+  achievements: ["Peer-reviewed research published at ACL 2025", "Open-source Bangla LLMs on Hugging Face — 10k+ downloads", "BanglaLLM models used by researchers worldwide"],
   links: { x: "https://x.com/brishtiteveja", linkedin: "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/" },
 };
 
@@ -23,9 +23,9 @@ const journey = [
 ];
 
 const milestones = [
-  { period: "Q2 2026", title: "iOS & Android apps for Drishtikon and Perspectivity" },
-  { period: "Q3 2026", title: "Enterprise API for media monitoring and intelligence" },
-  { period: "Q4 2026", title: "Open-source bias detection framework for researchers" },
+  { period: "Q3 2026", title: "iOS & Android apps for Perspectivity and Drishtikon" },
+  { period: "Q4 2026", title: "Enterprise API for media monitoring and intelligence" },
+  { period: "Q1 2027", title: "Open-source bias detection framework for researchers" },
 ];
 
 const TeamSection: FC = () => {
