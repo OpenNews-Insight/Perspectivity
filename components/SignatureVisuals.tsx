@@ -117,7 +117,6 @@ export const NarrativeMomentum: FC<{ className?: string }> = ({ className }) => 
     <div className={className}>
       <div className="flex items-center justify-between mb-2 px-1">
         <span className="font-hanken text-[9px] tracking-[0.18em] uppercase text-secondary-400">Momentum · last 72h</span>
-        <span className="font-hanken text-[9px] tracking-[0.14em] uppercase text-secondary-400">United States</span>
       </div>
       <div className="rounded-xl border border-line overflow-hidden">
         {rows.map((r) => (

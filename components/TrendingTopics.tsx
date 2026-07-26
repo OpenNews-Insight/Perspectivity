@@ -12,19 +12,6 @@ interface TrendingTopicsProps {
   perspectivitySources: SourceInfo[];
 }
 
-const USFlag = () => (
-  <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-sm flex-shrink-0" aria-hidden>
-    <rect fill="#B22234" width="36" height="36" />
-    <rect fill="#fff" y="2.77" width="36" height="2.77" />
-    <rect fill="#fff" y="8.31" width="36" height="2.77" />
-    <rect fill="#fff" y="13.85" width="36" height="2.77" />
-    <rect fill="#fff" y="19.38" width="36" height="2.77" />
-    <rect fill="#fff" y="24.92" width="36" height="2.77" />
-    <rect fill="#fff" y="30.46" width="36" height="2.77" />
-    <rect fill="#3C3B6E" width="15.12" height="19.38" />
-  </svg>
-);
-
 // The feed can yield hundreds of distinct outlets. The marquee duration is fixed,
 // so an unbounded list makes the track wider and therefore scroll faster (and
 // mounts thousands of nodes). Cap it to keep the drift slow and the DOM small.
@@ -76,20 +63,18 @@ const SourceMarquee: FC<{ sources: SourceInfo[]; direction?: "left" | "right" }>
 
 const TopicRow: FC<{
   label: string;
-  flag: React.ReactNode;
   topics: string[];
   sources: SourceInfo[];
   isVisible: boolean;
   delayOffset?: number;
   marqueeDirection?: "left" | "right";
   accentColor?: string;
-}> = ({ label, flag, topics, sources, isVisible, delayOffset = 0, marqueeDirection = "left", accentColor = "bg-secondary-900" }) => {
+}> = ({ label, topics, sources, isVisible, delayOffset = 0, marqueeDirection = "left", accentColor = "bg-secondary-900" }) => {
   if (topics.length === 0 && sources.length === 0) return null;
 
   return (
     <div>
       <div className="flex items-center gap-2 mb-3">
-        {flag}
         <span className="text-[11px] sm:text-xs font-semibold text-secondary-500 uppercase tracking-wider">
           {label}
         </span>
@@ -182,8 +167,7 @@ const TrendingTopics: FC<TrendingTopicsProps> = ({
 
         <div className="flex flex-col gap-6">
           <TopicRow
-            label="Perspectivity — United States"
-            flag={<USFlag />}
+            label="Perspectivity"
             topics={perspectivity}
             sources={perspectivitySources}
             isVisible={isVisible}

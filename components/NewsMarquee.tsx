@@ -186,26 +186,12 @@ const NewsCard: FC<{ item: MarqueeNewsItem; href?: string }> = ({ item, href }) 
   );
 };
 
-const RowLabel: FC<{ label: string; flag: React.ReactNode }> = ({ label, flag }) => (
+const RowLabel: FC<{ label: string }> = ({ label }) => (
   <div className="flex items-center gap-2 mb-2 sm:mb-3 px-4">
-    {flag}
     <span className="text-[11px] sm:text-xs font-semibold text-secondary-500 uppercase tracking-wider">
       {label}
     </span>
   </div>
-);
-
-const USFlag = () => (
-  <svg viewBox="0 0 36 36" className="w-4 h-4 rounded-sm flex-shrink-0" aria-hidden>
-    <rect fill="#B22234" width="36" height="36" />
-    <rect fill="#fff" y="2.77" width="36" height="2.77" />
-    <rect fill="#fff" y="8.31" width="36" height="2.77" />
-    <rect fill="#fff" y="13.85" width="36" height="2.77" />
-    <rect fill="#fff" y="19.38" width="36" height="2.77" />
-    <rect fill="#fff" y="24.92" width="36" height="2.77" />
-    <rect fill="#fff" y="30.46" width="36" height="2.77" />
-    <rect fill="#3C3B6E" width="15.12" height="19.38" />
-  </svg>
 );
 
 function shuffleItems(items: MarqueeNewsItem[]): MarqueeNewsItem[] {
@@ -242,7 +228,7 @@ const NewsMarquee: FC<NewsMarqueeProps> = ({ newsData, isVisible }) => {
     >
       {/* Row 1 — scrolls left */}
       <div className="mb-4 sm:mb-6">
-        <RowLabel label="Perspectivity — United States" flag={<USFlag />} />
+        <RowLabel label="Perspectivity" />
         <div className="overflow-hidden">
           <div className="flex gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused]">
             {tripledRowOne.map((item, idx) => (

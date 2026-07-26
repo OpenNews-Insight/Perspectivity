@@ -9,20 +9,10 @@ import { LINKS } from "@/lib/links";
 const products = [
   {
     name: "Perspectivity",
-    region: "United States",
+    // Not tied to one country, so it carries a globe rather than a flag.
+    region: "Worldwide",
     href: LINKS.perspectivity,
-    flag: (
-      <svg viewBox="0 0 36 36" className="w-5 h-5 rounded-sm" aria-hidden>
-        <rect fill="#B22234" width="36" height="36" />
-        <rect fill="#fff" y="2.77" width="36" height="2.77" />
-        <rect fill="#fff" y="8.31" width="36" height="2.77" />
-        <rect fill="#fff" y="13.85" width="36" height="2.77" />
-        <rect fill="#fff" y="19.38" width="36" height="2.77" />
-        <rect fill="#fff" y="24.92" width="36" height="2.77" />
-        <rect fill="#fff" y="30.46" width="36" height="2.77" />
-        <rect fill="#3C3B6E" width="15.12" height="19.38" />
-      </svg>
-    ),
+    flag: <Globe className="w-5 h-5 text-white/70" aria-hidden />,
   },
   {
     name: "Drishtikon",

@@ -19,7 +19,7 @@ const founder = {
 const journey = [
   { icon: BookOpen, title: "Research foundation", desc: "Peer-reviewed multilingual NLP research for media analysis." },
   { icon: FolderOpen, title: "Open-source impact", desc: "Language models on Hugging Face with 10k+ downloads." },
-  { icon: LinkIcon, title: "Live products", desc: "Perspectivity (US) and Drishtikon (Bangladesh), processing hundreds of sources in real time." },
+  { icon: LinkIcon, title: "Live products", desc: "Perspectivity worldwide and Drishtikon in Bangladesh, processing hundreds of sources in real time." },
 ];
 
 const milestones = [

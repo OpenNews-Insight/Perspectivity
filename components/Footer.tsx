@@ -24,7 +24,7 @@ const Footer: FC = () => {
       {
         title: "Product",
         links: [
-          { label: "Perspectivity (US)", href: LINKS.perspectivity },
+          { label: "Perspectivity", href: LINKS.perspectivity },
           { label: "Drishtikon (Bangladesh)", href: LINKS.drishtikon },
         ],
       },

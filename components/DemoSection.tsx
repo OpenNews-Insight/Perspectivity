@@ -10,7 +10,7 @@ import { LINKS } from "@/lib/links";
 
 const DemoSection: FC = () => {
   const demos = [
-    { name: "Perspectivity", region: "United States", flag: "🇺🇸", videoSrc: LINKS.perspectivityYouTube, thumb: "https://img.youtube.com/vi/YVqdN4XWbWg/maxresdefault.jpg", href: LINKS.perspectivity },
+    { name: "Perspectivity", region: "Worldwide", flag: "🌐", videoSrc: LINKS.perspectivityYouTube, thumb: "https://img.youtube.com/vi/YVqdN4XWbWg/maxresdefault.jpg", href: LINKS.perspectivity },
     { name: "Drishtikon", region: "Bangladesh", flag: "🇧🇩", videoSrc: LINKS.drishtikonYouTube, thumb: "https://img.youtube.com/vi/X3_Tdz3np24/maxresdefault.jpg", href: LINKS.drishtikon },
   ];
 
@@ -24,7 +24,7 @@ const DemoSection: FC = () => {
             Watch Perspectivity <span className="italic text-primary-600">think.</span>
           </h2>
           <p className="font-hanken text-base sm:text-lg text-secondary-500 leading-relaxed">
-            Two products, one engine — live across the US and Bangladesh.
+            Two products, one engine — live worldwide and in Bangladesh.
           </p>
         </Reveal>
 
