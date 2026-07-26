@@ -9,7 +9,6 @@ import { DepthTunnel, easeOutExpo, useReducedMotionFlag } from "@/lib/motionfold
 import NewsMarquee from "@/components/NewsMarquee";
 import NarrativeGraph from "@/components/NarrativeGraph";
 import { LINKS } from "@/lib/links";
-import { handleHashClick } from "@/lib/hashScroll";
 import type { MarqueeNewsData } from "@/lib/fetchNews";
 
 interface HeroSectionProps {
@@ -214,8 +213,9 @@ const HeroSection: FC<HeroSectionProps> = ({
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </Link>
                   <Link
-                    href="#platform"
-                    onClick={(e) => handleHashClick(e, "#platform")}
+                    href={LINKS.perspectivity}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 border border-white/35 hover:border-white/70 text-white font-hanken font-medium text-base px-6 py-3 rounded-full transition-all duration-300 hover:bg-white/10"
                   >
                     <span>Explore the Platform</span>
