@@ -1,9 +1,12 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/lib/motionfold";
 import SectionBackdrop from "@/components/SectionBackdrop";
+import { handleHashClick } from "@/lib/hashScroll";
 
 interface Framing {
   id: number;
@@ -15,10 +18,13 @@ interface Framing {
   omits: string;
 }
 
+// Each card omits something the others carry, and no two omit the same thing —
+// that contrast is the whole point of the panel. A centre outlet omits as well:
+// it reports the vote and skips the stakes.
 const FRAMINGS: Framing[] = [
-  { id: 0, outlet: "Left-leaning outlet", bias: "Left", biasColor: "#3B82F6", headline: "House Forces Trump to Stand Down on Illegal War", emphasizes: "Constitutional check · presidential overreach", omits: "Iran provocation · bipartisan margin" },
-  { id: 1, outlet: "Center outlet", bias: "Center", biasColor: "#94A3B8", headline: "House Passes War Powers Resolution on Iran", emphasizes: "The vote · both readings of the law", omits: "nothing material — states the facts" },
-  { id: 2, outlet: "Right-leaning outlet", bias: "Right", biasColor: "#DC2626", headline: "Democrats Tie Trump’s Hands as Iran Strikes US", emphasizes: "Iran threat · national security risk", omits: "Bipartisan support · constitutional precedent" },
+  { id: 0, outlet: "Left-leaning outlet", bias: "Left", biasColor: "#3B82F6", headline: "House Votes to Halt Trump’s Unauthorized Strikes on Iran", emphasizes: "Constitutional check · presidential overreach", omits: "Iran’s strike on US forces · the security rationale" },
+  { id: 1, outlet: "Center outlet", bias: "Center", biasColor: "#94A3B8", headline: "House Passes War Powers Resolution on Iran", emphasizes: "The vote count · both readings of the law", omits: "Stakes for troops in the region · precedent for future presidents" },
+  { id: 2, outlet: "Right-leaning outlet", bias: "Right", biasColor: "#DC2626", headline: "Democrats Tie Trump’s Hands as Iran Strikes US", emphasizes: "Iran threat · national security risk", omits: "Bipartisan margin · constitutional precedent" },
 ];
 
 const SPECTRUM = [
@@ -33,7 +39,7 @@ const ComparisonShowcase: FC = () => {
 
   useEffect(() => {
     if (paused) return;
-    const id = setInterval(() => setActive((a) => (a + 1) % FRAMINGS.length), 3500);
+    const id = setInterval(() => setActive((a) => (a + 1) % FRAMINGS.length), 3000);
     return () => clearInterval(id);
   }, [paused]);
 
@@ -62,7 +68,7 @@ const ComparisonShowcase: FC = () => {
                 <button
                   type="button"
                   onClick={() => setActive(f.id)}
-                  className="text-left w-full h-full rounded-2xl border bg-white/[0.04] p-6 transition-all duration-500"
+                  className="text-left w-full h-full rounded-2xl border bg-white/[0.04] p-6 transition-all duration-300"
                   style={{ borderColor: isActive ? f.biasColor : "rgba(255,255,255,0.1)", boxShadow: isActive ? `0 24px 50px -30px ${f.biasColor}` : "none", transform: isActive ? "translateY(-4px)" : "none" }}
                 >
                   <div className="flex items-center justify-between mb-5">
@@ -74,7 +80,7 @@ const ComparisonShowcase: FC = () => {
                     <p className="font-hanken text-[13px] text-white/60 leading-relaxed"><span className="font-semibold text-white">Emphasizes · </span>{f.emphasizes}</p>
                     <p className="font-hanken text-[13px] text-white/60 leading-relaxed"><span className="font-semibold text-white">Omits · </span>{f.omits}</p>
                   </div>
-                  <div className="mt-5 h-[3px] rounded-full transition-all duration-500" style={{ backgroundColor: isActive ? f.biasColor : "rgba(255,255,255,0.08)" }} />
+                  <div className="mt-5 h-[3px] rounded-full transition-all duration-300" style={{ backgroundColor: isActive ? f.biasColor : "rgba(255,255,255,0.08)" }} />
                 </button>
               </Reveal>
             );
@@ -86,7 +92,7 @@ const ComparisonShowcase: FC = () => {
             <motion.div
               className="absolute top-1/2 -translate-y-1/2 w-4 h-4 rounded-full border-2 border-white shadow-lg"
               animate={{ left: active === 0 ? "8%" : active === 1 ? "50%" : "92%" }}
-              transition={{ type: "spring", stiffness: 300, damping: 28 }}
+              transition={{ type: "spring", stiffness: 380, damping: 30 }}
               style={{ x: "-50%", backgroundColor: FRAMINGS[active].biasColor }}
             />
           </div>
@@ -98,6 +104,19 @@ const ComparisonShowcase: FC = () => {
               </div>
             ))}
           </div>
+        </Reveal>
+
+        {/* The prism shows the framings; the signature visualizations below show
+            how they are mapped, so the CTA hands off to that section. */}
+        <Reveal delay={0.16} className="mt-10 text-center">
+          <Link
+            href="/#features"
+            onClick={(e) => handleHashClick(e, "/#features")}
+            className="group inline-flex items-center gap-2 rounded-full border border-white/30 hover:border-white/60 px-6 py-3 font-hanken font-medium text-[15px] text-white transition-all duration-300 hover:bg-white/10"
+          >
+            <span>See how we map it</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+          </Link>
         </Reveal>
       </div>
     </section>

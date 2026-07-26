@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { X, ChevronDown, Globe, Menu } from "lucide-react";
 import { LINKS } from "@/lib/links";
+import { handleHashClick } from "@/lib/hashScroll";
 
 const products = [
   {
@@ -94,7 +95,10 @@ const Header: FC = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setActiveSection(item.sectionId)}
+                onClick={(e) => {
+                  setActiveSection(item.sectionId);
+                  handleHashClick(e, item.href);
+                }}
                 className={`font-hanken text-[15px] font-medium transition-colors duration-200 ${
                   activeSection === item.sectionId ? "text-[#6EE7B7]" : "text-white/65 hover:text-white"
                 }`}
@@ -159,7 +163,17 @@ const Header: FC = () => {
           <div className="md:hidden mt-3 rounded-2xl bg-navy-deep/95 backdrop-blur-md border border-white/10 shadow-lg">
             <div className="flex flex-col px-4 py-4 space-y-4">
               {navItems.map((item) => (
-                <Link key={item.name} href={item.href} className="font-hanken text-white/70 hover:text-white text-[15px] font-medium transition-colors duration-200">{item.name}</Link>
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => {
+                    setIsMobileMenuOpen(false);
+                    handleHashClick(e, item.href);
+                  }}
+                  className="font-hanken text-white/70 hover:text-white text-[15px] font-medium transition-colors duration-200"
+                >
+                  {item.name}
+                </Link>
               ))}
               <div className="flex items-center gap-1 pt-2 border-t border-white/10">
                 {socialLinks.map((social) => (
