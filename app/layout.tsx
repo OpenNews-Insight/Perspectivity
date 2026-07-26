@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Newsreader, Hanken_Grotesk, Noto_Serif_Bengali } from 'next/font/google'
 import Script from 'next/script'
+import BetaInvite from '@/components/BetaInvite'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -137,6 +138,7 @@ export default function RootLayout({
         className={`${inter.variable} ${newsreader.variable} ${hanken.variable} ${notoBengali.variable} ${inter.className}`}
       >
         {children}
+        <BetaInvite />
       </body>
     </html>
   )

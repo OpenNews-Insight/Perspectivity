@@ -10,6 +10,8 @@ export const LINKS = {
   // API endpoints
   drishtikonAPI: "https://drishtikon.life/server/api/articles/",
   perspectivityAPI: "https://app.perspectivity.co/server/api/articles/",
+  perspectivityBetaSignupAPI:
+    "https://app.perspectivity.co/server/api/beta/signup",
 
   // Social media
   youtube:
