@@ -6,6 +6,10 @@
  * (square) Perspectivity logo, then the wordmark "Perspectivity" writes in
  * letter-by-letter, then the cover lifts to reveal the page. Skip button
  * fast-forwards; reduced-motion users get a brief static brand flash.
+ *
+ * It plays once per browsing session, not on every page load — the gate lives
+ * in the head script in app/layout.tsx, which is what lets the cover be hidden
+ * before first paint rather than yanked away after hydration.
  */
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -37,6 +41,13 @@ export default function PerspectivitySplash() {
   const [unmount, setUnmount] = useState(false);
 
   useEffect(() => {
+    // The gate script in the document head has already read sessionStorage and
+    // stamped the root element, so a repeat load only has to drop the markup —
+    // CSS has kept it from painting since before hydration.
+    if (document.documentElement.hasAttribute("data-splash-seen")) {
+      setUnmount(true);
+      return;
+    }
     // Whole intro is capped at 2s: 1.6s of animation + a 0.4s fade to the page.
     const id = window.setTimeout(() => setRevealed(true), reduced ? 800 : 1600);
     return () => window.clearTimeout(id);
@@ -52,7 +63,7 @@ export default function PerspectivitySplash() {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] flex items-center justify-center"
+      className="persp-splash fixed inset-0 z-[100] flex items-center justify-center"
       style={{ backgroundColor: COVER }}
       initial={{ opacity: 1 }}
       animate={{ opacity: revealed ? 0 : 1 }}
