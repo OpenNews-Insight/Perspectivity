@@ -72,8 +72,10 @@ const HeroSection: FC<HeroSectionProps> = ({
     setIsVisible(true);
   }, []);
 
+  // The web app is live; the mobile apps are still in beta, so they are
+  // labelled as such rather than folded into the same "live" claim.
   const proofPoints = [
-    "Live on iOS + Android",
+    "iOS + Android in beta",
     "50k+ followers",
     "Millions of social views",
   ];
@@ -224,7 +226,7 @@ const HeroSection: FC<HeroSectionProps> = ({
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-400" />
                     </span>
-                    <span className="font-hanken text-[13px] text-white font-semibold">Live</span>
+                    <span className="font-hanken text-[13px] text-white font-semibold">Live on web</span>
                   </div>
                   {proofPoints.map((p) => (
                     <span key={p} className="font-hanken text-[13px] text-white/60">{p}</span>
@@ -234,11 +236,10 @@ const HeroSection: FC<HeroSectionProps> = ({
 
               {/* live readout — the graph in a glass style (no white panel), pressroom visible through the card */}
               <div>
-                <div className="flex items-center justify-between mb-1 px-0.5">
+                <div className="flex items-center mb-1 px-0.5">
                   <span className="font-hanken text-[11px] sm:text-xs font-semibold tracking-[0.14em] uppercase text-white/65">
                     Perspectivity · live read
                   </span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary-400 animate-pulse" />
                 </div>
                 <NarrativeGraph dark />
                 <p className="font-hanken text-center text-[10px] text-white/45 mt-2 italic">
