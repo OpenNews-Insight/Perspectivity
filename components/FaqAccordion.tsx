@@ -11,7 +11,7 @@ const FAQ_ITEMS = [
   { q: "Why should I trust your summaries over reading the originals?", a: "Our summaries extract key facts from many sources, not one outlet's take, and flag where those sources disagree. You can always click through to the full articles. We enhance your understanding — we don't replace original reporting." },
   { q: "Why does media bias analysis matter now more than ever?", a: "People spend hours a day on news, YouTube, and social media and still come away confused, because algorithmic feeds hand everyone a different version of the same event. When everyone is competing to shape your reality, seeing the full picture takes tools, not more reading time." },
   { q: "How does Perspectivity make money?", a: "Subscriptions and advertising. The core analysis stays free and open to readers on the web and on mobile — the paid tier is for people who want the deeper narrative tracking, and advertising supports the rest." },
-  { q: "What's your long-term vision?", a: "To become the global standard for media transparency. We start in the markets and languages the incumbents can't read, and expand to every major news market — because the right to understand media bias shouldn't depend on where you live or what language you read in." },
+  { q: "What's your long-term vision?", a: "When everyone is competing to shape your reality, Perspectivity shows you the full picture. We're building the global standard for narrative intelligence — every major market, every major language — so understanding who is shaping a story never depends on where you live or which language you read in." },
 ];
 
 const FaqAccordion: FC = () => {
