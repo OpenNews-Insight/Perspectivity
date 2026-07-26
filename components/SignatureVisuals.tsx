@@ -143,7 +143,7 @@ export const NarrativeMomentum: FC<{ className?: string }> = ({ className }) => 
       <div className="mt-2 rounded-lg bg-navy px-3 py-2.5">
         <p className="font-hanken text-[9px] tracking-[0.16em] uppercase text-primary-300 mb-0.5">Suppression signal</p>
         <p className="font-hanken text-[11px] text-white/85 leading-snug">
-          “Iran struck US forces first” is amplified by right-leaning sources — absent from 13 left &amp; center outlets.
+          “Iran struck US forces first” is amplified by right-leaning sources, absent from 13 left &amp; center outlets.
         </p>
       </div>
     </div>

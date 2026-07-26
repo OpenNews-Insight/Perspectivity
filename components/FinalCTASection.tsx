@@ -11,7 +11,7 @@ const FEATURES = [
   "Real-time bias & framing analysis",
   "AI summaries across every outlet",
   "Source-backed answers, not opinions",
-  "Multilingual — US + South Asia",
+  "Multilingual: US + South Asia",
 ];
 
 const FinalCTASection: FC = () => {
@@ -33,7 +33,7 @@ const FinalCTASection: FC = () => {
           </h2>
           <p className="font-hanken text-base sm:text-lg text-white/70 leading-relaxed max-w-xl mx-auto mb-9">
             Stop reading someone else&rsquo;s framing. Start seeing the structure
-            beneath every story — across every outlet, language, and leaning.
+            beneath every story, across every outlet, language, and leaning.
           </p>
         </Reveal>
 

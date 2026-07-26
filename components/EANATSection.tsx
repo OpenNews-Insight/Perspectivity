@@ -25,11 +25,11 @@ interface Layer {
 
 // One atmospheric image per layer builds the story (all PD/CC0 — no attribution required).
 const LAYERS: Layer[] = [
-  { num: "01", name: "Event Intelligence", frame: "What actually happened", blurb: "The core — every event, fully reconstructed from dozens of sources.", accent: "#10B981", only: "53 sources, 6 shared facts, 2 disputed claims — reconciled into one view.", image: "/assets/images/hero-press-room.jpg" },
-  { num: "02", name: "Actor Intelligence", frame: "Who shapes the narrative", blurb: "A knowledge graph of influence — who repeats what, and for whom.", accent: "#3B82F6", only: "This commentator flipped on the bill 48 hours after the rally.", image: "/assets/images/eanat/actor.jpg" },
-  { num: "03", name: "Narrative Intelligence", frame: "Which story is winning", blurb: "The AI-native layer: every emerging story, tracked as it spreads.", accent: "#8B5CF6", only: "“Iran struck first” is amplified by right-leaning sources — absent from 13 others.", image: "/assets/images/eanat/narrative.jpg" },
-  { num: "04", name: "Affiliation Intelligence", frame: "Who they are connected to", blurb: "Source-backed. Confidence-scored. Never asserted.", accent: "#EC4899", only: "Appeared with, cited, and defended X — every link backed by a clip.", image: "/assets/images/eanat/affiliation.jpg" },
-  { num: "05", name: "Time-Series Intelligence", frame: "How it all moves over time", blurb: "The longitudinal view — how narratives travel and transform.", accent: "#4FD1C5", only: "A talking point traveled from 2 fringe channels to 9 mainstream outlets in 6 days.", image: "/assets/images/eanat/time.jpg" },
+  { num: "01", name: "Event Intelligence", frame: "What actually happened", blurb: "The core: every event, fully reconstructed from dozens of sources.", accent: "#10B981", only: "53 sources, 6 shared facts, 2 disputed claims, reconciled into one view.", image: "/assets/images/hero-press-room.jpg" },
+  { num: "02", name: "Actor Intelligence", frame: "Who shapes the narrative", blurb: "A knowledge graph of influence: who repeats what, and for whom.", accent: "#3B82F6", only: "This commentator flipped on the bill 48 hours after the rally.", image: "/assets/images/eanat/actor.jpg" },
+  { num: "03", name: "Narrative Intelligence", frame: "Which story is winning", blurb: "The AI-native layer: every emerging story, tracked as it spreads.", accent: "#8B5CF6", only: "“Iran struck first” is amplified by right-leaning sources, absent from 13 others.", image: "/assets/images/eanat/narrative.jpg" },
+  { num: "04", name: "Affiliation Intelligence", frame: "Who they are connected to", blurb: "Source-backed. Confidence-scored. Never asserted.", accent: "#EC4899", only: "Appeared with, cited, and defended X, every link backed by a clip.", image: "/assets/images/eanat/affiliation.jpg" },
+  { num: "05", name: "Time-Series Intelligence", frame: "How it all moves over time", blurb: "The longitudinal view: how narratives travel and transform.", accent: "#4FD1C5", only: "A talking point traveled from 2 fringe channels to 9 mainstream outlets in 6 days.", image: "/assets/images/eanat/time.jpg" },
 ];
 
 type Act = { id: string; accent: string; image: string; kind: "intro" | "layer"; layer?: Layer };
@@ -76,7 +76,7 @@ const EANATSection: FC = () => {
                   </h2>
                   <p className="font-hanken text-base sm:text-lg text-white/60 leading-relaxed max-w-xl mt-5">
                     News is only the surface. Underneath sit five layers of
-                    intelligence — each answering questions no headline can.
+                    intelligence, each answering questions no headline can.
                   </p>
                 </div>
               ) : (

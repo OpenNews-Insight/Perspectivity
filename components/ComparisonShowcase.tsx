@@ -56,7 +56,7 @@ const ComparisonShowcase: FC = () => {
           </h2>
           <p className="font-hanken text-base sm:text-lg text-white/60 leading-relaxed">
             The same vote, refracted across the political spectrum. Each outlet
-            chooses what to emphasize — and what to leave out.
+            chooses what to emphasize, and what to leave out.
           </p>
         </Reveal>
 

@@ -19,7 +19,7 @@ const DemoSection: FC = () => {
             Watch Perspectivity <span className="italic text-primary-600">think.</span>
           </h2>
           <p className="font-hanken text-base sm:text-lg text-secondary-500 leading-relaxed">
-            One engine reading a live story — on the web and on mobile.
+            One engine reading a live story, on the web and on mobile.
           </p>
         </Reveal>
 

@@ -172,7 +172,7 @@ const NewsCard: FC<{ item: MarqueeNewsItem; href?: string }> = ({ item, href }) 
         whileHover={hover}
         transition={trans}
         className={cls}
-        aria-label={`${item.title} — open in app`}
+        aria-label={`${item.title}: open in app`}
       >
         {inner}
       </motion.a>

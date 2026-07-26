@@ -135,7 +135,7 @@ const BetaInvite: FC = () => {
               {status === "joined" ? (
                 <p className="font-hanken mt-4 flex items-center gap-2 text-[13px] font-medium text-signal-green">
                   <Check className="h-4 w-4 shrink-0" />
-                  You&rsquo;re on the list — we&rsquo;ll be in touch soon.
+                  You&rsquo;re on the list. We&rsquo;ll be in touch soon.
                 </p>
               ) : (
                 <form onSubmit={submit} className="mt-4 space-y-2">

@@ -58,7 +58,7 @@ const TONE_COLOR: Record<Tone, string> = {
 
 // headline tokens — last four are the emphasized (green italic) phrase
 const HEADLINE_WORDS: { t: string; em?: boolean }[] = [
-  { t: "Cut" }, { t: "through" }, { t: "the" }, { t: "noise" }, { t: "—" }, { t: "to" }, { t: "the" },
+  { t: "Cut" }, { t: "through" }, { t: "the" }, { t: "noise," }, { t: "to" }, { t: "the" },
   { t: "structure", em: true }, { t: "beneath", em: true }, { t: "every", em: true }, { t: "narrative.", em: true },
 ];
 
@@ -104,7 +104,7 @@ const HeroSection: FC<HeroSectionProps> = ({
       <div className="absolute inset-0 z-0">
         <Image
           src="/assets/images/hero-press-room.jpg"
-          alt="A newspaper printing press — the machinery of public narratives"
+          alt="A newspaper printing press, the machinery of public narratives"
           fill
           priority
           sizes="100vw"
