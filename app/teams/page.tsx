@@ -3,13 +3,21 @@ import TeamHeroSection from "@/components/teams/TeamHeroSection";
 import FounderSection from "@/components/teams/FounderSection";
 import DepartmentSection from "@/components/teams/DepartmentSection";
 import BottomCTA from "@/components/teams/BottomCTA";
-import { founder, departments } from "@/data/teamData";
+import { founders, departments } from "@/data/teamData";
+
+/** "Abdullah Khan Zehady (Aninda)" and "Abdullah Khan Zehady" are one person
+ *  written two ways, so the nickname comes off before counting. */
+const canonicalName = (name: string) => name.replace(/\s*\(.*?\)\s*/g, " ").trim();
 
 export default function TeamsPage() {
-  const totalMembers = new Set([
-    founder.name,
-    ...departments.flatMap((d) => d.members.map((m) => m.name)),
-  ]).size;
+  // Counts unique people across founders and departments — the founder also
+  // sits on the research team, under a name without the nickname.
+  const totalMembers = new Set(
+    [
+      ...founders.map((f) => f.name),
+      ...departments.flatMap((d) => d.members.map((m) => m.name)),
+    ].map(canonicalName),
+  ).size;
 
   return (
     <PageWrapper>

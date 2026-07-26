@@ -22,7 +22,7 @@ export const LINKS = {
   // Founder socials
   founderTwitter: "https://x.com/brishtiteveja",
   founderLinkedin:
-    "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/",
+    "https://www.linkedin.com/in/abdullah-khan-zehady-phd-915ba024/",
 
   // Research & open source
   arxivPaper: "https://arxiv.org/abs/2410.21200",

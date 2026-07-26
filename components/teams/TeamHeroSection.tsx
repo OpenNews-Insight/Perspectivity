@@ -73,7 +73,7 @@ const TeamHeroSection: FC<TeamHeroSectionProps> = ({ totalMembers }) => {
                 : "opacity-0 translate-y-8",
             )}
           >
-            Engineers, researchers, marketers, and creators — united by the
+            Engineers, researchers, and creators — united by the
             mission to expose media bias and make narrative transparency
             accessible to everyone, everywhere.
           </p>
