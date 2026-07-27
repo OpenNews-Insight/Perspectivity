@@ -15,19 +15,54 @@ export interface Department {
 
 import { LINKS } from "@/lib/links";
 
-export const founder = {
-  name: "Abdullah Khan Zehady (Aninda)",
-  role: "Founder & CEO",
-  description:
-    "ML infrastructure builder and BongLLaMA engineer. Built the first open-source Bangla LLM fine-tuned for civic NLP, available on Hugging Face (published in LoResLM @EACL 2026).",
-  initials: "AK",
+export interface Founder {
+  name: string;
+  role: string;
+  /** Optional — the card omits the paragraph when absent. */
+  description?: string;
+  initials: string;
+  /** Optional — the card falls back to initials when absent. */
+  image?: string;
   links: {
-    x: LINKS.founderTwitter,
-    linkedin: LINKS.founderLinkedin,
-    huggingface: LINKS.huggingFaceCollection,
-    paper: LINKS.arxivPaper,
+    x?: string;
+    linkedin?: string;
+    github?: string;
+    huggingface?: string;
+    paper?: string;
+  };
+}
+
+export const founders: Founder[] = [
+  {
+    name: "Abdullah Khan Zehady (Aninda)",
+    role: "Founder & CEO",
+    description:
+      "ML infrastructure builder and BongLLaMA engineer. Built the first open-source Bangla LLM fine-tuned for civic NLP, available on Hugging Face (published in LoResLM @EACL 2026).",
+    initials: "AK",
+    image: "/assets/images/founder-image.jpeg",
+    links: {
+      x: LINKS.founderTwitter,
+      linkedin: LINKS.founderLinkedin,
+      huggingface: LINKS.huggingFaceCollection,
+      paper: LINKS.arxivPaper,
+    },
   },
-};
+  {
+    name: "Nick Scipione",
+    role: "Co-Founder",
+    // Every clause here is taken from his LinkedIn profile: the "AI Engineer"
+    // headline, the Austin location, and the Northeastern education entry
+    // (BS Chemical Engineering, 2016-2021, skills Python and Data Analytics).
+    description:
+      "AI Engineer based in Austin, Texas. Came to AI from Chemical Engineering at Northeastern University, graduating in 2021, and works day to day in Python and data analytics.",
+    initials: "NS",
+    image: "/assets/images/team/nick-scipione.jpg",
+    links: {
+      linkedin: "https://www.linkedin.com/in/nickolas-scipione/",
+      github: "https://github.com/nickscip",
+    },
+  },
+];
 
 export const foundingMember = {
   name: "Naymul Islam",
@@ -60,13 +95,10 @@ export const departments: Department[] = [
     glowColor: "rgba(139, 92, 246, 0.15)",
     members: [
       { name: "Abdullah Khan Zehady", role: "Research Lead", initials: "AN", image: "/assets/images/team/aninda.jpeg" },
-      { name: "Shubhashis Roy Dipta", role: "Research Lead", initials: "SD", image: "/assets/images/team/dipta.jpeg" },
-      { name: "Naymul Islam", role: "Research Lead", initials: "NY", image: "/assets/images/team/naimul.jpeg" },
+      { name: "Shubhashis Roy Dipta", role: "Researcher", initials: "SD", image: "/assets/images/team/dipta.jpeg" },
+      { name: "Naymul Islam", role: "Researcher", initials: "NY", image: "/assets/images/team/naimul.jpeg" },
       { name: "Santu Karmaker", role: "Research Advisor", initials: "SK", image: "/research/people/santu.jpg" },
       { name: "Safi Al Mamun", role: "Researcher", initials: "SA", image: "/research/people/safi.jpg" },
-      { name: "Nusrat Jahan Lia", role: "Researcher", initials: "NL", image: "/assets/images/team/lia.jpeg" },
-      { name: "Madhusodan Chakraborty", role: "Researcher", initials: "MC", image: "/assets/images/team/opu.jpeg" },
-      { name: "Sibgat Zehady", role: "Researcher", initials: "SZ", image: "/research/people/sibgat.jpg" },
     ],
   },
   {
@@ -76,18 +108,7 @@ export const departments: Department[] = [
     glowColor: "rgba(236, 72, 153, 0.15)",
     members: [
       { name: "Taibur Rahman", role: "Content Creator", initials: "TB", image: "/assets/images/team/taibur.png" },
-      { name: "Mostare Mahajabin", role: "Content Creator", initials: "MM", image: "/assets/images/team/misu.jpg" },
       { name: "Anika Afroz Saba", role: "Content Creator", initials: "SB", image: "/assets/images/team/saba.jpeg" },
-    ],
-  },
-  {
-    name: "Marketing",
-    description: "Spreading the mission to every corner of the world",
-    gradient: "from-orange-500 to-amber-400",
-    glowColor: "rgba(249, 115, 22, 0.15)",
-    members: [
-      { name: "Arif Hossain", role: "Marketing", initials: "AR", image: "/assets/images/team/arif.jpg" },
-      { name: "Mostare Mahajabin", role: "Marketing", initials: "MM", image: "/assets/images/team/misu.jpg" },
     ],
   },
 ];

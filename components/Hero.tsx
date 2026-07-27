@@ -15,7 +15,7 @@ export default function Hero() {
     "Every Story. Every Side. In Your Language.",
     "Uncover Every Angle Behind the Headlines.",
     "See the Divide. Grasp the Debate.",
-    "News with Nuance—Faith, Power, and Politics.",
+    "News with Nuance: Faith, Power, and Politics.",
     "Where Perspectives Collide, Insight Emerges."
   ]
 

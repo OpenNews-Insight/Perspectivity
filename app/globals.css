@@ -235,6 +235,12 @@ body {
   }
 }
 
+/* Splash cover, hidden from the first frame once the session has seen it.
+   Set by the gate script in app/layout.tsx before the body paints. */
+html[data-splash-seen] .persp-splash {
+  display: none;
+}
+
 /* Mesh background pattern for subtle texture */
 .mesh-bg {
   background-image: 

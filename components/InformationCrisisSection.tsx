@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { CountUp, easeOutExpo } from "@/lib/motionfold";
+import { handleHashClick } from "@/lib/hashScroll";
 import SectionBackdrop from "@/components/SectionBackdrop";
 
 interface Stat { end: number; suffix?: string; label: string; note: string; accent: string; }
@@ -20,7 +21,7 @@ const HEADLINE: { t: string; em?: boolean }[] = [
   { t: "You're" }, { t: "not" }, { t: "reading" }, { t: "the" }, { t: "news." },
   { t: "You're" }, { t: "reading" }, { t: "a" }, { t: "framing", em: true }, { t: "of" }, { t: "it." },
 ];
-const PARA1 = "Every outlet chooses what to emphasize, what to omit, and how to angle a story. When a major event breaks, the same facts become competing narratives — and most readers never see the seams.";
+const PARA1 = "Every outlet chooses what to emphasize, what to omit, and how to angle a story. When a major event breaks, the same facts become competing narratives, and most readers never see the seams.";
 
 const wordContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.035 } } };
 const wordVar = {
@@ -69,12 +70,16 @@ const InformationCrisisSection: FC = () => {
               className="font-hanken text-[15px] text-secondary-700 leading-relaxed mb-7"
               initial="hidden" whileInView="visible" viewport={viewport} variants={reveal}
             >
-              Perspectivity compares how every outlet frames each event — revealing the
+              Perspectivity compares how every outlet frames each event, revealing the
               hidden bias, the missing context, and the contradictions.
             </motion.p>
 
             <motion.div initial="hidden" whileInView="visible" viewport={viewport} variants={reveal}>
-              <Link href="#platform" className="group inline-flex items-center gap-2 font-hanken font-semibold text-navy text-[15px]">
+              <Link
+                href="#platform"
+                onClick={(e) => handleHashClick(e, "#platform")}
+                className="group inline-flex items-center gap-2 font-hanken font-semibold text-navy text-[15px]"
+              >
                 <span>See how we map it</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>

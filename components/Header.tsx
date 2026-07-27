@@ -5,24 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { X, ChevronDown, Globe, Menu } from "lucide-react";
 import { LINKS } from "@/lib/links";
+import { handleHashClick } from "@/lib/hashScroll";
 
 const products = [
   {
     name: "Perspectivity",
-    region: "United States",
+    // Not tied to one country, so it carries a globe rather than a flag.
+    region: "Worldwide",
     href: LINKS.perspectivity,
-    flag: (
-      <svg viewBox="0 0 36 36" className="w-5 h-5 rounded-sm" aria-hidden>
-        <rect fill="#B22234" width="36" height="36" />
-        <rect fill="#fff" y="2.77" width="36" height="2.77" />
-        <rect fill="#fff" y="8.31" width="36" height="2.77" />
-        <rect fill="#fff" y="13.85" width="36" height="2.77" />
-        <rect fill="#fff" y="19.38" width="36" height="2.77" />
-        <rect fill="#fff" y="24.92" width="36" height="2.77" />
-        <rect fill="#fff" y="30.46" width="36" height="2.77" />
-        <rect fill="#3C3B6E" width="15.12" height="19.38" />
-      </svg>
-    ),
+    flag: <Globe className="w-5 h-5 text-white/70" aria-hidden />,
   },
   {
     name: "Drishtikon",
@@ -84,7 +75,6 @@ const Header: FC = () => {
       { name: "Problem", href: "/#problem", sectionId: "problem" },
       { name: "Solution", href: "/#features", sectionId: "features" },
       { name: "Demo", href: "/#demo", sectionId: "demo" },
-      { name: "Research", href: "/research", sectionId: "research" },
       { name: "Team", href: "/teams", sectionId: "teams" },
     ],
     []
@@ -105,7 +95,10 @@ const Header: FC = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setActiveSection(item.sectionId)}
+                onClick={(e) => {
+                  setActiveSection(item.sectionId);
+                  handleHashClick(e, item.href);
+                }}
                 className={`font-hanken text-[15px] font-medium transition-colors duration-200 ${
                   activeSection === item.sectionId ? "text-[#6EE7B7]" : "text-white/65 hover:text-white"
                 }`}
@@ -170,7 +163,17 @@ const Header: FC = () => {
           <div className="md:hidden mt-3 rounded-2xl bg-navy-deep/95 backdrop-blur-md border border-white/10 shadow-lg">
             <div className="flex flex-col px-4 py-4 space-y-4">
               {navItems.map((item) => (
-                <Link key={item.name} href={item.href} className="font-hanken text-white/70 hover:text-white text-[15px] font-medium transition-colors duration-200">{item.name}</Link>
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => {
+                    setIsMobileMenuOpen(false);
+                    handleHashClick(e, item.href);
+                  }}
+                  className="font-hanken text-white/70 hover:text-white text-[15px] font-medium transition-colors duration-200"
+                >
+                  {item.name}
+                </Link>
               ))}
               <div className="flex items-center gap-1 pt-2 border-t border-white/10">
                 {socialLinks.map((social) => (

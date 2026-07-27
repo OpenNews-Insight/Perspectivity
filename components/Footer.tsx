@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC, useEffect, useRef, useState, useMemo } from "react";
 import { LINKS } from "@/lib/links";
+import { handleHashClick } from "@/lib/hashScroll";
 import SectionBackdrop from "@/components/SectionBackdrop";
 
 const Footer: FC = () => {
@@ -24,7 +25,7 @@ const Footer: FC = () => {
       {
         title: "Product",
         links: [
-          { label: "Perspectivity (US)", href: LINKS.perspectivity },
+          { label: "Perspectivity", href: LINKS.perspectivity },
           { label: "Drishtikon (Bangladesh)", href: LINKS.drishtikon },
         ],
       },
@@ -93,6 +94,7 @@ const Footer: FC = () => {
                     <li key={l.label}>
                       <Link
                         href={l.href}
+                        onClick={(e) => handleHashClick(e, l.href)}
                         target={l.href.startsWith("/") ? undefined : "_blank"}
                         rel={l.href.startsWith("/") ? undefined : "noopener noreferrer"}
                         className="font-hanken text-[14px] text-white/75 hover:text-[#6EE7B7] transition-colors"

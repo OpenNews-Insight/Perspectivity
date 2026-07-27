@@ -11,7 +11,7 @@ import JoinSection from "@/components/research/JoinSection";
 
 export const metadata: Metadata = {
   title:
-    "BanglaLLM Research – Building Language Technology for Bangla | Perspectivity",
+    "BanglaLLM Research: Building Language Technology for Bangla | Perspectivity",
   description:
     "Open research building foundation models, benchmarks, and datasets for Bangla. 31+ models, 7+ datasets, and publications at EACL 2026 and AACL 2025.",
   alternates: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "BanglaLLM Research",
     description:
-      "Open NLP research for Bangla — models, benchmarks, and datasets.",
+      "Open NLP research for Bangla: models, benchmarks, and datasets.",
     url: "https://perspectivity.co/research",
     type: "website",
     images: [

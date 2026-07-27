@@ -11,15 +11,15 @@ interface Sig { tag: string; accent: string; title: string; body: string; Viz: F
 const Featured: Sig = {
   tag: "Signature · Narrative Graph", accent: "#10B981",
   title: "Every outlet, mapped on the spectrum of bias.",
-  body: "Where each source sits — and who covers, aligns, or contradicts whom. One event becomes a structure you can read at a glance.",
+  body: "Where each source sits, and who covers, aligns, or contradicts whom. One event becomes a structure you can read at a glance.",
   Viz: NarrativeGraph,
 };
 
 const Cards: Sig[] = [
-  { tag: "Signature · Event Prism", accent: "#3B82F6", title: "One event, five framings.", body: "The same fact, refracted across the political spectrum. See what each side emphasizes — and what it omits.", Viz: EventPrism },
+  { tag: "Signature · Event Prism", accent: "#3B82F6", title: "One event, five framings.", body: "The same fact, refracted across the political spectrum. See what each side emphasizes, and what it omits.", Viz: EventPrism },
   { tag: "Signature · Stance Drift", accent: "#8B5CF6", title: "When a stance quietly shifts.", body: "Track any actor's position over months. Catch the contradictions, the softening, and the hardening.", Viz: StanceDrift },
-  { tag: "Signature · Narrative Momentum", accent: "#EC4899", title: "Which story is winning.", body: "Rising, fading, or suppressed — plus the coordinated-framing signals the public never sees flagged.", Viz: NarrativeMomentum },
-  { tag: "Signature · Affiliation Network", accent: "#4FD1C5", title: "Hidden ties, evidence-scored.", body: "Who funds, owns, and amplifies whom. Every link confirmed, medium, or alleged — never asserted.", Viz: AffiliationNetwork },
+  { tag: "Signature · Narrative Momentum", accent: "#EC4899", title: "Which story is winning.", body: "Rising, fading, or suppressed, plus the coordinated-framing signals the public never sees flagged.", Viz: NarrativeMomentum },
+  { tag: "Signature · Affiliation Network", accent: "#4FD1C5", title: "Hidden ties, evidence-scored.", body: "Who funds, owns, and amplifies whom. Every link confirmed, medium, or alleged, never asserted.", Viz: AffiliationNetwork },
 ];
 
 const FeaturesSection: FC = () => {
@@ -34,7 +34,7 @@ const FeaturesSection: FC = () => {
             See what no headline can show you.
           </h2>
           <p className="font-hanken text-base sm:text-lg text-secondary-500 leading-relaxed">
-            Five lenses — each one an insight only Perspectivity surfaces. Not summaries. <span className="italic text-navy">Structure.</span>
+            Five lenses, each one an insight only Perspectivity surfaces. Not summaries. <span className="italic text-navy">Structure.</span>
           </p>
         </Reveal>
 

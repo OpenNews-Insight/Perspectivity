@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Newsreader, Hanken_Grotesk, Noto_Serif_Bengali } from 'next/font/google'
 import Script from 'next/script'
+import BetaInvite from '@/components/BetaInvite'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -125,6 +126,15 @@ export default function RootLayout({
       </Script>
 
       <head>
+        {/* Splash gate. Runs before the body paints, so a repeat load in the
+            same session never flashes the cover: it stamps the root element and
+            the CSS rule in globals.css hides the splash from the first frame.
+            The first load of a session falls through and plays the intro. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem('persp_splash_seen')){document.documentElement.setAttribute('data-splash-seen','1')}else{sessionStorage.setItem('persp_splash_seen','1')}}catch(e){}`,
+          }}
+        />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -137,6 +147,7 @@ export default function RootLayout({
         className={`${inter.variable} ${newsreader.variable} ${hanken.variable} ${notoBengali.variable} ${inter.className}`}
       >
         {children}
+        <BetaInvite />
       </body>
     </html>
   )

@@ -10,6 +10,8 @@ export const LINKS = {
   // API endpoints
   drishtikonAPI: "https://drishtikon.life/server/api/articles/",
   perspectivityAPI: "https://app.perspectivity.co/server/api/articles/",
+  perspectivityBetaSignupAPI:
+    "https://app.perspectivity.co/server/api/beta/signup",
 
   // Social media
   youtube:
@@ -20,7 +22,7 @@ export const LINKS = {
   // Founder socials
   founderTwitter: "https://x.com/brishtiteveja",
   founderLinkedin:
-    "https://www.linkedin.com/in/abdullah-khan-zehady-915ba024/",
+    "https://www.linkedin.com/in/abdullah-khan-zehady-phd-915ba024/",
 
   // Research & open source
   arxivPaper: "https://arxiv.org/abs/2410.21200",

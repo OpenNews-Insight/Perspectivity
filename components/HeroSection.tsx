@@ -58,7 +58,7 @@ const TONE_COLOR: Record<Tone, string> = {
 
 // headline tokens — last four are the emphasized (green italic) phrase
 const HEADLINE_WORDS: { t: string; em?: boolean }[] = [
-  { t: "Cut" }, { t: "through" }, { t: "the" }, { t: "noise" }, { t: "—" }, { t: "to" }, { t: "the" },
+  { t: "Cut" }, { t: "through" }, { t: "the" }, { t: "noise," }, { t: "to" }, { t: "the" },
   { t: "structure", em: true }, { t: "beneath", em: true }, { t: "every", em: true }, { t: "narrative.", em: true },
 ];
 
@@ -72,8 +72,10 @@ const HeroSection: FC<HeroSectionProps> = ({
     setIsVisible(true);
   }, []);
 
+  // The web app is live; the mobile apps are still in beta, so they are
+  // labelled as such rather than folded into the same "live" claim.
   const proofPoints = [
-    "Live on iOS + Android",
+    "iOS + Android in beta",
     "50k+ followers",
     "Millions of social views",
   ];
@@ -102,7 +104,7 @@ const HeroSection: FC<HeroSectionProps> = ({
       <div className="absolute inset-0 z-0">
         <Image
           src="/assets/images/hero-press-room.jpg"
-          alt="A newspaper printing press — the machinery of public narratives"
+          alt="A newspaper printing press, the machinery of public narratives"
           fill
           priority
           sizes="100vw"
@@ -211,7 +213,9 @@ const HeroSection: FC<HeroSectionProps> = ({
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                   </Link>
                   <Link
-                    href="#platform"
+                    href={LINKS.perspectivity}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 border border-white/35 hover:border-white/70 text-white font-hanken font-medium text-base px-6 py-3 rounded-full transition-all duration-300 hover:bg-white/10"
                   >
                     <span>Explore the Platform</span>
@@ -224,7 +228,7 @@ const HeroSection: FC<HeroSectionProps> = ({
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75" />
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-400" />
                     </span>
-                    <span className="font-hanken text-[13px] text-white font-semibold">Live</span>
+                    <span className="font-hanken text-[13px] text-white font-semibold">Live on web</span>
                   </div>
                   {proofPoints.map((p) => (
                     <span key={p} className="font-hanken text-[13px] text-white/60">{p}</span>
@@ -234,11 +238,10 @@ const HeroSection: FC<HeroSectionProps> = ({
 
               {/* live readout — the graph in a glass style (no white panel), pressroom visible through the card */}
               <div>
-                <div className="flex items-center justify-between mb-1 px-0.5">
+                <div className="flex items-center mb-1 px-0.5">
                   <span className="font-hanken text-[11px] sm:text-xs font-semibold tracking-[0.14em] uppercase text-white/65">
                     Perspectivity · live read
                   </span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary-400 animate-pulse" />
                 </div>
                 <NarrativeGraph dark />
                 <p className="font-hanken text-center text-[10px] text-white/45 mt-2 italic">
