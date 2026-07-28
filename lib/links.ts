@@ -7,6 +7,10 @@ export const LINKS = {
   drishtikon: "https://drishtikon.life",
   perspectivityDomain: "https://perspectivity.co",
 
+  // iOS beta. TestFlight has to be installed before this link resolves to
+  // anything, which is why the copy around it leads with that step.
+  testflight: "https://testflight.apple.com/join/eBpZyFKZ",
+
   // API endpoints
   drishtikonAPI: "https://drishtikon.life/server/api/articles/",
   perspectivityAPI: "https://app.perspectivity.co/server/api/articles/",

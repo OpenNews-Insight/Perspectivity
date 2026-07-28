@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter, Newsreader, Hanken_Grotesk, Noto_Serif_Bengali } from 'next/font/google'
 import Script from 'next/script'
-import BetaInvite from '@/components/BetaInvite'
+// BetaInvite popup retired — the beta ask is now AppBetaSection on the home
+// page (permanent band, TestFlight link + QR) plus the hero pill. The component
+// and lib/betaSignup are untouched; restore this import to bring it back.
+// import BetaInvite from '@/components/BetaInvite'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -147,7 +150,7 @@ export default function RootLayout({
         className={`${inter.variable} ${newsreader.variable} ${hanken.variable} ${notoBengali.variable} ${inter.className}`}
       >
         {children}
-        <BetaInvite />
+        {/* <BetaInvite /> */}
       </body>
     </html>
   )
