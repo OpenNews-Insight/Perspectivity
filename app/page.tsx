@@ -11,6 +11,7 @@ import DemoSection from "@/components/DemoSection";
 import FaqAccordion from "@/components/FaqAccordion";
 import HeroSection from "@/components/HeroSection";
 import TrendingTopics from "@/components/TrendingTopics";
+import AppBetaSection from "@/components/AppBetaSection";
 import { fetchMarqueeNews } from "@/lib/fetchNews";
 import type { SourceInfo } from "@/lib/fetchNews";
 
@@ -65,6 +66,9 @@ export default async function Home() {
       <FeaturesSection />
       <ComparisonShowcase />
       <DemoSection />
+      {/* After the demo: the product has been shown, so "get it on your phone"
+          lands — and it stays clear of the closing CTA further down. */}
+      <AppBetaSection />
       <TeamSection />
       <FinalCTASection />
       <FaqAccordion />

@@ -3,12 +3,13 @@
 import { useState, useEffect, FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
 import { DepthTunnel, easeOutExpo, useReducedMotionFlag } from "@/lib/motionfold";
 import NewsMarquee from "@/components/NewsMarquee";
 import NarrativeGraph from "@/components/NarrativeGraph";
 import { LINKS } from "@/lib/links";
+import { handleHashClick } from "@/lib/hashScroll";
 import type { MarqueeNewsData } from "@/lib/fetchNews";
 
 interface HeroSectionProps {
@@ -230,6 +231,17 @@ const HeroSection: FC<HeroSectionProps> = ({
                     </span>
                     <span className="font-hanken text-[13px] text-white font-semibold">Live on web</span>
                   </div>
+                  {/* The iOS beta gets its full pitch further down; up here it is
+                      one pill beside the web status, so the hero keeps two CTAs. */}
+                  <Link
+                    href="/#ios-beta"
+                    onClick={(e) => handleHashClick(e, "/#ios-beta")}
+                    className="group inline-flex items-center gap-1.5 rounded-full border border-[#E0A030]/40 bg-[#E0A030]/10 px-2.5 py-1 font-hanken text-[12px] font-semibold text-[#E0A030] transition-colors duration-200 hover:bg-[#E0A030]/20"
+                  >
+                    <Smartphone className="w-3 h-3" />
+                    iPhone app in beta
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform duration-200" />
+                  </Link>
                   {proofPoints.map((p) => (
                     <span key={p} className="font-hanken text-[13px] text-white/60">{p}</span>
                   ))}
