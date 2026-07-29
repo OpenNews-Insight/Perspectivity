@@ -41,8 +41,12 @@ export const LINKS = {
   demoVideo: "https://youtu.be/X3_Tdz3np24?si=DuuDo2EllWlxbUtI",
   loomDemo:
     "https://www.loom.com/embed/3f5e1e09fdda48aa8c10157ada5bee70?sid=bbc6376a-a513-410f-b6c4-90b2d1aca624",
-  perspectivityYouTube: "https://www.youtube.com/embed/YVqdN4XWbWg?autoplay=1&controls=0",
-  drishtikonYouTube: "https://www.youtube.com/embed/X3_Tdz3np24?autoplay=1&controls=0",
+  perspectivityYouTube:
+    "https://www.youtube.com/embed/fY-j6z5q57M?si=TZg52OkjzmA3M5Vj",
+  drishtikonYouTube:
+    "https://www.youtube.com/embed/X3_Tdz3np24?autoplay=1&controls=0",
+  perspectivityYouTubeThumbnail:
+    "https://i3.ytimg.com/vi/fY-j6z5q57M/maxresdefault.jpg",
 
   // Contact
   supportEmail: "mailto:support@perspectivity.co",
@@ -51,7 +55,8 @@ export const LINKS = {
   // BanglaLLM research
   banglallmGitHub: "https://github.com/BanglaLLM",
   banglallmHuggingFace: "https://huggingface.co/BanglaLLM",
-  banglallmCollection: "https://huggingface.co/collections/BanglaLLM/banglallama",
+  banglallmCollection:
+    "https://huggingface.co/collections/BanglaLLM/banglallama",
 
   // Publications (arXiv + ACL links)
   banglallamaArxiv: "https://arxiv.org/abs/2410.21200",
@@ -59,8 +64,10 @@ export const LINKS = {
   readBetweenLinesACL: "https://aclanthology.org/2025.banglalp-1.5/",
 
   // Datasets
-  banglaAlpacaOrcaDataset: "https://huggingface.co/datasets/BanglaLLM/bangla-alpaca-orca",
-  banglaAlpacaDataset: "https://huggingface.co/datasets/BanglaLLM/bangla-alpaca",
+  banglaAlpacaOrcaDataset:
+    "https://huggingface.co/datasets/BanglaLLM/bangla-alpaca-orca",
+  banglaAlpacaDataset:
+    "https://huggingface.co/datasets/BanglaLLM/bangla-alpaca",
   banglaMathDataset: "https://huggingface.co/datasets/BanglaLLM",
 
   // GitHub repos
