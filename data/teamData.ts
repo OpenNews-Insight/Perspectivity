@@ -3,6 +3,10 @@ export interface TeamMember {
   role: string;
   initials: string;
   image?: string;
+  /** Renders on their own row above the rest of the department, so the
+   *  reporting line reads off the page instead of having to be inferred
+   *  from the order of three identical cards. */
+  isLead?: boolean;
 }
 
 export interface Department {
@@ -83,9 +87,9 @@ export const departments: Department[] = [
     gradient: "from-gray-600 to-gray-400",
     glowColor: "rgba(107, 114, 128, 0.15)",
     members: [
+      { name: "Naymul Islam", role: "Tech Lead, Founding Member", initials: "NY", image: "/assets/images/team/naimul.jpeg", isLead: true },
       { name: "Minhajul Islam Tapadar", role: "Founding Software Engineer", initials: "MJ", image: "/assets/images/team/minhaj.png" },
       { name: "Naim Lasker", role: "Founding Software Engineer", initials: "NM", image: "/assets/images/team/naim-lasker.jpeg" },
-      { name: "Naymul Islam", role: "Founding Software Engineer", initials: "NY", image: "/assets/images/team/naimul.jpeg" },
     ],
   },
   {

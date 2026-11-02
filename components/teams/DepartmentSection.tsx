@@ -15,6 +15,13 @@ interface DepartmentSectionProps {
 const DepartmentSection: FC<DepartmentSectionProps> = ({ dept, index, isLastDept }) => {
   const { ref, isVisible } = useSectionVisibility();
   const isEven = index % 2 === 0;
+  const leads = dept.members.filter((m) => m.isLead);
+  const rest = dept.members.filter((m) => !m.isLead);
+  // Sized from the whole department, not from either row, so pulling a lead
+  // out does not widen the cards left behind.
+  const gridCols = dept.members.length <= 2
+    ? "grid-cols-1 sm:grid-cols-2 max-w-2xl"
+    : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
 
   const bgClass = isEven ? "bg-white" : "bg-surface-secondary";
 
@@ -68,21 +75,32 @@ const DepartmentSection: FC<DepartmentSectionProps> = ({ dept, index, isLastDept
           </p>
         </div>
 
-        {/* Members grid */}
-        <div
-          className={cn(
-            "grid gap-5 md:gap-6",
-            dept.members.length <= 2
-              ? "grid-cols-1 sm:grid-cols-2 max-w-2xl"
-              : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
-          )}
-        >
-          {dept.members.map((member, memberIndex) => (
+        {/* Leads sit on their own row above the rest. Three identical cards in
+            one row made the reporting line something you had to already know;
+            a row of its own states it. */}
+        {leads.length > 0 && (
+          <div className={cn("grid gap-5 md:gap-6 mb-8 md:mb-10", gridCols)}>
+            {leads.map((member, memberIndex) => (
+              <MemberCard
+                key={`${dept.name}-${member.name}`}
+                member={member}
+                dept={dept}
+                index={memberIndex}
+                isVisible={isVisible}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Members grid. Both rows share one column count, so a lead card is
+            the same width as the cards under it and the two rows line up. */}
+        <div className={cn("grid gap-5 md:gap-6", gridCols)}>
+          {rest.map((member, memberIndex) => (
             <MemberCard
               key={`${dept.name}-${member.name}`}
               member={member}
               dept={dept}
-              index={memberIndex}
+              index={leads.length + memberIndex}
               isVisible={isVisible}
             />
           ))}
